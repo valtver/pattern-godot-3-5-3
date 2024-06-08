@@ -1,4 +1,4 @@
-extends MeshInstance
+extends Sprite3D
 
 export var id: int = 0
 # Declare member variables here. Examples:

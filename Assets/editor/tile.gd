@@ -22,7 +22,6 @@ func _process(_delta):
 func SetupTile():		
 	ProcessSymbol()
 	ProcessSymbolBackground()
-	ProcessTerrain()
 	ProcessPlaceholder()
 	
 func ProcessSymbol():
@@ -56,10 +55,7 @@ func ProcessSymbolBackground():
 	else:
 		if node != null:
 			node.free()
-			
-func ProcessTerrain():
-	var node = get_node_or_null("symbolBackground")
-			
+						
 func ProcessPlaceholder():
 	var children = self.get_children()
 	var node = get_node_or_null("placeholder")

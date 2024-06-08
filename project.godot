@@ -23,8 +23,7 @@ Types="*res://Assets/global/Types.gd"
 window/size/width=450
 window/size/height=1050
 window/dpi/allow_hidpi=true
-window/stretch/mode="viewport"
-window/stretch/aspect="keep"
+window/stretch/aspect="keep_width"
 
 [gui]
 
@@ -1087,6 +1086,10 @@ scene={
 "nodes/use_legacy_names": true,
 "skins/use_named_skins": false
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [physics]
 
