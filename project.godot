@@ -11,18 +11,22 @@ config_version=4
 [application]
 
 config/name="pattern-godot-3-5-3"
-run/main_scene="res://app.tscn"
+run/main_scene="res://App.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Types="*res://Assets/global/Types.gd"
+AppInput="*res://Assets/global/Input.gd"
+Culling="*res://Assets/global/Culling.gd"
+Data="*res://Assets/global/Data/Data.tscn"
 
 [display]
 
 window/size/width=450
 window/size/height=1050
 window/dpi/allow_hidpi=true
+window/handheld/orientation="portrait"
 window/stretch/aspect="keep_width"
 
 [gui]
@@ -1090,6 +1094,10 @@ scene={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+3d_physics/layer_10="sceneInput"
 
 [physics]
 
