@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/app/hectic-play-logo/hectic-play-logo.png" type="Texture" id=1]
+[ext_resource path="res://Assets/app/hectic-play-logo/start.tres" type="Animation" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("HecticPlayLogo/Hectic-play-logo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HecticPlayLogo/Hectic-play-logo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="HecticPlayLogo" type="AnimationPlayer"]
+anims/RESET = SubResource( 1 )
+anims/hecticPlayLogoShow = ExtResource( 2 )
+
+[node name="Hectic-play-logo" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 225, 525 )
+scale = Vector2( 0.375, 0.375 )
+z_index = 11
+texture = ExtResource( 1 )

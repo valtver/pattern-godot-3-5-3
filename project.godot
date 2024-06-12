@@ -20,6 +20,7 @@ Types="*res://Assets/global/Types.gd"
 AppInput="*res://Assets/global/Input.gd"
 Culling="*res://Assets/global/Culling.gd"
 Data="*res://Assets/global/Data/Data.tscn"
+Loader="*res://Assets/global/Loader.gd"
 
 [display]
 
@@ -28,6 +29,10 @@ window/size/height=1050
 window/dpi/allow_hidpi=true
 window/handheld/orientation="portrait"
 window/stretch/aspect="keep_width"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/godot-kra-psd-importer/plugin.cfg" )
 
 [gui]
 
