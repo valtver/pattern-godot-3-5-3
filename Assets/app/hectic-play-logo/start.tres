@@ -4,26 +4,38 @@
 resource_name = "hecticPlayLogoShow"
 length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("HecticPlayLogo/Hectic-play-logo:visible")
+tracks/0/path = NodePath("Pivot/Hectic-play-logo:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("HecticPlayLogo/Hectic-play-logo:modulate")
+tracks/1/path = NodePath("Pivot/Hectic-play-logo:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 1.7, 2 ),
+"times": PoolRealArray( 0, 0.3, 0.9, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/Background:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0509804, 0.0509804, 0.0509804, 0 ), Color( 0.0509804, 0.0509804, 0.0509804, 1 ), Color( 0.0509804, 0.0509804, 0.0509804, 1 ) ]
 }

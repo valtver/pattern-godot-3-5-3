@@ -2,28 +2,32 @@ extends Node
 
 var game
 var ui
-var blocker
 var hecticPlayLogo
+var gameLogo
 
 var appStart: bool = true
 
-export (PackedScene) var blockerScene
 export (PackedScene) var hecticPlayLogoScene
+export (PackedScene) var gameLogoScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Init()
 	ShowBlocker()
 
 func Init():
-	var node = get_node_or_null("AppBlocker")
+	var node = get_node_or_null("HecticPlayLogo")
 	if node == null:
-		blocker = blockerScene.instance()
-		add_child(blocker)
-
-	node = get_node_or_null("HecticPlayLogo")
+		var inst = hecticPlayLogoScene.instance()
+		$CameraPivot/Camera.add_child(inst)
+		inst.position.z = -2
+		hecticPlayLogo = inst.get_node("HecticPlayLogo")
+		
+	node = get_node_or_null("GameLogo")
 	if node == null:
-		hecticPlayLogo = hecticPlayLogoScene.instance()
-		add_child(hecticPlayLogo)
+		var inst = gameLogoScene.instance()
+		$CameraPivot/Camera.add_child(inst)
+		inst.position.z = -1
+		gameLogo = inst.get_node("GameLogo")
 	
 func OnCompleteTimer(methodName, delayTime):
 	var timer := Timer.new()
@@ -38,37 +42,35 @@ func CleanTimer(timerInstance):
 	timerInstance.queue_free()
 
 func ShowBlocker():
-	blocker.play("blockerShow")
-	OnCompleteTimer("OnBlockerShown", blocker.current_animation_length)
-	
+	if appStart:
+		appStart = false
+		ShowHectic()
+	else:
+		ShowGameLogo()
+		
 func HideBlocker():
-	blocker.play("blockerHide")
-	OnCompleteTimer("OnBlockerHidden", blocker.current_animation_length)
-
-func ShowStartLogoSequence():
+	HideGameLogo()
+		
+func ShowHectic():
 	hecticPlayLogo.play("hecticPlayLogoShow")
-	OnCompleteTimer("ShowGameLogo", hecticPlayLogo.current_animation_length)
+	OnCompleteTimer("ShowBlocker", hecticPlayLogo.current_animation_length)
 	
 func ShowGameLogo():
-	#add logo later
-	OnCompleteTimer("OnGameLogoShown", 0.1)
-	pass
+	gameLogo.play("game-logo-start")
+	OnCompleteTimer("OnBlockerShown", gameLogo.current_animation_length)
 	
-func OnGameLogoShown():
-	#loading...
-	OnBlockerShown()
-	pass
-	
+func HideGameLogo():
+	gameLogo.play("game-logo-end")
+	OnCompleteTimer("OnBlockerHidden", gameLogo.current_animation_length)
+		
 func Load():
 	OnLoadComplete()
 	pass
 	
 func OnBlockerShown():
-	if appStart:
-		appStart = false
-		ShowStartLogoSequence()
-	else:
-		Load()
+	gameLogo.play("game-logo-loop")
+	hecticPlayLogo.get_parent().free()
+	Load()
 		
 func OnLoadComplete():
 	OnCompleteTimer("HideBlocker", 0.1)
