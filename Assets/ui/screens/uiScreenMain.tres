@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Assets/ui/screens/ui-screen.gd" type="Script" id=1]
+[ext_resource path="res://Assets/ui/button/SettingsButton.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = ""
+uiContentId = 1
+buttons = [ ExtResource( 2 ) ]

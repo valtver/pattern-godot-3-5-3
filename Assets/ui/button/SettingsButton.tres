@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Assets/scenes/ui/buttons/SettingsButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/ui/button/ui-button-config.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+button = ExtResource( 1 )
+buttonUiAnchor = 2
+buttonPos = Vector3( 0, 0.84, 0 )
+buttonScale = Vector3( 0.85, 0.85, 0.85 )

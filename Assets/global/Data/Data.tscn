@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/data/AppData.tres" type="Resource" id=1]
 [ext_resource path="res://Assets/global/Data/Data.gd" type="Script" id=2]
+[ext_resource path="res://Assets/data/Levels/Level0.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/data/Levels/Level1.tres" type="Resource" id=4]
 
 [node name="Data" type="Node"]
 script = ExtResource( 2 )
 appData = ExtResource( 1 )
+levels = [ ExtResource( 3 ), ExtResource( 4 ) ]

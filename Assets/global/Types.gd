@@ -1,5 +1,26 @@
 extends Node
 
+enum UiAnchor {
+	None = 0,
+	Top = 1,
+	Bottom = 2
+}
+
+enum UiContentId {
+	None = 0,
+	Main = 1,
+	Settings = 2,
+	About = 3
+}
+
+enum UiButtonId {
+	None = 0,
+	Settings = 1,
+	ContentLeft = 2,
+	ContentRight = 3,
+	Back = 4
+}
+
 enum SymbolType {
 	None = 0,
 	Diamond = 1,

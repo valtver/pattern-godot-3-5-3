@@ -21,6 +21,6 @@ size = 4.694
 far = 150.0
 
 [node name="ui" parent="CameraPivot/Camera" instance=ExtResource( 3 )]
-transform = Transform( 1.04311, 0, 0, 0, 1.04311, 0, 0, 0, 1.04311, 0, 0, -1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
 
 [node name="Level0" parent="." instance_placeholder="res://Assets/levels/Level0.tscn"]

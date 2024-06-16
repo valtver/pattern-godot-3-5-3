@@ -1,6 +1,7 @@
 extends Node
 
 export (Resource) var appData
+export (Array, Resource) var levels
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

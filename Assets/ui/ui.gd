@@ -1,7 +1,12 @@
-tool
 extends Spatial
 
+export (PackedScene) var content
+export (Array, Resource) var uiScreens
+
 var aspectRatio = 9.0/21.0
+
+onready var bottom = $Bottom
+onready var top = $Top
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -11,7 +16,56 @@ var aspectRatio = 9.0/21.0
 func _ready():
 	resize()
 	get_tree().get_root().connect("size_changed", self, "resize")
+	InitScreen(Types.UiContentId.Main)
+	InitButtons(Types.UiContentId.Main)
 	pass # Replace with function body.
+
+func InitScreen(uiContentId):
+	RemoveContent()
+	for screenConfig in uiScreens:
+		if screenConfig.uiContentId == uiContentId:
+			var cont = content.instance()
+			add_child(cont)
+			cont.Init(uiContentId)
+			cont.Show()
+			break
+
+func InitButtons(uiContentId):
+	RemoveButtons()
+	for screenConfig in uiScreens:
+		if screenConfig.uiContentId == uiContentId:
+			for btnConfig in screenConfig.buttons:
+				var button = btnConfig.button.instance()
+				if btnConfig.buttonUiAnchor == Types.UiAnchor.Top:
+					top.add_child(button)
+				if btnConfig.buttonUiAnchor == Types.UiAnchor.Bottom:
+					bottom.add_child(button)
+				button.position = btnConfig.buttonPos
+				button.scale = btnConfig.buttonScale
+				button.connect("Click", self, "OnButtonClick")
+				button.Show()
+			
+func RemoveContent():
+	var contentNode = get_node_or_null("Content")
+	if contentNode != null:
+		contentNode.free()
+			
+func RemoveButtons():
+	for key in Types.UiAnchor.keys():
+		var node = get_node_or_null(key)
+		if node != null:
+			for child in node.get_children():
+				if child.has_signal("Click"):
+					print(child.name)
+					child.queue_free()
+			
+func OnButtonClick(buttonId):
+	if buttonId == Types.UiButtonId.Settings:
+		InitScreen(Types.UiContentId.Settings)
+		InitButtons(Types.UiContentId.Settings)
+	elif buttonId == Types.UiButtonId.Back:
+		InitScreen(Types.UiContentId.Main)
+		InitButtons(Types.UiContentId.Main)
 
 func resize():
 	var ref_width = 450 / get_viewport().get_camera().size

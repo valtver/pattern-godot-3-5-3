@@ -1,8 +1,10 @@
 extends Resource
 
-export (PackedScene) var gameScene
-export (PackedScene) var uiScene
+export (String) var name
 
+export (Types.UiContentId) var uiContentId
+
+export (Array, Resource) var buttons
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

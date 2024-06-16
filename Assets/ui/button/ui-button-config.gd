@@ -1,8 +1,9 @@
 extends Resource
 
-export (PackedScene) var gameScene
-export (PackedScene) var uiScene
-
+export (PackedScene) var button
+export (Types.UiAnchor) var buttonUiAnchor
+export (Vector3) var buttonPos
+export (Vector3) var buttonScale
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

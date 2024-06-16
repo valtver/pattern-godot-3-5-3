@@ -1,8 +1,8 @@
 extends Resource
 
-export (PackedScene) var gameScene
-export (PackedScene) var uiScene
-
+export (Resource) var locName
+export (PackedScene) var uiPage
+export (Array, Resource) var subLevels
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

@@ -1,8 +1,7 @@
 extends Resource
 
-export (PackedScene) var gameScene
-export (PackedScene) var uiScene
-
+export (String) var en
+export (String) var ru
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
