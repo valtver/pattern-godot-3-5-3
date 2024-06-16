@@ -12,14 +12,14 @@ export (PackedScene) var gameLogoScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Init()
-	ShowBlocker()
+#	ShowBlocker()
 
 func Init():
 	var node = get_node_or_null("HecticPlayLogo")
 	if node == null:
 		var inst = hecticPlayLogoScene.instance()
 		$CameraPivot/Camera.add_child(inst)
-		inst.position.z = -2
+		inst.position.z = -3
 		hecticPlayLogo = inst.get_node("HecticPlayLogo")
 		
 	node = get_node_or_null("GameLogo")
@@ -64,7 +64,7 @@ func HideGameLogo():
 	OnCompleteTimer("OnBlockerHidden", gameLogo.current_animation_length)
 		
 func Load():
-	OnLoadComplete()
+#	OnLoadComplete()
 	pass
 	
 func OnBlockerShown():

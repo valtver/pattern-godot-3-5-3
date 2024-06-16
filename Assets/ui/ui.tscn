@@ -1,20 +1,216 @@
-[gd_scene format=2]
+[gd_scene load_steps=10 format=2]
 
-[node name="ui" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[ext_resource path="res://Assets/ui/sprites/ui-logo.png" type="Texture" id=1]
+[ext_resource path="res://Assets/ui/sprites/ui-flat.png" type="Texture" id=2]
+[ext_resource path="res://Assets/ui/ui.gd" type="Script" id=3]
+[ext_resource path="res://Assets/shared/sprites/flat.png" type="Texture" id=4]
+[ext_resource path="res://Assets/ui/sprites/ui-logo-text.png" type="Texture" id=5]
+[ext_resource path="res://Assets/ui/sprites/ui-forest-icon.png" type="Texture" id=6]
+[ext_resource path="res://Assets/ui/sprites/ui-triangle-button.png" type="Texture" id=7]
+[ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Assets/ui/sprites/ui-settings-button.png" type="Texture" id=9]
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
-anchor_left = 0.388889
-anchor_top = 0.452381
-anchor_right = 0.611111
-anchor_bottom = 0.547619
-stretch_mode = 0
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="ui" type="Spatial"]
+script = ExtResource( 3 )
 
-[node name="ColorRect" type="ColorRect" parent="AspectRatioContainer"]
-margin_right = 100.0
-margin_bottom = 100.0
-color = Color( 1, 0, 0, 1 )
+[node name="Ref" type="Spatial" parent="."]
+
+[node name="Color" type="Sprite3D" parent="Ref"]
+visible = false
+sorting_offset = 2.0
+modulate = Color( 1, 0.905882, 0.811765, 1 )
+opacity = 0.17
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 450, 1050 )
+
+[node name="Background" type="Spatial" parent="."]
+
+[node name="bg-ribbon" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, 0, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 4 )
+
+[node name="bg-ribbon2" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, -1.47, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+texture = ExtResource( 4 )
+
+[node name="bg-ribbon3" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, -2.94, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 4 )
+
+[node name="bg-ribbon4" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, -4.41, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+texture = ExtResource( 4 )
+
+[node name="bg-ribbon5" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, -5.88, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 4 )
+
+[node name="bg-ribbon6" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, -7.35, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+texture = ExtResource( 4 )
+
+[node name="bg-ribbon7" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, 1.47, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+texture = ExtResource( 4 )
+
+[node name="bg-ribbon8" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, 2.94, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 4 )
+
+[node name="bg-ribbon9" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, 4.41, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+texture = ExtResource( 4 )
+
+[node name="bg-ribbon10" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, 5.88, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 4 )
+
+[node name="bg-ribbon11" type="Sprite3D" parent="Background"]
+transform = Transform( 11.2583, -1, 0, 6.5, 1.73205, 0, 0, 0, 1, 0, 7.35, -0.0873108 )
+sorting_offset = -10.0
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+texture = ExtResource( 4 )
+
+[node name="Top" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, 0 )
+
+[node name="RectBg" type="Sprite3D" parent="Top"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.31, 0 )
+sorting_offset = 1.0
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 450, 200 )
+
+[node name="RectFg" type="Sprite3D" parent="Top"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.4, 0 )
+sorting_offset = 2.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 450, 400 )
+
+[node name="LogoBase" type="Sprite3D" parent="Top"]
+transform = Transform( 0.573, 0, 0, 0, 0.573, 0, 0, 0, 0.573, 0, -0.95485, 0 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="LogoText" type="Sprite3D" parent="Top"]
+transform = Transform( 0.573, 0, 0, 0, 0.573, 0, 0, 0, 0.573, 0, -0.70458, 0 )
+sorting_offset = 3.0
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="Center" type="Spatial" parent="."]
+
+[node name="LevelScroll" type="Spatial" parent="Center"]
+
+[node name="Level0" type="Spatial" parent="Center/LevelScroll"]
+
+[node name="LevelImage" type="Sprite3D" parent="Center/LevelScroll/Level0"]
+sorting_offset = 5.0
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 450, 434 )
+
+[node name="LevelName" type="Label3D" parent="Center/LevelScroll/Level0"]
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -1.42, 0 )
+sorting_offset = 6.0
+double_sided = false
+modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Forest"
+font = ExtResource( 8 )
+autowrap = true
+width = 450.0
+
+[node name="LevelNameShadow" type="Label3D" parent="Center/LevelScroll/Level0/LevelName"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0 )
+sorting_offset = 5.0
+double_sided = false
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Forest"
+font = ExtResource( 8 )
+autowrap = true
+width = 450.0
+
+[node name="LevelStats" type="Label3D" parent="Center/LevelScroll/Level0"]
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1.44705, 0 )
+sorting_offset = 6.0
+double_sided = false
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "5/35"
+font = ExtResource( 8 )
+autowrap = true
+width = 450.0
+
+[node name="LevelStatsShadow" type="Label3D" parent="Center/LevelScroll/Level0/LevelStats"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0 )
+sorting_offset = 5.0
+double_sided = false
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "5/35"
+font = ExtResource( 8 )
+autowrap = true
+width = 450.0
+
+[node name="LevelScrollButtonRight" type="Sprite3D" parent="Center/LevelScroll"]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.75, 0, 0 )
+sorting_offset = 10.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 450, 434 )
+
+[node name="LevelScrollButtonLeft" type="Sprite3D" parent="Center/LevelScroll"]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.75, 0, 0 )
+sorting_offset = 10.0
+flip_h = true
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 450, 434 )
+
+[node name="Bottom" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.25, 0 )
+
+[node name="RectBg" type="Sprite3D" parent="Bottom"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97, 0 )
+sorting_offset = -2.0
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 450, 200 )
+
+[node name="RectFg" type="Sprite3D" parent="Bottom"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.159, 0 )
+sorting_offset = -1.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 450, 420 )
+
+[node name="SettingsButton" type="Sprite3D" parent="Bottom"]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.889999, 0 )
+sorting_offset = 10.0
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 128, 128 )

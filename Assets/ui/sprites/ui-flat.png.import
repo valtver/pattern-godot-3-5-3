@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.stex"
-path.etc="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.etc.stex"
+path.s3tc="res://.import/ui-flat.png-723e2319998a67130fa7c33111b2f413.s3tc.stex"
+path.etc="res://.import/ui-flat.png-723e2319998a67130fa7c33111b2f413.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.stex", "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.etc.stex" ]
+source_file="res://Assets/ui/sprites/ui-flat.png"
+dest_files=[ "res://.import/ui-flat.png-723e2319998a67130fa7c33111b2f413.s3tc.stex", "res://.import/ui-flat.png-723e2319998a67130fa7c33111b2f413.etc.stex" ]
 
 [params]
 
