@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://Assets/data/GameData/levels/LevelData.gd" type="Script" id=1]
-[ext_resource path="res://Assets/ui/sprites/ui-forest-icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/sprites/ui/ui-forest-icon.png" type="Texture" id=2]
 [ext_resource path="res://Assets/data/GameData/levels/LocLevel0Name.tres" type="Resource" id=3]
 
 [resource]

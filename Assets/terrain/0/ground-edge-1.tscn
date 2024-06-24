@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/materials/vertex-color-material.tres" type="Material" id=1]
+[ext_resource path="res://Assets/materials/world/vertex-color-material.tres" type="Material" id=1]
 [ext_resource path="res://Assets/import/terrain/0/ground-edge-1.fbx" type="PackedScene" id=2]
 
 [node name="ground-edge-1" instance=ExtResource( 2 )]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/app/app.gd" type="Script" id=1]
-[ext_resource path="res://Assets/app/hectic-play-logo/hectic-play-logo.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/ui/ui.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/app/game-logo/game-logo.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/scripts/app.gd" type="Script" id=1]
+[ext_resource path="res://Assets/scenes/app/hectic-play-logo.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/scenes/ui/ui.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/scenes/app/game-logo.tscn" type="PackedScene" id=4]
 
 [node name="App" type="Node"]
 script = ExtResource( 1 )
