@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/ui/content/ui-content.gd" type="Script" id=1]
+[ext_resource path="res://Assets/ui/ui-content.gd" type="Script" id=1]
 [ext_resource path="res://Assets/scenes/ui/buttons/ContentButtonLeft.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/scenes/ui/buttons/ContentButtonRight.tscn" type="PackedScene" id=3]
 

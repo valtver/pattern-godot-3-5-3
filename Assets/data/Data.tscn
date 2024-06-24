@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/data/Data.gd" type="Script" id=1]
+[ext_resource path="res://Assets/data/AppData/AppData.tres" type="Resource" id=2]
+[ext_resource path="res://Assets/data/UiData/UiData.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/data/GameData/GameData.tres" type="Resource" id=4]
+
+[node name="Data" type="Node"]
+script = ExtResource( 1 )
+appData = ExtResource( 2 )
+uiData = ExtResource( 3 )
+gameData = ExtResource( 4 )

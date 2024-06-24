@@ -21,7 +21,7 @@ config/icon="res://icon.png"
 Types="*res://Assets/global/Types.gd"
 AppInput="*res://Assets/global/Input.gd"
 Culling="*res://Assets/global/Culling.gd"
-Data="*res://Assets/global/Data/Data.tscn"
+Data="*res://Assets/data/Data.tscn"
 Loader="*res://Assets/global/Loader.gd"
 
 [display]

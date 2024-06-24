@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Assets/data/UiData/screens/button/BackButton.tres" type="Resource" id=1]
+[ext_resource path="res://Assets/data/UiData/screens/UiScreenData.gd" type="Script" id=2]
+[ext_resource path="res://Assets/scenes/ui/content-pages/settings/Settings.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/data/UiData/screens/uiScreenSettingsLocLabel.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 2 )
+uiContentId = 2
+uiLocLabel = ExtResource( 4 )
+uiContentPages = [ ExtResource( 3 ) ]
+buttons = [ ExtResource( 1 ) ]

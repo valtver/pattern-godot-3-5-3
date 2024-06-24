@@ -1,5 +1,10 @@
 extends Node
 
+enum LocId {
+	en = 0,
+	ru = 1
+}
+
 enum UiAnchor {
 	None = 0,
 	Top = 1,
@@ -18,7 +23,12 @@ enum UiButtonId {
 	Settings = 1,
 	ContentLeft = 2,
 	ContentRight = 3,
-	Back = 4
+	Back = 4,
+	Level = 5,
+	SubLevel = 6,
+	About = 7,
+	Sound = 8,
+	Music = 9
 }
 
 enum SymbolType {

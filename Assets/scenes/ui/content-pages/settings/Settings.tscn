@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/ui/ui-button.gd" type="Script" id=2]
+[ext_resource path="res://Assets/ui/sprites/ui-flat.png" type="Texture" id=3]
+[ext_resource path="res://Assets/ui/sprites/ui-music.png" type="Texture" id=4]
+[ext_resource path="res://Assets/ui/sprites/ui-sound-vol-0.png" type="Texture" id=7]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 1, 0.01 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1, 1, 0.01 )
+
+[node name="Settings" type="Spatial"]
+
+[node name="SoundButton" type="StaticBody" parent="." groups=["uiButtons", "uiSoundButton"]]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.6, 0, 0 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 2 )
+buttonId = 8
+
+[node name="Sprite" type="Sprite3D" parent="SoundButton"]
+sorting_offset = 6.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 147, 201 )
+
+[node name="Shadow" type="Sprite3D" parent="SoundButton/Sprite"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.152482, 0 )
+sorting_offset = 5.0
+modulate = Color( 1, 0.905882, 0.811765, 1 )
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 147, 201 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SoundButton"]
+shape = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="SoundButton"]
+
+[node name="MusicButton" type="StaticBody" parent="." groups=["uiButtons", "uiMusicButton"]]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.6, 0, 0 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 2 )
+buttonId = 9
+
+[node name="Sprite" type="Sprite3D" parent="MusicButton"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0171561, 0, 0 )
+sorting_offset = 6.0
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 147, 201 )
+
+[node name="Shadow" type="Sprite3D" parent="MusicButton/Sprite"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.152482, 0 )
+sorting_offset = 5.0
+modulate = Color( 1, 0.905882, 0.811765, 1 )
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 147, 201 )
+
+[node name="CollisionShape" type="CollisionShape" parent="MusicButton"]
+shape = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="MusicButton"]
+
+[node name="Ref" type="Sprite3D" parent="."]
+sorting_offset = 10.0
+flip_h = true
+opacity = 0.03
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 450, 450 )

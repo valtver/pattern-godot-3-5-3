@@ -36,7 +36,7 @@ func ProcessScene(position):
 	var space_state = get_world().direct_space_state
 	var result = space_state.intersect_ray(from, to, [self], 0b00000000001000000000) #Layer 10
 	if result != null:
-		print(result)
+#		print(result)
 		if "collider" in result:
 			result.collider.OnClick()
 # Called when the node enters the scene tree for the first time.
