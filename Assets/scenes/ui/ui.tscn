@@ -150,3 +150,5 @@ modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 450, 420 )
+
+[node name="Content" parent="." instance=ExtResource( 7 )]

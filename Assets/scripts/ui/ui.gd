@@ -9,6 +9,7 @@ const MAX_ASPECT_RATIO = 4.0/3.0
 onready var uiBottom = $Bottom
 onready var uiTop = $Top
 onready var uiMenuTitle = $Top/MenuLabel
+onready var uiContent = $Content
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -23,23 +24,21 @@ func _ready():
 	pass # Replace with function body.
 
 func InitScreen(uiContentId):
-	RemoveContent()
+	ClearContent()
 	for screenConfig in Data.uiData.screens:
 		if screenConfig.uiContentId == uiContentId:
 			var locId = Types.LocId.keys()[Data.appData.locId]
 			uiMenuTitle.text = screenConfig.uiLocLabel[locId]
-			var cont = content.instance()
-			add_child(cont)
-			cont.Init(screenConfig)
-			cont.Show()
+			uiContent.Init(screenConfig)
+			uiContent.Show()
 			break
 	ConnectUiContentButtons()
 
 func InitButtons(uiContentId):
 	RemoveDynamicButtons()
 	for screenConfig in Data.uiData.screens:
-		if screenConfig.uiContentId == uiContentId:					
-			for btnConfig in screenConfig.buttons:
+		if screenConfig.uiContentId == uiContentId:
+			for btnConfig in screenConfig.uiButtons:
 				var button = btnConfig.button.instance()
 				if btnConfig.buttonUiAnchor == Types.UiAnchor.Top:
 					uiTop.add_child(button)
@@ -60,38 +59,41 @@ func ConnectUiButtons():
 		if !button.is_connected("Click", self, "OnButtonClick"):
 			button.connect("Click", self, "OnButtonClick")
 			
-func RemoveContent():
-	var contentNode = get_node_or_null("Content")
-	if contentNode != null:
-		contentNode.free()
+func ClearContent():
+	for child in uiContent.get_node("Pivot").get_children():
+		child.queue_free()
 		
 func RemoveDynamicButtons():
 	for child in get_tree().get_nodes_in_group("dynamicUiButtons"):
 		child.queue_free()
 						
-func OnButtonClick(buttonId):
-	if buttonId == Types.UiButtonId.Settings:
+func OnButtonClick(button):
+	if button.buttonId == Types.UiButtonId.Settings:
 		InitScreen(Types.UiContentId.Settings)
 		InitButtons(Types.UiContentId.Settings)
 		return
-	if buttonId == Types.UiButtonId.Back:
+	if button.buttonId == Types.UiButtonId.Back:
 		InitScreen(Types.UiContentId.Main)
 		InitButtons(Types.UiContentId.Main)
 		return
 
 
-func OnContentButtonClick(buttonId):
-	if buttonId == Types.UiButtonId.Sound || Types.UiButtonId.Music:
-		for btn in get_tree().get_nodes_in_group("uiContentButtons"):
-			if btn.buttonId == Types.UiButtonId.Sound:
-				Data.appData.sound = !Data.appData.sound
-				btn.active = Data.appData.sound
-				return
-			if btn.buttonId == Types.UiButtonId.Music:
-				Data.appData.music = !Data.appData.music
-				btn.active = Data.appData.music
-				return
+func OnContentButtonClick(button):
+	if button.buttonId == Types.UiButtonId.Sound:
+		Data.appData.sound = !Data.appData.sound
+		button.active = Data.appData.sound
 		return
+	if button.buttonId == Types.UiButtonId.Music:
+		Data.appData.music = !Data.appData.music
+		button.active = Data.appData.music
+		return
+	if button.buttonId == Types.UiButtonId.Level:
+		Data.playerData.selectedLevelIndex = button.index
+		InitScreen(Types.UiContentId.SubLevel)
+		InitButtons(Types.UiContentId.SubLevel)
+		return
+		
+		
 
 func resize():
 	var ref_width = 450 / get_viewport().get_camera().size

@@ -6,6 +6,9 @@ var currentPageIndex = null
 onready var container = $Pivot
 onready var leftScrollButton = $ContentButtonLeft
 onready var rightScrollButton = $ContentButtonRight
+
+const SUB_LEVELS_X = 3
+const SUB_LEVELS_Y = 3
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -28,11 +31,29 @@ func Init(screenConfig):
 			var locId = Types.LocId.keys()[Data.appData.locId]
 			content.get_node("LevelName").text = lvlData.locName[locId]
 			content.get_node("LevelName/LevelNameShadow").text = lvlData.locName[locId]
-#
-#	elif screenConfig.uiContentId == Types.UiContentId.SubLevel:
-#		for subLvlData in Data.gameData.levels[Data.playerData.selectedLvlIndex]:
-#
-		
+
+	elif screenConfig.uiContentId == Types.UiContentId.SubLevel:
+		for lvlData in Data.gameData.levels:
+			if lvlData.index == Data.playerData.selectedLevelIndex:
+				var pagesN = ceil(float(lvlData.subLevels.size() / 9))
+				for pN in pagesN:
+					var content = screenConfig.uiContentPages[0].instance()
+					contentPages.push_back(content)
+					container.add_child(content)
+					content.position = Vector3(4.5 * (contentPages.size() - 1), 0, 0)
+					var nextSubLevelIndex = 0
+					for y in SUB_LEVELS_Y:
+						for x in SUB_LEVELS_X:
+							for subLvlData in lvlData.subLevels:
+								if subLvlData.index == nextSubLevelIndex:
+									var subLvlButton = screenConfig.uiContentButtons[0].instance()
+									content.add_child(subLvlButton)
+									subLvlButton.position = Vector3(x, y, 0)
+									subLvlButton.name = "SubLevel%s" % nextSubLevelIndex
+									subLvlButton.index = nextSubLevelIndex
+									subLvlButton.get_node("SubLevelName").text = nextSubLevelIndex + 1
+									subLvlButton.get_node("SubLevelName/SubLevelNameShadow").text = nextSubLevelIndex + 1
+									
 	elif screenConfig.uiContentId == Types.UiContentId.Settings:
 		for page in screenConfig.uiContentPages:
 			var content = page.instance()
@@ -45,8 +66,10 @@ func Init(screenConfig):
 				if btn.buttonId == Types.UiButtonId.Music:
 					btn.active = Data.appData.music
 
-	leftScrollButton.connect("Click", self, "OnClickLeft")
-	rightScrollButton.connect("Click", self, "OnClickRight")
+	if !leftScrollButton.is_connected("Click", self, "OnClickLeft"):
+		leftScrollButton.connect("Click", self, "OnClickLeft")
+	if !rightScrollButton.is_connected("Click", self, "OnClickRight"):
+		rightScrollButton.connect("Click", self, "OnClickRight")
 	currentPageIndex = 0;
 	UpdateButtons();
 	

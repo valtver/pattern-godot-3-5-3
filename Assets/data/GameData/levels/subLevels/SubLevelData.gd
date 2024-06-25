@@ -1,6 +1,7 @@
 extends Resource
 
-export (int, -1, 99) var selectedLevelIndex = -1
+export (int) var index
+export (PackedScene) var levelScene
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

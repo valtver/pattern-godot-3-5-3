@@ -1,7 +1,6 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://Assets/data/UiData/screens/UiScreenData.gd" type="Script" id=1]
-[ext_resource path="res://Assets/data/UiData/screens/button/BackButton.tres" type="Resource" id=2]
 [ext_resource path="res://Assets/data/UiData/screens/uiScreenAboutLocLabel.tres" type="Resource" id=3]
 
 [resource]
@@ -9,4 +8,5 @@ script = ExtResource( 1 )
 uiContentId = 3
 uiLocLabel = ExtResource( 3 )
 uiContentPages = [  ]
-buttons = [ ExtResource( 2 ) ]
+uiButtons = [  ]
+uiContentButtons = [  ]

@@ -32,15 +32,19 @@ func OnRelease():
 	pass
 		
 func OnClick():
-	emit_signal("Click", buttonId)
-	var tween = get_node("Tween")
+	emit_signal("Click", self)
+	var tween = get_node_or_null("Tween")
+	if tween == null:
+		return
 	tween.interpolate_property(sprite, "scale",
 		Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1), 0.5,
 		Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	tween.start()
 
 func Show():
-	var tween = get_node("Tween")
+	var tween = get_node_or_null("Tween")
+	if tween == null:
+		return
 	tween.interpolate_property(sprite, "scale",
 		Vector3(0, 0, 0), Vector3.ONE, 1,
 		Tween.TRANS_ELASTIC, Tween.EASE_OUT)

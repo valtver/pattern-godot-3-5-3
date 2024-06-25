@@ -3,7 +3,9 @@ extends Resource
 export (Types.UiContentId) var uiContentId
 export (Resource) var uiLocLabel
 export (Array, PackedScene) var uiContentPages
-export (Array, Resource) var buttons
+export (Array, Resource) var uiButtons
+export (Array, Resource) var uiContentButtons
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

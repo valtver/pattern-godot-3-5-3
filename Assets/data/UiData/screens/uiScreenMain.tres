@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=6 format=2]
 
-[ext_resource path="res://Assets/data/UiData/screens/button/SettingsButton.tres" type="Resource" id=1]
-[ext_resource path="res://Assets/data/UiData/screens/button/AboutButton.tres" type="Resource" id=2]
+[ext_resource path="res://Assets/data/UiData/screens/uiButton/SettingsButton.tres" type="Resource" id=1]
+[ext_resource path="res://Assets/data/UiData/screens/uiButton/AboutButton.tres" type="Resource" id=2]
 [ext_resource path="res://Assets/data/UiData/screens/UiScreenData.gd" type="Script" id=3]
 [ext_resource path="res://Assets/scenes/ui/content/pages/Level.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/data/UiData/screens/uiScreenMainLocLabel.tres" type="Resource" id=5]
@@ -11,4 +11,5 @@ script = ExtResource( 3 )
 uiContentId = 1
 uiLocLabel = ExtResource( 5 )
 uiContentPages = [ ExtResource( 4 ) ]
-buttons = [ ExtResource( 1 ), ExtResource( 2 ) ]
+uiButtons = [ ExtResource( 2 ), ExtResource( 1 ) ]
+uiContentButtons = [  ]

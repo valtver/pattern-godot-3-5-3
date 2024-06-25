@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
+
+[node name="SubLevels" type="Spatial"]
+
+[node name="Ref" type="Sprite3D" parent="."]
+sorting_offset = 10.0
+flip_h = true
+opacity = 0.03
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 300, 450 )

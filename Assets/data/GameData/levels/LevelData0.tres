@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Assets/data/GameData/levels/subLevels/0/SubLevelData0.tres" type="Resource" id=1]
+[ext_resource path="res://Assets/sprites/ui/ui-forest-icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/data/GameData/levels/LocLevel0Name.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/data/GameData/levels/LevelData.gd" type="Script" id=4]
+
+[resource]
+script = ExtResource( 4 )
+index = 0
+locName = ExtResource( 3 )
+uiTexture = ExtResource( 2 )
+subLevels = [ ExtResource( 1 ) ]

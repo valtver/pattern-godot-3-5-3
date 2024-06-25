@@ -3,6 +3,7 @@ extends Node
 export (Resource) var appData
 export (Resource) var uiData
 export (Resource) var gameData
+export (Resource) var playerData
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
