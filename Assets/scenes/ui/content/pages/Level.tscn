@@ -8,7 +8,7 @@ extents = Vector3( 1.219, 0.937, 0.01 )
 
 [node name="Level0" type="Spatial"]
 
-[node name="LevelButton" type="StaticBody" parent="."]
+[node name="LevelButton" type="StaticBody" parent="." groups=["uiContentButtons"]]
 collision_layer = 512
 collision_mask = 512
 script = ExtResource( 2 )

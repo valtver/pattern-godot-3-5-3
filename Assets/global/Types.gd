@@ -15,7 +15,8 @@ enum UiContentId {
 	None = 0,
 	Main = 1,
 	Settings = 2,
-	About = 3
+	About = 3,
+	SubLevel = 4
 }
 
 enum UiButtonId {

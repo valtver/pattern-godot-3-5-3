@@ -33,6 +33,7 @@ func InitScreen(uiContentId):
 			cont.Init(screenConfig)
 			cont.Show()
 			break
+	ConnectUiContentButtons()
 
 func InitButtons(uiContentId):
 	RemoveDynamicButtons()
@@ -48,6 +49,11 @@ func InitButtons(uiContentId):
 				button.scale = btnConfig.buttonScale
 				button.Show()
 	ConnectUiButtons()
+	
+func ConnectUiContentButtons():
+	for button in get_tree().get_nodes_in_group("uiContentButtons"):
+		if !button.is_connected("Click", self, "OnContentButtonClick"):
+			button.connect("Click", self, "OnContentButtonClick")
 	
 func ConnectUiButtons():
 	for button in get_tree().get_nodes_in_group("uiButtons"):
@@ -72,15 +78,20 @@ func OnButtonClick(buttonId):
 		InitScreen(Types.UiContentId.Main)
 		InitButtons(Types.UiContentId.Main)
 		return
-	if buttonId == Types.UiButtonId.Sound:
-		Data.appData.sound = !Data.appData.sound
-		get_tree().get_first_node_in_group("uiSoundButton").active = Data.appData.sound
-		return
-	if buttonId == Types.UiButtonId.Music:
-		Data.appData.music = !Data.appData.music
-		get_tree().get_first_node_in_group("uiMusicButton").active = Data.appData.music
-		return
 
+
+func OnContentButtonClick(buttonId):
+	if buttonId == Types.UiButtonId.Sound || Types.UiButtonId.Music:
+		for btn in get_tree().get_nodes_in_group("uiContentButtons"):
+			if btn.buttonId == Types.UiButtonId.Sound:
+				Data.appData.sound = !Data.appData.sound
+				btn.active = Data.appData.sound
+				return
+			if btn.buttonId == Types.UiButtonId.Music:
+				Data.appData.music = !Data.appData.music
+				btn.active = Data.appData.music
+				return
+		return
 
 func resize():
 	var ref_width = 450 / get_viewport().get_camera().size

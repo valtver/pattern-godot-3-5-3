@@ -13,7 +13,7 @@ extents = Vector3( 1, 1, 0.01 )
 
 [node name="Settings" type="Spatial"]
 
-[node name="SoundButton" type="StaticBody" parent="." groups=["uiButtons", "uiSoundButton"]]
+[node name="SoundButton" type="StaticBody" parent="." groups=["uiContentButtons"]]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.6, 0, 0 )
 collision_layer = 512
 collision_mask = 512
@@ -37,7 +37,7 @@ shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="SoundButton"]
 
-[node name="MusicButton" type="StaticBody" parent="." groups=["uiButtons", "uiMusicButton"]]
+[node name="MusicButton" type="StaticBody" parent="." groups=["uiContentButtons"]]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.6, 0, 0 )
 collision_layer = 512
 collision_mask = 512

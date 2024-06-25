@@ -28,6 +28,10 @@ func Init(screenConfig):
 			var locId = Types.LocId.keys()[Data.appData.locId]
 			content.get_node("LevelName").text = lvlData.locName[locId]
 			content.get_node("LevelName/LevelNameShadow").text = lvlData.locName[locId]
+#
+#	elif screenConfig.uiContentId == Types.UiContentId.SubLevel:
+#		for subLvlData in Data.gameData.levels[Data.playerData.selectedLvlIndex]:
+#
 		
 	elif screenConfig.uiContentId == Types.UiContentId.Settings:
 		for page in screenConfig.uiContentPages:
@@ -35,8 +39,11 @@ func Init(screenConfig):
 			contentPages.push_back(content)
 			container.add_child(content)
 			content.position = Vector3(4.5 * (contentPages.size() - 1), 0, 0)
-			get_tree().get_first_node_in_group("uiSoundButton").active = Data.appData.sound
-			get_tree().get_first_node_in_group("uiMusicButton").active = Data.appData.music
+			for btn in get_tree().get_nodes_in_group("uiContentButtons"):
+				if btn.buttonId == Types.UiButtonId.Sound:
+					btn.active = Data.appData.sound
+				if btn.buttonId == Types.UiButtonId.Music:
+					btn.active = Data.appData.music
 
 	leftScrollButton.connect("Click", self, "OnClickLeft")
 	rightScrollButton.connect("Click", self, "OnClickRight")
