@@ -17,7 +17,9 @@ buttonId = 5
 [node name="CollisionShape" type="CollisionShape" parent="LevelButton"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite3D" parent="LevelButton"]
+[node name="SpritePivot" type="Spatial" parent="LevelButton"]
+
+[node name="Sprite" type="Sprite3D" parent="LevelButton/SpritePivot"]
 sorting_offset = 10.0
 flip_h = true
 region_rect = Rect2( 0, 0, 450, 434 )

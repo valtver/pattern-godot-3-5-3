@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
 [ext_resource path="res://Assets/scripts/ui/ui-button.gd" type="Script" id=3]
+[ext_resource path="res://Assets/sprites/ui/hud-symbol-tab.png" type="Texture" id=4]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.45, 0.45, 0.01 )
@@ -35,19 +35,27 @@ font = ExtResource( 1 )
 autowrap = true
 width = 450.0
 
-[node name="Sprite" type="Sprite3D" parent="."]
-sorting_offset = 6.0
-modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
-texture = ExtResource( 2 )
-region_enabled = true
+[node name="SpritePivot" type="Spatial" parent="."]
+
+[node name="Selection" type="Sprite3D" parent="SpritePivot"]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
+sorting_offset = 7.0
+modulate = Color( 1, 0.823529, 0.109804, 1 )
+texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 90, 90 )
 
-[node name="Shadow" type="Sprite3D" parent="Sprite"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.104113, 0 )
+[node name="Sprite" type="Sprite3D" parent="SpritePivot"]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
+sorting_offset = 6.0
+modulate = Color( 1, 0.905882, 0.811765, 1 )
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 90, 90 )
+
+[node name="Shadow" type="Sprite3D" parent="SpritePivot"]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.104113, 0 )
 sorting_offset = 5.0
-modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
-texture = ExtResource( 2 )
-region_enabled = true
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 90, 90 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

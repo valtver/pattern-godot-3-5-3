@@ -20,12 +20,14 @@ collision_mask = 512
 script = ExtResource( 2 )
 buttonId = 8
 
-[node name="Sprite" type="Sprite3D" parent="SoundButton"]
+[node name="SpritePivot" type="Spatial" parent="SoundButton"]
+
+[node name="Sprite" type="Sprite3D" parent="SoundButton/SpritePivot"]
 sorting_offset = 6.0
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 147, 201 )
 
-[node name="Shadow" type="Sprite3D" parent="SoundButton/Sprite"]
+[node name="Shadow" type="Sprite3D" parent="SoundButton/SpritePivot/Sprite"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.152482, 0 )
 sorting_offset = 5.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
@@ -44,13 +46,15 @@ collision_mask = 512
 script = ExtResource( 2 )
 buttonId = 9
 
-[node name="Sprite" type="Sprite3D" parent="MusicButton"]
+[node name="SpritePivot" type="Spatial" parent="MusicButton"]
+
+[node name="Sprite" type="Sprite3D" parent="MusicButton/SpritePivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0171561, 0, 0 )
 sorting_offset = 6.0
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 147, 201 )
 
-[node name="Shadow" type="Sprite3D" parent="MusicButton/Sprite"]
+[node name="Shadow" type="Sprite3D" parent="MusicButton/SpritePivot/Sprite"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.152482, 0 )
 sorting_offset = 5.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )

@@ -29,7 +29,9 @@ enum UiButtonId {
 	SubLevel = 6,
 	About = 7,
 	Sound = 8,
-	Music = 9
+	Music = 9,
+	Accept = 10,
+	Decline = 11
 }
 
 enum SymbolType {

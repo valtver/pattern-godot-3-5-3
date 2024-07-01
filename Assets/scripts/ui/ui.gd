@@ -10,6 +10,7 @@ onready var uiBottom = $Bottom
 onready var uiTop = $Top
 onready var uiMenuTitle = $Top/MenuLabel
 onready var uiContent = $Content
+onready var uiConfirmScreen = $ConfirmScreen
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -53,6 +54,12 @@ func ConnectUiContentButtons():
 	for button in get_tree().get_nodes_in_group("uiContentButtons"):
 		if !button.is_connected("Click", self, "OnContentButtonClick"):
 			button.connect("Click", self, "OnContentButtonClick")
+			
+func ResetUiContentButtons():
+	for button in get_tree().get_nodes_in_group("uiContentButtons"):
+		button.active = true
+		button.selected = false
+		button.lock = false #Data check goes here
 	
 func ConnectUiButtons():
 	for button in get_tree().get_nodes_in_group("uiButtons"):
@@ -62,7 +69,7 @@ func ConnectUiButtons():
 func ClearContent():
 	for child in uiContent.get_node("Pivot").get_children():
 		child.queue_free()
-		
+				
 func RemoveDynamicButtons():
 	for child in get_tree().get_nodes_in_group("dynamicUiButtons"):
 		child.queue_free()
@@ -77,7 +84,6 @@ func OnButtonClick(button):
 		InitButtons(Types.UiContentId.Main)
 		return
 
-
 func OnContentButtonClick(button):
 	if button.buttonId == Types.UiButtonId.Sound:
 		Data.appData.sound = !Data.appData.sound
@@ -91,10 +97,12 @@ func OnContentButtonClick(button):
 		Data.playerData.selectedLevelIndex = button.index
 		InitScreen(Types.UiContentId.SubLevel)
 		InitButtons(Types.UiContentId.SubLevel)
+		ResetUiContentButtons()
+		return
+	if button.buttonId == Types.UiButtonId.SubLevel:
+		uiConfirmScreen.Show()
 		return
 		
-		
-
 func resize():
 	var ref_width = 450 / get_viewport().get_camera().size
 	var ref_height = 1050

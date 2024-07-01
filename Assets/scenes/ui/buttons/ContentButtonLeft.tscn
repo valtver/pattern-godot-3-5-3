@@ -12,13 +12,15 @@ collision_mask = 512
 script = ExtResource( 2 )
 buttonId = 2
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 1 )
+[node name="SpritePivot" type="Spatial" parent="."]
 
-[node name="Sprite" type="Sprite3D" parent="."]
+[node name="Sprite" type="Sprite3D" parent="SpritePivot"]
 sorting_offset = 10.0
 flip_h = true
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 450, 434 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]

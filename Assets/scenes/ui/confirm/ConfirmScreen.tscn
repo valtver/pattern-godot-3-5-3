@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
+[ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/scenes/ui/buttons/YesButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/scenes/ui/buttons/NoButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/scripts/ui/ui-confirm.gd" type="Script" id=6]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2.298, 5.29, 0.1 )
+
+[node name="ConfirmScreen" type="Spatial"]
+script = ExtResource( 6 )
+
+[node name="PanelPivot" type="Spatial" parent="."]
+
+[node name="Panel" type="Sprite3D" parent="PanelPivot"]
+sorting_offset = 20.0
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 600, 100 )
+
+[node name="PanelShadow" type="Sprite3D" parent="PanelPivot"]
+sorting_offset = 19.0
+modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 600, 110 )
+
+[node name="ConfirmLabel" type="Label3D" parent="PanelPivot"]
+transform = Transform( 0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0.245983, 0 )
+sorting_offset = 22.0
+double_sided = false
+modulate = Color( 0.615686, 0.313726, 0.0980392, 1 )
+outline_modulate = Color( 1, 1, 1, 1 )
+text = "Ready to play?"
+font = ExtResource( 3 )
+line_spacing = -30.0
+autowrap = true
+width = 800.0
+
+[node name="YesButton" parent="PanelPivot" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, -0.401, 0.2 )
+
+[node name="NoButton" parent="PanelPivot" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.401, 0.2 )
+
+[node name="TweenMove" type="Tween" parent="."]
+
+[node name="TweenFade" type="Tween" parent="."]
+
+[node name="ShadeBlock" type="StaticBody" parent="."]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape" type="CollisionShape" parent="ShadeBlock"]
+shape = SubResource( 1 )
+
+[node name="Shade" type="Sprite3D" parent="ShadeBlock"]
+sorting_offset = 18.0
+modulate = Color( 0, 0, 0, 0.396078 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 450, 1050 )

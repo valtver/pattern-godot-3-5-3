@@ -27,7 +27,7 @@ func Init(screenConfig):
 			container.add_child(content)
 			content.position = Vector3(4.5 * (contentPages.size() - 1), 0, 0)
 			content.get_node("LevelButton").index = lvlData.index
-			content.get_node("LevelButton/Sprite").texture = lvlData.uiTexture
+			content.get_node("LevelButton/SpritePivot/Sprite").texture = lvlData.uiTexture
 			var locId = Types.LocId.keys()[Data.appData.locId]
 			content.get_node("LevelName").text = lvlData.locName[locId]
 			content.get_node("LevelName/LevelNameShadow").text = lvlData.locName[locId]
@@ -35,7 +35,7 @@ func Init(screenConfig):
 	elif screenConfig.uiContentId == Types.UiContentId.SubLevel:
 		for lvlData in Data.gameData.levels:
 			if lvlData.index == Data.playerData.selectedLevelIndex:
-				var pagesN = ceil(float(lvlData.subLevels.size() / 9))
+				var pagesN = ceil(float(lvlData.subLevels.size()) / 9)
 				for pN in pagesN:
 					var content = screenConfig.uiContentPages[0].instance()
 					contentPages.push_back(content)
@@ -46,13 +46,15 @@ func Init(screenConfig):
 						for x in SUB_LEVELS_X:
 							for subLvlData in lvlData.subLevels:
 								if subLvlData.index == nextSubLevelIndex:
-									var subLvlButton = screenConfig.uiContentButtons[0].instance()
+									var subLvlButton = screenConfig.uiContentButtons[0].button.instance()
 									content.add_child(subLvlButton)
-									subLvlButton.position = Vector3(x, y, 0)
+									subLvlButton.position = Vector3(x - SUB_LEVELS_X/2, SUB_LEVELS_Y/2 - y, 0)
 									subLvlButton.name = "SubLevel%s" % nextSubLevelIndex
 									subLvlButton.index = nextSubLevelIndex
-									subLvlButton.get_node("SubLevelName").text = nextSubLevelIndex + 1
-									subLvlButton.get_node("SubLevelName/SubLevelNameShadow").text = nextSubLevelIndex + 1
+									subLvlButton.get_node("SubLevelName").text = str(nextSubLevelIndex + 1)
+									subLvlButton.get_node("SubLevelName/SubLevelNameShadow").text = str(nextSubLevelIndex + 1)
+									nextSubLevelIndex += 1
+									break
 									
 	elif screenConfig.uiContentId == Types.UiContentId.Settings:
 		for page in screenConfig.uiContentPages:
