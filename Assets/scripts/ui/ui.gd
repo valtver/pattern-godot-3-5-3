@@ -2,6 +2,7 @@ extends Spatial
 
 export (PackedScene) var content
 
+signal StartGame
 
 const ASPECT_RATIO = 9.0/21.0
 const MAX_ASPECT_RATIO = 4.0/3.0
@@ -18,7 +19,7 @@ onready var uiConfirmScreen = $ConfirmScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = Vector3(0, 0, -0.1)
+	position = Vector3(0, 0, -0.5)
 	resize()
 	get_tree().get_root().connect("size_changed", self, "resize")
 	InitScreen(Types.UiContentId.Main)
@@ -84,6 +85,12 @@ func OnButtonClick(button):
 		InitScreen(Types.UiContentId.Main)
 		InitButtons(Types.UiContentId.Main)
 		return
+	if button.buttonId == Types.UiButtonId.Decline:
+		uiConfirmScreen.Hide()
+		return
+	if button.buttonId == Types.UiButtonId.Accept:
+		emit_signal("StartGame")
+		return
 
 func OnContentButtonClick(button):
 	if button.buttonId == Types.UiButtonId.Sound:
@@ -101,6 +108,7 @@ func OnContentButtonClick(button):
 		ResetUiContentButtons()
 		return
 	if button.buttonId == Types.UiButtonId.SubLevel:
+		Data.playerData.selectedSubLevelIndex = button.index
 		uiConfirmScreen.Show()
 		return
 		

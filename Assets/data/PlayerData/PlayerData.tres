@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource( 1 )
 selectedLevelIndex = -1
+selectedSubLevelIndex = -1

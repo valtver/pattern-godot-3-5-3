@@ -1,6 +1,7 @@
 extends Resource
 
 export (int, -1, 99) var selectedLevelIndex = -1
+export (int, -1, 99) var selectedSubLevelIndex = -1
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://Assets/scripts/ui/ui-button.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Assets/scenes/ui/buttons/YesButton.tscn" type="PackedScene" id=4]
@@ -50,14 +51,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.401, 0.2 )
 
 [node name="TweenFade" type="Tween" parent="."]
 
-[node name="ShadeBlock" type="StaticBody" parent="."]
+[node name="ShadeBlock" type="StaticBody" parent="." groups=["uiButton"]]
 collision_layer = 512
 collision_mask = 512
+script = ExtResource( 1 )
+buttonId = 11
 
 [node name="CollisionShape" type="CollisionShape" parent="ShadeBlock"]
 shape = SubResource( 1 )
 
-[node name="Shade" type="Sprite3D" parent="ShadeBlock"]
+[node name="SpritePivot" type="Spatial" parent="ShadeBlock"]
+
+[node name="Sprite" type="Sprite3D" parent="ShadeBlock/SpritePivot"]
 sorting_offset = 18.0
 modulate = Color( 0, 0, 0, 0.396078 )
 texture = ExtResource( 2 )

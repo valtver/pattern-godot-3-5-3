@@ -70,6 +70,14 @@ func Load():
 			Loader.QueueResource(res)
 		Loader.connect("LoadComplete", self, "OnLoadComplete")
 		Loader.Load()
+		return
+	if state == Types.AppState.GAME:
+		for res in Data.resourceData.level[Data.playerData.selectedLevelIndex]:
+			Loader.QueueResource(res)
+		for res in Data.resourceData.hud:
+			Loader.QueueResource(res)
+		
+			
 #	Loader.QueueResource()
 #	OnLoadComplete()
 	pass
@@ -84,10 +92,16 @@ func OnLoadComplete():
 	if state == Types.AppState.START:
 		ui = Loader.GetResource(Data.appData.uiScene).instance()
 		Content2D.add_child(ui)
+		ui.connect("StartGame", self, "OnGameStart")
 	Timeline.OnCompleteTimer(self, "HideBlocker", 0.5)
 	pass
 		
 func OnBlockerHidden():
+	pass
+	
+func OnGameStart():
+	state = Types.AppState.GAME
+	ShowBlocker()
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 

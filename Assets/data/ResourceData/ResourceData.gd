@@ -2,6 +2,8 @@ extends Resource
 
 
 export (Array, Resource) var ui
+export (Array, Array, Resource) var level
+export (Array, Resource) var hud
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

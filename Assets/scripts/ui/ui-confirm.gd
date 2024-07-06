@@ -1,7 +1,7 @@
 extends Spatial
 
 onready var panelPivot = $PanelPivot
-onready var screenShade = $ShadeBlock/Shade
+onready var screenShade = $ShadeBlock/SpritePivot/Sprite
 onready var confirmLabel = $PanelPivot/ConfirmLabel
 onready var collision = $ShadeBlock/CollisionShape
 # Declare member variables here. Examples:
@@ -53,7 +53,10 @@ func Hide():
 		Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
 	
-	tween.tween_callback(self, "visible", false).set_delay(0.2)
+	Timeline.OnCompleteTimer(self, "SetInvisible", 0.2)
+	
+func SetInvisible():
+	visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
