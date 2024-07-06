@@ -18,6 +18,7 @@ onready var uiConfirmScreen = $ConfirmScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	position = Vector3(0, 0, -0.1)
 	resize()
 	get_tree().get_root().connect("size_changed", self, "resize")
 	InitScreen(Types.UiContentId.Main)

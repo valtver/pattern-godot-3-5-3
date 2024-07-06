@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/scenes/ui/ui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/scenes/app/hectic-play-logo.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/scenes/app/game-logo.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/scripts/app.gd" type="Script" id=4]
@@ -19,8 +18,3 @@ keep_aspect = 0
 projection = 1
 size = 4.694
 far = 150.0
-
-[node name="ui" parent="CameraPivot/Camera" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
-
-[node name="Level0" parent="." instance_placeholder="res://Assets/levels/Level0.tscn"]

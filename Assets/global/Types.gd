@@ -1,5 +1,11 @@
 extends Node
 
+enum AppState {
+	START = 0,
+	UI = 1,
+	GAME = 2
+}
+
 enum LocId {
 	en = 0,
 	ru = 1

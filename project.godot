@@ -23,6 +23,7 @@ AppInput="*res://Assets/global/Input.gd"
 Culling="*res://Assets/global/Culling.gd"
 Data="*res://Assets/data/Data.tscn"
 Loader="*res://Assets/global/Loader.gd"
+Timeline="*res://Assets/global/Timeline.gd"
 
 [display]
 
