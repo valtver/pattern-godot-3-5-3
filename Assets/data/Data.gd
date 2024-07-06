@@ -4,6 +4,7 @@ export (Resource) var appData
 export (Resource) var uiData
 export (Resource) var gameData
 export (Resource) var playerData
+export (Resource) var resourceData
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

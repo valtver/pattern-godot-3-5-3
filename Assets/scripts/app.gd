@@ -66,7 +66,8 @@ func Unload():
 		
 func Load():
 	if state == Types.AppState.START:
-		Loader.QueueResource(Data.appData.uiScene)
+		for res in Data.resourceData.ui:
+			Loader.QueueResource(res)
 		Loader.connect("LoadComplete", self, "OnLoadComplete")
 		Loader.Load()
 #	Loader.QueueResource()
@@ -77,13 +78,13 @@ func OnBlockerShown():
 	Unload()
 	gameLogo.play("game-logo-loop")
 	hecticPlayLogo.get_parent().free()
-	Timeline.OnCompleteTimer(self, "Load", 0.5)
+	Load()
 		
 func OnLoadComplete():
 	if state == Types.AppState.START:
 		ui = Loader.GetResource(Data.appData.uiScene).instance()
 		Content2D.add_child(ui)
-	Timeline.OnCompleteTimer(self, "HideBlocker", 0.1)
+	Timeline.OnCompleteTimer(self, "HideBlocker", 0.5)
 	pass
 		
 func OnBlockerHidden():

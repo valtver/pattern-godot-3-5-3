@@ -41,7 +41,7 @@ func InitButtons(uiContentId):
 	for screenConfig in Data.uiData.screens:
 		if screenConfig.uiContentId == uiContentId:
 			for btnConfig in screenConfig.uiButtons:
-				var button = btnConfig.button.instance()
+				var button = Loader.GetResource(btnConfig.button).instance()
 				if btnConfig.buttonUiAnchor == Types.UiAnchor.Top:
 					uiTop.add_child(button)
 				if btnConfig.buttonUiAnchor == Types.UiAnchor.Bottom:

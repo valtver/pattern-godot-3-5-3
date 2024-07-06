@@ -22,12 +22,12 @@ func Init(screenConfig):
 	contentPages = []
 	if screenConfig.uiContentId == Types.UiContentId.Main:
 		for lvlData in Data.gameData.levels:
-			var content = screenConfig.uiContentPages[0].instance()
+			var content = Loader.GetResource(screenConfig.uiContentPages[0]).instance()
 			contentPages.push_back(content)
 			container.add_child(content)
 			content.position = Vector3(4.5 * (contentPages.size() - 1), 0, 0)
 			content.get_node("LevelButton").index = lvlData.index
-			content.get_node("LevelButton/SpritePivot/Sprite").texture = lvlData.uiTexture
+			content.get_node("LevelButton/SpritePivot/Sprite").texture = Loader.GetResource(lvlData.uiTexture)
 			var locId = Types.LocId.keys()[Data.appData.locId]
 			content.get_node("LevelName").text = lvlData.locName[locId]
 			content.get_node("LevelName/LevelNameShadow").text = lvlData.locName[locId]
@@ -37,7 +37,7 @@ func Init(screenConfig):
 			if lvlData.index == Data.playerData.selectedLevelIndex:
 				var pagesN = ceil(float(lvlData.subLevels.size()) / 9)
 				for pN in pagesN:
-					var content = screenConfig.uiContentPages[0].instance()
+					var content = Loader.GetResource(screenConfig.uiContentPages[0]).instance()
 					contentPages.push_back(content)
 					container.add_child(content)
 					content.position = Vector3(4.5 * (contentPages.size() - 1), 0, 0)
@@ -46,7 +46,7 @@ func Init(screenConfig):
 						for x in SUB_LEVELS_X:
 							for subLvlData in lvlData.subLevels:
 								if subLvlData.index == nextSubLevelIndex:
-									var subLvlButton = screenConfig.uiContentButtons[0].button.instance()
+									var subLvlButton = Loader.GetResource(screenConfig.uiContentButtons[0].button).instance()
 									content.add_child(subLvlButton)
 									subLvlButton.position = Vector3(x - SUB_LEVELS_X/2, SUB_LEVELS_Y/2 - y, 0)
 									subLvlButton.name = "SubLevel%s" % nextSubLevelIndex
@@ -58,7 +58,7 @@ func Init(screenConfig):
 									
 	elif screenConfig.uiContentId == Types.UiContentId.Settings:
 		for page in screenConfig.uiContentPages:
-			var content = page.instance()
+			var content = Loader.GetResource(page).instance()
 			contentPages.push_back(content)
 			container.add_child(content)
 			content.position = Vector3(4.5 * (contentPages.size() - 1), 0, 0)
