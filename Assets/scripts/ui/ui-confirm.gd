@@ -11,12 +11,9 @@ onready var collision = $ShadeBlock/CollisionShape
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	visible = false
-	collision.disabled = true
 	pass # Replace with function body.
 
 func Show():
-	collision.disabled = false
 	var tween = get_node_or_null("TweenMove")
 	if tween == null:
 		return
@@ -35,7 +32,6 @@ func Show():
 	tween.start()
 	
 func Hide():
-	collision.disabled = true
 	var tween = get_node_or_null("TweenMove")
 	if tween == null:
 		return
@@ -52,11 +48,6 @@ func Hide():
 		1, 0, 0.2,
 		Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	tween.start()
-	
-	Timeline.OnCompleteTimer(self, "SetInvisible", 0.2)
-	
-func SetInvisible():
-	visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

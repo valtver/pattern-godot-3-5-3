@@ -1,7 +1,8 @@
 extends Resource
 
-
+export (Array, String) var uiResourcePaths
 export (Array, Resource) var ui
+
 export (Array, Array, Resource) var level
 export (Array, Resource) var hud
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/ui-sound-vol-1.png-c30dc1ea3c6291ef62eea6d5f02530d6.s3tc.stex"
-path.etc="res://.import/ui-sound-vol-1.png-c30dc1ea3c6291ef62eea6d5f02530d6.etc.stex"
+path.s3tc="res://.import/hud-symbol-tab.png-5547fc0a8e2af93d47f7bea17fd3d7ad.s3tc.stex"
+path.etc="res://.import/hud-symbol-tab.png-5547fc0a8e2af93d47f7bea17fd3d7ad.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/sprites/ui/ui-sound-vol-1.png"
-dest_files=[ "res://.import/ui-sound-vol-1.png-c30dc1ea3c6291ef62eea6d5f02530d6.s3tc.stex", "res://.import/ui-sound-vol-1.png-c30dc1ea3c6291ef62eea6d5f02530d6.etc.stex" ]
+source_file="res://Assets/sprites/hud/hud-symbol-tab.png"
+dest_files=[ "res://.import/hud-symbol-tab.png-5547fc0a8e2af93d47f7bea17fd3d7ad.s3tc.stex", "res://.import/hud-symbol-tab.png-5547fc0a8e2af93d47f7bea17fd3d7ad.etc.stex" ]
 
 [params]
 
@@ -21,12 +21,12 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=true
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

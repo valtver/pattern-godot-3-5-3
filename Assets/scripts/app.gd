@@ -57,6 +57,8 @@ func HideGameLogo():
 	Timeline.OnCompleteTimer(self, "OnBlockerHidden", gameLogo.current_animation_length)
 		
 func Unload():
+	if is_instance_valid(hecticPlayLogo):
+		hecticPlayLogo.get_parent().queue_free()
 	if is_instance_valid(game):
 		game.queue_free()
 	if is_instance_valid(ui):
@@ -85,7 +87,6 @@ func Load():
 func OnBlockerShown():
 	Unload()
 	gameLogo.play("game-logo-loop")
-	hecticPlayLogo.get_parent().free()
 	Load()
 		
 func OnLoadComplete():
@@ -93,7 +94,8 @@ func OnLoadComplete():
 		ui = Loader.GetResource(Data.appData.uiScene).instance()
 		Content2D.add_child(ui)
 		ui.connect("StartGame", self, "OnGameStart")
-	Timeline.OnCompleteTimer(self, "HideBlocker", 0.5)
+#	Timeline.OnCompleteTimer(self, "HideBlocker", 0.5)
+	HideBlocker()
 	pass
 		
 func OnBlockerHidden():

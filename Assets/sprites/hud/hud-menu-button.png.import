@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hud-menu-button.png-243034a13b93134b695b23ca6f8e88ff.stex"
+path="res://.import/hud-menu-button.png-f557d895496e5975afcfd27ea84370f8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/ui/hud-menu-button.png"
-dest_files=[ "res://.import/hud-menu-button.png-243034a13b93134b695b23ca6f8e88ff.stex" ]
+source_file="res://Assets/sprites/hud/hud-menu-button.png"
+dest_files=[ "res://.import/hud-menu-button.png-f557d895496e5975afcfd27ea84370f8.stex" ]
 
 [params]
 

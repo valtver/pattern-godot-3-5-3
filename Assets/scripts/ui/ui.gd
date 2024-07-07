@@ -11,7 +11,6 @@ onready var uiBottom = $Bottom
 onready var uiTop = $Top
 onready var uiMenuTitle = $Top/MenuLabel
 onready var uiContent = $Content
-onready var uiConfirmScreen = $ConfirmScreen
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -77,6 +76,7 @@ func RemoveDynamicButtons():
 		child.queue_free()
 						
 func OnButtonClick(button):
+	print(button.buttonId)
 	if button.buttonId == Types.UiButtonId.Settings:
 		InitScreen(Types.UiContentId.Settings)
 		InitButtons(Types.UiContentId.Settings)
@@ -86,7 +86,7 @@ func OnButtonClick(button):
 		InitButtons(Types.UiContentId.Main)
 		return
 	if button.buttonId == Types.UiButtonId.Decline:
-		uiConfirmScreen.Hide()
+		HideConfirmScreen()
 		return
 	if button.buttonId == Types.UiButtonId.Accept:
 		emit_signal("StartGame")
@@ -109,8 +109,22 @@ func OnContentButtonClick(button):
 		return
 	if button.buttonId == Types.UiButtonId.SubLevel:
 		Data.playerData.selectedSubLevelIndex = button.index
-		uiConfirmScreen.Show()
+		ShowConfirmScreen()
 		return
+		
+func ShowConfirmScreen():
+	var confirmScreen = get_node_or_null("ConfirmScreen")
+	if confirmScreen == null:
+		confirmScreen = Loader.GetResource(Data.uiData.confirmScreen).instance()
+		add_child(confirmScreen)
+		ConnectUiButtons()
+	confirmScreen.Show()
+	
+func HideConfirmScreen():
+	var confirmScreen = get_node_or_null("ConfirmScreen")
+	if confirmScreen != null:
+		confirmScreen.Hide()
+	Timeline.OnCompleteTimer(confirmScreen, "queue_free", 0.2)
 		
 func resize():
 	var ref_width = 450 / get_viewport().get_camera().size
