@@ -70,19 +70,17 @@ func Load():
 	if state == Types.AppState.START:
 		for res in Data.resourceData.ui:
 			Loader.QueueResource(res)
-		Loader.connect("LoadComplete", self, "OnLoadComplete")
-		Loader.Load()
-		return
+			
 	if state == Types.AppState.GAME:
+		for res in Data.resourceData.game:
+			Loader.QueueResource(res) 
 		for res in Data.resourceData.level[Data.playerData.selectedLevelIndex]:
 			Loader.QueueResource(res)
 		for res in Data.resourceData.hud:
 			Loader.QueueResource(res)
-		
-			
-#	Loader.QueueResource()
-#	OnLoadComplete()
-	pass
+
+	Loader.connect("LoadComplete", self, "OnLoadComplete")
+	Loader.Load()
 	
 func OnBlockerShown():
 	Unload()
