@@ -1,7 +1,9 @@
 extends Spatial
 
-export (int) var activeLevel = 0
-export (Array, PackedScene) var levels
+export (int) var selectedLevel = 0
+export (int) var selectedSubLevel = 0
+
+signal MainMenu
 
 var activeCameraTransform
 var gameStarted : bool = false
@@ -13,24 +15,26 @@ var gameStarted : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Init()
-	LoadActiveLevel()
 	StartGame()
 	pass # Replace with function body.
 
 func Init():
 	activeCameraTransform = get_viewport().get_camera().get_parent()
-
-func LoadActiveLevel():
-	if levels[activeLevel] == null:
-		print("Level ", activeLevel, " not found")
+	selectedLevel = Data.playerData.selectedLevelIndex
+	selectedSubLevel = Data.playerData.selectedSubLevelIndex
+	var level = Data.gameData.GetLevel(selectedLevel, selectedSubLevel);
+	if level == null:
+		print("Level ", selectedLevel, selectedSubLevel, " not found")
 		return
 	
-	var levelIsLoaded = (get_node_or_null("Level%s" % activeLevel) != null)
+	var levelString = "level-%s%s%s" % [selectedLevel, "-", selectedSubLevel];
+	var levelIsLoaded = (get_node_or_null(levelString) != null)
 	if levelIsLoaded:
-		print("Level ", activeLevel, " is loaded already")
-	else:	
-		var level = levels[activeLevel].instance()
-		add_child(level)
+		print("Level ", selectedLevel, " is loaded already")
+		return
+	else:
+		var levelScene = Loader.GetResource(level).instance()
+		add_child(levelScene)
 	
 func StartGame():
 	gameStarted = true

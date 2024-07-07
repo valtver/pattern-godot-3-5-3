@@ -16,8 +16,9 @@ export (PackedScene) var hecticPlayLogoScene
 export (PackedScene) var gameLogoScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Init()
-	ShowBlocker()
+#	Init()
+#	ShowBlocker()
+	pass
 
 func Init():
 	var node = get_node_or_null("HecticPlayLogo")
@@ -88,10 +89,15 @@ func OnBlockerShown():
 	Load()
 		
 func OnLoadComplete():
+	Loader.disconnect("LoadComplete", self, "OnLoadComplete")
 	if state == Types.AppState.START:
 		ui = Loader.GetResource(Data.appData.uiScene).instance()
 		Content2D.add_child(ui)
 		ui.connect("StartGame", self, "OnGameStart")
+	if state == Types.AppState.GAME:
+		game = Loader.GetResource(Data.appData.gameScene).instance()
+		Content3D.add_child(game)
+		game.connect("MainMenu", self, "OnMainMenu")
 #	Timeline.OnCompleteTimer(self, "HideBlocker", 0.5)
 	HideBlocker()
 	pass
@@ -102,6 +108,8 @@ func OnBlockerHidden():
 func OnGameStart():
 	state = Types.AppState.GAME
 	ShowBlocker()
+
+func OnMainMenu():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 

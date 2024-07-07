@@ -4,7 +4,13 @@ export (Array, Resource) var levels
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+func GetLevel(levelId, subLevelId):
+	for level in levels:
+		if level.index == levelId:
+			for subLevel in level.subLevels:
+				if subLevel.index == subLevelId:
+					return subLevel.levelScene
+	return null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
