@@ -10,8 +10,8 @@ var cache = {}
 var isBusy = false
 
 func GetResource(res):
-	if cache.has(res.get_path()):
-		var cachedHandler = cache[res.get_path()]
+	if cache.has(res):
+		var cachedHandler = cache[res]
 		var cachedRes = cachedHandler.get_resource()
 		if cachedRes != null:
 			print(res, " is in cache")
@@ -21,7 +21,7 @@ func GetResource(res):
 			return null
 	else:
 		print(res, " is not in cache. SYNC load triggered!")
-		var syncRes = load(res.get_path())
+		var syncRes = load(res)
 		return syncRes
 
 func QueueResource(res):

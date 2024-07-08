@@ -1,11 +1,10 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://Assets/scenes/ui/buttons/InfoButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/data/UiData/screens/uiButton/UiButtonData.gd" type="Script" id=2]
 
 [resource]
 script = ExtResource( 2 )
-button = ExtResource( 1 )
+button = "res://Assets/scenes/ui/buttons/InfoButton.tscn"
 buttonUiAnchor = 1
 buttonPos = Vector3( 1.8, -1.14, 0 )
 buttonScale = Vector3( 0.5, 0.5, 0.5 )

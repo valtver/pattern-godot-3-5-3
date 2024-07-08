@@ -1,7 +1,7 @@
 extends Resource
 
 export (int) var index
-export (PackedScene) var levelScene
+export (String, FILE, "*.tscn") var levelScene
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

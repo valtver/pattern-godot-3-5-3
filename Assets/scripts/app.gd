@@ -12,25 +12,25 @@ var appStart: bool = true
 onready var Content2D = $CameraPivot/Camera
 onready var Content3D = $"."
 
-export (PackedScene) var hecticPlayLogoScene
-export (PackedScene) var gameLogoScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Timeline.OnCompleteTimer(self, "Init", 2.0)
 #	Init()
+	Timeline.OnCompleteTimer(self, "ShowBlocker", 4.0)
 #	ShowBlocker()
 	pass
 
 func Init():
 	var node = get_node_or_null("HecticPlayLogo")
 	if node == null:
-		var inst = hecticPlayLogoScene.instance()
+		var inst = ResourceLoader.load(Data.appData.hecticPlayLogoScene).instance()
 		Content2D.add_child(inst)
 		inst.position.z = -3
 		hecticPlayLogo = inst.get_node("HecticPlayLogo")
 		
 	node = get_node_or_null("GameLogo")
 	if node == null:
-		var inst = gameLogoScene.instance()
+		var inst = load(Data.appData.gameLogoScene).instance()
 		Content2D.add_child(inst)
 		inst.position.z = -1
 		gameLogo = inst.get_node("GameLogo")
@@ -86,7 +86,7 @@ func Load():
 func OnBlockerShown():
 	Unload()
 	gameLogo.play("game-logo-loop")
-	Load()
+#	Load()
 		
 func OnLoadComplete():
 	Loader.disconnect("LoadComplete", self, "OnLoadComplete")

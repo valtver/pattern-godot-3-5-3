@@ -2,8 +2,10 @@ extends Resource
 
 export (Types.LocId) var locId
 
-export (PackedScene) var gameScene
-export (PackedScene) var uiScene
+export (String, FILE, "*.tscn") var hecticPlayLogoScene
+export (String, FILE, "*.tscn") var gameLogoScene
+export (String, FILE, "*.tscn") var gameScene
+export (String, FILE, "*.tscn") var uiScene
 
 export (bool) var sound = true
 export (bool) var music = true

@@ -2,7 +2,7 @@ extends Resource
 
 export (Types.UiContentId) var uiContentId
 export (Resource) var uiLocLabel
-export (Array, PackedScene) var uiContentPages
+export (Array, String, FILE) var uiContentPages
 export (Array, Resource) var uiButtons
 export (Array, Resource) var uiContentButtons
 

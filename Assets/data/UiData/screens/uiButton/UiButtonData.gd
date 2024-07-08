@@ -1,6 +1,6 @@
 extends Resource
 
-export (PackedScene) var button
+export (String, FILE) var button
 export (Types.UiAnchor) var buttonUiAnchor
 export (Vector3) var buttonPos
 export (Vector3) var buttonScale

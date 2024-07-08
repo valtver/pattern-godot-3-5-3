@@ -1,7 +1,7 @@
 extends Resource
 
 export (Array, Resource) var screens
-export (Resource) var confirmScreen
+export (String, FILE) var confirmScreen
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

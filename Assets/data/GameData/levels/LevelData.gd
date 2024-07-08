@@ -2,7 +2,7 @@ extends Resource
 
 export (int, 0, 99) var index
 export (Resource) var locName
-export (Texture) var uiTexture
+export (String, FILE) var uiTexture
 export (Array, Resource) var subLevels
 # Declare member variables here. Examples:
 # var a = 2
