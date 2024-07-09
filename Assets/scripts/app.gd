@@ -73,7 +73,6 @@ func Load():
 			Loader.QueueResource(res)
 			
 	if state == Types.AppState.GAME:
-		return
 		for res in Data.resourceData.gameResources:
 			Loader.QueueResource(res) 
 		for res in Data.resourceData.level[Data.playerData.selectedLevelIndex]:
