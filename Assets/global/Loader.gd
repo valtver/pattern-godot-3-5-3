@@ -21,11 +21,12 @@ func GetResource(res):
 			return null
 	else:
 		print(res, " is not in cache. SYNC load triggered!")
-		var syncRes = load(res)
-		return syncRes
+		cache[res] = ResourceLoader.load_interactive(res)
+		cache[res].wait()
+		return cache[res] 
 
 func QueueResource(res):
-	cache[res.get_path()] = null
+	cache[res] = null
 	
 func Load():
 	if cache.size() == 0:

@@ -14,10 +14,10 @@ onready var Content3D = $"."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Timeline.OnCompleteTimer(self, "Init", 2.0)
-#	Init()
-	Timeline.OnCompleteTimer(self, "ShowBlocker", 4.0)
-#	ShowBlocker()
+#	Timeline.OnCompleteTimer(self, "Init", 2.0)
+	Init()
+#	Timeline.OnCompleteTimer(self, "ShowBlocker", 4.0)
+	ShowBlocker()
 	pass
 
 func Init():
@@ -69,15 +69,16 @@ func Unload():
 		
 func Load():
 	if state == Types.AppState.START:
-		for res in Data.resourceData.ui:
+		for res in Data.resourceData.uiResources:
 			Loader.QueueResource(res)
 			
 	if state == Types.AppState.GAME:
-		for res in Data.resourceData.game:
+		return
+		for res in Data.resourceData.gameResources:
 			Loader.QueueResource(res) 
 		for res in Data.resourceData.level[Data.playerData.selectedLevelIndex]:
 			Loader.QueueResource(res)
-		for res in Data.resourceData.hud:
+		for res in Data.resourceData.hudResources:
 			Loader.QueueResource(res)
 
 	Loader.connect("LoadComplete", self, "OnLoadComplete")
@@ -86,7 +87,7 @@ func Load():
 func OnBlockerShown():
 	Unload()
 	gameLogo.play("game-logo-loop")
-#	Load()
+	Load()
 		
 func OnLoadComplete():
 	Loader.disconnect("LoadComplete", self, "OnLoadComplete")

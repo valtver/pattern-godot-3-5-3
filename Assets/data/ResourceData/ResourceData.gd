@@ -1,8 +1,13 @@
 extends Resource
 
-export (Array, Resource) var ui
+export (Array, String, DIR) var uiResDir
+export (Array, String) var uiResources
 
-export (Array, Resource) var game
-export (Array, Resource) var hud
+export (String, DIR) var gameResDir
+export (Array, Resource) var gameResources
+
+export (String, DIR) var hudResDir
+export (Array, Resource) var hudResources
 
 export (Array, Array, Resource) var level
+
