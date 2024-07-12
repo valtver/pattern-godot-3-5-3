@@ -1,9 +1,11 @@
 tool
-extends StaticBody
+extends Spatial
 
 export (bool) var refresh = false
 
 signal inputClick
+
+var state = Types.SymbolState.Fixed
 
 var SubSymbolTypeAngles = {
 	Types.SymbolType.None : [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)],
@@ -24,23 +26,32 @@ func _ready():
 func _process(_delta):
 	if Engine.is_editor_hint():
 		if refresh:
-			SetSymbolType(symbolType)
+			SetSymbol()
 			refresh = false
 
 func BreakSymbol():
-	var children = get_tree().get_nodes_in_group("sub-symbol-group")
-	for child in children:
-		child.visibility = false
+	symbolType = Types.SymbolType.ZigzagDown
+	SetSymbol()
+	
 
-func SetSymbolType(type):
-	var trs = SubSymbolTypeAngles[type]
-	var children = get_tree().get_nodes_in_group("sub-symbol-group")
+func SetSymbol():
+	var trs = SubSymbolTypeAngles[symbolType]
+	var children = $Pivot.get_children()
 	for child in children:
 		child.rotation_degrees = defaultRotation
 		child.rotation_degrees += trs[child.id]
-		
-func InputClick():
-	emit_signal("inputClick")
+			
+func PlayJump():
+	var tween = get_node_or_null("JumpTween")
+	if tween == null:
+		return
+	tween.interpolate_property($Pivot, "position",
+		Vector3(0, 0.5, 0), Vector3(0, 0, 0), 0.25,
+		Tween.TRANS_BOUNCE, Tween.EASE_OUT)
+	tween.start()
+
+	
+	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

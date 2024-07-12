@@ -30,13 +30,13 @@ func ProcessUi(position):
 	pass
 	
 func ProcessScene(position):
-	var camera = get_tree().get_nodes_in_group("main-camera")[0]
+	var camera = get_tree().get_nodes_in_group("camera")[0]
 	var from = camera.project_ray_origin(position)
 	var to = from + camera.project_ray_normal(position) * RAYCAST_DISTANCE
 	var space_state = get_world().direct_space_state
 	var result = space_state.intersect_ray(from, to, [self], 0b00000000001000000000) #Layer 10
 	if result != null:
-		print(result)
+#		print(result)
 		if "collider" in result and result.collider.has_method("OnClick"):
 			result.collider.OnClick()
 # Called when the node enters the scene tree for the first time.

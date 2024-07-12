@@ -1,14 +1,14 @@
 tool
-extends Spatial
+extends StaticBody
 
 export var refresh = false
 export (PackedScene) var symbolBackground
-export (PackedScene) var symbol
-export (PackedScene) var terrain
+export (PackedScene) var symbolScene
 
 export var idx: int
 export var idy: int
 
+signal inputClick
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -26,9 +26,9 @@ func SetupTile():
 	
 func ProcessSymbol():
 	var node = get_node_or_null("symbol")
-	if symbol != null:
+	if symbolScene != null:
 		if node == null:
-			var symbolInstance = symbol.instance()
+			var symbolInstance = symbolScene.instance()
 			symbolInstance.name = "symbol"
 			self.add_child(symbolInstance)
 			symbolInstance.owner = get_tree().edited_scene_root
@@ -59,7 +59,7 @@ func ProcessSymbolBackground():
 func ProcessPlaceholder():
 	var children = self.get_children()
 	var node = get_node_or_null("placeholder")
-	if symbol || symbolBackground:
+	if symbolScene || symbolBackground:
 		if node != null:
 			node.free()
 			return
@@ -73,7 +73,22 @@ func ProcessPlaceholder():
 		self.add_child(placeholderInstance)
 		placeholderInstance.owner = get_tree().edited_scene_root
 		
-# Called when the node enters the scene tree for the first time.
+
+func OnClick():
+	emit_signal("inputClick", self)
+	# Called when the node enters the scene tree for the first time.
+	
+func BreakSymbol():
+	var symbol = self.get_node_or_null("symbol")
+	if symbol != null:
+		symbol.BreakSymbol()
+	
+func SymbolAction():
+	var symbol = self.get_node_or_null("symbol")
+	if symbol != null:
+		symbol.PlayJump()
+		if symbol.state == Types.SymbolState.Broken:
+			symbol
 func _ready():
 	pass # Replace with function body.
 

@@ -49,6 +49,11 @@ enum SymbolType {
 	ZigzagDown = 5
 }
 
+enum SymbolState {
+	Fixed = 0,
+	Broken = 1
+}
+
 enum gridSize {
 	_2 = 2,
 	_3 = 3,
@@ -60,6 +65,9 @@ enum gridSize {
 	_9 = 9,
 	_10 = 10,
 	_11 = 11
+	_12 = 12
+	_14 = 14
+	_16 = 16
 }
 # Declare member variables here. Examples:
 # var a = 2

@@ -7,6 +7,8 @@ export (PackedScene) var gridObjectScene
 export (int, 1, 3, 1) var visibilityHeight = 1
 export (Types.gridSize) var gridWidth
 export (Types.gridSize) var gridHeight
+
+var tileGrid = []
 		
 func _process(_delta):
 	if Engine.is_editor_hint():

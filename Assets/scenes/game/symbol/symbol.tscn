@@ -1,21 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/scripts/game/symbol/sub-symbol.gd" type="Script" id=1]
 [ext_resource path="res://Assets/scripts/game/symbol/symbol.gd" type="Script" id=2]
 [ext_resource path="res://Assets/sprites/game/symbol/sub-symbol-0.png" type="Texture" id=3]
 [ext_resource path="res://Assets/materials/game/symbol/symbol-material.tres" type="Material" id=4]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 1, 0.0338558, 1 )
-
-[node name="symbol" type="StaticBody"]
+[node name="symbol" type="Spatial" groups=["symbols"]]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-collision_layer = 512
-collision_mask = 512
 script = ExtResource( 2 )
-symbolType = 1
 
-[node name="sub-symbol-0" type="Sprite3D" parent="." groups=["sub-symbol-group"]]
+[node name="Pivot" type="Spatial" parent="."]
+
+[node name="sub-symbol-0" type="Sprite3D" parent="Pivot"]
 transform = Transform( 0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, -0.5, 0, -0.5 )
 sorting_offset = 2.0
 material_override = ExtResource( 4 )
@@ -24,7 +20,7 @@ double_sided = false
 texture = ExtResource( 3 )
 script = ExtResource( 1 )
 
-[node name="sub-symbol-1" type="Sprite3D" parent="." groups=["sub-symbol-group"]]
+[node name="sub-symbol-1" type="Sprite3D" parent="Pivot"]
 transform = Transform( -1.09278e-08, 0.25, 1.09278e-08, 0, -1.09278e-08, 0.25, 0.25, 1.09278e-08, 4.77671e-16, 0.5, 0, -0.5 )
 sorting_offset = 2.0
 material_override = ExtResource( 4 )
@@ -34,7 +30,7 @@ texture = ExtResource( 3 )
 script = ExtResource( 1 )
 id = 1
 
-[node name="sub-symbol-2" type="Sprite3D" parent="." groups=["sub-symbol-group"]]
+[node name="sub-symbol-2" type="Sprite3D" parent="Pivot"]
 transform = Transform( -1.09278e-08, -0.25, -1.09278e-08, 0, -1.09278e-08, 0.25, -0.25, 1.09278e-08, 4.77671e-16, -0.5, 0, 0.5 )
 sorting_offset = 2.0
 material_override = ExtResource( 4 )
@@ -44,7 +40,7 @@ texture = ExtResource( 3 )
 script = ExtResource( 1 )
 id = 2
 
-[node name="sub-symbol-3" type="Sprite3D" parent="." groups=["sub-symbol-group"]]
+[node name="sub-symbol-3" type="Sprite3D" parent="Pivot"]
 transform = Transform( -0.25, 3.7749e-08, 1.65006e-15, 0, -1.09278e-08, 0.25, 3.7749e-08, 0.25, 1.09278e-08, 0.5, 0, 0.5 )
 sorting_offset = 2.0
 material_override = ExtResource( 4 )
@@ -54,5 +50,4 @@ texture = ExtResource( 3 )
 script = ExtResource( 1 )
 id = 3
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 1 )
+[node name="JumpTween" type="Tween" parent="."]
