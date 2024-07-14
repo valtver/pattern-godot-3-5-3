@@ -26,15 +26,24 @@ func _ready():
 func _process(_delta):
 	if Engine.is_editor_hint():
 		if refresh:
-			SetSymbol()
+			Update()
 			refresh = false
 
-func BreakSymbol():
-	symbolType = Types.SymbolType.ZigzagDown
-	SetSymbol()
+func Break():
+	state = Types.SymbolState.Broken
+	symbolType = Types.SymbolType.None
+	Update()
 	
-
-func SetSymbol():
+func Fix():
+	state = Types.SymbolState.Fixed
+	symbolType = Data.sessionData.activeSymbol
+	Update()
+	
+func Change():
+	symbolType = Data.sessionData.activeSymbol
+	Update()
+	
+func Update():
 	var trs = SubSymbolTypeAngles[symbolType]
 	var children = $Pivot.get_children()
 	for child in children:
@@ -46,7 +55,7 @@ func PlayJump():
 	if tween == null:
 		return
 	tween.interpolate_property($Pivot, "position",
-		Vector3(0, 0.5, 0), Vector3(0, 0, 0), 0.25,
+		Vector3(0, 1, 0), Vector3(0, 0, 0), 0.3,
 		Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	tween.start()
 

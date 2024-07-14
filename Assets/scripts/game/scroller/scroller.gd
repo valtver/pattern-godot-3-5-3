@@ -17,18 +17,24 @@ func Init():
 	
 func OnVisibilityChanged(notifier):
 	if notifier == pIsland:
+		var islandTiles = get_tree().get_nodes_in_group("tiles")
+		for tile in islandTiles:
+			if pIsland.is_a_parent_of(tile):
+				tile.Reset()
+			
 		var OLDpIsland = pIsland
 		pIsland = island
 		island = nIsland
 		nIsland = OLDpIsland
 		nIsland.position = island.position + Vector3.FORWARD * island.aabb.size.z
+		
 	elif notifier == nIsland:
 		var OLDnIsland = nIsland
 		nIsland = island
 		island = pIsland
 		pIsland = OLDnIsland
 		nIsland.position = island.position - Vector3.FORWARD * island.aabb.size.z
-		
+	
 func CheckVisibility():
 	if !pIsland.is_on_screen():
 		OnVisibilityChanged(pIsland)

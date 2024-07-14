@@ -5,7 +5,10 @@ signal AppMainMenu
 var cameraTransform
 var scroller
 var gameStarted : bool = false
-var grid = {}
+const BREAK_DISTANCE = 3
+const FIXES_PER_PATTERN = 5
+
+var symbolFixes = 0
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -21,7 +24,6 @@ func Init():
 	cameraTransform = get_viewport().get_camera().get_parent()
 	InitScroller()
 	SubscribeToTiles()
-	BreakRandomTiles(1)
 #	var selectedLevel = Data.playerData.selectedLevelIndex
 #	var selectedSubLevel = Data.playerData.selectedSubLevelIndex
 #	var level = Data.gameData.GetLevel(selectedLevel, selectedSubLevel);
@@ -47,33 +49,54 @@ func InitScroller():
 	scroller.Init()
 	
 func SubscribeToTiles():
-	var tiles = scroller.nIsland.get_tree().get_nodes_in_group("tiles")
+	var tiles = get_tree().get_nodes_in_group("tiles")
 	for tile in tiles:
 		if !tile.is_connected("inputClick", self, "OnTileClick"):
 			tile.connect("inputClick", self, "OnTileClick")
-	
-func BreakRandomTiles(n):
-	var tiles = scroller.nIsland.get_tree().get_nodes_in_group("tiles")
-	var randIndecies = GetUniqueRandomInRange(0, tiles.size(), 2)
+		if !tile.is_connected("symbolFix", self, "OnSymbolFix"):
+			tile.connect("symbolFix", self, "OnSymbolFix")
+		
+func BreakRandomTiles(refTile, n):
+	var allTiles = get_tree().get_nodes_in_group("tiles")
+	var tiles = []
+	for tile in allTiles:
+		if tile.global_position.z == (refTile.global_position.z - BREAK_DISTANCE):
+			tiles.append(tile)
+	var randIndecies = Random.GetUniqueRandomInRange(0, tiles.size(), n)
 	for index in randIndecies:
 		tiles[index].BreakSymbol()
+		for tile in allTiles:
+			if tile.global_position.x == tiles[index].global_position.x && tile.global_position.z < tiles[index].global_position.z:
+				tile.visible = false
+				
 
-func GetUniqueRandomInRange(a, b, count):
-	var array = []
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	for n in count:
-		var randN = rng.randi_range(0, b-1)
-		while randN in array:
-			randN = rng.randi_range(0, b-1)
-		array.append(randN)
-	print(array)
-	return array
-		 
-	
 func OnTileClick(tile):
-	tile.SymbolAction()
-	BreakRandomTiles(1)
+	tile.Action()
+	BreakRandomTiles(tile, 1)
+	
+func OnSymbolFix(fixTile):
+	symbolFixes += 1
+	if symbolFixes == 5:
+		symbolFixes = 0
+		PlayTileChangeWave(fixTile)
+	var tiles = get_tree().get_nodes_in_group("tiles")
+	for tile in tiles:
+		if tile.global_position.x == fixTile.global_position.x:
+			tile.visible = true
+	
+func PlayTileChangeWave(actionTile):
+	var tiles = get_tree().get_nodes_in_group("tiles")
+	var keys = actionTile.symbol.SubSymbolTypeAngles.keys();
+	keys.pop_at(0)
+	var randomKey = keys.pick_random()
+	for tile in tiles:
+		Data.sessionData.activeSymbol = randomKey
+		tile.symbol.symbolType = randomKey
+		tile.symbol.Update()
+		var distance = actionTile.global_position.distance_to(tile.global_position)
+		if distance < 50 && distance > 0:
+			var delayTime = distance / 10.0
+			Timeline.Delay(tile.symbol, "PlayJump", delayTime)
 	
 func StartGame():
 	gameStarted = true
@@ -81,4 +104,4 @@ func StartGame():
 func _process(delta):
 	if !gameStarted:
 		return
-	cameraTransform.position -= Vector3(0, 0, delta)
+	cameraTransform.position -= Vector3(0, 0, delta * 2)

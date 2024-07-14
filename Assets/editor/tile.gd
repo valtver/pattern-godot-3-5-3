@@ -9,6 +9,9 @@ export var idx: int
 export var idy: int
 
 signal inputClick
+signal symbolFix
+
+onready var symbol = get_node_or_null("symbol")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -75,20 +78,27 @@ func ProcessPlaceholder():
 		
 
 func OnClick():
+	if symbol != null:
+		if symbol.state == Types.SymbolState.Broken:
+			emit_signal("symbolFix", self)
 	emit_signal("inputClick", self)
 	# Called when the node enters the scene tree for the first time.
 	
 func BreakSymbol():
-	var symbol = self.get_node_or_null("symbol")
 	if symbol != null:
-		symbol.BreakSymbol()
+		symbol.Break()
 	
-func SymbolAction():
-	var symbol = self.get_node_or_null("symbol")
+func Action():
 	if symbol != null:
 		symbol.PlayJump()
 		if symbol.state == Types.SymbolState.Broken:
-			symbol
+			symbol.Fix()
+			
+func Reset():
+	if symbol != null:
+		if symbol.state == Types.SymbolState.Broken:
+			symbol.Fix()
+			
 func _ready():
 	pass # Replace with function body.
 

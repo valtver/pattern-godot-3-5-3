@@ -47,15 +47,15 @@ func HideBlocker():
 		
 func ShowHectic():
 	hecticPlayLogo.play("hecticPlayLogoShow")
-	Timeline.OnCompleteTimer(self, "ShowBlocker", hecticPlayLogo.current_animation_length)
+	Timeline.Delay(self, "ShowBlocker", hecticPlayLogo.current_animation_length)
 	
 func ShowGameLogo():
 	gameLogo.play("game-logo-start")
-	Timeline.OnCompleteTimer(self, "OnBlockerShown", gameLogo.current_animation_length)
+	Timeline.Delay(self, "OnBlockerShown", gameLogo.current_animation_length)
 	
 func HideGameLogo():
 	gameLogo.play("game-logo-end")
-	Timeline.OnCompleteTimer(self, "OnBlockerHidden", gameLogo.current_animation_length)
+	Timeline.Delay(self, "OnBlockerHidden", gameLogo.current_animation_length)
 		
 func Unload():
 	if is_instance_valid(hecticPlayLogo):

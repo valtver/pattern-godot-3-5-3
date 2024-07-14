@@ -24,6 +24,7 @@ Culling="*res://Assets/global/Culling.gd"
 Loader="*res://Assets/global/Loader.gd"
 Timeline="*res://Assets/global/Timeline.gd"
 Data="*res://Assets/data/Data.tscn"
+Random="*res://Assets/global/Random.gd"
 
 [display]
 
