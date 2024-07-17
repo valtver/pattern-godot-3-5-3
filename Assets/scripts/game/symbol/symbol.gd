@@ -7,15 +7,6 @@ signal inputClick
 
 var state = Types.SymbolState.Fixed
 
-var SubSymbolTypeAngles = {
-	Types.SymbolType.None : [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)],
-	Types.SymbolType.Diamond : [Vector3(0, 0, 0), Vector3(0, -90, 0), Vector3(0, 90, 0), Vector3(0, 180, 0)],
-	Types.SymbolType.DiagonalLeft : [Vector3(0, 180, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 180, 0)],
-	Types.SymbolType.DiagonalRight : [Vector3(0, -90, 0), Vector3(0, 90, 0), Vector3(0, 90, 0), Vector3(0, -90, 0)],
-	Types.SymbolType.ZigzagUp : [Vector3(0, 0, 0), Vector3(0, -90, 0), Vector3(0, 180, 0), Vector3(0, 90, 0)],
-	Types.SymbolType.ZigzagDown : [Vector3(0, -90, 0), Vector3(0, 0, 0), Vector3(0, 90, 0), Vector3(0, 180, 0)]
-}
-
 export (Types.SymbolType) var symbolType	
 var defaultRotation = Vector3(-90, 0, 0)
 
@@ -44,7 +35,7 @@ func Change():
 	Update()
 	
 func Update():
-	var trs = SubSymbolTypeAngles[symbolType]
+	var trs = Data.gameData.symbolData.SymbolType[symbolType]["angles"]
 	var children = $Pivot.get_children()
 	for child in children:
 		child.rotation_degrees = defaultRotation

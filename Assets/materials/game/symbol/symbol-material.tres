@@ -6,5 +6,5 @@
 flags_transparent = true
 flags_unshaded = true
 params_specular_mode = 4
-albedo_color = Color( 0, 0.329412, 0.647059, 0.533333 )
+albedo_color = Color( 0.230469, 0.230469, 0.230469, 1 )
 albedo_texture = ExtResource( 1 )

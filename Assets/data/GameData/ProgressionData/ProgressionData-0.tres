@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/data/GameData/ProgressionData/ProgressionData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+symbolTypes = [ 1, 2, 3, 4, 5 ]
+sprites = [ "res://Assets/sprites/game/symbol/sub-symbol-0.png", "res://Assets/sprites/game/symbol/sub-symbol-1.png", "res://Assets/sprites/game/symbol/sub-symbol-2.png", "res://Assets/sprites/game/symbol/sub-symbol-3.png", "res://Assets/sprites/game/symbol/sub-symbol-4.png", "res://Assets/sprites/game/symbol/sub-symbol-5.png" ]
+islands = [ "res://Assets/terrain/tile-island/0/0-0.tscn" ]

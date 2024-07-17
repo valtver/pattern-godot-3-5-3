@@ -1,8 +1,8 @@
 extends Resource
 
-export (int, -1, 99) var selectedLevelIndex = -1
-export (int, -1, 99) var selectedSubLevelIndex = -1
-export (int) var progressionStep = 0
+export (Array, Types.SymbolType) var symbolTypes
+export (Array, String, FILE) var sprites
+export (Array, String, FILE) var islands
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

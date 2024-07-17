@@ -6,3 +6,4 @@
 script = ExtResource( 1 )
 selectedLevelIndex = 0
 selectedSubLevelIndex = 0
+progressionStep = 0

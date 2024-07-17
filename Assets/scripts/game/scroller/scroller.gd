@@ -1,12 +1,14 @@
 extends Node
 
 var visibilityNotifiers = []
+var tiles
 var island
 var pIsland
 var nIsland
 
 func Init():
 	island = get_node("0-0")
+	tiles = get_tree().get_nodes_in_group("tiles")
 	pIsland = island.duplicate()
 	pIsland.position = island.position - Vector3.FORWARD * island.aabb.size.z
 	add_child(pIsland)
@@ -17,8 +19,7 @@ func Init():
 	
 func OnVisibilityChanged(notifier):
 	if notifier == pIsland:
-		var islandTiles = get_tree().get_nodes_in_group("tiles")
-		for tile in islandTiles:
+		for tile in tiles:
 			if pIsland.is_a_parent_of(tile):
 				tile.Reset()
 			

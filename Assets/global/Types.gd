@@ -46,7 +46,20 @@ enum SymbolType {
 	DiagonalLeft = 2,
 	DiagonalRight = 3,
 	ZigzagUp = 4,
-	ZigzagDown = 5
+	ZigzagLeft = 5
+}
+
+enum SubSymbolOffset {
+	None = 0,
+	X = 1,
+	Y = 2
+}
+
+enum SubSymbolMap {
+	Single = 0,
+	DoubleDiagonal = 1,
+	DoubleTop = 2,
+	DoubleBottom = 3
 }
 
 enum SymbolState {
@@ -69,16 +82,3 @@ enum gridSize {
 	_14 = 14
 	_16 = 16
 }
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
