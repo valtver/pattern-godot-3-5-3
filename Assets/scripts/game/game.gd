@@ -2,7 +2,6 @@ extends Spatial
 
 signal AppMainMenu
 
-var progressionStep
 var gameSteps = []
 
 var tiles
@@ -15,14 +14,15 @@ const FIXES_PER_PATTERN = 5
 
 func _ready():
 	Init()
-#	StartGame()
+	StartGame()
 	pass # Replace with function body.
 
 func Init():
 	Data.playerData.progressionStep = 0
+	Data.playerData.gameStep = 0
 	cameraTransform = get_viewport().get_camera().get_parent()
 	InitScroller()
-	GenerateGameData(Data.playerData.progressionStep)
+	gameSteps = GenerateGameData(Data.playerData.progressionStep)
 
 func InitScroller():
 	scroller = get_node_or_null("Scroller")
@@ -45,7 +45,7 @@ func GenerateGameData(progressionStep):
 		spriteCompares.erase(spriteCompares[0])
 		for cSprite in spriteCompares:
 			gUniqueDouble.push_back([sprite, cSprite])
-	print("Singles: ", gUniqueSingle.size(), "\nDoubles: ", gUniqueDouble.size())
+#	print("Singles: ", gUniqueSingle.size(), "\nDoubles: ", gUniqueDouble.size())
 	#Singles and offsets
 	var step = {}
 	for singleSprite in gUniqueSingle:
@@ -61,16 +61,80 @@ func GenerateGameData(progressionStep):
 				step["angles"] = []
 				for i in symbolData["angles"].size():
 					step["angles"].push_back( symbolData["angles"][offsetData[i]] )
+				#generate buttons options ahead
+				step["buttons"] = []
+				step["buttons"].append_array(GenerateButtons(symbolType, offset))
 				gameSteps.push_back(step.duplicate())
-			print(gameSteps)
-			return
-				
-				
-				
-#		var step = {
-#			"angles": 
-#		}
-#		gameSteps.push_back(step)
+		gameSteps.shuffle()
+	print(gameSteps.size())
+	return gameSteps
+
+func GenerateButtons(symbolType, correctOffset):
+	var symbolData = Data.gameData.symbolData.SymbolTypes[symbolType]
+	var buttons = []
+	
+	var button = {
+		"angles": []
+	}
+	var offsetData = Data.gameData.symbolData.SubSymbolOffset[correctOffset]
+	for i in symbolData["angles"].size():
+		button["angles"].push_back( symbolData["angles"][offsetData[i]] )
+	buttons.push_back(button.duplicate())
+		
+	if symbolType == Types.SymbolType.DiagonalLeft:
+		button = {
+			"angles": []
+		}
+		var newSymbolData = Data.gameData.symbolData.SymbolTypes[Types.SymbolType.DiagonalRight]
+		for i in newSymbolData["angles"].size():
+			button["angles"].push_back( newSymbolData["angles"][i] )
+		buttons.push_back(button.duplicate())
+
+		
+		button = {
+			"angles": []
+		}
+		offsetData = Data.gameData.symbolData.SubSymbolOffset[Types.SubSymbolOffset.X]
+		for i in newSymbolData["angles"].size():
+			button["angles"].push_back( newSymbolData["angles"][offsetData[i]] )
+		buttons.push_back(button.duplicate())
+
+	elif symbolType == Types.SymbolType.DiagonalRight:
+		button = {
+			"angles": []
+		}
+		offsetData = Data.gameData.symbolData.SubSymbolOffset[Types.SubSymbolOffset.None]
+		var newSymbolData = Data.gameData.symbolData.SymbolTypes[Types.SymbolType.DiagonalLeft]
+		for i in newSymbolData["angles"].size():
+			button["angles"].push_back( newSymbolData["angles"][i] )
+		buttons.push_back(button.duplicate())
+		
+		button = {
+			"angles": []
+		}
+		offsetData = Data.gameData.symbolData.SubSymbolOffset[Types.SubSymbolOffset.X]
+		for i in newSymbolData["angles"].size():
+			button["angles"].push_back( newSymbolData["angles"][offsetData[i]] )
+		buttons.push_back(button.duplicate())
+		
+	else:
+		var keys = Data.gameData.symbolData.SubSymbolOffset.keys()
+		keys.erase(correctOffset)
+		var randomRemove = keys.pick_random()
+		keys.erase(randomRemove)
+	
+		for offset in keys:
+			button = {
+				"angles": []
+			}
+			offsetData = Data.gameData.symbolData.SubSymbolOffset[offset] 
+			for i in symbolData["angles"].size():
+				button["angles"].push_back( symbolData["angles"][offsetData[i]] )
+			buttons.push_back(button.duplicate())
+		#
+#	print("Buttons: ", symbolType, " ", buttons, "\n")
+	buttons.shuffle()
+	return buttons
 
 func StartGame():
 	gameStarted = true
@@ -87,12 +151,13 @@ func NextPatternLoopStart():
 		startCameraPos, endCameraPos, 5.0,
 		Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	tween.start()
-	Timeline.Delay(self, "NextPatternLoopEnd", 5.0)
+	Timeline.Delay(self, "NextPatternLoopEnd", 1.5)
 	
 func NextPatternLoopEnd():
 	MoveToNextPattern()
 	
 func MoveToNextPattern():
+	Data.playerData.gameStep += 1
 	var tween = get_node_or_null("Tween")
 	if tween == null:
 		tween = Tween.new()
@@ -108,28 +173,26 @@ func MoveToNextPattern():
 	
 func UpdateSymbols():
 	var tiles = get_tree().get_nodes_in_group("tiles")
-	var keys = Data.gameData.symbolData.SymbolType.keys();
-	keys.pop_at(0)
-	var randomKey = keys.pick_random()
 	for tile in tiles:
-		Data.sessionData.activeSymbol = randomKey
-		tile.symbol.symbolType = randomKey
-		tile.symbol.Update()
-	keys.pop_at(keys.find(randomKey, 0))
-	var randOption = keys.pick_random()
+		tile.symbol.UpdateSymbol(
+			gameSteps[Data.playerData.gameStep]["angles"],
+			gameSteps[Data.playerData.gameStep]["sprites"]
+		)
 	var button = get_node("../CameraPivot/Camera/symbol-1-button")
-	button.symbolType = randOption
-	button.Update()
-	keys.pop_at(keys.find(randOption, 0))
-	randOption = keys.pick_random()
+	button.UpdateSymbol(
+			gameSteps[Data.playerData.gameStep]["buttons"][0]["angles"],
+			gameSteps[Data.playerData.gameStep]["sprites"]
+		)
 	button = get_node("../CameraPivot/Camera/symbol-2-button")
-	button.symbolType = randOption
-	button.Update()
-	keys.pop_at(keys.find(randOption, 0))
-	randOption = keys.pick_random()
+	button.UpdateSymbol(
+			gameSteps[Data.playerData.gameStep]["buttons"][1]["angles"],
+			gameSteps[Data.playerData.gameStep]["sprites"]
+		)
 	button = get_node("../CameraPivot/Camera/symbol-3-button")
-	button.symbolType = randOption
-	button.Update()
+	button.UpdateSymbol(
+			gameSteps[Data.playerData.gameStep]["buttons"][2]["angles"],
+			gameSteps[Data.playerData.gameStep]["sprites"]
+		)
 	
 	
 

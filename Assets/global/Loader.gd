@@ -13,10 +13,10 @@ func GetResource(res):
 	if cache.has(res):
 		var cachedRes = cache[res]
 		if cachedRes != null:
-			print(res, " is in cache")
+#			print(res, " is in cache")
 			return cachedRes
 		else:
-			print(res, " is in cache but not loaded")
+#			print(res, " is in cache but not loaded")
 			return null
 	else:
 		print(res, " is not in cache. SYNC load triggered!")

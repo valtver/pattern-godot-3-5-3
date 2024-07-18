@@ -1,10 +1,7 @@
-[gd_resource type="SpatialMaterial" load_steps=2 format=2]
-
-[ext_resource path="res://Assets/sprites/game/symbol/sub-symbol-0.png" type="Texture" id=1]
+[gd_resource type="SpatialMaterial" format=2]
 
 [resource]
 flags_transparent = true
 flags_unshaded = true
 params_specular_mode = 4
 albedo_color = Color( 0.230469, 0.230469, 0.230469, 1 )
-albedo_texture = ExtResource( 1 )

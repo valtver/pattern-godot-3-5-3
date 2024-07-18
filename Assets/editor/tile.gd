@@ -95,9 +95,7 @@ func Action():
 			symbol.Fix()
 			
 func Reset():
-	if symbol != null:
-		if symbol.state == Types.SymbolState.Broken:
-			symbol.Fix()
+	pass
 			
 func _ready():
 	pass # Replace with function body.
