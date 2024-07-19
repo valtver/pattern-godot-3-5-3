@@ -78,10 +78,11 @@ func ProcessPlaceholder():
 		
 
 func OnClick():
-	if symbol != null:
-		if symbol.state == Types.SymbolState.Broken:
-			emit_signal("symbolFix", self)
-	emit_signal("inputClick", self)
+#	if symbol != null:
+#		if symbol.state == Types.SymbolState.Broken:
+#			emit_signal("symbolFix", self)
+#	emit_signal("inputClick", self)
+	pass
 	# Called when the node enters the scene tree for the first time.
 	
 func BreakSymbol():

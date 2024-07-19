@@ -25,7 +25,7 @@ func _input(event):
 			
 			lastPosition = null
 			wasClickDown = false
-			
+						
 func ProcessUi(position):
 	pass
 	

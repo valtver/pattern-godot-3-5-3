@@ -9,12 +9,11 @@ var cameraTransform
 var scroller
 
 var gameStarted : bool = false
-const BREAK_DISTANCE = 3
-const FIXES_PER_PATTERN = 5
+var camMoveSpeed = 0
 
 func _ready():
 	Init()
-	StartGame()
+	GameLoop()
 	pass # Replace with function body.
 
 func Init():
@@ -136,40 +135,47 @@ func GenerateButtons(symbolType, correctOffset):
 	buttons.shuffle()
 	return buttons
 
-func StartGame():
+func GameLoop():
 	gameStarted = true
-	MoveToNextPattern()
+	NextPatternLoopStart()
 	
 func NextPatternLoopStart():	
-	var tween = get_node_or_null("Tween")
-	if tween == null:
-		tween = Tween.new()
-		add_child(tween)
-	var startCameraPos = cameraTransform.position
-	var endCameraPos = cameraTransform.position + Vector3.FORWARD * 8
-	tween.interpolate_property(cameraTransform, "position",
-		startCameraPos, endCameraPos, 5.0,
-		Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-	tween.start()
-	Timeline.Delay(self, "NextPatternLoopEnd", 1.5)
-	
+#	var tween = get_node_or_null("CameraTransofrmTween")
+#	if tween == null:
+#		tween = Tween.new()
+#		tween.name = "CameraTransofrmTween"
+#		add_child(tween)
+#	var startCameraPos = cameraTransform.position
+#	var endCameraPos = cameraTransform.position + Vector3.FORWARD * 8
+#	tween.interpoalte_method(self, "CameraTweenPos",
+#		startCameraPos, endCameraPos, 5.0,
+#		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	tween.start()
+#	Timeline.Delay(self, "NextPatternLoopStart", 5)
+	pass
+		
 func NextPatternLoopEnd():
-	MoveToNextPattern()
+#	MoveToNextPattern()
+	pass
 	
 func MoveToNextPattern():
 	Data.playerData.gameStep += 1
-	var tween = get_node_or_null("Tween")
-	if tween == null:
-		tween = Tween.new()
-		add_child(tween)
-	var startCameraPos = cameraTransform.position
-	var endCameraPos = cameraTransform.position + Vector3.FORWARD * 16
-	tween.interpolate_property(cameraTransform, "position",
-		startCameraPos, endCameraPos, 1.5,
-		Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-	tween.start()
-	Timeline.Delay(self, "NextPatternLoopStart", 1.5)
-	Timeline.Delay(self, "UpdateSymbols", 0.75)
+	
+#	var tween = get_node_or_null("SpeedTweenIn")
+#	if tween == null:
+#		tween = Tween.new()
+#		tween.name = "SpeedTweenIn"
+#		add_child(tween)
+#	var controlTween = get_node_or_null("CameraTransofrmTween")
+#	var startTweenSpeed = controlTween.playback_speed
+#	var endTweenSpeed = 10
+#	tween.interpolate_property(controlTween, "playback_speed",
+#		startTweenSpeed, endTweenSpeed, 2,
+#		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	tween.start()
+#	Timeline.Delay(self, "NextPatternLoopStart", 1)
+#	Timeline.Delay(self, "UpdateSymbols", 0.5)
+	
 	
 func UpdateSymbols():
 	var tiles = get_tree().get_nodes_in_group("tiles")
@@ -193,6 +199,13 @@ func UpdateSymbols():
 			gameSteps[Data.playerData.gameStep]["buttons"][2]["angles"],
 			gameSteps[Data.playerData.gameStep]["sprites"]
 		)
-	
+				
+func _unhandled_key_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_LEFT:
+			camMoveSpeed += -1
+		if event.pressed and event.scancode == KEY_RIGHT:
+			camMoveSpeed += 1
+				
 	
 
