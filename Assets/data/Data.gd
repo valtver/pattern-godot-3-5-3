@@ -6,9 +6,9 @@ export (bool) var refresh
 export (Resource) var appData
 export (Resource) var uiData
 export (Resource) var gameData
+export (Resource) var hudData
 export (Resource) var playerData
 export (Resource) var resourceData
-export (Resource) var sessionData
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

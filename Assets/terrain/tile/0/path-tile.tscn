@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/materials/game/world/vertex-color-material.tres" type="Material" id=1]
+[ext_resource path="res://Assets/import/terrain/0/road-tile-path.fbx" type="PackedScene" id=2]
+
+[node name="road-tile-path" instance=ExtResource( 2 )]
+
+[node name="edge_ground_grass003" parent="RootNode" index="0"]
+transform = Transform( 5.96046e-06, -100, -8.9407e-06, 0, -1.19209e-05, 100, -100, -8.9407e-06, 0, 0, 0, -1 )
+material/0 = ExtResource( 1 )

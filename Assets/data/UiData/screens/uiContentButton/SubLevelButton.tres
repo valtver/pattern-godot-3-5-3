@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+hudButtonId = 0
 button = "res://Assets/scenes/ui/content/buttons/SubLevelButton.tscn"
 buttonUiAnchor = 0
 buttonPos = Vector3( 0, 0, 0 )

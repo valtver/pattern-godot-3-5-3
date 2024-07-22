@@ -1,54 +1,97 @@
 extends Spatial
 
-signal AppMainMenu
+enum GameState {
+	START = 0
+}
+
+var state = GameState.START
 
 var gameSteps = []
-
 var tiles
 var cameraTransform
 var scroller
 
-var gameStarted : bool = false
-var camMoveSpeed = 0
-
 func _ready():
 	Init()
+	InitData()
 	GameLoop()
 	pass # Replace with function body.
 
 func Init():
-	Data.playerData.progressionStep = 0
-	Data.playerData.gameStep = 0
+	Events.connect("HudButtonPlayClick", self, "OnPlayButtonClick")
 	cameraTransform = get_viewport().get_camera().get_parent()
-	InitScroller()
-	gameSteps = GenerateGameData(Data.playerData.progressionStep)
-
-func InitScroller():
 	scroller = get_node_or_null("Scroller")
 	if scroller == null:
 		scroller = Loader.GetResource(Data.gameData.scrollerScene).instance()
 		add_child(scroller)
-	scroller.Init()
+
+func InitData():
+	Data.playerData.gameStep = -1
+	var lvl = Data.playerData.selectedLevelIndex
+	var subLvl = Data.playerData.selectedSubLevelIndex
+	gameSteps = GenerateGameData(Data.gameData.levels[lvl].subLevels[subLvl])
+
+func FirstGameStep(gameStepData):
+	scroller.AddFirstIsland(gameStepData)
+	for tile in scroller.currentTiles:
+		tile.symbol.UpdateSymbol(gameStepData["angles"], gameStepData["sprites"])
+	Events.emit_signal("ShowHudStartScreen")
+		
+func NextGameStep(gameStepData):
+	scroller.AddNext(gameStepData)
+	for tile in scroller.currentTiles:
+		tile.symbol.UpdateSymbol(gameStepData["angles"], gameStepData["sprites"])
+		
+func OnPlayButtonClick():
+	Events.emit_signal("ShowHudPlayScreen")
+	AnimateTilesStart()
+	Events.emit_signal("ShowHudSymbolButtons")
+
+func FinishGameStep(gameStepData):
+	scroller.InitNext(gameStepData)
+	AnimateTilesComplete()
+	MoveCameraToNext()
+	pass
+
+func AnimateTilesComplete():
+	pass
 	
-func GenerateGameData(progressionStep):
-	if progressionStep > Data.gameData.progressionData.size() - 1:
-		print("No Data Left")
-		return
+func AnimateTilesStart():
+	for tile in scroller.currentTiles:
+		tile.symbol.visible = true
+		if tile.symbolBg != null:
+			tile.symbolBg.visible = true
+		tile.symbol.PlayJump()
+	pass
+	
+func MoveCameraToNext():
+	pass
+
+func GenerateGameData(subLevel):
 	var gUniqueSingle = []
 	var gUniqueDouble = []
-	
 	var spriteCompares = []
-	spriteCompares.append_array(Data.gameData.progressionData[progressionStep].sprites)
+	var islandsArray = []
+	
+	spriteCompares.append_array(subLevel.sprites)
 	gUniqueSingle.append_array(spriteCompares)
-	for sprite in Data.gameData.progressionData[progressionStep].sprites:
+	for sprite in subLevel.sprites:
 		spriteCompares.erase(spriteCompares[0])
 		for cSprite in spriteCompares:
 			gUniqueDouble.push_back([sprite, cSprite])
+	islandsArray.append_array(subLevel.islands)
 #	print("Singles: ", gUniqueSingle.size(), "\nDoubles: ", gUniqueDouble.size())
-	#Singles and offsets
+	#Pick an island
 	var step = {}
+	step["island"] = []
+	if gameSteps.size() == 0:
+		step["island"] = subLevel.startIsland
+	else:
+		islandsArray.pick_random()
+	
+	#Singles and offsets
 	for singleSprite in gUniqueSingle:
-		for symbolType in Data.gameData.progressionData[progressionStep].symbolTypes:
+		for symbolType in subLevel.symbolTypes:
 			var symbolData = Data.gameData.symbolData.SymbolTypes[symbolType]
 			for map in symbolData["maps"]:
 				if map == Types.SubSymbolMap.Single:
@@ -64,8 +107,8 @@ func GenerateGameData(progressionStep):
 				step["buttons"] = []
 				step["buttons"].append_array(GenerateButtons(symbolType, offset))
 				gameSteps.push_back(step.duplicate())
-		gameSteps.shuffle()
-	print(gameSteps.size())
+	
+	gameSteps.shuffle()
 	return gameSteps
 
 func GenerateButtons(symbolType, correctOffset):
@@ -136,76 +179,10 @@ func GenerateButtons(symbolType, correctOffset):
 	return buttons
 
 func GameLoop():
-	gameStarted = true
-	NextPatternLoopStart()
-	
-func NextPatternLoopStart():	
-#	var tween = get_node_or_null("CameraTransofrmTween")
-#	if tween == null:
-#		tween = Tween.new()
-#		tween.name = "CameraTransofrmTween"
-#		add_child(tween)
-#	var startCameraPos = cameraTransform.position
-#	var endCameraPos = cameraTransform.position + Vector3.FORWARD * 8
-#	tween.interpoalte_method(self, "CameraTweenPos",
-#		startCameraPos, endCameraPos, 5.0,
-#		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	tween.start()
-#	Timeline.Delay(self, "NextPatternLoopStart", 5)
-	pass
-		
-func NextPatternLoopEnd():
-#	MoveToNextPattern()
-	pass
-	
-func MoveToNextPattern():
-	Data.playerData.gameStep += 1
-	
-#	var tween = get_node_or_null("SpeedTweenIn")
-#	if tween == null:
-#		tween = Tween.new()
-#		tween.name = "SpeedTweenIn"
-#		add_child(tween)
-#	var controlTween = get_node_or_null("CameraTransofrmTween")
-#	var startTweenSpeed = controlTween.playback_speed
-#	var endTweenSpeed = 10
-#	tween.interpolate_property(controlTween, "playback_speed",
-#		startTweenSpeed, endTweenSpeed, 2,
-#		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	tween.start()
-#	Timeline.Delay(self, "NextPatternLoopStart", 1)
-#	Timeline.Delay(self, "UpdateSymbols", 0.5)
-	
-	
-func UpdateSymbols():
-	var tiles = get_tree().get_nodes_in_group("tiles")
-	for tile in tiles:
-		tile.symbol.UpdateSymbol(
-			gameSteps[Data.playerData.gameStep]["angles"],
-			gameSteps[Data.playerData.gameStep]["sprites"]
-		)
-	var button = get_node("../CameraPivot/Camera/symbol-1-button")
-	button.UpdateSymbol(
-			gameSteps[Data.playerData.gameStep]["buttons"][0]["angles"],
-			gameSteps[Data.playerData.gameStep]["sprites"]
-		)
-	button = get_node("../CameraPivot/Camera/symbol-2-button")
-	button.UpdateSymbol(
-			gameSteps[Data.playerData.gameStep]["buttons"][1]["angles"],
-			gameSteps[Data.playerData.gameStep]["sprites"]
-		)
-	button = get_node("../CameraPivot/Camera/symbol-3-button")
-	button.UpdateSymbol(
-			gameSteps[Data.playerData.gameStep]["buttons"][2]["angles"],
-			gameSteps[Data.playerData.gameStep]["sprites"]
-		)
-				
-func _unhandled_key_input(event):
-	if event is InputEventKey:
-		if event.pressed and event.scancode == KEY_LEFT:
-			camMoveSpeed += -1
-		if event.pressed and event.scancode == KEY_RIGHT:
-			camMoveSpeed += 1
-				
-	
+	if state == GameState.START:
+		Data.playerData.gameStep += 1
+		var stepData = gameSteps[Data.playerData.gameStep]
+		FirstGameStep(stepData)
+		return
+
 

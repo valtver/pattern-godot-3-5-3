@@ -6,13 +6,13 @@
 [ext_resource path="res://Assets/data/GameData/GameData.tres" type="Resource" id=4]
 [ext_resource path="res://Assets/data/PlayerData/PlayerData.tres" type="Resource" id=5]
 [ext_resource path="res://Assets/data/ResourceData/ResourceData.tres" type="Resource" id=6]
-[ext_resource path="res://Assets/data/SessionData/SessionData.tres" type="Resource" id=7]
+[ext_resource path="res://Assets/data/HudData/HudData.tres" type="Resource" id=8]
 
 [node name="Data" type="Node"]
 script = ExtResource( 1 )
 appData = ExtResource( 2 )
 uiData = ExtResource( 3 )
 gameData = ExtResource( 4 )
+hudData = ExtResource( 8 )
 playerData = ExtResource( 5 )
 resourceData = ExtResource( 6 )
-sessionData = ExtResource( 7 )

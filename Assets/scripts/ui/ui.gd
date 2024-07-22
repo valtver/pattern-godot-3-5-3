@@ -2,8 +2,6 @@ extends Spatial
 
 export (PackedScene) var content
 
-signal StartGame
-
 const ASPECT_RATIO = 9.0/21.0
 const MAX_ASPECT_RATIO = 4.0/3.0
 
@@ -54,7 +52,7 @@ func InitButtons(uiContentId):
 func ConnectUiContentButtons():
 	for button in get_tree().get_nodes_in_group("uiContentButtons"):
 		if !button.is_connected("Click", self, "OnContentButtonClick"):
-			button.connect("Click", self, "OnContentButtonClick")
+			Events.connect("Click", self, "OnContentButtonClick")
 			
 func ResetUiContentButtons():
 	for button in get_tree().get_nodes_in_group("uiContentButtons"):
@@ -65,7 +63,7 @@ func ResetUiContentButtons():
 func ConnectUiButtons():
 	for button in get_tree().get_nodes_in_group("uiButtons"):
 		if !button.is_connected("Click", self, "OnButtonClick"):
-			button.connect("Click", self, "OnButtonClick")
+			Events.connect("Click", self, "OnButtonClick")
 			
 func ClearContent():
 	for child in uiContent.get_node("Pivot").get_children():
@@ -89,7 +87,7 @@ func OnButtonClick(button):
 		HideConfirmScreen()
 		return
 	if button.buttonId == Types.UiButtonId.Accept:
-		emit_signal("StartGame")
+		Events.emit_signal("StartGame")
 		return
 
 func OnContentButtonClick(button):

@@ -4,6 +4,7 @@ var state = Types.AppState.START
 
 var game
 var ui
+var hud
 var hecticPlayLogo
 var gameLogo
 
@@ -80,7 +81,7 @@ func Load():
 		for res in Data.resourceData.hudResources:
 			Loader.QueueResource(res)
 
-	Loader.connect("LoadComplete", self, "OnLoadComplete")
+	Events.connect("LoadComplete", self, "OnLoadComplete")
 	Loader.Load()
 	
 func OnBlockerShown():
@@ -89,15 +90,17 @@ func OnBlockerShown():
 	Load()
 		
 func OnLoadComplete():
-	Loader.disconnect("LoadComplete", self, "OnLoadComplete")
+	Events.disconnect("LoadComplete", self, "OnLoadComplete")
 	if state == Types.AppState.START:
 		ui = Loader.GetResource(Data.appData.uiScene).instance()
 		Content2D.add_child(ui)
-		ui.connect("StartGame", self, "OnGameStart")
+		Events.connect("StartGame", self, "OnGameStart")
 	if state == Types.AppState.GAME:
 		game = Loader.GetResource(Data.appData.gameScene).instance()
 		Content3D.add_child(game)
-		game.connect("MainMenu", self, "OnMainMenu")
+		hud = Loader.GetResource(Data.appData.gameHud).instance()
+		Content2D.add_child(hud)
+		Events.connect("MainMenu", self,"OnMainMenu")
 #	Timeline.OnCompleteTimer(self, "HideBlocker", 0.5)
 	HideBlocker()
 	pass

@@ -2,7 +2,6 @@ extends Resource
 
 export (Resource) var symbolData
 export (Array, Resource) var levels
-export (Array, Resource) var progressionData
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

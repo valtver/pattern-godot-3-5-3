@@ -1,7 +1,5 @@
 extends Node
 
-signal LoadComplete
-
 const SIMULATED_DELAY_SEC = 0.1
 var thread = null
 #onready var progress = $Progress
@@ -50,5 +48,5 @@ func _queue_loading_thread():
 func _queue_loading_thread_complete(status):
 	assert(status)
 	print("Queue load complete with status: ", status)
-	emit_signal("LoadComplete")
+	Events.emit_signal("LoadComplete")
 	thread.wait_to_finish()

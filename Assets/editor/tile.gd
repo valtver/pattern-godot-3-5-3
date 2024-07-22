@@ -1,17 +1,19 @@
 tool
-extends StaticBody
+extends Spatial
 
 export var refresh = false
 export (PackedScene) var symbolBackground
 export (PackedScene) var symbolScene
+export (PackedScene) var pathScene
 
 export var idx: int
 export var idy: int
 
 signal inputClick
-signal symbolFix
 
 onready var symbol = get_node_or_null("symbol")
+onready var symbolBg = get_node_or_null("symbolBackground")
+onready var symbolPath = get_node_or_null("pathTerrain")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -25,6 +27,7 @@ func _process(_delta):
 func SetupTile():		
 	ProcessSymbol()
 	ProcessSymbolBackground()
+	ProcessPath()
 	ProcessPlaceholder()
 	
 func ProcessSymbol():
@@ -55,6 +58,21 @@ func ProcessSymbolBackground():
 		elif node != null:
 			if !isValid:
 				node.free()
+	else:
+		if node != null:
+			node.free()
+						
+func ProcessPath():
+	var node = get_node_or_null("pathTerrain")
+	if pathScene != null:
+		if node == null:
+			var pathTileInstance = pathScene.instance()
+			pathTileInstance.name = "pathTerrain"
+			self.add_child(pathTileInstance)
+			pathTileInstance.owner = get_tree().edited_scene_root
+		else:
+			var angles = [Vector3.UP * 0, Vector3.UP * 180]
+			node.rotation_degrees = angles.pick_random()
 	else:
 		if node != null:
 			node.free()

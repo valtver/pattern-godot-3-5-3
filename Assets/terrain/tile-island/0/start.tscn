@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/editor/grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/terrain/tile/0/campfire-stone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/terrain/tile/0/campfire-logs.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/editor/tile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/terrain/tile/0/campfire-tent.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/terrain/tile/0/path-tile.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/terrain/tile/0/plant-0.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/terrain/tile/0/ground-grass.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/terrain/tile/0/grass-0.tscn" type="PackedScene" id=9]
@@ -14,7 +15,135 @@
 [ext_resource path="res://Assets/scenes/game/symbol/symbol.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/scenes/game/symbol/symbol-background.tscn" type="PackedScene" id=15]
 
-[node name="0-start" type="VisibilityNotifier" groups=["IslandVisibilityNotifiers"]]
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+flags_do_not_receive_shadows = true
+vertex_color_use_as_albedo = true
+params_specular_mode = 4
+params_blend_mode = 1
+params_depth_draw_mode = 2
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=10]
+material = SubResource( 9 )
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 0.432203 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0169491 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0, 0.222222, 0.750617, 1 )
+colors = PoolColorArray( 0.290196, 0, 0, 0, 0.789062, 0.20343, 0, 1, 0.414062, 0, 0, 1, 0.560784, 0, 0, 0 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+flags_do_not_receive_shadows = true
+vertex_color_use_as_albedo = true
+params_specular_mode = 4
+params_depth_draw_mode = 2
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id=13]
+material = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0.245763 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.449152 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.48855, 1 )
+colors = PoolColorArray( 0.54902, 0.54902, 0.54902, 0, 0.513726, 0.513726, 0.513726, 0.584314, 0.407843, 0.407843, 0.407843, 0 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("campfire/ParticlesFire:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("campfire/ParticlesSmoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("campfire/ParticlesFire:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("campfire/ParticlesSmoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Start"
+tracks/0/type = "value"
+tracks/0/path = NodePath("campfire/ParticlesSmoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("campfire/ParticlesFire:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="start" type="VisibilityNotifier" groups=["IslandVisibilityNotifiers"]]
 aabb = AABB( -7.5, 0, -15.5, 15, 3, 16 )
 
 [node name="Symbols" parent="." instance=ExtResource( 1 )]
@@ -28,6 +157,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 15 )
 symbolScene = ExtResource( 14 )
+pathScene = ExtResource( 6 )
+
+[node name="pathTerrain" parent="Symbols/tile-0-0" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="symbol" parent="Symbols/tile-0-0" instance=ExtResource( 14 )]
 
@@ -40,7 +173,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 15 )
 symbolScene = ExtResource( 14 )
+pathScene = ExtResource( 6 )
 idy = 1
+
+[node name="pathTerrain" parent="Symbols/tile-0-1" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="symbol" parent="Symbols/tile-0-1" instance=ExtResource( 14 )]
 
@@ -51,7 +188,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 15 )
 symbolScene = ExtResource( 14 )
+pathScene = ExtResource( 6 )
 idy = 2
+
+[node name="pathTerrain" parent="Symbols/tile-0-2" instance=ExtResource( 6 )]
 
 [node name="symbol" parent="Symbols/tile-0-2" instance=ExtResource( 14 )]
 
@@ -64,7 +204,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 15 )
 symbolScene = ExtResource( 14 )
+pathScene = ExtResource( 6 )
 idy = 3
+
+[node name="pathTerrain" parent="Symbols/tile-0-3" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="symbol" parent="Symbols/tile-0-3" instance=ExtResource( 14 )]
 
@@ -75,7 +219,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 15 )
 symbolScene = ExtResource( 14 )
+pathScene = ExtResource( 6 )
 idy = 4
+
+[node name="pathTerrain" parent="Symbols/tile-0-4" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="symbol" parent="Symbols/tile-0-4" instance=ExtResource( 14 )]
 
@@ -88,7 +236,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 15 )
 symbolScene = ExtResource( 14 )
+pathScene = ExtResource( 6 )
 idy = 5
+
+[node name="pathTerrain" parent="Symbols/tile-0-5" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="symbol" parent="Symbols/tile-0-5" instance=ExtResource( 14 )]
 
@@ -99,7 +251,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 15 )
 symbolScene = ExtResource( 14 )
+pathScene = ExtResource( 6 )
 idy = 6
+
+[node name="pathTerrain" parent="Symbols/tile-0-6" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="symbol" parent="Symbols/tile-0-6" instance=ExtResource( 14 )]
 
@@ -112,7 +268,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 15 )
 symbolScene = ExtResource( 14 )
+pathScene = ExtResource( 6 )
 idy = 7
+
+[node name="pathTerrain" parent="Symbols/tile-0-7" instance=ExtResource( 6 )]
 
 [node name="symbol" parent="Symbols/tile-0-7" instance=ExtResource( 14 )]
 
@@ -1402,12 +1561,6 @@ transform = Transform( 0.258819, 0, -0.965925, 0, 1, 0, 0.965925, 0, 0.258819, 6
 [node name="tree-47" parent="Terrain/Objects" instance=ExtResource( 11 )]
 transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -4, 0, -11 )
 
-[node name="campfire-stone" parent="Terrain/Objects" instance=ExtResource( 2 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -7 )
-
-[node name="campfire-logs" parent="Terrain/Objects" instance=ExtResource( 3 )]
-transform = Transform( -0.517638, 0, 1.93185, 0, 2, 0, -1.93185, 0, -0.517638, 0, 0, -7 )
-
 [node name="campfire-tent" parent="Terrain/Objects" instance=ExtResource( 5 )]
 transform = Transform( 0.517638, 0, 1.93185, 0, 2, 0, -1.93185, 0, 0.517638, -1.52732, 0, -7.23023 )
 
@@ -1664,3 +1817,60 @@ sorting_offset = 3.0
 modulate = Color( 0, 0, 0, 0.313726 )
 pixel_size = 0.0625
 texture = ExtResource( 13 )
+
+[node name="CameraPosition" type="Position3D" parent="." groups=["cameraPosition"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8 )
+
+[node name="campfire" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7 )
+
+[node name="campfire-stone" parent="campfire" instance=ExtResource( 2 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+
+[node name="campfire-logs" parent="campfire" instance=ExtResource( 3 )]
+transform = Transform( -0.517638, 0, 1.93185, 0, 2, 0, -1.93185, 0, -0.517638, 0, 0, 0 )
+
+[node name="ParticlesFire" type="CPUParticles" parent="campfire"]
+transform = Transform( 0.784744, 0, 0.61982, 0, 1, 0, -0.61982, 0, 0.784744, 0, 0.231975, 0 )
+amount = 25
+randomness = 1.0
+lifetime_randomness = 0.5
+mesh = SubResource( 10 )
+emission_shape = 5
+emission_ring_radius = 0.01
+emission_ring_inner_radius = 0.26
+emission_ring_height = 0.3
+emission_ring_axis = Vector3( 0, 0, 1 )
+direction = Vector3( 0, 1, 0 )
+spread = 30.0
+gravity = Vector3( 0, 2, 0 )
+initial_velocity = 0.79
+initial_velocity_random = 1.0
+scale_amount = 0.65
+scale_amount_curve = SubResource( 11 )
+color_ramp = SubResource( 12 )
+
+[node name="ParticlesSmoke" type="CPUParticles" parent="campfire"]
+transform = Transform( 0.784744, 0, 0.61982, 0, 1, 0, -0.61982, 0, 0.784744, 0, 0.24214, 0 )
+emitting = false
+amount = 10
+lifetime = 5.0
+randomness = 1.0
+lifetime_randomness = 0.5
+mesh = SubResource( 13 )
+emission_shape = 5
+emission_ring_radius = 0.01
+emission_ring_inner_radius = 0.26
+emission_ring_height = 0.3
+emission_ring_axis = Vector3( 0, 0, 1 )
+direction = Vector3( 0, 1, 0 )
+spread = 30.0
+gravity = Vector3( 0, 0.2, 0 )
+scale_amount = 0.65
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+anims/Start = SubResource( 8 )

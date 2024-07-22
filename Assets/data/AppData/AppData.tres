@@ -8,6 +8,7 @@ locId = 0
 hecticPlayLogoScene = "res://Assets/scenes/app/hectic-play-logo.tscn"
 gameLogoScene = "res://Assets/scenes/app/game-logo.tscn"
 gameScene = "res://Assets/scenes/game/game.tscn"
+hudScene = "res://Assets/scenes/hud/hud.tscn"
 uiScene = "res://Assets/scenes/ui/ui.tscn"
 sound = true
 music = true

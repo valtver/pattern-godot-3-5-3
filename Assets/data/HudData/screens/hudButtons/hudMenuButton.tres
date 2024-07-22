@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/data/HudData/screens/hudButtons/hudButtonData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+hudButtonId = 0
+button = "res://Assets/scenes/hud/buttons/hud-menu-button.tscn"
+buttonUiAnchor = 2
+buttonPosition = Vector3( 0, 0.25, 0 )
+buttonScale = Vector3( 1, 1, 1 )

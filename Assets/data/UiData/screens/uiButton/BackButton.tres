@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 2 )
+hudButtonId = 0
 button = "res://Assets/scenes/ui/buttons/BackButton.tscn"
 buttonUiAnchor = 2
 buttonPos = Vector3( -1.5, 0.84, 0 )

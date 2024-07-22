@@ -1,7 +1,11 @@
 extends Resource
 
 export (int) var index
-export (String, FILE, "*.tscn") var levelScene
+export (Array, Types.SymbolType) var symbolTypes
+export (Array, String, FILE) var sprites
+export (String, FILE) var startIsland
+export (Array, String, FILE) var islands
+export (String, FILE) var endIsland
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

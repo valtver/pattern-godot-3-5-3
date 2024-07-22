@@ -58,7 +58,7 @@ func OnRelease():
 	pass
 		
 func OnClick():
-	emit_signal("Click", self)
+	Events.emit_signal("Click", self)
 	var tween = get_node_or_null("Tween")
 	if tween == null:
 		return

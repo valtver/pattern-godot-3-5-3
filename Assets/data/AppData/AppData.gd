@@ -5,6 +5,7 @@ export (Types.LocId) var locId
 export (String, FILE, "*.tscn") var hecticPlayLogoScene
 export (String, FILE, "*.tscn") var gameLogoScene
 export (String, FILE, "*.tscn") var gameScene
+export (String, FILE, "*.tscn") var hudScene
 export (String, FILE, "*.tscn") var uiScene
 
 export (bool) var sound = true

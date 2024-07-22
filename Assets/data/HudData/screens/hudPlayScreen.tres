@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://Assets/data/HudData/screens/HudScreenData.gd" type="Script" id=1]
+[ext_resource path="res://Assets/data/HudData/screens/hudButtons/hudSymbolButton0.tres" type="Resource" id=2]
+[ext_resource path="res://Assets/data/HudData/screens/hudButtons/hudSymbolButton1.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/data/HudData/screens/hudButtons/hudSymbolButton2.tres" type="Resource" id=4]
+[ext_resource path="res://Assets/data/HudData/screens/hudButtons/hudMenuButton.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+hudScreenId = 2
+hudButtons = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+hudContentButtons = [  ]

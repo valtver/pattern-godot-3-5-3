@@ -68,10 +68,10 @@ func Init(screenConfig):
 				if btn.buttonId == Types.UiButtonId.Music:
 					btn.active = Data.appData.music
 
-	if !leftScrollButton.is_connected("Click", self, "OnClickLeft"):
-		leftScrollButton.connect("Click", self, "OnClickLeft")
-	if !rightScrollButton.is_connected("Click", self, "OnClickRight"):
-		rightScrollButton.connect("Click", self, "OnClickRight")
+	if !Events.is_connected("LeftScrollClick", self, "OnClickLeft"):
+		Events.connect("LeftScrollClick", self, "OnClickLeft")
+	if !Events.is_connected("RightScrollClick", self, "OnClickRight"):
+		Events.connect("RightScrollClick", self, "OnClickRight")
 	currentPageIndex = 0;
 	UpdateButtons();
 	
