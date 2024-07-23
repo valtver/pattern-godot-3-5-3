@@ -12,6 +12,17 @@ func UpdateSymbol(subSymbolAngles, subSymbolSprites):
 			child.rotation_degrees = defaultRotation
 			child.rotation_degrees += subSymbolAngles[child.id]
 			child.texture = Loader.GetResource(subSymbolSprites[child.id])
+			
+func GetSymbolAngles():
+	var angles = []
+	angles.resize(4)
+	var children = $Pivot.get_children()
+	for child in children:
+		if "id" in child:
+			angles[child.id] = Vector3.UP * child.rotation_degrees
+	
+	return angles 
+
 
 func OnClick():
 	Events.emit_signal("Click", self)

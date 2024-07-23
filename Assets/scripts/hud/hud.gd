@@ -46,7 +46,7 @@ func InitCurrentScreen():
 						bInstance.position = hudButton.buttonPosition
 						bInstance.AnimateShow()
 						
-func ShowSymbolButtons():
+func ShowSymbolButtons(gameStepData):
 	for screen in Data.hudData.screens:
 		if screen.hudScreenId == currentScreen:
 			var btnIndex = -1
@@ -56,9 +56,9 @@ func ShowSymbolButtons():
 					var bInstance = Loader.GetResource(hudButton.button).instance()
 					btnIndex += 1
 					bInstance.index = btnIndex
+					bInstance.UpdateSymbol(gameStepData.buttons[btnIndex]["angles"], gameStepData["sprites"])
 					if hudButton.buttonUiAnchor == Types.UiAnchor.Bottom:
 						bottom.add_child(bInstance)
-						print("Added")
 					bInstance.position = hudButton.buttonPosition
 					bInstance.AnimateShow()
 					
@@ -74,7 +74,7 @@ func HideSymbolButtons():
 								Timeline.Delay(child, "AnimateHide", indexDelay)
 								Timeline.Delay(child, queue_free(), 0.3 + indexDelay)
 								indexDelay += 0.1
-			
+
 func OnShowHudStartScreen():
 	currentScreen = Types.HudScreenId.Start
 	InitCurrentScreen()
@@ -83,12 +83,14 @@ func OnShowHudPlayScreen():
 	currentScreen = Types.HudScreenId.Play
 	InitCurrentScreen()
 
-func OnShowHudSymbolButtons():
-	ShowSymbolButtons()
+func OnShowHudSymbolButtons(gameStepData):
+	ShowSymbolButtons(gameStepData)
 
 func OnButtonClick(button):
 	if button.buttonId == Types.HudButtonId.Play:
 		Events.emit_signal("HudButtonPlayClick")
+	if button.buttonId == Types.HudButtonId.Symbol:
+		Events.emit_signal("HudButtonSymbolClick", button)
 
 func resize():
 	var ref_width = 450 / get_viewport().get_camera().size

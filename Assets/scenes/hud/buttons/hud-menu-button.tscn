@@ -25,4 +25,4 @@ texture = ExtResource( 2 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
-[node name="Show" type="Tween" parent="."]
+[node name="Tween" type="Tween" parent="."]

@@ -49,4 +49,4 @@ texture = ExtResource( 3 )
 script = ExtResource( 1 )
 id = 3
 
-[node name="JumpTween" type="Tween" parent="."]
+[node name="Tween" type="Tween" parent="."]

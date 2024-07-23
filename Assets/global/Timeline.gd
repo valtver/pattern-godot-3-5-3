@@ -2,24 +2,27 @@ extends Node
 
 var speedValue = 1
 
+var timers = []
+
 func Delay(obj, methodName, delayTime):
 	var timer := Timer.new()
 	add_child(timer)
+	timers.append(timer)
 	timer.wait_time = delayTime
 	timer.one_shot = true
 	timer.connect("timeout", obj, methodName)
-	timer.connect("timeout", self, "CleanTimer", [timer])
+	timer.connect("timeout", self, "StopAndCleanTimer", [timer])
 	timer.start()
 
-func TweenSpeed(startSpeedValue):
-	var tween = get_node_or_null("SpeedTween")
-	if tween == null:
-		tween = Tween.new()
-		add_child(tween)
-	tween.interpolate_property(self, "speedValue",
-		startSpeedValue, 1, 5,
-		Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	tween.start()
-
-func CleanTimer(timerInstance):
+func StopAndCleanTimer(timerInstance):
+	timerInstance.stop()
 	timerInstance.queue_free()
+	timers.erase(timerInstance)
+	
+func StopTimer(obj, methodName):
+	for timer in timers:
+		if timer.is_connected("timeout", obj, methodName):
+			timers.erase(timer)
+			StopAndCleanTimer(timer)
+			print("Timer ", methodName, " for ", obj, " has stopped!")
+			return

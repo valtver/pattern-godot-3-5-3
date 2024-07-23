@@ -1,5 +1,6 @@
 extends Resource
 
+export (float) var gameStepDelay
 export (Resource) var symbolData
 export (Array, Resource) var levels
 # Declare member variables here. Examples:

@@ -10,14 +10,19 @@ func UpdateSymbol(subSymbolAngles, subSymbolSprites):
 		child.texture = Loader.GetResource(subSymbolSprites[child.id])
 			
 func PlayJump():
-	var tween = get_node_or_null("JumpTween")
+	var tween = get_node_or_null("Tween")
 	if tween == null:
 		return
 	tween.interpolate_property($Pivot, "position",
 		Vector3(0, 1, 0), Vector3(0, 0, 0), 0.3,
 		Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	tween.start()
-
+		
+func SetSymbolAlpha(val):
+	var children = $Pivot.get_children()
+	for child in children:
+		if "id" in child:
+			child.modulate.a = val
 	
 	
 		

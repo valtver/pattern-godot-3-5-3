@@ -94,25 +94,27 @@ func ProcessPlaceholder():
 		self.add_child(placeholderInstance)
 		placeholderInstance.owner = get_tree().edited_scene_root
 		
+func SymbolFadeIn():
+	if symbol == null:
+		return
+	if symbolBg != null:
+		symbolBg.visible = true
+	symbol.visible = true
+	symbol.SetSymbolAlpha(0)
+	var tween = get_node_or_null("Tween")
+	if tween == null:
+		tween = Tween.new()
+		tween.name = "Tween"
+		add_child(tween)
+	tween.interpolate_method(symbol, "SetSymbolAlpha",
+		0, 0.75, 0.3,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
 
 func OnClick():
-#	if symbol != null:
-#		if symbol.state == Types.SymbolState.Broken:
-#			emit_signal("symbolFix", self)
-#	emit_signal("inputClick", self)
 	pass
-	# Called when the node enters the scene tree for the first time.
-	
-func BreakSymbol():
-	if symbol != null:
-		symbol.Break()
-	
-func Action():
-	if symbol != null:
-		symbol.PlayJump()
-		if symbol.state == Types.SymbolState.Broken:
-			symbol.Fix()
-			
+
+				
 func Reset():
 	pass
 			
