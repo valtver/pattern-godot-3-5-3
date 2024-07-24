@@ -1,56 +1,59 @@
 extends Node
 
 var visibilityNotifiers = []
-var currentTiles = []
+var cTiles = []
 var nTiles = []
 var pTiles = []
-var cIsland
 var pIsland
+var cIsland
 var nIsland
 
 func Init():
-#	island = get_node_or_null("start")
-#	if island == null:
-#		print("Cant' init start island...")
-#		return
-#	pIsland = island.duplicate()
-#	pIsland.position = island.position - Vector3.FORWARD * island.aabb.size.z
-#	add_child(pIsland)
-#	nIsland = island.duplicate()
-#	nIsland.position = island.position + Vector3.FORWARD * island.aabb.size.z
-#	add_child(nIsland)
-#	SubScribeToNotifiers()
 	pass
-	
-func AddFirstIsland(gameStepData):
+		
+func AddFirstIsland():
 	if cIsland == null:
 		var editorIsland = get_node_or_null("start")
 		if editorIsland == null:
-			cIsland = Loader.GetResource(gameStepData.island).instance()
+			cIsland = Loader.GetResource(
+				Data.gameData.levels[Data.playerData.selectedLevelIndex].subLevels[Data.playerData.selectedSubLevelIndex].startIsland
+			).instance()
 			add_child(cIsland)
 			cIsland.position = Vector3.ZERO
 		else:
 			cIsland = editorIsland
 		SortTiles()
-		InitTiles(currentTiles)
+		InitTiles(cTiles)
 	else:
 		print("First island had been added already")
 	
 func AddNextIsland(gameStepData):
-	if nIsland == null:
-		nIsland = Loader.GetResource(gameStepData.island).instance()
-		add_child(nIsland)
-		nIsland.position = cIsland.position - Vector3.FORWARD * cIsland.aabb.size.z
-		SortTiles()
-		InitTiles(nTiles)
-	else:
-		print("Next island had been added already")
+	pIsland = cIsland
+	cIsland = Loader.GetResource(gameStepData.island).instance()
+	add_child(cIsland)
+	cIsland.position = pIsland.position + Vector3.FORWARD * pIsland.aabb.size.z
+	SortTiles()
+	InitTiles(cTiles)
+	
+func AddLastIsland():
+	pIsland = cIsland
+	cIsland = Loader.GetResource( 
+		Data.gameData.levels[Data.playerData.selectedLevelIndex].subLevels[Data.playerData.selectedSubLevelIndex].endIsland
+		).instance()
+	add_child(cIsland)
+	cIsland.position = pIsland.position + Vector3.FORWARD * pIsland.aabb.size.z
+	SortTiles()
+	InitTiles(cTiles)
+	pass
 	
 func SortTiles():
 	var tiles = get_tree().get_nodes_in_group("tiles")
+	cTiles = []
+	pTiles = []
+	nTiles = []
 	for tile in tiles:
 		if cIsland != null && cIsland.is_a_parent_of(tile):
-			currentTiles.push_back(tile)
+			cTiles.push_back(tile)
 		if pIsland != null && pIsland.is_a_parent_of(tile):
 			pTiles.push_back(tile)
 		if nIsland != null && nIsland.is_a_parent_of(tile):
@@ -58,10 +61,12 @@ func SortTiles():
 
 func InitTiles(tileSet):
 	for tile in tileSet:
-		tile.symbol.visible = false
+		if tile.symbol != null:
+			tile.symbol.visible = false
 		if tile.symbolBg != null:
 			tile.symbolBg.visible = false
-		tile.symbolPath.visible = false
+		if tile.symbolPath != null:
+			tile.symbolPath.visible = false
 
 #func OnVisibilityChanged(notifier):
 #	if notifier == pIsland:

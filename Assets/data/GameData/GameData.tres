@@ -7,5 +7,6 @@
 [resource]
 script = ExtResource( 1 )
 gameStepDelay = 5.0
+nextGameStepDelay = 1.0
 symbolData = ExtResource( 3 )
 levels = [ ExtResource( 2 ) ]

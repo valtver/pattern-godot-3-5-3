@@ -21,6 +21,7 @@ func _ready():
 	Events.connect("ShowHudStartScreen", self, "OnShowHudStartScreen")
 	Events.connect("ShowHudPlayScreen", self, "OnShowHudPlayScreen")
 	Events.connect("ShowHudSymbolButtons", self, "OnShowHudSymbolButtons")
+	Events.connect("HideHudSymbolButtons", self, "OnHideHudSymbolButtons")
 
 func CleanHudScreen():
 	for child in bottom.get_children():
@@ -62,18 +63,13 @@ func ShowSymbolButtons(gameStepData):
 					bInstance.position = hudButton.buttonPosition
 					bInstance.AnimateShow()
 					
-func HideSymbolButtons():
-	for screen in Data.hudData.screens:
-		if screen.hudScreenId == currentScreen:
-			for hudButton in screen.hudButtons:
-				if hudButton.hudButtonId == Types.HudButtonId.Symbol:
-					if hudButton.buttonUiAnchor == Types.UiAnchor.Bottom:
-						var indexDelay = 0
-						for child in bottom.get_children():
-							if child.hudButtonId == Types.HudButtonId.Symbol:
-								Timeline.Delay(child, "AnimateHide", indexDelay)
-								Timeline.Delay(child, queue_free(), 0.3 + indexDelay)
-								indexDelay += 0.1
+func HideSymbolButtons(button:Node = null):
+	for child in bottom.get_children():
+		if child.buttonId == Types.HudButtonId.Symbol:
+			if button != null && child == button:
+				Timeline.Delay(child, "AnimateHide", 0.5)
+			else:
+				child.AnimateHide()
 
 func OnShowHudStartScreen():
 	currentScreen = Types.HudScreenId.Start
@@ -85,11 +81,14 @@ func OnShowHudPlayScreen():
 
 func OnShowHudSymbolButtons(gameStepData):
 	ShowSymbolButtons(gameStepData)
+	
+func OnHideHudSymbolButtons(button):
+	HideSymbolButtons(button)
 
-func OnButtonClick(button):
-	if button.buttonId == Types.HudButtonId.Play:
+func OnButtonClick(button: Node = null):
+	if button && button.buttonId == Types.HudButtonId.Play:
 		Events.emit_signal("HudButtonPlayClick")
-	if button.buttonId == Types.HudButtonId.Symbol:
+	if button && button.buttonId == Types.HudButtonId.Symbol:
 		Events.emit_signal("HudButtonSymbolClick", button)
 
 func resize():

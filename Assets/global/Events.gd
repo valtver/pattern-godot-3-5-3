@@ -12,4 +12,5 @@ signal ShowHudStartScreen
 signal ShowHudPlayScreen
 signal HudButtonPlayClick
 signal ShowHudSymbolButtons
+signal HideHudSymbolButtons
 signal HudButtonSymbolClick

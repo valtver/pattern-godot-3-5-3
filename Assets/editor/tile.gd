@@ -99,6 +99,8 @@ func SymbolFadeIn():
 		return
 	if symbolBg != null:
 		symbolBg.visible = true
+	if symbolPath != null:
+		symbolPath.visible = false
 	symbol.visible = true
 	symbol.SetSymbolAlpha(0)
 	var tween = get_node_or_null("Tween")
@@ -110,7 +112,17 @@ func SymbolFadeIn():
 		0, 0.75, 0.3,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
-
+	
+func PathAppear():
+	if symbol == null:
+		return
+	if symbolBg != null:
+		symbolBg.visible = false
+	symbol.visible = false
+	if symbolPath != null:
+		symbolPath.visible = true
+		symbolPath.get_node("AnimationPlayer").play("Complete")
+		
 func OnClick():
 	pass
 

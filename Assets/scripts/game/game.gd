@@ -4,7 +4,9 @@ enum GameState {
 	START = 0,
 	PLAY = 1,
 	CHECK = 2,
-	OVER = 3
+	OVER = 3,
+	NEXT = 4,
+	END = 5
 }
 
 var state = GameState.START
@@ -21,7 +23,7 @@ func _ready():
 	pass # Replace with function body.
 
 func Init():
-	Events.connect("HudButtonPlayClick", self, "OnPlayButtonClick")
+	Events.connect("HudButtonPlayClick", self, "OnPlay")
 	Events.connect("HudButtonSymbolClick", self, "OnSymbolButtonClick")
 	cameraTransform = get_viewport().get_camera().get_parent()
 	scroller = get_node_or_null("Scroller")
@@ -36,52 +38,81 @@ func InitData():
 	gameSteps = GenerateGameData(Data.gameData.levels[lvl].subLevels[subLvl])
 
 func FirstGameStep(gameStepData):
-	scroller.AddFirstIsland(gameStepData)
-	for tile in scroller.currentTiles:
+	scroller.AddFirstIsland()
+	for tile in scroller.cTiles:
 		tile.symbol.UpdateSymbol(gameStepData["angles"], gameStepData["sprites"])
 	Events.emit_signal("ShowHudStartScreen")
 		
 func NextGameStep(gameStepData):
-	scroller.AddNext(gameStepData)
-	for tile in scroller.currentTiles:
+	scroller.AddNextIsland(gameStepData)
+	MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
+	for tile in scroller.cTiles:
 		tile.symbol.UpdateSymbol(gameStepData["angles"], gameStepData["sprites"])
-		
-func OnPlayButtonClick():
-	scroller.cIsland.get_node("AnimationPlayer").play("Start")
+	Timeline.Delay(self, "OnPlay", Data.gameData.nextGameStepDelay)
+
+func EndLevelStep():
+	scroller.AddLastIsland()
+	TryPlayStartIslandAnimation()
+	MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
+	Timeline.Delay(self, "TryPlayEndIslandAnimation", Data.gameData.nextGameStepDelay + 0.25)
+
+func OnPlay():
+	TryPlayStartIslandAnimation()
 	state = GameState.PLAY
 	GameLoop()
 	
+func PlayGameStep(gameStepData):
+	Events.emit_signal("ShowHudPlayScreen")
+	AnimateTilesStart()
+	Events.emit_signal("ShowHudSymbolButtons", gameStepData)
+	MoveCameraTo(cameraTransform.position + Vector3.FORWARD, Data.gameData.gameStepDelay)
+	Timeline.Delay(self, "GameOver", Data.gameData.gameStepDelay)
+	
+func TryPlayStartIslandAnimation():
+	var startAnimation = scroller.cIsland.get_node_or_null("AnimationPlayer")
+	if startAnimation != null:
+		startAnimation.play("Start")
+		
+func TryPlayEndIslandAnimation():
+	var startAnimation = scroller.cIsland.get_node_or_null("AnimationPlayer")
+	if startAnimation != null:
+		startAnimation.play("Idle")
+	
 func GameOver():
+	Events.emit_signal("HideHudSymbolButtons", null)
 	state = GameState.OVER
 	GameLoop()
 	
 func OnSymbolButtonClick(button):
 	Timeline.StopTimer(self, "GameOver")
+	Events.emit_signal("HideHudSymbolButtons", button)
 	Data.playerData.selectedAngles = button.GetSymbolAngles()
 	state = GameState.CHECK
 	GameLoop()
-
-func FinishGameStep(gameStepData):
-	scroller.InitNext(gameStepData)
-	AnimateTilesComplete()
-	pass
-
-func AnimateTilesComplete():
-	pass
 	
 func AnimateTilesStart():
 	var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
-	for tile in scroller.currentTiles:			
+	for tile in scroller.cTiles:			
 		Timeline.Delay(tile, "SymbolFadeIn", tile.global_position.distance_to(cameraGPos) * 0.05)
+		
+func AnimateTilesComplete():
+	var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
+	for tile in scroller.cTiles:
+		Timeline.Delay(tile, "PathAppear", tile.global_position.distance_to(cameraGPos) * 0.1)
+	Data.playerData.gameStep += 1
+	state = GameState.NEXT
+	GameLoop()
 
-func MoveCameraTo(nextPos):
+func MoveCameraTo(nextPos, delay):
 	var tween = get_node_or_null("CameraTween")
 	if tween == null:
 		tween = Tween.new()
 		tween.name = "CameraTween"
 		add_child(tween)
+	if tween != null:
+		tween.remove_all()
 	tween.interpolate_property(cameraTransform, "position",
-		cameraTransform.position, nextPos, Data.gameData.gameStepDelay,
+		cameraTransform.position, nextPos, delay,
 		Tween.TRANS_CUBIC, Tween.EASE_IN)
 	tween.start()
 
@@ -97,16 +128,9 @@ func GenerateGameData(subLevel):
 		spriteCompares.erase(spriteCompares[0])
 		for cSprite in spriteCompares:
 			gUniqueDouble.push_back([sprite, cSprite])
-	islandsArray.append_array(subLevel.islands)
 #	print("Singles: ", gUniqueSingle.size(), "\nDoubles: ", gUniqueDouble.size())
 	#Pick an island
-	var step = {}
-	step["island"] = []
-	if gameSteps.size() == 0:
-		step["island"] = subLevel.startIsland
-	else:
-		islandsArray.pick_random()
-	
+	var step = {}	
 	#Singles and offsets
 	for singleSprite in gUniqueSingle:
 		for symbolType in subLevel.symbolTypes:
@@ -124,9 +148,19 @@ func GenerateGameData(subLevel):
 				#generate buttons options ahead
 				step["buttons"] = []
 				step["buttons"].append_array(GenerateButtons(symbolType, offset))
+				#island
+				step["island"] = []
+				
 				gameSteps.push_back(step.duplicate())
 	
 	gameSteps.shuffle()
+	#AFTER SHUFFLE
+	for i in gameSteps.size():
+		if i == 0:
+			gameSteps[i]["island"] = subLevel.startIsland
+		else:
+			gameSteps[i]["island"] = subLevel.islands.pick_random()
+			
 	return gameSteps
 
 func GenerateButtons(symbolType, correctOffset):
@@ -197,22 +231,31 @@ func GenerateButtons(symbolType, correctOffset):
 	return buttons
 
 func GameLoop():
-	var stepData = gameSteps[Data.playerData.gameStep]
-	if state == GameState.START:		
+	var stepData = null
+	
+	if Data.playerData.gameStep < gameSteps.size():
+		stepData = gameSteps[Data.playerData.gameStep]
+	else:
+		state = GameState.END
+
+	if state == GameState.START:
 		FirstGameStep(stepData)
 		return
+	if state == GameState.NEXT:
+		NextGameStep(stepData)
+		return
 	if state == GameState.PLAY:
-		Events.emit_signal("ShowHudPlayScreen")
-		AnimateTilesStart()
-		Events.emit_signal("ShowHudSymbolButtons", stepData)
-		MoveCameraTo(cameraTransform.position + Vector3.FORWARD)
-		Timeline.Delay(self, "GameOver", Data.gameData.gameStepDelay)
+		PlayGameStep(stepData)
+		return
 	if state == GameState.CHECK:
 		if Data.playerData.selectedAngles == stepData["angles"]:
-			print("CORRECT ", Data.playerData.selectedAngles, " ", stepData["angles"])
-		else:
-			print("INCORRECT ", Data.playerData.selectedAngles, " ", stepData["angles"])
+			AnimateTilesComplete()
+		return
 	if state == GameState.OVER:
 		print("GAME OVER")
+		return
+	if state == GameState.END:
+		print("LEVEL END")
+		EndLevelStep()
 
 
