@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource( 1 )
 selectedLevelIndex = 0
-selectedSubLevelIndex = 0
+selectedSubLevelIndex = 1
 gameStep = 0
 selectedAngles = null

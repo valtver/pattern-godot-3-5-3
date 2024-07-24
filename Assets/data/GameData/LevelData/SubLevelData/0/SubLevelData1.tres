@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/SubLevelData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+index = 1
+symbolTypes = [ 1, 2, 4 ]
+sprites = [ "res://Assets/sprites/game/symbol/sub-symbol-0.png" ]
+startIsland = "res://Assets/terrain/tile-island/0/start.tscn"
+islands = [ "res://Assets/terrain/tile-island/0/0-0.tscn" ]
+endIsland = "res://Assets/terrain/tile-island/0/start.tscn"
