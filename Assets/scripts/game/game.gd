@@ -16,12 +16,6 @@ var tiles
 var cameraTransform
 var scroller
 
-func _ready():
-	Init()
-	InitData()
-	GameLoop()
-	pass # Replace with function body.
-
 func Init():
 	Events.connect("HudButtonPlayClick", self, "OnPlay")
 	Events.connect("HudButtonSymbolClick", self, "OnSymbolButtonClick")
@@ -30,6 +24,8 @@ func Init():
 	if scroller == null:
 		scroller = Loader.GetResource(Data.gameData.scrollerScene).instance()
 		add_child(scroller)
+	InitData()
+	GameLoop()
 
 func InitData():
 	Data.playerData.gameStep = 0
@@ -120,7 +116,6 @@ func GenerateGameData(subLevel):
 	var gUniqueSingle = []
 	var gUniqueDouble = []
 	var spriteCompares = []
-	var islandsArray = []
 	
 	spriteCompares.append_array(subLevel.sprites)
 	gUniqueSingle.append_array(spriteCompares)
@@ -153,6 +148,7 @@ func GenerateGameData(subLevel):
 				
 				gameSteps.push_back(step.duplicate())
 	
+	randomize()
 	gameSteps.shuffle()
 	#AFTER SHUFFLE
 	for i in gameSteps.size():

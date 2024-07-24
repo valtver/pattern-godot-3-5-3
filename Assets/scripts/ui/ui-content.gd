@@ -68,10 +68,8 @@ func Init(screenConfig):
 				if btn.buttonId == Types.UiButtonId.Music:
 					btn.active = Data.appData.music
 
-	if !Events.is_connected("LeftScrollClick", self, "OnClickLeft"):
-		Events.connect("LeftScrollClick", self, "OnClickLeft")
-	if !Events.is_connected("RightScrollClick", self, "OnClickRight"):
-		Events.connect("RightScrollClick", self, "OnClickRight")
+	if !Events.is_connected("Click", self, "OnClick"):
+		Events.connect("Click", self, "OnClick")
 	currentPageIndex = 0;
 	UpdateButtons();
 	
@@ -97,18 +95,18 @@ func UpdateButtons():
 		leftScrollButton.visible = true
 		rightScrollButton.visible = true
 
-func OnClickLeft():
-	if currentPageIndex > 0:
-		currentPageIndex -= 1
-	UpdatePages()
-	UpdateButtons()
+func OnClick(button):
+	if button.buttonId == Types.UiButtonId.ContentLeft:
+		if currentPageIndex > 0:
+			currentPageIndex -= 1
+			UpdatePages()
+			UpdateButtons()
+	if button.buttonId == Types.UiButtonId.ContentRight:
+		if currentPageIndex < contentPages.size()-1:
+			currentPageIndex += 1
+			UpdatePages()
+			UpdateButtons()
 
-func OnClickRight():
-	if currentPageIndex < contentPages.size()-1:
-		currentPageIndex += 1
-	UpdatePages()
-	UpdateButtons()
-	
 func Show():
 	var tween = get_node("Tween")
 	tween.interpolate_property(container, "position",

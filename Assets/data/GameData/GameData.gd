@@ -2,6 +2,7 @@ extends Resource
 
 export (float) var gameStepDelay
 export (float) var nextGameStepDelay
+export (String, FILE) var scrollerScene
 export (Resource) var symbolData
 export (Array, Resource) var levels
 # Declare member variables here. Examples:

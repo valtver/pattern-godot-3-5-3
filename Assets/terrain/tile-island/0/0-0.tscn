@@ -2194,3 +2194,4 @@ pixel_size = 0.0625
 texture = ExtResource( 13 )
 
 [node name="CameraPosition" type="Position3D" parent="." groups=["cameraPosition"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )

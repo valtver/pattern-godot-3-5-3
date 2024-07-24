@@ -19,6 +19,7 @@ func _ready():
 	position = Vector3(0, 0, -0.5)
 	resize()
 	get_tree().get_root().connect("size_changed", self, "resize")
+	Events.connect("Click", self, "OnButtonClick")
 	InitScreen(Types.UiContentId.Main)
 	InitButtons(Types.UiContentId.Main)
 	pass # Replace with function body.
@@ -32,7 +33,6 @@ func InitScreen(uiContentId):
 			uiContent.Init(screenConfig)
 			uiContent.Show()
 			break
-	ConnectUiContentButtons()
 
 func InitButtons(uiContentId):
 	RemoveDynamicButtons()
@@ -47,24 +47,13 @@ func InitButtons(uiContentId):
 				button.position = btnConfig.buttonPos
 				button.scale = btnConfig.buttonScale
 				button.Show()
-	ConnectUiButtons()
-	
-func ConnectUiContentButtons():
-	for button in get_tree().get_nodes_in_group("uiContentButtons"):
-		if !button.is_connected("Click", self, "OnContentButtonClick"):
-			Events.connect("Click", self, "OnContentButtonClick")
-			
+				
 func ResetUiContentButtons():
 	for button in get_tree().get_nodes_in_group("uiContentButtons"):
 		button.active = true
 		button.selected = false
 		button.lock = false #Data check goes here
-	
-func ConnectUiButtons():
-	for button in get_tree().get_nodes_in_group("uiButtons"):
-		if !button.is_connected("Click", self, "OnButtonClick"):
-			Events.connect("Click", self, "OnButtonClick")
-			
+				
 func ClearContent():
 	for child in uiContent.get_node("Pivot").get_children():
 		child.queue_free()
@@ -89,8 +78,7 @@ func OnButtonClick(button):
 	if button.buttonId == Types.UiButtonId.Accept:
 		Events.emit_signal("StartGame")
 		return
-
-func OnContentButtonClick(button):
+#CONTENT BUTTONS
 	if button.buttonId == Types.UiButtonId.Sound:
 		Data.appData.sound = !Data.appData.sound
 		button.active = Data.appData.sound
@@ -115,7 +103,6 @@ func ShowConfirmScreen():
 	if confirmScreen == null:
 		confirmScreen = Loader.GetResource(Data.uiData.confirmScreen).instance()
 		add_child(confirmScreen)
-		ConnectUiButtons()
 	confirmScreen.Show()
 	
 func HideConfirmScreen():

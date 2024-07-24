@@ -16,9 +16,9 @@ onready var Content3D = $"."
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	Timeline.OnCompleteTimer(self, "Init", 2.0)
-#	Init()
+	Init()
 #	Timeline.OnCompleteTimer(self, "ShowBlocker", 4.0)
-#	ShowBlocker()
+	ShowBlocker()
 	pass
 
 func Init():
@@ -96,11 +96,13 @@ func OnLoadComplete():
 		Content2D.add_child(ui)
 		Events.connect("StartGame", self, "OnGameStart")
 	if state == Types.AppState.GAME:
+		hud = Loader.GetResource(Data.appData.hudScene).instance()
+		Content2D.add_child(hud)
+		hud.Init()
 		game = Loader.GetResource(Data.appData.gameScene).instance()
 		Content3D.add_child(game)
-		hud = Loader.GetResource(Data.appData.gameHud).instance()
-		Content2D.add_child(hud)
-		Events.connect("MainMenu", self,"OnMainMenu")
+		Events.connect("AppMainMenu", self,"OnMainMenu")
+		game.Init()
 #	Timeline.OnCompleteTimer(self, "HideBlocker", 0.5)
 	HideBlocker()
 	pass

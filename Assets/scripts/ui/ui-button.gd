@@ -58,7 +58,6 @@ func OnRelease():
 	pass
 		
 func OnClick():
-	Events.emit_signal("Click", self)
 	var tween = get_node_or_null("Tween")
 	if tween == null:
 		return
@@ -66,6 +65,7 @@ func OnClick():
 		Vector3(1.2, 1.2, 1.2), Vector3.ONE, 0.5,
 		Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	tween.start()
+	Events.emit_signal("Click", self)
 
 func Show():
 	var tween = get_node_or_null("Tween")
