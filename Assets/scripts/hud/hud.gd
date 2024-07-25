@@ -14,7 +14,7 @@ var currentScreen = null
 onready var bottom = $Bottom
 onready var top = $Top
 
-func Init():
+func _ready():
 	position = Vector3(0, 0, -1)
 	resize()
 	get_tree().get_root().connect("size_changed", self, "resize")

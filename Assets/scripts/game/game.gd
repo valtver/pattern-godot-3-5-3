@@ -16,7 +16,7 @@ var tiles
 var cameraTransform
 var scroller
 
-func Init():
+func _ready():
 	Events.connect("HudButtonPlayClick", self, "OnPlay")
 	Events.connect("HudButtonSymbolClick", self, "OnSymbolButtonClick")
 	cameraTransform = get_viewport().get_camera().get_parent()

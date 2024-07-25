@@ -16,9 +16,9 @@ onready var Content3D = $"."
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	Timeline.OnCompleteTimer(self, "Init", 2.0)
-	Init()
+#	Init()
 #	Timeline.OnCompleteTimer(self, "ShowBlocker", 4.0)
-	ShowBlocker()
+#	ShowBlocker()
 	pass
 
 func Init():
