@@ -9,8 +9,10 @@ signal AppMainMenu
 signal LevelEnd
 
 signal ShowHudStartScreen
-signal ShowHudPlayScreen
+signal ShowHudGameScreen
 signal HudButtonPlayClick
 signal ShowHudSymbolButtons
 signal HideHudSymbolButtons
+signal ShowHudMenuButton
+signal HideHudMenuButton
 signal HudButtonSymbolClick

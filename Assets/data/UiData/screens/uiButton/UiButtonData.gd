@@ -1,6 +1,6 @@
 extends Resource
 
-export (Types.HudButtonId) var hudButtonId
+export (Types.HudElementId) var hudElementId
 export (String, FILE) var button
 export (Types.UiAnchor) var buttonUiAnchor
 export (Vector3) var buttonPos

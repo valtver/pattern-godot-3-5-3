@@ -40,18 +40,10 @@ enum UiButtonId {
 	Decline = 11
 }
 
-enum HudButtonId {
-	None = 0,
-	Pause = 1,
-	Play = 2,
-	Symbol = 3
-}
-
-enum HudScreenId {
-	None = 0,
-	Start = 1,
-	Play = 2,
-	Pause = 3
+enum HudElementId {
+	HudButtonStart = 0,
+	HudButtonMenu = 1,
+	HudButtonSymbol = 2
 }
 
 enum SymbolType {

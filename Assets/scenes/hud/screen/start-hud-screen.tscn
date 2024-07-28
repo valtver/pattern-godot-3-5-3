@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=1]
+[ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
+[ext_resource path="res://Assets/scenes/hud/buttons/hud-start-button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/scenes/hud/buttons/hud-menu-button.tscn" type="PackedScene" id=4]
+
+[node name="start-hud-screen" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Ref" type="Spatial" parent="."]
+visible = false
+
+[node name="Color" type="Sprite3D" parent="Ref"]
+sorting_offset = 2.0
+opacity = 0.17
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 450, 1050 )
+
+[node name="Top" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+
+[node name="Bottom" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
+
+[node name="hud-play-button" parent="Bottom" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.776433, 0 )
+
+[node name="hud-menu-button" parent="Bottom" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69176, 0.264505, 0 )

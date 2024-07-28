@@ -11,7 +11,6 @@ extents = Vector3( 0.588905, 0.614659, 0.01 )
 collision_layer = 512
 collision_mask = 512
 script = ExtResource( 2 )
-buttonId = 2
 
 [node name="Pivot" type="Spatial" parent="."]
 

@@ -1,116 +1,106 @@
 extends Spatial
 
-const ASPECT_RATIO = 9.0/21.0
-const MAX_ASPECT_RATIO = 4.0/3.0
+var DISABLED_TYPES = [Types.HudElementId.HudButtonSymbol]
+var FADE_ANIMATION_TYPES = [Types.HudElementId.HudButtonMenu]
 
-enum GameState {
-	BUSY = 0,
-	WAITING_INPUT = 1
-}
+export (String, FILE) var startHudScreen
+export (String, FILE) var gameHudScreen
 
-var gameState = GameState.BUSY
-var currentScreen = null
-
-onready var bottom = $Bottom
-onready var top = $Top
+var cHudScreen = null
 
 func _ready():
-	position = Vector3(0, 0, -1)
-	resize()
-	get_tree().get_root().connect("size_changed", self, "resize")
 	Events.connect("Click", self, "OnButtonClick")
 	Events.connect("ShowHudStartScreen", self, "OnShowHudStartScreen")
-	Events.connect("ShowHudPlayScreen", self, "OnShowHudPlayScreen")
-	Events.connect("ShowHudSymbolButtons", self, "OnShowHudSymbolButtons")
-	Events.connect("HideHudSymbolButtons", self, "OnHideHudSymbolButtons")
-
-func CleanHudScreen():
-	for child in bottom.get_children():
-		child.queue_free()
-
-func InitCurrentScreen():
-	CleanHudScreen()
-	for screen in Data.hudData.screens:
-		if screen.hudScreenId == currentScreen:
-			if currentScreen == Types.HudScreenId.Start:
-				for hudButton in screen.hudButtons:
-					var bInstance = Loader.GetResource(hudButton.button).instance()
-					if hudButton.buttonUiAnchor == Types.UiAnchor.Bottom:
-						bottom.add_child(bInstance)
-					bInstance.position = hudButton.buttonPosition
-					bInstance.AnimateShow()
-			if currentScreen == Types.HudScreenId.Play:
-				for hudButton in screen.hudButtons:
-					if hudButton.hudButtonId != Types.HudButtonId.Symbol:
-						var bInstance = Loader.GetResource(hudButton.button).instance()
-						if hudButton.buttonUiAnchor == Types.UiAnchor.Bottom:
-							bottom.add_child(bInstance)
-						bInstance.position = hudButton.buttonPosition
-						bInstance.AnimateShow()
-						
-func ShowSymbolButtons(gameStepData):
-	for screen in Data.hudData.screens:
-		if screen.hudScreenId == currentScreen:
-			var btnIndex = -1
-			var indexDelay = 0
-			for hudButton in screen.hudButtons:
-				if hudButton.hudButtonId == Types.HudButtonId.Symbol:
-					var bInstance = Loader.GetResource(hudButton.button).instance()
-					btnIndex += 1
-					bInstance.index = btnIndex
-					bInstance.UpdateSymbol(gameStepData.buttons[btnIndex]["angles"], gameStepData["sprites"])
-					if hudButton.buttonUiAnchor == Types.UiAnchor.Bottom:
-						bottom.add_child(bInstance)
-					bInstance.position = hudButton.buttonPosition
-					bInstance.AnimateShow()
-					
-func HideSymbolButtons(button:Node = null):
-	for child in bottom.get_children():
-		if child.buttonId == Types.HudButtonId.Symbol:
-			if button != null && child == button:
-				Timeline.Delay(child, "AnimateHide", 0.5)
+	Events.connect("ShowHudGameScreen", self, "OnShowHudGameScreen")
+	Events.connect("ShowHudSymbolButtons", self, "OnShowSymbolButtons")
+	Events.connect("HideHudSymbolButtons", self, "OnHideSymbolButtons")
+	Events.connect("HideHudMenuButton", self, "OnHideMenuButton")
+	Events.connect("ShowHudMenuButton", self, "OnShowMenuButton")
+	pass
+	
+func GetScreenChildren(screenName):
+	var children = []
+	children.append_array(screenName.top.get_children())
+	children.append_array(screenName.bottom.get_children())
+	return children
+	
+func OnButtonClick(button):
+	if button.hudElementId == Types.HudElementId.HudButtonStart:
+		Events.emit_signal("HudButtonPlayClick")
+	if button.hudElementId == Types.HudElementId.HudButtonSymbol:
+		Events.emit_signal("HudButtonSymbolClick", button)
+	
+func OnShowHudStartScreen():
+	ShowHudScreen(Loader.GetResource(startHudScreen).instance())
+func OnShowHudGameScreen():
+	ShowHudScreen(Loader.GetResource(gameHudScreen).instance())
+	
+func OnShowMenuButton():
+	var currentChildren = GetScreenChildren(cHudScreen)
+	for child in currentChildren:
+		if child.hudElementId == Types.HudElementId.HudButtonMenu:
+			child.AnimateShow("alpha")
+			
+func OnHideMenuButton():
+	var currentChildren = GetScreenChildren(cHudScreen)
+	for child in currentChildren:
+		if child.hudElementId == Types.HudElementId.HudButtonMenu:
+			child.AnimateHide("alpha")
+	
+func OnShowSymbolButtons(gameStepData):
+	var currentChildren = GetScreenChildren(cHudScreen)
+	for child in currentChildren:
+		if child.hudElementId == Types.HudElementId.HudButtonSymbol:
+			child.UpdateSymbol(gameStepData["buttons"][child.index]["angles"], gameStepData["sprites"])
+			child.AnimateShow()
+			
+func OnHideSymbolButtons(button: Node = null):
+	var currentChildren = GetScreenChildren(cHudScreen)
+	for child in currentChildren:
+		if child.hudElementId == Types.HudElementId.HudButtonSymbol:
+			if button != null and button.index == child.index:
+				Timeline.Delay(button, "AnimateHide", 0.5)
 			else:
 				child.AnimateHide()
-
-func OnShowHudStartScreen():
-	currentScreen = Types.HudScreenId.Start
-	InitCurrentScreen()
-
-func OnShowHudPlayScreen():
-	currentScreen = Types.HudScreenId.Play
-	InitCurrentScreen()
-
-func OnShowHudSymbolButtons(gameStepData):
-	ShowSymbolButtons(gameStepData)
+				
+func ShowHudScreen(nextHudScreen):
+	if nextHudScreen == null:
+		print("No transition screen defined.")
+		return
 	
-func OnHideHudSymbolButtons(button):
-	HideSymbolButtons(button)
-
-func OnButtonClick(button: Node = null):
-	if button && button.buttonId == Types.HudButtonId.Play:
-		Events.emit_signal("HudButtonPlayClick")
-	if button && button.buttonId == Types.HudButtonId.Symbol:
-		Events.emit_signal("HudButtonSymbolClick", button)
-
-func resize():
-	var ref_width = 450 / get_viewport().get_camera().size
-	var ref_height = 1050
-	var view_scale = 100/ref_width
-	scale = Vector3.ONE * view_scale
-	var aspectDiff = (OS.get_window_size().x / OS.get_window_size().y)/ASPECT_RATIO
-	var top_height = ref_height/2/100
-	var bottom_height = -ref_height/2/100
-			
-	if aspectDiff < 1:
-		top_height /= 1
-		bottom_height /= 1
-	elif aspectDiff > MAX_ASPECT_RATIO:
-		top_height /= MAX_ASPECT_RATIO
-		bottom_height /= MAX_ASPECT_RATIO
+	add_child(nextHudScreen)
+	
+	var nextChildren = GetScreenChildren(nextHudScreen)
+	
+	if cHudScreen == null:
+		for nextChild in nextChildren:
+			if nextChild.has_method("AnimateShow"):
+				if nextChild.hudElementId in FADE_ANIMATION_TYPES:
+					print("Animating...")
+					nextChild.AnimateShow("alpha")
+				else:
+					nextChild.AnimateShow()
+		cHudScreen = nextHudScreen
 	else:
-		top_height /= aspectDiff
-		bottom_height /= aspectDiff
+		var currentChildren = GetScreenChildren(cHudScreen)
 	
-	top.position = Vector3(0, top_height, 0)
-	bottom.position = Vector3(0, bottom_height, 0)
-
+		for nextChild in nextChildren:
+			if "hudElementId" in nextChild:
+				if nextChild.hudElementId in DISABLED_TYPES:
+					nextChild.visible = false					
+				else:
+					var animate = true
+					for currentChild in currentChildren:
+						if currentChild.hudElementId == nextChild.hudElementId:
+							animate = false
+							break
+					if animate:
+						if nextChild.hudElementId in FADE_ANIMATION_TYPES:
+							print("Animating...")
+							nextChild.AnimateShow("alpha")
+						else:
+							nextChild.AnimateShow()
+				
+		var removeScreen = cHudScreen
+		cHudScreen = nextHudScreen
+		removeScreen.queue_free()

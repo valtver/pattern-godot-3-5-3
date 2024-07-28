@@ -1,27 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Assets/scenes/hud/buttons/hud-back-button.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/scripts/hud/hud.gd" type="Script" id=2]
-[ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=3]
 
 [node name="hud" type="Spatial"]
 script = ExtResource( 2 )
-
-[node name="Ref" type="Spatial" parent="."]
-
-[node name="Color" type="Sprite3D" parent="Ref"]
-sorting_offset = 2.0
-modulate = Color( 1, 0.905882, 0.811765, 1 )
-opacity = 0.17
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 450, 1050 )
-
-[node name="Top" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, 0 )
-
-[node name="Bottom" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.25, 0 )
-
-[node name="hud-back-button" parent="Bottom" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.670693, 0 )
+startHudScreen = "res://Assets/scenes/hud/screen/start-hud-screen.tscn"
+gameHudScreen = "res://Assets/scenes/hud/screen/game-hud-screen.tscn"

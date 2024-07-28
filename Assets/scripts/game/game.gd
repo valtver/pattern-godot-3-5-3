@@ -6,7 +6,7 @@ enum GameState {
 	CHECK = 2,
 	OVER = 3,
 	NEXT = 4,
-	END = 5
+	COMPLETE = 5
 }
 
 var state = GameState.START
@@ -58,7 +58,7 @@ func OnPlay():
 	GameLoop()
 	
 func PlayGameStep(gameStepData):
-	Events.emit_signal("ShowHudPlayScreen")
+	Events.emit_signal("ShowHudGameScreen")
 	AnimateTilesStart()
 	Events.emit_signal("ShowHudSymbolButtons", gameStepData)
 	MoveCameraTo(cameraTransform.position + Vector3.FORWARD, Data.gameData.gameStepDelay)
@@ -98,6 +98,11 @@ func AnimateTilesComplete():
 		Timeline.Delay(tile, "PathAppear", tile.global_position.distance_to(cameraGPos) * 0.1)
 	Data.playerData.gameStep += 1
 	state = GameState.NEXT
+	GameLoop()
+	
+func AnimateFail():
+	Events.emit_signal("HideHudMenuButton")
+	state = GameState.OVER
 	GameLoop()
 
 func MoveCameraTo(nextPos, delay):
@@ -234,7 +239,7 @@ func GameLoop():
 	if Data.playerData.gameStep < gameSteps.size():
 		stepData = gameSteps[Data.playerData.gameStep]
 	else:
-		state = GameState.END
+		state = GameState.COMPLETE
 
 	if state == GameState.START:
 		FirstGameStep(stepData)
@@ -248,11 +253,13 @@ func GameLoop():
 	if state == GameState.CHECK:
 		if Data.playerData.selectedAngles == stepData["angles"]:
 			AnimateTilesComplete()
+		else:
+			AnimateFail()
 		return
 	if state == GameState.OVER:
 		print("GAME OVER")
 		return
-	if state == GameState.END:
+	if state == GameState.COMPLETE:
 		print("LEVEL END")
 		EndLevelStep()
 
