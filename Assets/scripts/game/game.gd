@@ -72,7 +72,8 @@ func TryPlayStartIslandAnimation():
 func TryPlayEndIslandAnimation():
 	var startAnimation = scroller.cIsland.get_node_or_null("AnimationPlayer")
 	if startAnimation != null:
-		startAnimation.play("Idle")
+		startAnimation.play("End")
+		startAnimation.queue("Idle")
 	
 func GameOver():
 	Events.emit_signal("HideHudSymbolButtons", null)
@@ -223,6 +224,7 @@ func GenerateButtons(symbolType, correctOffset):
 			buttons.push_back(button.duplicate())
 		#
 #	print("Buttons: ", symbolType, " ", buttons, "\n")
+	randomize()
 	buttons.shuffle()
 	return buttons
 

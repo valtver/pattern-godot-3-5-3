@@ -2,5 +2,5 @@
 
 [ext_resource path="res://Assets/scripts/game/scroller/scroller.gd" type="Script" id=1]
 
-[node name="scroller" type="Spatial"]
+[node name="Scroller" type="Spatial"]
 script = ExtResource( 1 )

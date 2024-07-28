@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/editor/grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/terrain/tile/0/campfire-stone.tscn" type="PackedScene" id=2]
@@ -11,9 +11,11 @@
 [ext_resource path="res://Assets/terrain/tile/0/grass-0.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/terrain/tile/0/tree-0.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/terrain/tile/0/tree-1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/sprites/game/symbol/sub-symbol-0.png" type="Texture" id=12]
 [ext_resource path="res://Assets/import/textures/gradient.tres" type="Texture" id=13]
 [ext_resource path="res://Assets/scenes/game/symbol/symbol.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/scenes/game/symbol/symbol-background.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/import/textures/shadow.tres" type="Texture" id=16]
 
 [sub_resource type="SpatialMaterial" id=9]
 flags_transparent = true
@@ -28,6 +30,7 @@ params_billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
+albedo_texture = ExtResource( 12 )
 
 [sub_resource type="QuadMesh" id=10]
 material = SubResource( 9 )
@@ -62,6 +65,57 @@ _data = [ Vector2( 0, 0.245763 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.449152 ), 0.0, 0
 offsets = PoolRealArray( 0, 0.48855, 1 )
 colors = PoolColorArray( 0.54902, 0.54902, 0.54902, 0, 0.513726, 0.513726, 0.513726, 0.792157, 0.407843, 0.407843, 0.407843, 0 )
 
+[sub_resource type="Animation" id=14]
+resource_name = "End"
+tracks/0/type = "value"
+tracks/0/path = NodePath("campfire/ParticlesFire:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("campfire/ParticlesSmoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("campfire/Glow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("campfire/Glow:opacity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.23 ]
+}
+
 [sub_resource type="Animation" id=6]
 resource_name = "Idle"
 tracks/0/type = "value"
@@ -87,6 +141,30 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("campfire/Glow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("campfire/Glow:opacity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.23 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -115,6 +193,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("campfire/Glow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("campfire/Glow:opacity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.23 ]
+}
 
 [sub_resource type="Animation" id=8]
 resource_name = "Start"
@@ -141,6 +243,30 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("campfire/Glow:opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.23, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("campfire/Glow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [node name="start" type="VisibilityNotifier" groups=["IslandVisibilityNotifiers"]]
@@ -1831,21 +1957,23 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 transform = Transform( -0.517638, 0, 1.93185, 0, 2, 0, -1.93185, 0, -0.517638, 0, 0, 0 )
 
 [node name="ParticlesFire" type="CPUParticles" parent="campfire"]
-transform = Transform( 0.784744, 0, 0.61982, 0, 1, 0, -0.61982, 0, 0.784744, 0, 0.231975, 0 )
-amount = 25
+transform = Transform( 0.784744, 0, 0.61982, 0, 1, 0, -0.61982, 0, 0.784744, 0, 0.17146, 0 )
+amount = 30
 randomness = 1.0
-lifetime_randomness = 0.5
+fract_delta = false
 mesh = SubResource( 10 )
 emission_shape = 5
-emission_ring_radius = 0.01
-emission_ring_inner_radius = 0.26
-emission_ring_height = 0.3
+emission_ring_radius = 0.24
+emission_ring_inner_radius = 0.0
+emission_ring_height = 0.0
 emission_ring_axis = Vector3( 0, 0, 1 )
 direction = Vector3( 0, 1, 0 )
 spread = 30.0
 gravity = Vector3( 0, 2, 0 )
 initial_velocity = 0.79
 initial_velocity_random = 1.0
+angle = 413.9
+angle_random = 1.0
 scale_amount = 0.65
 scale_amount_curve = SubResource( 11 )
 color_ramp = SubResource( 12 )
@@ -1868,7 +1996,18 @@ scale_amount = 0.65
 scale_amount_curve = SubResource( 4 )
 color_ramp = SubResource( 5 )
 
+[node name="Glow" type="Sprite3D" parent="campfire"]
+transform = Transform( 3.75554, 0, 0, 0, 3.75554, 0, 0, 0, 3.75554, -0.0146027, 0.108608, 0 )
+generate_lightmap = false
+modulate = Color( 0.827451, 1, 0, 1 )
+opacity = 0.23
+pixel_size = 0.0113
+billboard = 1
+no_depth_test = true
+texture = ExtResource( 16 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/End = SubResource( 14 )
 anims/Idle = SubResource( 6 )
 anims/RESET = SubResource( 7 )
 anims/Start = SubResource( 8 )

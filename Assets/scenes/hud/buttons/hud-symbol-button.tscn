@@ -20,6 +20,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0
 [node name="sub-symbol-0" type="Sprite3D" parent="Pivot"]
 transform = Transform( 0.0918233, 0, 0, 0, -4.01372e-09, 0.0918233, 0, -0.0918233, -4.01372e-09, -0.183646, 3.48872e-10, -0.175666 )
 sorting_offset = 3.0
+modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
 double_sided = false
 texture = ExtResource( 2 )
@@ -28,6 +29,7 @@ script = ExtResource( 3 )
 [node name="sub-symbol-1" type="Sprite3D" parent="Pivot"]
 transform = Transform( -4.01372e-09, 0.0918233, 4.01372e-09, 0, -4.01372e-09, 0.0918233, 0.0918233, 4.01372e-09, 1.75445e-16, 0.183646, 3.48872e-10, -0.175666 )
 sorting_offset = 3.0
+modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
 double_sided = false
 texture = ExtResource( 2 )
@@ -37,6 +39,7 @@ id = 1
 [node name="sub-symbol-2" type="Sprite3D" parent="Pivot"]
 transform = Transform( -4.01372e-09, -0.0918233, -4.01372e-09, 0, -4.01372e-09, 0.0918233, -0.0918233, 4.01372e-09, 1.75445e-16, -0.183646, 3.48829e-10, 0.191627 )
 sorting_offset = 3.0
+modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
 double_sided = false
 texture = ExtResource( 2 )
@@ -46,45 +49,7 @@ id = 2
 [node name="sub-symbol-3" type="Sprite3D" parent="Pivot"]
 transform = Transform( -0.0918233, 1.38649e-08, 6.06055e-16, 0, -4.01372e-09, 0.0918233, 1.38649e-08, 0.0918233, 4.01372e-09, 0.183646, 3.48829e-10, 0.191627 )
 sorting_offset = 3.0
-pixel_size = 0.0625
-double_sided = false
-texture = ExtResource( 2 )
-script = ExtResource( 3 )
-id = 3
-
-[node name="sub-symbol-4" type="Sprite3D" parent="Pivot"]
-transform = Transform( 0.09569, 0, 0, 0, -4.18274e-09, 0.09569, 0, -0.09569, -4.18274e-09, -0.191379, -6.50797e-10, -0.206269 )
-sorting_offset = 2.0
-modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
-pixel_size = 0.0625
-double_sided = false
-texture = ExtResource( 2 )
-script = ExtResource( 3 )
-
-[node name="sub-symbol-5" type="Sprite3D" parent="Pivot"]
-transform = Transform( -4.18274e-09, 0.09569, 4.18274e-09, 0, -4.18274e-09, 0.09569, 0.09569, 4.18274e-09, 1.82833e-16, 0.191379, -6.50797e-10, -0.206269 )
-sorting_offset = 2.0
-modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
-pixel_size = 0.0625
-double_sided = false
-texture = ExtResource( 2 )
-script = ExtResource( 3 )
-id = 1
-
-[node name="sub-symbol-6" type="Sprite3D" parent="Pivot"]
-transform = Transform( -4.18274e-09, -0.09569, -4.18274e-09, 0, -4.18274e-09, 0.09569, -0.09569, 4.18274e-09, 1.82833e-16, -0.191379, -6.50847e-10, 0.176491 )
-sorting_offset = 2.0
-modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
-pixel_size = 0.0625
-double_sided = false
-texture = ExtResource( 2 )
-script = ExtResource( 3 )
-id = 2
-
-[node name="sub-symbol-7" type="Sprite3D" parent="Pivot"]
-transform = Transform( -0.09569, 1.44488e-08, 6.31577e-16, 0, -4.18274e-09, 0.09569, 1.44488e-08, 0.09569, 4.18274e-09, 0.191379, -6.50847e-10, 0.176491 )
-sorting_offset = 2.0
-modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
 double_sided = false
 texture = ExtResource( 2 )
