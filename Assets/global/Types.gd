@@ -43,7 +43,10 @@ enum UiButtonId {
 enum HudElementId {
 	HudButtonStart = 0,
 	HudButtonMenu = 1,
-	HudButtonSymbol = 2
+	HudButtonSymbol = 2,
+	HudButtonReplay = 3,
+	HudButtonHome = 4,
+	HudButtonNext = 5
 }
 
 enum SymbolType {

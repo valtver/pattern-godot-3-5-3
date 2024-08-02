@@ -1,6 +1,8 @@
 tool
 extends Spatial
 
+var tween = null
+
 export var refresh = false
 export (PackedScene) var symbolBackground
 export (PackedScene) var symbolScene
@@ -94,7 +96,7 @@ func ProcessPlaceholder():
 		self.add_child(placeholderInstance)
 		placeholderInstance.owner = get_tree().edited_scene_root
 		
-func SymbolFadeIn():
+func SymbolFadeIn(timer: float = 0, chain: bool = false):
 	if symbol == null:
 		return
 	if symbolBg != null:
@@ -103,15 +105,35 @@ func SymbolFadeIn():
 		symbolPath.visible = false
 	symbol.visible = true
 	symbol.SetSymbolAlpha(0)
-	var tween = get_node_or_null("Tween")
-	if tween == null:
-		tween = Tween.new()
-		tween.name = "Tween"
-		add_child(tween)
-	tween.interpolate_method(symbol, "SetSymbolAlpha",
-		0, 0.75, 0.3,
-		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
+	
+	if tween != null and not chain:
+		tween.kill()
+	if not chain:
+		tween = create_tween()
+		return tween.tween_method(symbol, "SetSymbolAlpha", 0.0, 1.0, timer + 0.3)
+	if chain:
+		return tween.chain().tween_method(symbol, "SetSymbolAlpha", 0.0, 1.0, timer + 0.3)
+
+	
+func SymbolFadeOut(timer: float = 0, chain: bool = false):
+	if symbol == null:
+		return
+	if symbolBg != null:
+		symbolBg.visible = true
+	if symbolPath != null:
+		symbolPath.visible = false
+	symbol.visible = true
+	symbol.SetSymbolAlpha(1)
+	
+	if tween != null and not chain:
+		tween.kill()
+	if not chain:
+		tween = create_tween()
+		return tween.tween_method(symbol, "SetSymbolAlpha", 1.0, 0.0, timer)
+	if chain:
+		return tween.chain().tween_method(symbol, "SetSymbolAlpha", 1.0, 0.0, timer)
+		
+
 	
 func PathAppear():
 	if symbol == null:

@@ -1,0 +1,24 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform float brightness = 1.0; 
+uniform float size = 10.0;
+void fragment() {
+	vec4 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
+	for (float x = -size; x < size; x++)
+	{
+		for (float y = -size; y < size; y++)
+		{
+			if (x*x + y*y > size*size){continue;}
+			vec4 new_c = texture(SCREEN_TEXTURE, SCREEN_UV+(1.0/VIEWPORT_SIZE)*vec2(x, y));
+			if (length(new_c) >length(c)){
+				c = new_c;
+			}
+		}
+	}
+	ALBEDO.rgb = c.xyz * brightness;
+	
+}"

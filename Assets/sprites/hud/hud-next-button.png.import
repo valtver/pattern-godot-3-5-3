@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/hud-menu-button.png-f557d895496e5975afcfd27ea84370f8.s3tc.stex"
-path.etc="res://.import/hud-menu-button.png-f557d895496e5975afcfd27ea84370f8.etc.stex"
+path.s3tc="res://.import/hud-next-button.png-0c34c8b892ff134bf9483879b6ae5432.s3tc.stex"
+path.etc="res://.import/hud-next-button.png-0c34c8b892ff134bf9483879b6ae5432.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,13 +11,13 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/sprites/hud/hud-menu-button.png"
-dest_files=[ "res://.import/hud-menu-button.png-f557d895496e5975afcfd27ea84370f8.s3tc.stex", "res://.import/hud-menu-button.png-f557d895496e5975afcfd27ea84370f8.etc.stex" ]
+source_file="res://Assets/sprites/hud/hud-next-button.png"
+dest_files=[ "res://.import/hud-next-button.png-0c34c8b892ff134bf9483879b6ae5432.s3tc.stex", "res://.import/hud-next-button.png-0c34c8b892ff134bf9483879b6ae5432.etc.stex" ]
 
 [params]
 
 compress/mode=2
-compress/lossy_quality=0.7
+compress/lossy_quality=1.0
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0

@@ -13,6 +13,7 @@ func Delay(obj, methodName, delayTime):
 	timer.connect("timeout", obj, methodName)
 	timer.connect("timeout", self, "StopAndCleanTimer", [timer])
 	timer.start()
+	return obj
 
 func StopAndCleanTimer(timerInstance):
 	timerInstance.stop()
@@ -26,3 +27,29 @@ func StopTimer(obj, methodName):
 			StopAndCleanTimer(timer)
 			print("Timer ", methodName, " for ", obj, " has stopped!")
 			return
+		else:
+			print("Timer ", methodName, " for ", obj, " is not found!")
+
+func PauseTimer(obj, methodName):
+	for timer in timers:
+		if timer.is_connected("timeout", obj, methodName):
+			timer.paused = true
+			print("Timer ", methodName, " for ", obj, " is paused at ", timer.time_left)
+			return
+		else:
+			print("Timer ", methodName, " for ", obj, " is not found!")
+			
+func ResumeTimer(obj, methodName):
+	for timer in timers:
+		if timer.is_connected("timeout", obj, methodName):
+			timer.paused = false
+			print("Timer ", methodName, " for ", obj, " is resumed at ", timer.time_left)
+			return
+		else:
+			print("Timer ", methodName, " for ", obj, " is not found!")
+			
+func IsTimer(obj, methodName):
+	for timer in timers:
+		if timer.is_connected("timeout", obj, methodName):
+			return true
+	return false

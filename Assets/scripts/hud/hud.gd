@@ -5,13 +5,17 @@ var FADE_ANIMATION_TYPES = [Types.HudElementId.HudButtonMenu]
 
 export (String, FILE) var startHudScreen
 export (String, FILE) var gameHudScreen
+export (String, FILE) var pauseHudScreen
+var lastHudScreen = null
 
 var cHudScreen = null
+var isPauseScreen = false
 
 func _ready():
 	Events.connect("Click", self, "OnButtonClick")
 	Events.connect("ShowHudStartScreen", self, "OnShowHudStartScreen")
 	Events.connect("ShowHudGameScreen", self, "OnShowHudGameScreen")
+	Events.connect("ShowHudMenuScreen", self, "OnShowHudMenuScreen")
 	Events.connect("ShowHudSymbolButtons", self, "OnShowSymbolButtons")
 	Events.connect("HideHudSymbolButtons", self, "OnHideSymbolButtons")
 	Events.connect("HideHudMenuButton", self, "OnHideMenuButton")
@@ -29,11 +33,23 @@ func OnButtonClick(button):
 		Events.emit_signal("HudButtonPlayClick")
 	if button.hudElementId == Types.HudElementId.HudButtonSymbol:
 		Events.emit_signal("HudButtonSymbolClick", button)
+	if button.hudElementId == Types.HudElementId.HudButtonMenu:
+		if not isPauseScreen:
+			ShowHudScreen(Loader.GetResource(pauseHudScreen).instance())
+			isPauseScreen = true
+		else:
+			ShowHudScreen(Loader.GetResource(lastHudScreen).instance())
+			isPauseScreen = false
+		Events.emit_signal("HudButtonMenuClick")
 	
 func OnShowHudStartScreen():
+	lastHudScreen = startHudScreen
 	ShowHudScreen(Loader.GetResource(startHudScreen).instance())
 func OnShowHudGameScreen():
+	lastHudScreen = gameHudScreen
 	ShowHudScreen(Loader.GetResource(gameHudScreen).instance())
+func OnShowHudMenuScreen():
+	ShowHudScreen(Loader.GetResource(pauseHudScreen).instance())
 	
 func OnShowMenuButton():
 	var currentChildren = GetScreenChildren(cHudScreen)
@@ -87,7 +103,7 @@ func ShowHudScreen(nextHudScreen):
 		for nextChild in nextChildren:
 			if "hudElementId" in nextChild:
 				if nextChild.hudElementId in DISABLED_TYPES:
-					nextChild.visible = false					
+					nextChild.visible = false
 				else:
 					var animate = true
 					for currentChild in currentChildren:
@@ -95,12 +111,15 @@ func ShowHudScreen(nextHudScreen):
 							animate = false
 							break
 					if animate:
-						if nextChild.hudElementId in FADE_ANIMATION_TYPES:
-							print("Animating...")
-							nextChild.AnimateShow("alpha")
-						else:
-							nextChild.AnimateShow()
+						if nextChild.has_method("AnimateShow"):
+							if nextChild.hudElementId in FADE_ANIMATION_TYPES:
+								nextChild.AnimateShow("alpha")
+							else:
+								nextChild.AnimateShow()
 				
 		var removeScreen = cHudScreen
 		cHudScreen = nextHudScreen
+		var animationPlayer = cHudScreen.get_node_or_null("AnimationPlayer")
+		if animationPlayer != null:
+			animationPlayer.play("show")
 		removeScreen.queue_free()

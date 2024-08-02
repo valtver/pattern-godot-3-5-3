@@ -9,7 +9,7 @@ export (bool) var ui = true
 export (bool) var scene = true
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and ui:
 		if event.is_pressed():
 			if !wasClickDown:
 				wasClickDown = true

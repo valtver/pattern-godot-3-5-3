@@ -6,19 +6,27 @@ enum GameState {
 	CHECK = 2,
 	OVER = 3,
 	NEXT = 4,
-	COMPLETE = 5
+	COMPLETE = 5,
+	PAUSE = 6,
+	CONTINUE = 7,
+	PREPLAY = 8
 }
+
+var camTween = null
 
 var state = GameState.START
 
+var runtimeData
 var gameSteps = []
 var tiles
 var cameraTransform
 var scroller
 
 func _ready():
-	Events.connect("HudButtonPlayClick", self, "OnPlay")
+	AppInput.ui = false
+	Events.connect("HudButtonPlayClick", self, "OnPREPLAY")
 	Events.connect("HudButtonSymbolClick", self, "OnSymbolButtonClick")
+	Events.connect("HudButtonMenuClick", self, "OnMenuButtonClick")
 	cameraTransform = get_viewport().get_camera().get_parent()
 	scroller = get_node_or_null("Scroller")
 	if scroller == null:
@@ -28,42 +36,18 @@ func _ready():
 	GameLoop()
 
 func InitData():
-	Data.playerData.gameStep = 0
+	Data.playerData.gameStep = -1
 	var lvl = Data.playerData.selectedLevelIndex
 	var subLvl = Data.playerData.selectedSubLevelIndex
-	gameSteps = GenerateGameData(Data.gameData.levels[lvl].subLevels[subLvl])
+	gameSteps = Data.GetGeneratedRuntimeGameData(Data.gameData.levels[lvl].subLevels[subLvl])
+	state = GameState.NEXT
 
-func FirstGameStep(gameStepData):
-	scroller.AddFirstIsland()
-	for tile in scroller.cTiles:
-		tile.symbol.UpdateSymbol(gameStepData["angles"], gameStepData["sprites"])
-	Events.emit_signal("ShowHudStartScreen")
-		
-func NextGameStep(gameStepData):
-	scroller.AddNextIsland(gameStepData)
-	MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
-	for tile in scroller.cTiles:
-		tile.symbol.UpdateSymbol(gameStepData["angles"], gameStepData["sprites"])
-	Timeline.Delay(self, "OnPlay", Data.gameData.nextGameStepDelay)
-
-func EndLevelStep():
-	scroller.AddLastIsland()
+func OnPREPLAY():
+	AppInput.ui = false
 	TryPlayStartIslandAnimation()
-	MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
-	Timeline.Delay(self, "TryPlayEndIslandAnimation", Data.gameData.nextGameStepDelay + 0.25)
-
-func OnPlay():
-	TryPlayStartIslandAnimation()
-	state = GameState.PLAY
+	state = GameState.PREPLAY
 	GameLoop()
-	
-func PlayGameStep(gameStepData):
-	Events.emit_signal("ShowHudGameScreen")
-	AnimateTilesStart()
-	Events.emit_signal("ShowHudSymbolButtons", gameStepData)
-	MoveCameraTo(cameraTransform.position + Vector3.FORWARD, Data.gameData.gameStepDelay)
-	Timeline.Delay(self, "GameOver", Data.gameData.gameStepDelay)
-	
+		
 func TryPlayStartIslandAnimation():
 	var startAnimation = scroller.cIsland.get_node_or_null("AnimationPlayer")
 	if startAnimation != null:
@@ -76,12 +60,20 @@ func TryPlayEndIslandAnimation():
 		startAnimation.queue("Idle")
 	
 func GameOver():
+	AppInput.ui = false
 	Events.emit_signal("HideHudSymbolButtons", null)
 	state = GameState.OVER
 	GameLoop()
 	
+func OnMenuButtonClick():
+	if state != GameState.PAUSE:
+		state = GameState.PAUSE
+		GameLoop()
+	else:
+		state = GameState.CONTINUE
+		GameLoop()
+	
 func OnSymbolButtonClick(button):
-	Timeline.StopTimer(self, "GameOver")
 	Events.emit_signal("HideHudSymbolButtons", button)
 	Data.playerData.selectedAngles = button.GetSymbolAngles()
 	state = GameState.CHECK
@@ -89,178 +81,102 @@ func OnSymbolButtonClick(button):
 	
 func AnimateTilesStart():
 	var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
-	for tile in scroller.cTiles:			
+	for tile in scroller.cTiles:
 		Timeline.Delay(tile, "SymbolFadeIn", tile.global_position.distance_to(cameraGPos) * 0.05)
 		
 func AnimateTilesComplete():
-	var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
-	for tile in scroller.cTiles:
-		Timeline.Delay(tile, "PathAppear", tile.global_position.distance_to(cameraGPos) * 0.1)
-	Data.playerData.gameStep += 1
-	state = GameState.NEXT
-	GameLoop()
-	
-func AnimateFail():
-	Events.emit_signal("HideHudMenuButton")
-	state = GameState.OVER
-	GameLoop()
+	pass
 
 func MoveCameraTo(nextPos, delay):
-	var tween = get_node_or_null("CameraTween")
-	if tween == null:
-		tween = Tween.new()
-		tween.name = "CameraTween"
-		add_child(tween)
-	if tween != null:
-		tween.remove_all()
-	tween.interpolate_property(cameraTransform, "position",
-		cameraTransform.position, nextPos, delay,
-		Tween.TRANS_CUBIC, Tween.EASE_IN)
-	tween.start()
-
-func GenerateGameData(subLevel):
-	var gUniqueSingle = []
-	var gUniqueDouble = []
-	var spriteCompares = []
-	
-	spriteCompares.append_array(subLevel.sprites)
-	gUniqueSingle.append_array(spriteCompares)
-	for sprite in subLevel.sprites:
-		spriteCompares.erase(spriteCompares[0])
-		for cSprite in spriteCompares:
-			gUniqueDouble.push_back([sprite, cSprite])
-#	print("Singles: ", gUniqueSingle.size(), "\nDoubles: ", gUniqueDouble.size())
-	#Pick an island
-	var step = {}	
-	#Singles and offsets
-	for singleSprite in gUniqueSingle:
-		for symbolType in subLevel.symbolTypes:
-			var symbolData = Data.gameData.symbolData.SymbolTypes[symbolType]
-			for map in symbolData["maps"]:
-				if map == Types.SubSymbolMap.Single:
-					step["sprites"] = []
-					for n in Data.gameData.symbolData.SubSymbolMap[map].size():
-						step["sprites"].push_back(singleSprite)
-			for offset in symbolData["offsets"]:
-				var offsetData = Data.gameData.symbolData.SubSymbolOffset[offset] 
-				step["angles"] = []
-				for i in symbolData["angles"].size():
-					step["angles"].push_back( symbolData["angles"][offsetData[i]] )
-				#generate buttons options ahead
-				step["buttons"] = []
-				step["buttons"].append_array(GenerateButtons(symbolType, offset))
-				#island
-				step["island"] = []
-				
-				gameSteps.push_back(step.duplicate())
-	
-	randomize()
-	gameSteps.shuffle()
-	#AFTER SHUFFLE
-	for i in gameSteps.size():
-		if i == 0:
-			gameSteps[i]["island"] = subLevel.startIsland
-		else:
-			gameSteps[i]["island"] = subLevel.islands.pick_random()
-			
-	return gameSteps
-
-func GenerateButtons(symbolType, correctOffset):
-	var symbolData = Data.gameData.symbolData.SymbolTypes[symbolType]
-	var buttons = []
-	
-	var button = {
-		"angles": []
-	}
-	var offsetData = Data.gameData.symbolData.SubSymbolOffset[correctOffset]
-	for i in symbolData["angles"].size():
-		button["angles"].push_back( symbolData["angles"][offsetData[i]] )
-	buttons.push_back(button.duplicate())
+	if camTween != null:
+		camTween.kill()
 		
-	if symbolType == Types.SymbolType.DiagonalLeft:
-		button = {
-			"angles": []
-		}
-		var newSymbolData = Data.gameData.symbolData.SymbolTypes[Types.SymbolType.DiagonalRight]
-		for i in newSymbolData["angles"].size():
-			button["angles"].push_back( newSymbolData["angles"][i] )
-		buttons.push_back(button.duplicate())
-
-		
-		button = {
-			"angles": []
-		}
-		offsetData = Data.gameData.symbolData.SubSymbolOffset[Types.SubSymbolOffset.X]
-		for i in newSymbolData["angles"].size():
-			button["angles"].push_back( newSymbolData["angles"][offsetData[i]] )
-		buttons.push_back(button.duplicate())
-
-	elif symbolType == Types.SymbolType.DiagonalRight:
-		button = {
-			"angles": []
-		}
-		offsetData = Data.gameData.symbolData.SubSymbolOffset[Types.SubSymbolOffset.None]
-		var newSymbolData = Data.gameData.symbolData.SymbolTypes[Types.SymbolType.DiagonalLeft]
-		for i in newSymbolData["angles"].size():
-			button["angles"].push_back( newSymbolData["angles"][i] )
-		buttons.push_back(button.duplicate())
-		
-		button = {
-			"angles": []
-		}
-		offsetData = Data.gameData.symbolData.SubSymbolOffset[Types.SubSymbolOffset.X]
-		for i in newSymbolData["angles"].size():
-			button["angles"].push_back( newSymbolData["angles"][offsetData[i]] )
-		buttons.push_back(button.duplicate())
-		
-	else:
-		var keys = Data.gameData.symbolData.SubSymbolOffset.keys()
-		keys.erase(correctOffset)
-		var randomRemove = keys.pick_random()
-		keys.erase(randomRemove)
+	camTween = create_tween()
+	camTween.set_ease(Tween.EASE_IN)
+	camTween.set_trans(Tween.TRANS_CUBIC)
+	camTween.tween_property(cameraTransform, "position", nextPos, delay)
+	camTween.play()
 	
-		for offset in keys:
-			button = {
-				"angles": []
-			}
-			offsetData = Data.gameData.symbolData.SubSymbolOffset[offset] 
-			for i in symbolData["angles"].size():
-				button["angles"].push_back( symbolData["angles"][offsetData[i]] )
-			buttons.push_back(button.duplicate())
-		#
-#	print("Buttons: ", symbolType, " ", buttons, "\n")
-	randomize()
-	buttons.shuffle()
-	return buttons
-
+func PauseCameraMove():
+	if camTween != null:
+		camTween.pause()
+		
+func ResumeCameraMove():
+	if camTween != null:
+		camTween.play()
+		
 func GameLoop():
 	var stepData = null
 	
+	if state == GameState.NEXT:
+		Data.playerData.gameStep += 1
+		state = GameState.START
+		
 	if Data.playerData.gameStep < gameSteps.size():
 		stepData = gameSteps[Data.playerData.gameStep]
 	else:
 		state = GameState.COMPLETE
 
 	if state == GameState.START:
-		FirstGameStep(stepData)
-		return
-	if state == GameState.NEXT:
-		NextGameStep(stepData)
-		return
+		if Data.playerData.gameStep == 0:
+			scroller.AddFirstIsland()
+			for tile in scroller.cTiles:
+				tile.symbol.UpdateSymbol(stepData["angles"], stepData["sprites"])
+			Events.emit_signal("ShowHudStartScreen")
+			AppInput.ui = true
+		elif Data.playerData.gameStep > 0:
+			scroller.AddNextIsland(stepData)
+			MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
+			for tile in scroller.cTiles:
+				tile.symbol.UpdateSymbol(stepData["angles"], stepData["sprites"])
+			Timeline.Delay(self, "OnPREPLAY", Data.gameData.nextGameStepDelay)
+
+	if state == GameState.PREPLAY:
+		Timeline.Delay(self, "GameOver", Data.gameData.gameStepDelay)
+		MoveCameraTo(cameraTransform.position + Vector3.FORWARD, Data.gameData.gameStepDelay)
+		AnimateTilesStart()
+		state = GameState.PLAY
+		
+	if state == GameState.CONTINUE:
+		if Timeline.IsTimer(self, "GameOver"):
+			Timeline.ResumeTimer(self, "GameOver")
+			ResumeCameraMove()
+			state = GameState.PLAY
+
 	if state == GameState.PLAY:
-		PlayGameStep(stepData)
-		return
+		AppInput.ui = true
+		Events.emit_signal("ShowHudGameScreen")
+		Events.emit_signal("ShowHudSymbolButtons", stepData)
+		Events.emit_signal("ShowHudMenuButton")
+		
+	if state == GameState.PAUSE:
+		Timeline.PauseTimer(self, "GameOver")
+		PauseCameraMove()
+		
 	if state == GameState.CHECK:
+		AppInput.ui = false
+		Timeline.StopTimer(self, "GameOver")
+		Events.emit_signal("HideHudMenuButton")
+			
 		if Data.playerData.selectedAngles == stepData["angles"]:
-			AnimateTilesComplete()
+			var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
+			for tile in scroller.cTiles:
+				Timeline.Delay(tile, "PathAppear", tile.global_position.distance_to(cameraGPos) * 0.1)
+			state = GameState.NEXT
+			GameLoop()
 		else:
-			AnimateFail()
-		return
+			state = GameState.OVER
+
 	if state == GameState.OVER:
+		
 		print("GAME OVER")
-		return
+
 	if state == GameState.COMPLETE:
+		
 		print("LEVEL END")
-		EndLevelStep()
+		scroller.AddLastIsland()
+		TryPlayStartIslandAnimation()
+		MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
+		Timeline.Delay(self, "TryPlayEndIslandAnimation", Data.gameData.nextGameStepDelay + 0.25)
 
 

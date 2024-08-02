@@ -10,9 +10,13 @@ signal LevelEnd
 
 signal ShowHudStartScreen
 signal ShowHudGameScreen
-signal HudButtonPlayClick
+signal ShowHudMenuScreen
+
 signal ShowHudSymbolButtons
 signal HideHudSymbolButtons
 signal ShowHudMenuButton
 signal HideHudMenuButton
+
 signal HudButtonSymbolClick
+signal HudButtonPlayClick
+signal HudButtonMenuClick
