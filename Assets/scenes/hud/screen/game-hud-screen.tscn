@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-symbol-button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-menu-button.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/sprites/hud/hud-symbol-tab.png" type="Texture" id=5]
+[ext_resource path="res://Assets/sprites/hud/hud-flat-tab.png" type="Texture" id=5]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/sprites/ui/ui-forest-icon.png" type="Texture" id=7]
 [ext_resource path="res://Assets/sprites/hud/hud-timer-icon.png" type="Texture" id=8]
@@ -66,7 +66,7 @@ modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
 texture = ExtResource( 5 )
 
 [node name="timer-icon" type="Sprite3D" parent="Top/time-bar"]
-transform = Transform( 0.407231, 0, 0, 0, 0.407231, 0, 0, 0, 0.407231, 1.666, -0.838, 0 )
+transform = Transform( 0.210427, 0, 0, 0, 0.210427, 0, 0, 0, 0.210427, 1.666, -0.838, 0 )
 sorting_offset = 11.0
 texture = ExtResource( 8 )
 
@@ -83,7 +83,7 @@ modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
 texture = ExtResource( 5 )
 
 [node name="square-end5" type="Sprite3D" parent="Top/time-bar"]
-transform = Transform( 189.745, 0, 0, 0, 24.1999, 0, 0, 0, 24.1999, 0.548999, -0.838, 0 )
+transform = Transform( 194.56, 0, 0, 0, 24.1999, 0, 0, 0, 24.1999, 0.548999, -0.838, 0 )
 sorting_offset = 10.0
 modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
 texture = ExtResource( 2 )
