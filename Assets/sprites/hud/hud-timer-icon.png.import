@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/hud-symbol-tab.png-5547fc0a8e2af93d47f7bea17fd3d7ad.s3tc.stex"
-path.etc="res://.import/hud-symbol-tab.png-5547fc0a8e2af93d47f7bea17fd3d7ad.etc.stex"
+path.s3tc="res://.import/hud-timer-icon.png-5d53a51260f8997432c7dba98a8b649e.s3tc.stex"
+path.etc="res://.import/hud-timer-icon.png-5d53a51260f8997432c7dba98a8b649e.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/sprites/hud/hud-symbol-tab.png"
-dest_files=[ "res://.import/hud-symbol-tab.png-5547fc0a8e2af93d47f7bea17fd3d7ad.s3tc.stex", "res://.import/hud-symbol-tab.png-5547fc0a8e2af93d47f7bea17fd3d7ad.etc.stex" ]
+source_file="res://Assets/sprites/hud/hud-timer-icon.png"
+dest_files=[ "res://.import/hud-timer-icon.png-5d53a51260f8997432c7dba98a8b649e.s3tc.stex", "res://.import/hud-timer-icon.png-5d53a51260f8997432c7dba98a8b649e.etc.stex" ]
 
 [params]
 
@@ -21,9 +21,9 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=true
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

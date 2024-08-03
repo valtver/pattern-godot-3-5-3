@@ -27,7 +27,7 @@ func _ready():
 	Events.connect("HudButtonPlayClick", self, "OnPREPLAY")
 	Events.connect("HudButtonSymbolClick", self, "OnSymbolButtonClick")
 	Events.connect("HudButtonMenuClick", self, "OnMenuButtonClick")
-	cameraTransform = get_viewport().get_camera().get_parent()
+	cameraTransform = get_tree().get_root().get_camera().get_parent()
 	scroller = get_node_or_null("Scroller")
 	if scroller == null:
 		scroller = Loader.GetResource(Data.gameData.scrollerScene).instance()

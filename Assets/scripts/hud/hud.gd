@@ -54,30 +54,34 @@ func OnShowHudMenuScreen():
 func OnShowMenuButton():
 	var currentChildren = GetScreenChildren(cHudScreen)
 	for child in currentChildren:
-		if child.hudElementId == Types.HudElementId.HudButtonMenu:
-			child.AnimateShow("alpha")
+		if "hudElementId" in child:
+			if child.hudElementId == Types.HudElementId.HudButtonMenu:
+				child.AnimateShow("alpha")
 			
 func OnHideMenuButton():
 	var currentChildren = GetScreenChildren(cHudScreen)
 	for child in currentChildren:
-		if child.hudElementId == Types.HudElementId.HudButtonMenu:
-			child.AnimateHide("alpha")
+		if "hudElementId" in child:
+			if child.hudElementId == Types.HudElementId.HudButtonMenu:
+				child.AnimateHide("alpha")
 	
 func OnShowSymbolButtons(gameStepData):
 	var currentChildren = GetScreenChildren(cHudScreen)
 	for child in currentChildren:
-		if child.hudElementId == Types.HudElementId.HudButtonSymbol:
-			child.UpdateSymbol(gameStepData["buttons"][child.index]["angles"], gameStepData["sprites"])
-			child.AnimateShow()
+		if "hudElementId" in child:
+			if child.hudElementId == Types.HudElementId.HudButtonSymbol:
+				child.UpdateSymbol(gameStepData["buttons"][child.index]["angles"], gameStepData["sprites"])
+				child.AnimateShow()
 			
 func OnHideSymbolButtons(button: Node = null):
 	var currentChildren = GetScreenChildren(cHudScreen)
 	for child in currentChildren:
-		if child.hudElementId == Types.HudElementId.HudButtonSymbol:
-			if button != null and button.index == child.index:
-				Timeline.Delay(button, "AnimateHide", 0.5)
-			else:
-				child.AnimateHide()
+		if "hudElementId" in child:
+			if child.hudElementId == Types.HudElementId.HudButtonSymbol:
+				if button != null and button.index == child.index:
+					Timeline.Delay(button, "AnimateHide", 0.5)
+				else:
+					child.AnimateHide()
 				
 func ShowHudScreen(nextHudScreen):
 	if nextHudScreen == null:
@@ -107,9 +111,10 @@ func ShowHudScreen(nextHudScreen):
 				else:
 					var animate = true
 					for currentChild in currentChildren:
-						if currentChild.hudElementId == nextChild.hudElementId:
-							animate = false
-							break
+						if "hudElementId" in currentChild:
+							if currentChild.hudElementId == nextChild.hudElementId:
+								animate = false
+								break
 					if animate:
 						if nextChild.has_method("AnimateShow"):
 							if nextChild.hudElementId in FADE_ANIMATION_TYPES:
