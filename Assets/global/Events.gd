@@ -1,5 +1,7 @@
 extends Node
 
+signal GameOverNormalTime
+
 signal Click
 
 signal StartGame

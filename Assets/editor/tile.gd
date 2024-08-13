@@ -1,6 +1,8 @@
 tool
 extends Spatial
 
+const PATH_TILE_Y_OFFSET = 0.02
+
 var tween = null
 
 export var refresh = false
@@ -75,6 +77,7 @@ func ProcessPath():
 		else:
 			var angles = [Vector3.UP * 0, Vector3.UP * 180]
 			node.rotation_degrees = angles.pick_random()
+			node.position = Vector3.UP * PATH_TILE_Y_OFFSET
 	else:
 		if node != null:
 			node.free()

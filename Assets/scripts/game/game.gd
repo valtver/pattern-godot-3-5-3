@@ -105,6 +105,9 @@ func ResumeCameraMove():
 	if camTween != null:
 		camTween.play()
 		
+func EmitGameOverTime(timeLeft):
+	Events.emit_signal("GameOverNormalTime", timeLeft / Data.gameData.gameStepDelay)
+		
 func GameLoop():
 	var stepData = null
 	
@@ -132,14 +135,14 @@ func GameLoop():
 			Timeline.Delay(self, "OnPREPLAY", Data.gameData.nextGameStepDelay)
 
 	if state == GameState.PREPLAY:
-		Timeline.Delay(self, "GameOver", Data.gameData.gameStepDelay)
+		Timeline.Delay(self, "GameOver", Data.gameData.gameStepDelay, "EmitGameOverTime")
 		MoveCameraTo(cameraTransform.position + Vector3.FORWARD, Data.gameData.gameStepDelay)
 		AnimateTilesStart()
 		state = GameState.PLAY
 		
 	if state == GameState.CONTINUE:
 		if Timeline.IsTimer(self, "GameOver"):
-			Timeline.ResumeTimer(self, "GameOver")
+			Timeline.ResumeDelay(self, "GameOver")
 			ResumeCameraMove()
 			state = GameState.PLAY
 
@@ -150,18 +153,20 @@ func GameLoop():
 		Events.emit_signal("ShowHudMenuButton")
 		
 	if state == GameState.PAUSE:
-		Timeline.PauseTimer(self, "GameOver")
+		Timeline.PauseDelay(self, "GameOver")
 		PauseCameraMove()
 		
 	if state == GameState.CHECK:
 		AppInput.ui = false
-		Timeline.StopTimer(self, "GameOver")
+		Timeline.StopDelay(self, "GameOver")
 		Events.emit_signal("HideHudMenuButton")
 			
 		if Data.playerData.selectedAngles == stepData["angles"]:
 			var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
+			var rnd = RandomNumberGenerator.new()
 			for tile in scroller.cTiles:
-				Timeline.Delay(tile, "PathAppear", tile.global_position.distance_to(cameraGPos) * 0.1)
+				rnd.randomize()
+				Timeline.Delay(tile, "PathAppear", tile.global_position.distance_to(cameraGPos - Vector3.FORWARD * 2) * rnd.randf_range(1.0, 1.2) * 0.1)
 			state = GameState.NEXT
 			GameLoop()
 		else:
