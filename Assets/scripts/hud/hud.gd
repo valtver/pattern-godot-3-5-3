@@ -46,8 +46,9 @@ func OnShowHudStartScreen():
 	lastHudScreen = startHudScreen
 	ShowHudScreen(Loader.GetResource(startHudScreen).instance())
 func OnShowHudGameScreen():
-	lastHudScreen = gameHudScreen
-	ShowHudScreen(Loader.GetResource(gameHudScreen).instance())
+	if lastHudScreen != gameHudScreen:
+		lastHudScreen = gameHudScreen
+		ShowHudScreen(Loader.GetResource(gameHudScreen).instance())
 func OnShowHudMenuScreen():
 	ShowHudScreen(Loader.GetResource(pauseHudScreen).instance())
 	
@@ -87,7 +88,7 @@ func ShowHudScreen(nextHudScreen):
 	if nextHudScreen == null:
 		print("No transition screen defined.")
 		return
-	
+		
 	add_child(nextHudScreen)
 	
 	var nextChildren = GetScreenChildren(nextHudScreen)

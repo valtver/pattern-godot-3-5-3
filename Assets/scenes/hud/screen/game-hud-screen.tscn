@@ -1,16 +1,69 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-symbol-button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-menu-button.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/sprites/hud/hud-flat-tab.png" type="Texture" id=5]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/sprites/ui/ui-forest-icon.png" type="Texture" id=7]
 [ext_resource path="res://Assets/sprites/hud/hud-timer-icon.png" type="Texture" id=8]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular-Outline.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assets/sprites/hud/hud-fill-bar.png" type="Texture" id=10]
 [ext_resource path="res://Assets/scripts/hud/fill/hud-fill.gd" type="Script" id=11]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("animatedScore:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.518518, -0.197126, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("animatedScore:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.870588, 1, 0.709804, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "score-vfx"
+tracks/0/type = "value"
+tracks/0/path = NodePath("animatedScore:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 0.225313, 2.82843, 1 ),
+"update": 0,
+"values": [ Vector3( -0.518518, -0.782294, 0 ), Vector3( -0.518518, -0.422494, 0 ), Vector3( 1.01953, -0.422494, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("animatedScore:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 0.277392, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.870588, 1, 0.709804, 0 ), Color( 0.870588, 1, 0.709804, 1 ), Color( 0.870588, 1, 0.709804, 0 ) ]
+}
 
 [node name="game-hud-screen" type="Spatial"]
 script = ExtResource( 1 )
@@ -57,28 +110,26 @@ autowrap = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00201035, 0 )
 script = ExtResource( 11 )
 
-[node name="square-end" type="Sprite3D" parent="Top/fill-bar"]
-transform = Transform( 0.219294, 0, 0, 0, 0.219294, 0, 0, 0, 0.219294, 1.66607, -0.909318, 0 )
-sorting_offset = 9.0
+[node name="base-1" type="Sprite3D" parent="Top/fill-bar"]
+transform = Transform( 0.689, 0, 0, 0, 0.689, 0, 0, 0, 0.689, -0.0463423, -0.827772, 0 )
+sorting_offset = 3.0
 modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
-texture = ExtResource( 5 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 200, 64 )
 
-[node name="square-end2" type="Sprite3D" parent="Top/fill-bar"]
-transform = Transform( 0.219294, 0, 0, 0, 0.219294, 0, 0, 0, 0.219294, 1.66567, -0.798686, 0 )
-sorting_offset = 9.0
+[node name="base-2" type="Sprite3D" parent="Top/fill-bar"]
+transform = Transform( 0.689, 0, 0, 0, 0.689, 0, 0, 0, 0.689, 1.14325, -0.827772, 0 )
+sorting_offset = 3.0
 modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
-texture = ExtResource( 5 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 0, -200, 64 )
 
 [node name="timer-icon" type="Sprite3D" parent="Top/fill-bar"]
 transform = Transform( 0.210427, 0, 0, 0, 0.210427, 0, 0, 0, 0.210427, 1.666, -0.827909, 0 )
 sorting_offset = 12.0
 texture = ExtResource( 8 )
-
-[node name="square" type="Sprite3D" parent="Top/fill-bar"]
-transform = Transform( 232.688, 0, 0, 0, 39.1013, 0, 0, 0, 27.9495, 0.452688, -0.850512, 0 )
-sorting_offset = 8.0
-modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
-texture = ExtResource( 2 )
 
 [node name="bg" type="Sprite3D" parent="Top/fill-bar"]
 transform = Transform( 0.394968, 0, 0, 0, 0.394968, 0, 0, 0, 0.394968, -0.641457, -0.827772, 0 )
@@ -90,33 +141,43 @@ texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 600, 64 )
 
-[node name="fill" type="Sprite3D" parent="Top/fill-bar"]
+[node name="fillTexture" type="Sprite3D" parent="Top/fill-bar"]
 transform = Transform( 0.394968, 0, 0, 0, 0.394968, 0, 0, 0, 0.394968, -0.641457, -0.827772, 0 )
 sorting_offset = 11.0
 centered = false
 offset = Vector2( 0, -32 )
-modulate = Color( 0.694118, 0.219608, 0.360784, 1 )
+modulate = Color( 0.870588, 1, 0.709804, 1 )
 texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 300, 64 )
 
-[node name="score" type="Spatial" parent="Top"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0261097, 0.0934253, 0 )
-
-[node name="score-label" type="Label3D" parent="Top/score"]
-transform = Transform( 0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.364, 1.81268, -0.560279, 0 )
+[node name="scoreLabel" type="Label3D" parent="Top/fill-bar"]
+transform = Transform( 0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.364, 1.78657, -0.422495, 0 )
 sorting_offset = 10.0
 modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
-text = "189"
+text = "123"
 font = ExtResource( 6 )
 horizontal_alignment = 2
 width = 700.0
 
-[node name="score-front-zero-label" type="Label3D" parent="Top/score"]
-transform = Transform( 0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.364, -0.674666, -0.560279, 0 )
+[node name="scoreLabelZero" type="Label3D" parent="Top/fill-bar"]
+transform = Transform( 0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.364, 1.78657, -0.422495, 0 )
 sorting_offset = 10.0
 modulate = Color( 0.94902, 0.796078, 0.654902, 0.392157 )
-text = "0000000000"
+text = "0000000000000"
+font = ExtResource( 6 )
+horizontal_alignment = 2
+width = 700.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Top/fill-bar"]
+anims/RESET = SubResource( 1 )
+anims/score-vfx = SubResource( 2 )
+
+[node name="animatedScore" type="Label3D" parent="Top/fill-bar"]
+transform = Transform( 0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.364, -0.518518, -0.197126, 0 )
+sorting_offset = 12.0
+modulate = Color( 0.870588, 1, 0.709804, 0 )
+text = "+123"
 font = ExtResource( 6 )
 horizontal_alignment = 0
 width = 700.0

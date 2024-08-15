@@ -1,6 +1,7 @@
 extends Resource
 
 export (float) var gameStepDelay
+export (float) var gameScoreMultiplier
 export (float) var nextGameStepDelay
 export (String, FILE) var scrollerScene
 export (Resource) var symbolData

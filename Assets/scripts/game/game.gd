@@ -106,8 +106,8 @@ func ResumeCameraMove():
 		camTween.play()
 		
 func EmitGameOverTime(timeLeft):
-	Events.emit_signal("GameOverNormalTime", timeLeft / Data.gameData.gameStepDelay)
-		
+	Events.emit_signal("HudTimerUpdate", timeLeft / Data.gameData.gameStepDelay)
+			
 func GameLoop():
 	var stepData = null
 	
@@ -158,10 +158,13 @@ func GameLoop():
 		
 	if state == GameState.CHECK:
 		AppInput.ui = false
+		var reservedScore = (Data.gameData.gameStepDelay - Timeline.GetTimer(self, "GameOver").get_total_elapsed_time()) * Data.gameData.gameScoreMultiplier
 		Timeline.StopDelay(self, "GameOver")
 		Events.emit_signal("HideHudMenuButton")
 			
 		if Data.playerData.selectedAngles == stepData["angles"]:
+			Data.playerData.sessionScore += int(reservedScore)
+			Events.emit_signal("HudWinScore")
 			var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
 			var rnd = RandomNumberGenerator.new()
 			for tile in scroller.cTiles:

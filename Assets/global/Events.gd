@@ -1,6 +1,7 @@
 extends Node
 
-signal GameOverNormalTime
+signal HudTimerUpdate
+signal HudWinScore
 
 signal Click
 
