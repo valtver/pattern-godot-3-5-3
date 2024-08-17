@@ -169,6 +169,8 @@ font = ExtResource( 6 )
 horizontal_alignment = 2
 width = 700.0
 
+[node name="Pivot" type="Spatial" parent="."]
+
 [node name="Bottom" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
 

@@ -173,6 +173,7 @@ func GameLoop():
 				Timeline.Delay(tile, "PathAppear", tile.global_position.distance_to(cameraGPos - Vector3.FORWARD * 2) * rnd.randf_range(1.0, 1.2) * 0.1)
 			state = GameState.NEXT
 			GameLoop()
+			return
 		else:
 			state = GameState.OVER
 
@@ -181,12 +182,14 @@ func GameLoop():
 		print("GAME OVER")
 
 	if state == GameState.COMPLETE:
+		AppInput.ui = true
 		print("LEVEL END")
 		scroller.AddLastIsland()
-		TryPlayStartIslandAnimation()
-		Events.emit_signal("ShowHudWinScreen", 3)
+		var starsNumber = Data.playerData.sessionScore / ((gameSteps.size() * (Data.gameData.gameStepDelay / 2) * Data.gameData.gameScoreMultiplier) / 3) #CONST FOR NOW
+		Events.emit_signal("ShowHudWinScreen", clamp(floor(starsNumber), 1, 3))
 		Events.emit_signal("HudWinScore", 2.5, true, 0.0)
 		MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
 		Timeline.Delay(self, "TryPlayEndIslandAnimation", Data.gameData.nextGameStepDelay + 0.25)
+		return
 
 

@@ -1,6 +1,11 @@
 extends Spatial
 
-var DISABLED_TYPES = [Types.HudElementId.HudButtonSymbol]
+var DISABLED_TYPES = [
+	Types.HudElementId.HudButtonSymbol,
+	Types.HudElementId.HudButtonHome,
+	Types.HudElementId.HudButtonReplay,
+	Types.HudElementId.HudButtonNext
+]
 var FADE_ANIMATION_TYPES = [Types.HudElementId.HudButtonMenu]
 
 export (String, FILE) var startHudScreen
@@ -33,6 +38,7 @@ func GetScreenChildren(screenName):
 	var children = []
 	children.append_array(screenName.top.get_children())
 	children.append_array(screenName.bottom.get_children())
+	children.append_array(screenName.pivot.get_children())
 	return children
 	
 func OnButtonClick(button):
@@ -43,6 +49,7 @@ func OnButtonClick(button):
 	if button.hudElementId == Types.HudElementId.HudButtonMenu:
 		if not isPauseScreen:
 			ShowHudScreen(Loader.GetResource(pauseHudScreen).instance())
+			Timeline.Delay(self, "ShowControlScreenButtons", 0.25)
 			isPauseScreen = true
 		else:
 			ShowHudScreen(Loader.GetResource(lastHudScreen).instance())
@@ -62,8 +69,19 @@ func OnShowHudWinScreen(stars):
 	var screen = Loader.GetResource(winHudScreen).instance()
 	ShowHudScreen(screen)
 	var animationName = "show-%d" % stars
-	screen.get_node_or_null("ManualAnimationPlayer").play(animationName)
+	var screenPlayer = screen.get_node_or_null("ScreenAnimationPlayer")
+	var buttonsPlayer = screen.get_node_or_null("ButtonsAnimationPlayer")
+	screenPlayer.play(animationName)
+	Timeline.Delay(self, "ShowControlScreenButtons", screenPlayer.current_animation_length)
 	pass
+	
+
+func ShowControlScreenButtons():
+	var currentChildren = GetScreenChildren(cHudScreen)
+	for child in currentChildren:
+		if "hudElementId" in child:
+			if child.hudElementId != Types.HudElementId.HudButtonMenu:
+				child.AnimateShow("alpha")
 	
 func OnShowMenuButton():
 	var currentChildren = GetScreenChildren(cHudScreen)
@@ -110,7 +128,6 @@ func ShowHudScreen(nextHudScreen):
 		for nextChild in nextChildren:
 			if nextChild.has_method("AnimateShow"):
 				if nextChild.hudElementId in FADE_ANIMATION_TYPES:
-					print("Animating...")
 					nextChild.AnimateShow("alpha")
 				else:
 					nextChild.AnimateShow()

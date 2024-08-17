@@ -5,6 +5,7 @@ const MAX_ASPECT_RATIO = 4.0/3.0
 
 onready var bottom = $Bottom
 onready var top = $Top
+onready var pivot = $Pivot
 
 func _ready():
 	position = Vector3(0, 0, -1)
