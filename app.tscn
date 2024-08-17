@@ -22,7 +22,6 @@ far = 150.0
 script = ExtResource( 2 )
 
 [node name="hud" parent="CameraPivot/Camera" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.127 )
 
 [node name="Game" parent="." instance=ExtResource( 1 )]
 

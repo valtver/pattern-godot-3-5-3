@@ -14,6 +14,7 @@ signal LevelEnd
 signal ShowHudStartScreen
 signal ShowHudGameScreen
 signal ShowHudMenuScreen
+signal ShowHudWinScreen
 
 signal ShowHudSymbolButtons
 signal HideHudSymbolButtons

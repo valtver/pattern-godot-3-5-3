@@ -1,15 +1,16 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-symbol-button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-menu-button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/scripts/hud/components/hud-score-label.gd" type="Script" id=5]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/sprites/ui/ui-forest-icon.png" type="Texture" id=7]
 [ext_resource path="res://Assets/sprites/hud/hud-timer-icon.png" type="Texture" id=8]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular-Outline.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assets/sprites/hud/hud-fill-bar.png" type="Texture" id=10]
-[ext_resource path="res://Assets/scripts/hud/fill/hud-fill.gd" type="Script" id=11]
+[ext_resource path="res://Assets/scripts/hud/components/hud-game-bar.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -81,14 +82,18 @@ region_rect = Rect2( 0, 0, 450, 1050 )
 [node name="Top" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 
-[node name="level-icon" type="Sprite3D" parent="Top"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.24841, -0.582928, 0 )
+[node name="hud-game-bar" type="Spatial" parent="Top"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00201035, 0 )
+script = ExtResource( 11 )
+
+[node name="levelIcon" type="Sprite3D" parent="Top/hud-game-bar"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.24841, -0.580918, 0 )
 sorting_offset = 4.0
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 450, 1050 )
 
-[node name="level-label" type="Label3D" parent="Top"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.24841, -0.551428, 0 )
+[node name="levelLabel" type="Label3D" parent="Top/hud-game-bar"]
+transform = Transform( 0.567034, 0, 0, 0, 0.567034, 0, 0, 0, 0.567034, -1.25034, -0.547304, 0 )
 sorting_offset = 11.0
 alpha_scissor_threshold = 1.0
 render_priority = 1
@@ -98,19 +103,7 @@ text = "89"
 font = ExtResource( 9 )
 autowrap = true
 
-[node name="level-lable-shadow" type="Label3D" parent="Top"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.21961, -0.582952, 0 )
-sorting_offset = 9.0
-modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
-text = "89"
-font = ExtResource( 6 )
-autowrap = true
-
-[node name="fill-bar" type="Spatial" parent="Top"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00201035, 0 )
-script = ExtResource( 11 )
-
-[node name="base-1" type="Sprite3D" parent="Top/fill-bar"]
+[node name="base-1" type="Sprite3D" parent="Top/hud-game-bar"]
 transform = Transform( 0.689, 0, 0, 0, 0.689, 0, 0, 0, 0.689, -0.0463423, -0.827772, 0 )
 sorting_offset = 3.0
 modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
@@ -118,7 +111,7 @@ texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 200, 64 )
 
-[node name="base-2" type="Sprite3D" parent="Top/fill-bar"]
+[node name="base-2" type="Sprite3D" parent="Top/hud-game-bar"]
 transform = Transform( 0.689, 0, 0, 0, 0.689, 0, 0, 0, 0.689, 1.14325, -0.827772, 0 )
 sorting_offset = 3.0
 modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
@@ -126,12 +119,12 @@ texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 0, 0, -200, 64 )
 
-[node name="timer-icon" type="Sprite3D" parent="Top/fill-bar"]
+[node name="timer-icon" type="Sprite3D" parent="Top/hud-game-bar"]
 transform = Transform( 0.210427, 0, 0, 0, 0.210427, 0, 0, 0, 0.210427, 1.666, -0.827909, 0 )
 sorting_offset = 12.0
 texture = ExtResource( 8 )
 
-[node name="bg" type="Sprite3D" parent="Top/fill-bar"]
+[node name="bg" type="Sprite3D" parent="Top/hud-game-bar"]
 transform = Transform( 0.394968, 0, 0, 0, 0.394968, 0, 0, 0, 0.394968, -0.641457, -0.827772, 0 )
 sorting_offset = 10.0
 centered = false
@@ -141,7 +134,7 @@ texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 600, 64 )
 
-[node name="fillTexture" type="Sprite3D" parent="Top/fill-bar"]
+[node name="fillTexture" type="Sprite3D" parent="Top/hud-game-bar"]
 transform = Transform( 0.394968, 0, 0, 0, 0.394968, 0, 0, 0, 0.394968, -0.641457, -0.827772, 0 )
 sorting_offset = 11.0
 centered = false
@@ -151,35 +144,29 @@ texture = ExtResource( 10 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 300, 64 )
 
-[node name="scoreLabel" type="Label3D" parent="Top/fill-bar"]
-transform = Transform( 0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.364, 1.78657, -0.422495, 0 )
-sorting_offset = 10.0
-modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
-text = "123"
-font = ExtResource( 6 )
-horizontal_alignment = 2
-width = 700.0
-
-[node name="scoreLabelZero" type="Label3D" parent="Top/fill-bar"]
-transform = Transform( 0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.364, 1.78657, -0.422495, 0 )
-sorting_offset = 10.0
-modulate = Color( 0.94902, 0.796078, 0.654902, 0.392157 )
-text = "0000000000000"
-font = ExtResource( 6 )
-horizontal_alignment = 2
-width = 700.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Top/fill-bar"]
-anims/RESET = SubResource( 1 )
-anims/score-vfx = SubResource( 2 )
-
-[node name="animatedScore" type="Label3D" parent="Top/fill-bar"]
+[node name="animatedScore" type="Label3D" parent="Top/hud-game-bar"]
 transform = Transform( 0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.364, -0.518518, -0.197126, 0 )
 sorting_offset = 12.0
+render_priority = 1
+outline_render_priority = 0
 modulate = Color( 0.870588, 1, 0.709804, 0 )
+outline_modulate = Color( 0, 0, 0, 0 )
 text = "+123"
 font = ExtResource( 6 )
 horizontal_alignment = 0
+width = 700.0
+
+[node name="hud-score-label" type="Spatial" parent="Top"]
+script = ExtResource( 5 )
+
+[node name="scoreLabel" type="Label3D" parent="Top/hud-score-label"]
+transform = Transform( 0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.364, 1.78657, -0.424505, 0 )
+sorting_offset = 10.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+outline_modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+text = "123"
+font = ExtResource( 6 )
+horizontal_alignment = 2
 width = 700.0
 
 [node name="Bottom" type="Spatial" parent="."]
@@ -198,3 +185,8 @@ index = 1
 [node name="hud-symbol-button3" parent="Bottom" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.207, 1.574, 0 )
 index = 2
+
+[node name="ManualAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Top/hud-game-bar")
+anims/RESET = SubResource( 1 )
+anims/score-vfx = SubResource( 2 )

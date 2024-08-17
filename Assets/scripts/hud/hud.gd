@@ -6,6 +6,8 @@ var FADE_ANIMATION_TYPES = [Types.HudElementId.HudButtonMenu]
 export (String, FILE) var startHudScreen
 export (String, FILE) var gameHudScreen
 export (String, FILE) var pauseHudScreen
+export (String, FILE) var winHudScreen
+
 var lastHudScreen = null
 
 var cHudScreen = null
@@ -16,10 +18,15 @@ func _ready():
 	Events.connect("ShowHudStartScreen", self, "OnShowHudStartScreen")
 	Events.connect("ShowHudGameScreen", self, "OnShowHudGameScreen")
 	Events.connect("ShowHudMenuScreen", self, "OnShowHudMenuScreen")
+	Events.connect("ShowHudWinScreen", self, "OnShowHudWinScreen")
+	
 	Events.connect("ShowHudSymbolButtons", self, "OnShowSymbolButtons")
 	Events.connect("HideHudSymbolButtons", self, "OnHideSymbolButtons")
 	Events.connect("HideHudMenuButton", self, "OnHideMenuButton")
 	Events.connect("ShowHudMenuButton", self, "OnShowMenuButton")
+	pass
+	
+func Init():
 	pass
 	
 func GetScreenChildren(screenName):
@@ -51,6 +58,12 @@ func OnShowHudGameScreen():
 		ShowHudScreen(Loader.GetResource(gameHudScreen).instance())
 func OnShowHudMenuScreen():
 	ShowHudScreen(Loader.GetResource(pauseHudScreen).instance())
+func OnShowHudWinScreen(stars):
+	var screen = Loader.GetResource(winHudScreen).instance()
+	ShowHudScreen(screen)
+	var animationName = "show-%d" % stars
+	screen.get_node_or_null("ManualAnimationPlayer").play(animationName)
+	pass
 	
 func OnShowMenuButton():
 	var currentChildren = GetScreenChildren(cHudScreen)

@@ -7,3 +7,4 @@ script = ExtResource( 2 )
 startHudScreen = "res://Assets/scenes/hud/screen/start-hud-screen.tscn"
 gameHudScreen = "res://Assets/scenes/hud/screen/game-hud-screen.tscn"
 pauseHudScreen = "res://Assets/scenes/hud/screen/pause-hud-screen.tscn"
+winHudScreen = "res://Assets/scenes/hud/screen/win-hud-screen.tscn"

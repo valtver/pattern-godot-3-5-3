@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-replay-button.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/sprites/ui/ui-logo-text.png" type="Texture" id=7]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-home-button.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/sprites/shared/flat.png" type="Texture" id=9]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=10]
 
 [sub_resource type="Animation" id=2]
@@ -59,6 +60,42 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ribbon-0/bg-ribbon:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ribbon-6/bg-ribbon:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ribbon-1/bg-ribbon:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -142,6 +179,42 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0.0, 1.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("ribbon-0/bg-ribbon:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -7.6542, 1.11759e-08, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ribbon-6/bg-ribbon:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -7.91696, 1.19209e-07, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ribbon-1/bg-ribbon:translation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -7.99721, 1.19209e-07, 0 ), Vector3( 0, 0, 0 ) ]
+}
 
 [node name="pause-hud-screen" type="Spatial"]
 script = ExtResource( 1 )
@@ -222,7 +295,7 @@ width = 1500.0
 [node name="blur-shade" type="Sprite3D" parent="."]
 sorting_offset = -10.0
 cast_shadow = 0
-modulate = Color( 0, 0, 0, 0.780392 )
+modulate = Color( 0.188235, 0.0980392, 0.223529, 0.545098 )
 opacity = 0.0
 texture = ExtResource( 2 )
 region_enabled = true
@@ -232,3 +305,30 @@ region_rect = Rect2( 0, 0, 500, 1100 )
 anims/RESET = SubResource( 2 )
 anims/hide = SubResource( 3 )
 anims/show = SubResource( 4 )
+
+[node name="ribbon-0" type="Spatial" parent="."]
+transform = Transform( 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0.0463824, 0.0300002, 0 )
+
+[node name="bg-ribbon" type="Sprite3D" parent="ribbon-0"]
+transform = Transform( 13, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+sorting_offset = -9.0
+modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+texture = ExtResource( 9 )
+
+[node name="ribbon-6" type="Spatial" parent="."]
+transform = Transform( 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -0.200938, -1.59, 0 )
+
+[node name="bg-ribbon" type="Sprite3D" parent="ribbon-6"]
+transform = Transform( 13, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+sorting_offset = -9.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+texture = ExtResource( 9 )
+
+[node name="ribbon-1" type="Spatial" parent="."]
+transform = Transform( 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 1.47, 0 )
+
+[node name="bg-ribbon" type="Sprite3D" parent="ribbon-1"]
+transform = Transform( 13, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+sorting_offset = -9.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+texture = ExtResource( 9 )

@@ -82,7 +82,7 @@ func OnSymbolButtonClick(button):
 func AnimateTilesStart():
 	var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
 	for tile in scroller.cTiles:
-		Timeline.Delay(tile, "SymbolFadeIn", tile.global_position.distance_to(cameraGPos) * 0.05)
+		Timeline.Delay(tile, "SymbolFadeIn", tile.global_position.distance_to(cameraGPos - Vector3.FORWARD * 2) * 0.05)
 		
 func AnimateTilesComplete():
 	pass
@@ -163,7 +163,8 @@ func GameLoop():
 		Events.emit_signal("HideHudMenuButton")
 			
 		if Data.playerData.selectedAngles == stepData["angles"]:
-			Data.playerData.sessionScore += int(reservedScore)
+			Data.playerData.sessionScoreLastStep = int(reservedScore)
+			Data.playerData.sessionScore += Data.playerData.sessionScoreLastStep
 			Events.emit_signal("HudWinScore")
 			var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
 			var rnd = RandomNumberGenerator.new()
@@ -180,10 +181,11 @@ func GameLoop():
 		print("GAME OVER")
 
 	if state == GameState.COMPLETE:
-		
 		print("LEVEL END")
 		scroller.AddLastIsland()
 		TryPlayStartIslandAnimation()
+		Events.emit_signal("ShowHudWinScreen", 3)
+		Events.emit_signal("HudWinScore", 2.5, true, 0.0)
 		MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
 		Timeline.Delay(self, "TryPlayEndIslandAnimation", Data.gameData.nextGameStepDelay + 0.25)
 
