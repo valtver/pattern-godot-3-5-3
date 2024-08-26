@@ -3,9 +3,7 @@ extends StaticBody
 export (Types.UiButtonId) var buttonId = Types.UiButtonId.None
 export (int, 0, 99) var index
 
-signal Click
-
-var active: bool = false setget OnActive
+var active: bool = true setget OnActive
 var selected: bool = false setget OnSelected
 var locked: bool = false setget OnLocked
 
@@ -65,7 +63,10 @@ func OnClick():
 		Vector3(1.2, 1.2, 1.2), Vector3.ONE, 0.5,
 		Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	tween.start()
-	Events.emit_signal("Click", self)
+	if active:
+		Events.emit_signal("Click", self)
+	else:
+		Events.emit_signal("InactiveClick", self)
 
 func Show():
 	var tween = get_node_or_null("Tween")

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-start-button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-menu-button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/sprites/ui/ui-forest-icon.png" type="Texture" id=5]
+[ext_resource path="res://Assets/fonts/Pacifico-Regular-Outline.tres" type="DynamicFont" id=6]
 
 [node name="start-hud-screen" type="Spatial"]
 script = ExtResource( 1 )
@@ -24,10 +26,28 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 [node name="Bottom" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
 
-[node name="hud-play-button" parent="Bottom" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43523, 0 )
-
 [node name="hud-menu-button" parent="Bottom" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265, 0 )
 
 [node name="Pivot" type="Spatial" parent="."]
+
+[node name="hud-play-button" parent="Pivot" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.382856, 0 )
+
+[node name="levelIcon" type="Sprite3D" parent="Pivot"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0201716, 2.64544, 0 )
+sorting_offset = 4.0
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 450, 1050 )
+
+[node name="levelLabel" type="Label3D" parent="Pivot"]
+transform = Transform( 0.485153, 0, 0, 0, 0.485153, 0, 0, 0, 0.485153, -0.0504293, 2.64401, 0 )
+sorting_offset = 11.0
+alpha_scissor_threshold = 1.0
+render_priority = 1
+outline_render_priority = 0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+outline_modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+text = "Day 1"
+font = ExtResource( 6 )
+autowrap = true

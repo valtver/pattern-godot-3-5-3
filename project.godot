@@ -1110,6 +1110,10 @@ pointing/emulate_touch_from_mouse=true
 
 3d_physics/layer_10="sceneInput"
 
+[locale]
+
+translations=PoolStringArray( "res://translation/Localization.en.translation", "res://translation/Localization.ru.translation" )
+
 [physics]
 
 common/enable_pause_aware_picking=true

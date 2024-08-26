@@ -5,9 +5,9 @@ func GetUniqueRandomInRange(a, b, count):
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	for n in count:
-		var randN = rng.randi_range(0, b-1)
+		var randN = rng.randi_range(a, b-1)
 		while randN in array:
-			randN = rng.randi_range(0, b-1)
+			randN = rng.randi_range(a, b-1)
 		array.append(randN)
 	print(array)
 	return array

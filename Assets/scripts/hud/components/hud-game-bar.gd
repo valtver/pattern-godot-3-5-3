@@ -33,11 +33,10 @@ func RestoreUpdateFill(normalValue):
 	var newWidth = fillTexture.texture.get_width() * normalValue
 	fillTexture.region_rect.size = Vector2(newWidth, fillTexture.texture.get_height())
 	fillTexture.modulate = safeColor.linear_interpolate(winColor, 1 - normalValue)
-	
-func OnHudWinScore(tweenTime:= Data.gameData.nextGameStepDelay, reset:= false, addDelay:= 0.5):
+	# warning-ignore-all:UNUSED_ARGUMENT
+func OnHudWinScore(tweenTime:= Data.gameData.nextGameStepDelay, reset:= false, addDelay:= 0.0):
 	var fillWidth = fillTexture.region_rect.size.x / fillTexture.texture.get_width()
-	var nextScoreVal = Data.playerData.sessionScore
 	var tween = create_tween().set_parallel(true)
-	tween.tween_method(self, "RestoreUpdateFill", fillWidth, 0.0, Data.gameData.nextGameStepDelay)
+	tween.tween_method(self, "RestoreUpdateFill", fillWidth, 0.0, tweenTime)
 	animatedScore.text = "+%d" % Data.playerData.sessionScoreLastStep
 	animationPlayer.play("score-vfx")

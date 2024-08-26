@@ -13,8 +13,6 @@ export (PackedScene) var pathScene
 export var idx: int
 export var idy: int
 
-signal inputClick
-
 onready var symbol = get_node_or_null("symbol")
 onready var symbolBg = get_node_or_null("symbolBackground")
 onready var symbolPath = get_node_or_null("pathTerrain")

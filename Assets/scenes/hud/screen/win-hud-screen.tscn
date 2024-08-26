@@ -31,7 +31,7 @@ colors = PoolColorArray( 1, 0.639216, 0.0980392, 1, 1, 0.639216, 0.0980392, 0 )
 [sub_resource type="Animation" id=6]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/MenuLabel:outline_modulate")
+tracks/0/path = NodePath("Pivot/winLabel:outline_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "values": [ Color( 0.94902, 0.796078, 0.654902, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/MenuLabel:modulate")
+tracks/1/path = NodePath("Pivot/winLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -263,7 +263,7 @@ tracks/18/keys = {
 resource_name = "show-1"
 length = 3.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/MenuLabel:outline_modulate")
+tracks/0/path = NodePath("Pivot/winLabel:outline_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -275,7 +275,7 @@ tracks/0/keys = {
 "values": [ Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/MenuLabel:modulate")
+tracks/1/path = NodePath("Pivot/winLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -423,7 +423,7 @@ tracks/12/keys = {
 resource_name = "show-2"
 length = 3.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/MenuLabel:outline_modulate")
+tracks/0/path = NodePath("Pivot/winLabel:outline_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -435,7 +435,7 @@ tracks/0/keys = {
 "values": [ Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/MenuLabel:modulate")
+tracks/1/path = NodePath("Pivot/winLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -619,7 +619,7 @@ tracks/15/keys = {
 resource_name = "show-3"
 length = 3.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/MenuLabel:outline_modulate")
+tracks/0/path = NodePath("Pivot/winLabel:outline_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -631,7 +631,7 @@ tracks/0/keys = {
 "values": [ Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/MenuLabel:modulate")
+tracks/1/path = NodePath("Pivot/winLabel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -929,8 +929,8 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 450, 200 )
 
-[node name="MenuLabel" type="Label3D" parent="Pivot"]
-transform = Transform( 0.436405, 0, 0, 0, 0.436405, 0, 0, 0, 0.436405, 0, 2.4759, 0 )
+[node name="winLabel" type="Label3D" parent="Pivot"]
+transform = Transform( 0.436405, 0, 0, 0, 0.436405, 0, 0, 0, 0.436405, 0, 2.38629, 0 )
 sorting_offset = 6.0
 double_sided = false
 render_priority = 1

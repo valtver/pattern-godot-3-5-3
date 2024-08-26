@@ -8,6 +8,12 @@ var lastPosition = null
 export (bool) var ui = true
 export (bool) var scene = true
 
+func EnableUi():
+	ui = true
+	
+func DisableUi():
+	ui = false
+
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and ui:
 		if event.is_pressed():
@@ -18,17 +24,12 @@ func _input(event):
 		elif event.is_released():
 			if wasClickDown and lastPosition.distance_to(event.position) < 50:
 				if ui:
-					ProcessUi(event.position)
-				if scene:
 					ProcessScene(event.position)
 #			print("Click ended: ", event.position)
 			
 			lastPosition = null
 			wasClickDown = false
-						
-func ProcessUi(position):
-	pass
-	
+							
 func ProcessScene(position):
 	var camera = get_tree().get_nodes_in_group("camera")[0]
 	var from = camera.project_ray_origin(position)

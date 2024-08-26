@@ -1,6 +1,7 @@
 extends Resource
 
 export (int) var index
+export (Resource) var locName
 export (Array, Types.SymbolType) var symbolTypes
 export (Array, String, FILE) var sprites
 export (String, FILE) var startIsland

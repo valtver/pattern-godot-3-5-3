@@ -4,12 +4,23 @@ var visibilityNotifiers = []
 var cTiles = []
 var nTiles = []
 var pTiles = []
-var pIsland
-var cIsland
-var nIsland
+var pIsland = null
+var cIsland = null
+var nIsland = null
+
+var pIslandCache = []
 
 func Init():
-	pass
+	visibilityNotifiers = []
+	cTiles = []
+	nTiles = []
+	pTiles = []
+	pIsland = null
+	cIsland = null
+	nIsland = null
+	pIslandCache = []
+	for child in get_children():
+		child.free()
 		
 func AddFirstIsland():
 	if cIsland == null:
@@ -24,16 +35,21 @@ func AddFirstIsland():
 			cIsland = editorIsland
 		SortTiles()
 		InitTiles(cTiles)
-	else:
-		print("First island had been added already")
+	return cIsland
+	
 	
 func AddNextIsland(gameStepData):
+	if pIsland != null:
+		pIslandCache.push_back(pIsland)
+		pIsland.connect("screen_exited", self, "OnVisibilityChanged", [pIsland])
+	
 	pIsland = cIsland
 	cIsland = Loader.GetResource(gameStepData.island).instance()
 	add_child(cIsland)
 	cIsland.position = pIsland.position + Vector3.FORWARD * pIsland.aabb.size.z
 	SortTiles()
 	InitTiles(cTiles)
+	
 	
 func AddLastIsland():
 	pIsland = cIsland
@@ -68,28 +84,10 @@ func InitTiles(tileSet):
 		if tile.symbolPath != null:
 			tile.symbolPath.visible = false
 
-#func OnVisibilityChanged(notifier):
-#	if notifier == pIsland:
-#		for tile in tiles:
-#			if pIsland.is_a_parent_of(tile):
-#				tile.Reset()
-#
-#		var OLDpIsland = pIsland
-#		pIsland = island
-#		island = nIsland
-#		nIsland = OLDpIsland
-#		nIsland.position = island.position + Vector3.FORWARD * island.aabb.size.z
-#
-#	elif notifier == nIsland:
-#		var OLDnIsland = nIsland
-#		nIsland = island
-#		island = pIsland
-#		pIsland = OLDnIsland
-#		nIsland.position = island.position - Vector3.FORWARD * island.aabb.size.z
-	
-#func CheckVisibility():
-#	if !pIsland.is_on_screen():
-#		OnVisibilityChanged(pIsland)
+func OnVisibilityChanged(notifier):
+	notifier.queue_free()
+	pIslandCache.erase(notifier)
+	pass
 		
 func SubScribeToNotifiers():
 	visibilityNotifiers.clear()

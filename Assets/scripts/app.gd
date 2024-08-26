@@ -1,6 +1,7 @@
 extends Node
 
-var state = Types.AppState.START
+export (Types.AppState) var state = Types.AppState.START
+export (bool) var appStart = true
 
 var game
 var ui
@@ -8,17 +9,18 @@ var hud
 var hecticPlayLogo
 var gameLogo
 
-var appStart: bool = true
-
 onready var Content2D = $CameraPivot/Camera
 onready var Content3D = $"."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	TranslationServer.set_locale("en")
+	Events.connect("StartGame", self, "OnGameStart")
+	Events.connect("AppMainMenu", self,"OnMainMenu")
 #	Timeline.OnCompleteTimer(self, "Init", 2.0)
-#	Init()
+	Init()
 #	Timeline.OnCompleteTimer(self, "ShowBlocker", 4.0)
-#	ShowBlocker()
+	ShowBlocker()
 	pass
 
 func Init():
@@ -37,6 +39,7 @@ func Init():
 		gameLogo = inst.get_node("GameLogo")
 		
 func ShowBlocker():
+	AppInput.DisableUi()
 	if appStart:
 		appStart = false
 		ShowHectic()
@@ -65,6 +68,8 @@ func Unload():
 		game.queue_free()
 	if is_instance_valid(ui):
 		ui.queue_free()
+	if is_instance_valid(hud):
+		hud.queue_free()
 	
 	Loader.Unload()
 		
@@ -94,20 +99,17 @@ func OnLoadComplete():
 	if state == Types.AppState.START:
 		ui = Loader.GetResource(Data.appData.uiScene).instance()
 		Content2D.add_child(ui)
-		Events.connect("StartGame", self, "OnGameStart")
 	if state == Types.AppState.GAME:
 		hud = Loader.GetResource(Data.appData.hudScene).instance()
 		Content2D.add_child(hud)
-		hud.Init()
 		game = Loader.GetResource(Data.appData.gameScene).instance()
 		Content3D.add_child(game)
-		Events.connect("AppMainMenu", self,"OnMainMenu")
-		game.Init()
 #	Timeline.OnCompleteTimer(self, "HideBlocker", 0.5)
 	HideBlocker()
 	pass
 		
 func OnBlockerHidden():
+	AppInput.EnableUi()
 	pass
 	
 func OnGameStart():
@@ -115,6 +117,8 @@ func OnGameStart():
 	ShowBlocker()
 
 func OnMainMenu():
+	state = Types.AppState.START
+	ShowBlocker()
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 

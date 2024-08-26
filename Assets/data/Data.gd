@@ -22,6 +22,9 @@ func _process(_delta):
 			resourceData.gameResources.clear()
 			for dir in resourceData.gameResDir:
 				ParseDirToArray(dir, resourceData.gameResources)
+			resourceData.hudResources.clear()
+			for dir in resourceData.hudResDir:
+				ParseDirToArray(dir, resourceData.hudResources)
 			refresh = false
 			property_list_changed_notify()
 			

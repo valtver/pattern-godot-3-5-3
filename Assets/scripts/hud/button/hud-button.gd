@@ -2,6 +2,20 @@ extends Spatial
 
 export (Types.HudElementId) var hudElementId
 export (int) var index
+export (bool) var active = true setget activeSet, activeGet
+
+func activeSet(val):
+	var children = $Pivot.get_children()
+	for child in children:
+		if val:
+			child.modulate.a = 1.0
+		else:
+			child.modulate.a = 0.25
+	active = val
+	
+func activeGet():
+	return active
+
 var tween = null
 
 var defaultRotation = Vector3(-90, 0, 0)
@@ -34,8 +48,11 @@ func OnClick():
 	tween.set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property($Pivot, "scale", Vector3.ONE, 0.5)
 	tween.play()
-	Events.emit_signal("Click", self)
-
+	if active:
+		Events.emit_signal("Click", self)
+	else:
+		Events.emit_signal("InactiveClick", self)
+		
 func Show():
 	visible = true
 	
@@ -59,20 +76,24 @@ func AnimateShow(style: String = ""):
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(child, "opacity", 1, 0.3)
 	tween.play()
+	return tween
 
 func AnimateHide(style: String = ""):
 	visible = true
-	var tween = get_node_or_null("Tween")
 	if tween != null:
-		tween.remove_all()
+		tween.kill()
+	tween = create_tween()
 	if style == "":
-		tween.interpolate_property($Pivot, "scale",
-			Vector3.ONE, Vector3.ZERO, 0.3,
-			Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		$Pivot.scale = Vector3.ONE
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property($Pivot, "scale", Vector3.ZERO, 0.3)
 	elif style == "alpha":
 		for child in $Pivot.get_children():
-			tween.interpolate_property(child, "opacity",
-				1, 0, 0.3,
-				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
+			child.opacity = 0
+			tween.set_trans(Tween.TRANS_LINEAR)
+			tween.set_ease(Tween.EASE_IN_OUT)
+			tween.tween_property(child, "opacity", 0, 0.3)
+	tween.play()
+	return tween
 	

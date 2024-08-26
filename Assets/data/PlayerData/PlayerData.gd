@@ -6,6 +6,8 @@ export (int) var sessionScore = 0
 export (int) var sessionScoreLastStep = 0
 export (int) var gameStep = 0
 export (int) var selectedAngles = null
+
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

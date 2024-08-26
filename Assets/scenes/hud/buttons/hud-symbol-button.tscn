@@ -18,7 +18,7 @@ hudElementId = 2
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 
 [node name="sub-symbol-0" type="Sprite3D" parent="Pivot"]
-transform = Transform( 0.0918233, 0, 0, 0, -4.01372e-09, 0.0918233, 0, -0.0918233, -4.01372e-09, -0.183646, 3.48872e-10, -0.175666 )
+transform = Transform( 0.092606, 0, 0, 0, -4.04793e-09, 0.092606, 0, -0.092606, -4.04793e-09, -0.185211, 3.48874e-10, -0.177231 )
 sorting_offset = 3.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
@@ -27,7 +27,7 @@ texture = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="sub-symbol-1" type="Sprite3D" parent="Pivot"]
-transform = Transform( -4.01372e-09, 0.0918233, 4.01372e-09, 0, -4.01372e-09, 0.0918233, 0.0918233, 4.01372e-09, 1.75445e-16, 0.183646, 3.48872e-10, -0.175666 )
+transform = Transform( -4.04793e-09, 0.092606, 4.04793e-09, 0, -4.04793e-09, 0.092606, 0.092606, 4.04793e-09, 0, 0.185211, 3.48874e-10, -0.177231 )
 sorting_offset = 3.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
@@ -37,7 +37,7 @@ script = ExtResource( 3 )
 id = 1
 
 [node name="sub-symbol-2" type="Sprite3D" parent="Pivot"]
-transform = Transform( -4.01372e-09, -0.0918233, -4.01372e-09, 0, -4.01372e-09, 0.0918233, -0.0918233, 4.01372e-09, 1.75445e-16, -0.183646, 3.48829e-10, 0.191627 )
+transform = Transform( -4.04793e-09, -0.092606, -4.04793e-09, 0, -4.04793e-09, 0.092606, -0.092606, 4.04793e-09, 0, -0.185211, 3.48829e-10, 0.193192 )
 sorting_offset = 3.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
@@ -47,7 +47,7 @@ script = ExtResource( 3 )
 id = 2
 
 [node name="sub-symbol-3" type="Sprite3D" parent="Pivot"]
-transform = Transform( -0.0918233, 1.38649e-08, 6.06055e-16, 0, -4.01372e-09, 0.0918233, 1.38649e-08, 0.0918233, 4.01372e-09, 0.183646, 3.48829e-10, 0.191627 )
+transform = Transform( -0.092606, 1.39831e-08, 6.11221e-16, -5.29396e-23, -4.04793e-09, 0.092606, 1.39831e-08, 0.092606, 4.04793e-09, 0.185211, 3.48829e-10, 0.193192 )
 sorting_offset = 3.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
@@ -56,17 +56,18 @@ texture = ExtResource( 2 )
 script = ExtResource( 3 )
 id = 3
 
-[node name="button-base-bg" type="Sprite3D" parent="Pivot"]
-transform = Transform( 0.101006, 0, 0, 0, -4.4151e-09, 0.101006, 0, -0.101006, -4.4151e-09, 0, 5.99443e-09, 0.137137 )
-modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+[node name="button-base2" type="Sprite3D" parent="Pivot"]
+transform = Transform( 0.112079, 0, 0, 0, -4.89909e-09, 0.112079, 0, -0.112079, -4.89909e-09, 0, 3.96999e-10, 0.00908233 )
+sorting_offset = -2.0
+modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
 pixel_size = 0.0625
 double_sided = false
 texture = ExtResource( 4 )
 
-[node name="button-base" type="Sprite3D" parent="Pivot"]
-transform = Transform( 0.101006, 0, 0, 0, -4.4151e-09, 0.101006, 0, -0.101006, -4.4151e-09, 0, -2.61701e-11, -0.000598626 )
-sorting_offset = 1.0
-modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
+[node name="button-base3" type="Sprite3D" parent="Pivot"]
+transform = Transform( 0.112079, 0, 0, 0, -4.89909e-09, 0.112079, 0, -0.112079, -4.89909e-09, 0, 3.85416e-09, 0.0881729 )
+sorting_offset = -3.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
 pixel_size = 0.0625
 double_sided = false
 texture = ExtResource( 4 )

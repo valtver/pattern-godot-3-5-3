@@ -23,27 +23,48 @@ var cameraTransform
 var scroller
 
 func _ready():
-	AppInput.ui = false
+	AppInput.DisableUi()
 	Events.connect("HudButtonPlayClick", self, "OnPREPLAY")
 	Events.connect("HudButtonSymbolClick", self, "OnSymbolButtonClick")
 	Events.connect("HudButtonMenuClick", self, "OnMenuButtonClick")
+	Events.connect("HudButtonReplayClick", self, "OnReplayButtonClick")
+	Events.connect("HudButtonHomeClick", self, "OnHudButtonHomeClick")
+	Events.connect("HudButtonNextClick", self, "OnHudButtonNextClick")
+	InitScene()
+	InitData()
+	GameLoop()
+
+func InitScene():
 	cameraTransform = get_tree().get_root().get_camera().get_parent()
 	scroller = get_node_or_null("Scroller")
 	if scroller == null:
 		scroller = Loader.GetResource(Data.gameData.scrollerScene).instance()
 		add_child(scroller)
-	InitData()
-	GameLoop()
+	scroller.Init()
+	pass
 
 func InitData():
 	Data.playerData.gameStep = -1
 	var lvl = Data.playerData.selectedLevelIndex
 	var subLvl = Data.playerData.selectedSubLevelIndex
+	gameSteps = []
 	gameSteps = Data.GetGeneratedRuntimeGameData(Data.gameData.levels[lvl].subLevels[subLvl])
 	state = GameState.NEXT
 
+func OnHudButtonHomeClick():
+	Events.emit_signal("AppMainMenu")
+	
+func OnHudButtonNextClick():
+	Events.emit_signal("StartGame")
+
+func OnReplayButtonClick():
+	Timeline.StopDelay(self, "GameOver")
+	StopCameraMove()
+	InitScene()
+	InitData()
+	GameLoop()
+
 func OnPREPLAY():
-	AppInput.ui = false
 	TryPlayStartIslandAnimation()
 	state = GameState.PREPLAY
 	GameLoop()
@@ -60,7 +81,6 @@ func TryPlayEndIslandAnimation():
 		startAnimation.queue("Idle")
 	
 func GameOver():
-	AppInput.ui = false
 	Events.emit_signal("HideHudSymbolButtons", null)
 	state = GameState.OVER
 	GameLoop()
@@ -105,6 +125,10 @@ func ResumeCameraMove():
 	if camTween != null:
 		camTween.play()
 		
+func StopCameraMove():
+	if camTween != null:
+		camTween.kill()
+		
 func EmitGameOverTime(timeLeft):
 	Events.emit_signal("HudTimerUpdate", timeLeft / Data.gameData.gameStepDelay)
 			
@@ -123,10 +147,10 @@ func GameLoop():
 	if state == GameState.START:
 		if Data.playerData.gameStep == 0:
 			scroller.AddFirstIsland()
+			cameraTransform.position = scroller.cIsland.get_node("CameraPosition").global_position
 			for tile in scroller.cTiles:
 				tile.symbol.UpdateSymbol(stepData["angles"], stepData["sprites"])
 			Events.emit_signal("ShowHudStartScreen")
-			AppInput.ui = true
 		elif Data.playerData.gameStep > 0:
 			scroller.AddNextIsland(stepData)
 			MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
@@ -147,7 +171,6 @@ func GameLoop():
 			state = GameState.PLAY
 
 	if state == GameState.PLAY:
-		AppInput.ui = true
 		Events.emit_signal("ShowHudGameScreen")
 		Events.emit_signal("ShowHudSymbolButtons", stepData)
 		Events.emit_signal("ShowHudMenuButton")
@@ -157,7 +180,6 @@ func GameLoop():
 		PauseCameraMove()
 		
 	if state == GameState.CHECK:
-		AppInput.ui = false
 		var reservedScore = (Data.gameData.gameStepDelay - Timeline.GetTimer(self, "GameOver").get_total_elapsed_time()) * Data.gameData.gameScoreMultiplier
 		Timeline.StopDelay(self, "GameOver")
 		Events.emit_signal("HideHudMenuButton")
@@ -178,11 +200,10 @@ func GameLoop():
 			state = GameState.OVER
 
 	if state == GameState.OVER:
-		
+		Events.emit_signal("ShowHudLostScreen")
 		print("GAME OVER")
 
 	if state == GameState.COMPLETE:
-		AppInput.ui = true
 		print("LEVEL END")
 		scroller.AddLastIsland()
 		var starsNumber = Data.playerData.sessionScore / ((gameSteps.size() * (Data.gameData.gameStepDelay / 2) * Data.gameData.gameScoreMultiplier) / 3) #CONST FOR NOW

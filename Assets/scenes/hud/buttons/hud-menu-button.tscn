@@ -17,7 +17,7 @@ hudElementId = 1
 [node name="button-base" type="Sprite3D" parent="Pivot"]
 transform = Transform( 0.0771377, 0, 0, 0, 0.0771377, 0, 0, 0, 0.0771377, 0, 0, 0 )
 sorting_offset = 1.0
-modulate = Color( 0.901961, 0.694118, 0.513726, 0.501961 )
+modulate = Color( 0.94902, 0.796078, 0.654902, 0.501961 )
 pixel_size = 0.0625
 double_sided = false
 texture = ExtResource( 2 )

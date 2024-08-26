@@ -20,6 +20,7 @@ func _ready():
 	resize()
 	get_tree().get_root().connect("size_changed", self, "resize")
 	Events.connect("Click", self, "OnButtonClick")
+	Events.connect("InactiveClick", self, "OnInactiveClick")
 	InitScreen(Types.UiContentId.Main)
 	InitButtons(Types.UiContentId.Main)
 	pass # Replace with function body.
@@ -63,7 +64,7 @@ func RemoveDynamicButtons():
 		child.queue_free()
 						
 func OnButtonClick(button):
-	print(button.buttonId)
+#	print(button.buttonId)
 	if button.buttonId == Types.UiButtonId.Settings:
 		InitScreen(Types.UiContentId.Settings)
 		InitButtons(Types.UiContentId.Settings)
@@ -98,6 +99,16 @@ func OnButtonClick(button):
 		ShowConfirmScreen()
 		return
 		
+func OnInactiveClick(button):
+	if button.buttonId == Types.UiButtonId.Sound:
+		Data.appData.sound = !Data.appData.sound
+		button.active = Data.appData.sound
+		return
+	if button.buttonId == Types.UiButtonId.Music:
+		Data.appData.music = !Data.appData.music
+		button.active = Data.appData.music
+		return
+		
 func ShowConfirmScreen():
 	var confirmScreen = get_node_or_null("ConfirmScreen")
 	if confirmScreen == null:
@@ -109,7 +120,7 @@ func HideConfirmScreen():
 	var confirmScreen = get_node_or_null("ConfirmScreen")
 	if confirmScreen != null:
 		confirmScreen.Hide()
-	Timeline.OnCompleteTimer(confirmScreen, "queue_free", 0.2)
+	Timeline.Delay(confirmScreen, "queue_free", 0.5)
 		
 func resize():
 	var ref_width = 450 / get_viewport().get_camera().size

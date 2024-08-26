@@ -1,0 +1,9 @@
+keys,en,ru
+SUB_LVL_NAME,Day,День
+UI_MAIN_TOP_TEXT,Select your journey,Выбери своё приключение
+UI_SETTINGS_TOP_TEXT,Settings,Настройки
+HUD_START_TEXT,Tap to start,Коснись экрана\n и пойдём
+HUD_WIN_TEXT,complete!,выполнен!
+HUD_LOSE_TEXT,Oh no! We’re lost!,"О, нет! Мы заблудились!"
+HUD_WIN_TEXT,complete!,выполнен!
+LVL_1_NAME,Forest,Лес
