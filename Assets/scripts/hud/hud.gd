@@ -1,6 +1,6 @@
 extends Spatial
 
-var DISABLED_TYPES = [
+var MANUAL_VIS_CONTROL_TYPES = [
 	Types.HudElementId.HudButtonSymbol,
 	Types.HudElementId.HudButtonHome,
 	Types.HudElementId.HudButtonReplay,
@@ -21,6 +21,7 @@ var isPauseScreen = false
 
 func _ready():
 	Events.connect("Click", self, "OnButtonClick")
+	Events.connect("InactiveClick", self, "OnInactiveClick")
 	Events.connect("ShowHudStartScreen", self, "OnShowHudStartScreen")
 	Events.connect("ShowHudGameScreen", self, "OnShowHudGameScreen")
 	Events.connect("ShowHudMenuScreen", self, "OnShowHudMenuScreen")
@@ -63,6 +64,9 @@ func OnButtonClick(button):
 	if button.hudElementId == Types.HudElementId.HudButtonNext:
 		Data.playerData.selectedSubLevelIndex += 1
 		Events.emit_signal("HudButtonNextClick")
+		
+func OnInactiveClick(button):
+	pass
 	
 func OnShowHudStartScreen():
 	lastHudScreen = startHudScreen
@@ -100,6 +104,7 @@ func OnShowHudLostScreen():
 	pass
 	
 func ShowControlScreenButtons():
+	var lvlData = Data.gameData.levels[Data.playerData.selectedLevelIndex]
 	var currentChildren = GetScreenChildren(cHudScreen)
 	for child in currentChildren:
 		if "hudElementId" in child:
@@ -108,7 +113,9 @@ func ShowControlScreenButtons():
 			if child.hudElementId == Types.HudElementId.HudButtonReplay:
 				child.AnimateShow("alpha")
 			if child.hudElementId == Types.HudElementId.HudButtonNext:
-				if (Data.playerData.selectedSubLevelIndex + 1) < Data.gameData.levels[Data.playerData.selectedLevelIndex].subLevels.size():
+				var nextSubLevelIndex = Data.playerData.selectedSubLevelIndex + 1;
+				if nextSubLevelIndex < lvlData.subLevels.size():
+					child.active = lvlData.subLevels[nextSubLevelIndex].unlock
 					child.AnimateShow("alpha")
 					
 func OnShowMenuButton():
@@ -167,7 +174,7 @@ func ShowHudScreen(nextHudScreen):
 	
 		for nextChild in nextChildren:
 			if "hudElementId" in nextChild:
-				if nextChild.hudElementId in DISABLED_TYPES:
+				if nextChild.hudElementId in MANUAL_VIS_CONTROL_TYPES:
 					nextChild.visible = false
 				else:
 					var animate = true

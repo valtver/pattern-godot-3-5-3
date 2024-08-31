@@ -1,0 +1,7 @@
+{
+    "godotTools.editorPath.godot3": "/usr/local/godot/Godot_v3.6-beta5_x11.64",
+    "editor.smoothScrolling": true,
+    "workbench.list.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorBlinking": "smooth"
+}

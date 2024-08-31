@@ -11,4 +11,4 @@ gameScene = "res://Assets/scenes/game/game.tscn"
 hudScene = "res://Assets/scenes/hud/hud.tscn"
 uiScene = "res://Assets/scenes/ui/ui.tscn"
 sound = true
-music = true
+music = false

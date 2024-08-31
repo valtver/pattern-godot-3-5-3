@@ -12,6 +12,12 @@ signal LoadComplete
 signal AppMainMenu
 signal LevelEnd
 
+#UI EVENTS
+signal ShowUiMainScreen
+signal ShowUiSettingsScreen
+signal ShowUiSubLevelScreen
+
+#HUD EVENTS
 signal ShowHudStartScreen
 signal ShowHudGameScreen
 signal ShowHudMenuScreen

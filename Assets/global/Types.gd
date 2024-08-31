@@ -25,19 +25,19 @@ enum UiContentId {
 	SubLevel = 4
 }
 
-enum UiButtonId {
+enum UiElementId {
 	None = 0,
-	Settings = 1,
-	ContentLeft = 2,
-	ContentRight = 3,
-	Back = 4,
-	Level = 5,
-	SubLevel = 6,
-	About = 7,
-	Sound = 8,
-	Music = 9,
-	Accept = 10,
-	Decline = 11
+	UiButtonSettings = 1,
+	UiButtonScrollerLeft = 2,
+	UiButtonScrollerRight = 3,
+	UiButtonBack = 4,
+	UiButtonLevel = 5,
+	UiButtonSubLevel = 6,
+	UiButtonAbout = 7,
+	UiButtonSound = 8,
+	UiButtonMusic = 9,
+	UiButtonAccept = 10,
+	UiButtonDecline = 11
 }
 
 enum HudElementId {

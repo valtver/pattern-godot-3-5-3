@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/scripts/ui/ui-button.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.219, 0.937, 0.01 )
+
+[node name="LevelButton" type="StaticBody" groups=["uiContentButtons"]]
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 1 )
+uiElementId = 5
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="Pivot" type="Spatial" parent="."]
+
+[node name="Sprite" type="Sprite3D" parent="Pivot"]
+sorting_offset = 10.0
+flip_h = true
+region_rect = Rect2( 0, 0, 450, 434 )

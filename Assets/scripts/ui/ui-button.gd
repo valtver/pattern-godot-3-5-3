@@ -1,52 +1,31 @@
 extends StaticBody
 
-export (Types.UiButtonId) var buttonId = Types.UiButtonId.None
+export (Types.UiElementId) var uiElementId
 export (int, 0, 99) var index
 
-var active: bool = true setget OnActive
-var selected: bool = false setget OnSelected
-var locked: bool = false setget OnLocked
+export (bool) var active setget activeSet, activeGet
+export (Color) var inactiveColor = Color(0.8, 0.905882, 1, 1)
 
-func OnActive(value):
-	if(typeof(value) != typeof(active)):
-		return
-	active = value
-	if value:
-		sprite.modulate = defaultColor
-	else:
-		sprite.modulate = defaultColor * disabledColor
-		
-func OnLocked(value):
-	if(typeof(value) != typeof(locked) || lock == null):
-		return
-	locked = value
-	if value:
-		pass
-	else:
-		pass
-		
-func OnSelected(value):
-	if(typeof(value) != typeof(selected) || selection == null):
-		return
-	selected = value
-	selection.visible = value
-		
-onready var spritePivot = $SpritePivot
-onready var sprite = $SpritePivot/Sprite
-onready var selection = get_node_or_null("SpritePivot/Selection")
-onready var lock = get_node_or_null("SpritePivot/Lock")
-onready var defaultColor = sprite.modulate
-onready var disabledColor = Color("9db0cd")
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-func Init(activeVal, lockedVal, selectedVal):
-	active = activeVal
-	locked = lockedVal
-	selected = selectedVal
+const cachedActiveColors = {}
 
-# Called when the node enters the scene tree for the first time.
+func activeSet(val):
+	var children = $Pivot.get_children()
+	for child in children:
+		if val:
+			child.modulate = cachedActiveColors[child]
+		else:
+			child.modulate *= inactiveColor
+	active = val
+	
+func activeGet():
+	return active
+	
+var tween = null
+
 func _ready():
+	var children = $Pivot.get_children()
+	for child in children:
+		cachedActiveColors[child] = child.modulate
 	pass # Replace with function body.
 
 func OnPress():
@@ -56,27 +35,40 @@ func OnRelease():
 	pass
 		
 func OnClick():
-	var tween = get_node_or_null("Tween")
-	if tween == null:
-		return
-	tween.interpolate_property(spritePivot, "scale",
-		Vector3(1.2, 1.2, 1.2), Vector3.ONE, 0.5,
-		Tween.TRANS_ELASTIC, Tween.EASE_OUT)
-	tween.start()
+	if tween != null:
+		tween.kill()
+		
+	tween = create_tween()
+	$Pivot.scale *= Vector3(1.2, 1.2, 1.2)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property($Pivot, "scale", Vector3.ONE, 0.5)
+	tween.play()
 	if active:
 		Events.emit_signal("Click", self)
 	else:
 		Events.emit_signal("InactiveClick", self)
 
-func Show():
-	var tween = get_node_or_null("Tween")
-	if tween == null:
-		return
-	tween.interpolate_property(spritePivot, "scale",
-		Vector3(0, 0, 0), Vector3.ONE, 1,
-		Tween.TRANS_ELASTIC, Tween.EASE_OUT)
-	tween.start()
-	pass
+func AnimateShow(style: String = ""):
+	visible = true
+	if tween != null:
+		tween.kill()
+	tween = create_tween()
+	if style == "":
+		$Pivot.scale = Vector3.ZERO
+		tween.set_trans(Tween.TRANS_BACK)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property($Pivot, "scale", Vector3.ONE, 0.5)
+	elif style == "alpha":
+		for child in $Pivot.get_children():
+			if "opacity" in child:
+				child.opacity = 0
+				tween.set_trans(Tween.TRANS_LINEAR)
+				tween.set_ease(Tween.EASE_IN_OUT)
+				tween.tween_property(child, "opacity", 1, 0.25)
+	tween.play()
+	return tween
+
 	
 	
 	

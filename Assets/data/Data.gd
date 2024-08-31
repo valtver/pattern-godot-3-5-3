@@ -16,13 +16,13 @@ export (Resource) var resourceData
 func _process(_delta):
 	if Engine.editor_hint:
 		if refresh:
-			resourceData.uiResources.clear()
+			resourceData.uiResources = []
 			for dir in resourceData.uiResDir:
 				ParseDirToArray(dir, resourceData.uiResources)
-			resourceData.gameResources.clear()
+			resourceData.gameResources = []
 			for dir in resourceData.gameResDir:
 				ParseDirToArray(dir, resourceData.gameResources)
-			resourceData.hudResources.clear()
+			resourceData.hudResources = []
 			for dir in resourceData.hudResDir:
 				ParseDirToArray(dir, resourceData.hudResources)
 			refresh = false

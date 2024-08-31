@@ -12,3 +12,4 @@ sprites = [ "res://Assets/sprites/game/symbol/sub-symbol-0.png" ]
 startIsland = "res://Assets/terrain/tile-island/0/start.tscn"
 islands = [ "res://Assets/terrain/tile-island/0/0-0.tscn" ]
 endIsland = "res://Assets/terrain/tile-island/0/start.tscn"
+unlock = true

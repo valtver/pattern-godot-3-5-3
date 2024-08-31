@@ -10,16 +10,14 @@ extents = Vector3( 0.643, 0.664, 0.01 )
 collision_layer = 512
 collision_mask = 512
 script = ExtResource( 2 )
-buttonId = 7
+uiElementId = 7
 
-[node name="SpritePivot" type="Spatial" parent="."]
+[node name="Pivot" type="Spatial" parent="."]
 
-[node name="Sprite" type="Sprite3D" parent="SpritePivot"]
+[node name="Sprite" type="Sprite3D" parent="Pivot"]
 sorting_offset = 10.0
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
-
-[node name="Tween" type="Tween" parent="."]

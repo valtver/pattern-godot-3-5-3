@@ -150,6 +150,8 @@ func GameLoop():
 			cameraTransform.position = scroller.cIsland.get_node("CameraPosition").global_position
 			for tile in scroller.cTiles:
 				tile.symbol.UpdateSymbol(stepData["angles"], stepData["sprites"])
+			Data.playerData.sessionScore = 0
+			Data.playerData.sessionScoreLastStep = 0
 			Events.emit_signal("ShowHudStartScreen")
 		elif Data.playerData.gameStep > 0:
 			scroller.AddNextIsland(stepData)

@@ -2,7 +2,6 @@ extends Node
 
 export (Types.AppState) var state = Types.AppState.START
 export (bool) var appStart = true
-
 var game
 var ui
 var hud
@@ -90,6 +89,7 @@ func Load():
 	Loader.Load()
 	
 func OnBlockerShown():
+	# Data.playerData.GenerateUnlockData()
 	Unload()
 	gameLogo.play("game-logo-loop")
 	Load()
@@ -99,6 +99,7 @@ func OnLoadComplete():
 	if state == Types.AppState.START:
 		ui = Loader.GetResource(Data.appData.uiScene).instance()
 		Content2D.add_child(ui)
+		Events.emit_signal("ShowUiMainScreen")
 	if state == Types.AppState.GAME:
 		hud = Loader.GetResource(Data.appData.hudScene).instance()
 		Content2D.add_child(hud)

@@ -7,17 +7,38 @@ export (int) var sessionScoreLastStep = 0
 export (int) var gameStep = 0
 export (int) var selectedAngles = null
 
+func GenerateUnlockData():
+	for level in Data.gameData.levels:
+		unlocks[String(level.index)] = levelEntry.duplicate(true)
+		for subLevel in level.subLevels:
+			unlocks[String(level.index)][String(subLevel.index)] = subLevelEntry.duplicate(true)
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+	print(unlocks)	
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
 
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+var levelEntry = {
+	"unlock": false
+}
+
+var subLevelEntry = {
+	"unlock": false,
+	"score": 0
+}
+
+var unlocks = {
+	# "level": {
+	# 	"0": {
+	# 		"unlock": true,
+	# 		"0": {
+	# 			"unlock": true,
+	# 			"score": 0
+	# 		}
+	# 	}
+	# },
+	# "bonus": [{
+	# 	"index": 0
+	# }]
+}

@@ -11,3 +11,4 @@ index = 0
 locName = ExtResource( 3 )
 uiTexture = "res://Assets/sprites/ui/ui-forest-icon.png"
 subLevels = [ ExtResource( 1 ), ExtResource( 2 ) ]
+unlock = true
