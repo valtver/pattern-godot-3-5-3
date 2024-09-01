@@ -30,6 +30,9 @@ func ShowNextTutorialScreen():
 	var found = false
 	for page in pages:
 		page.visible = false
+		var pagePlayer = page.get_node_or_null("PagePlayer")
+		if pagePlayer:
+			pagePlayer.stop()
 		if page.name == "%s" % nextPage:
 			currentVisible = nextPage
 			page.visible = true
@@ -37,6 +40,8 @@ func ShowNextTutorialScreen():
 			get_node("Pivot/TUTORIAL_PAGE_LABEL").text = "%s %d-%d" % [tr("TUTORIAL_PAGE_LABEL"), currentVisible, pages.size()]
 			var nodeName = "%s%d%s" % ["TUTORIAL_PAGE_", currentVisible, "_TEXT"] 
 			page.get_node(nodeName).text = tr(nodeName)
+			if pagePlayer:
+				pagePlayer.play("loop")
 			
 	if not found:
 		currentVisible = 0
