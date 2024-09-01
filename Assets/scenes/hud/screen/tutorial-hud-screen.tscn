@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/hud-tutorial-screen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
@@ -305,6 +305,142 @@ tracks/11/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 1.50825, 2.00239, 0 ), Vector3( 1.50825, 2.43017, 0 ), Vector3( 1.50825, 2.00239, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Check3:opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Cross1:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Cross2:opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "loop"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Check3:opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Cross1:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Cross2:opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.7, 1.1, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("TimerBg3:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 270, 40 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TimerBg3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.431373, 0.737255, 0.317647, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "loop"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TimerBg3:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 3 ),
+"transitions": PoolRealArray( 1, 1e+06, 1e+06 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 270, 40 ), Rect2( 0, 0, 10, 40 ), Rect2( 0, 0, 10, 40 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TimerBg3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.870588, 1, 0.709804, 1 ), Color( 0.431373, 0.737255, 0.317647, 1 ), Color( 0.694118, 0.219608, 0.360784, 1 ), Color( 0.694118, 0.219608, 0.360784, 1 ) ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -733,6 +869,7 @@ width = 1100.0
 
 [node name="2" type="Spatial" parent="Pivot/TutorialBaseSheet"]
 transform = Transform( 0.999565, -0.0294918, 0, 0.0294918, 0.999565, 0, 0, 0, 1, 0, 0, 0 )
+visible = false
 
 [node name="TUTORIAL_PAGE_2_TEXT" type="Label3D" parent="Pivot/TutorialBaseSheet/2"]
 transform = Transform( 0.356845, 0, 0, 0, 0.356845, 0, 0, 0, 0.356845, 0.167607, -1.16046, 0 )
@@ -996,6 +1133,7 @@ region_rect = Rect2( 0, 0, 100, 100 )
 transform = Transform( 0.332, 0, 0, 0, 0.332, 0, 0, 0, 0.332, -1.191, 0.838947, 0 )
 sorting_offset = 35.0
 modulate = Color( 0.694118, 0.219608, 0.360784, 1 )
+opacity = 0.0
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
@@ -1003,6 +1141,7 @@ region_rect = Rect2( 0, 0, 100, 100 )
 transform = Transform( 0.332, 0, 0, 0, 0.332, 0, 0, 0, 0.332, 1.191, 0.839067, 0 )
 sorting_offset = 35.0
 modulate = Color( 0.694118, 0.219608, 0.360784, 1 )
+opacity = 0.0
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
@@ -1010,6 +1149,7 @@ region_rect = Rect2( 0, 0, 100, 100 )
 transform = Transform( 0.332, 0, 0, 0, 0.332, 0, 0, 0, 0.332, 0, 0.839067, 0 )
 sorting_offset = 35.0
 modulate = Color( 0.301961, 0.588235, 0.333333, 1 )
+opacity = 0.0
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
@@ -1024,9 +1164,12 @@ line_spacing = -70.0
 autowrap = true
 width = 1100.0
 
+[node name="PagePlayer" type="AnimationPlayer" parent="Pivot/TutorialBaseSheet/3"]
+anims/RESET = SubResource( 5 )
+anims/loop = SubResource( 6 )
+
 [node name="4" type="Spatial" parent="Pivot/TutorialBaseSheet"]
 transform = Transform( 0.999565, -0.0294918, 0, 0.0294918, 0.999565, 0, 0, 0, 1, 0, 0, 0 )
-visible = false
 
 [node name="TUTORIAL_PAGE_4_TEXT" type="Label3D" parent="Pivot/TutorialBaseSheet/4"]
 transform = Transform( 0.356845, 0, 0, 0, 0.356845, 0, 0, 0, 0.356845, 0, -1.16, 0 )
@@ -1062,12 +1205,18 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 280, 40 )
 
 [node name="TimerBg3" type="Sprite3D" parent="Pivot/TutorialBaseSheet/4"]
-transform = Transform( 0.715722, 0, 0, 0, 0.715722, 0, 0, 0, 0.715722, -0.164026, 0, 0 )
+transform = Transform( 0.715722, -4.44089e-16, 0, 4.44089e-16, 0.715722, 0, 0, 0, 0.715722, -0.977297, -8.88178e-16, 0 )
 sorting_offset = 43.0
+centered = false
+offset = Vector2( 0, -20 )
 modulate = Color( 0.431373, 0.737255, 0.317647, 1 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 230, 40 )
+region_rect = Rect2( 0, 0, 270, 40 )
+
+[node name="PagePlayer" type="AnimationPlayer" parent="Pivot/TutorialBaseSheet/4"]
+anims/RESET = SubResource( 7 )
+anims/loop = SubResource( 8 )
 
 [node name="DecoSheet" type="Sprite3D" parent="Pivot"]
 transform = Transform( 0.86774, 0.0623221, 0, -0.0623221, 0.86774, 0, 0, 0, 0.869975, -0.222371, 2.07469, 0 )
