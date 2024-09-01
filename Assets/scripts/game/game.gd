@@ -20,7 +20,8 @@ var runtimeData
 var gameSteps = []
 var tiles
 var cameraTransform
-var scroller
+var Scroller
+var Tutorial
 
 func _ready():
 	AppInput.DisableUi()
@@ -36,11 +37,11 @@ func _ready():
 
 func InitScene():
 	cameraTransform = get_tree().get_root().get_camera().get_parent()
-	scroller = get_node_or_null("Scroller")
-	if scroller == null:
-		scroller = Loader.GetResource(Data.gameData.scrollerScene).instance()
-		add_child(scroller)
-	scroller.Init()
+	Scroller = get_node_or_null("Scroller")
+	if Scroller == null:
+		Scroller = Loader.GetResource(Data.gameData.scrollerScene).instance()
+		add_child(Scroller)
+	Scroller.Init()
 	pass
 
 func InitData():
@@ -70,12 +71,12 @@ func OnPREPLAY():
 	GameLoop()
 		
 func TryPlayStartIslandAnimation():
-	var startAnimation = scroller.cIsland.get_node_or_null("AnimationPlayer")
+	var startAnimation = Scroller.cIsland.get_node_or_null("AnimationPlayer")
 	if startAnimation != null:
 		startAnimation.play("Start")
 		
 func TryPlayEndIslandAnimation():
-	var startAnimation = scroller.cIsland.get_node_or_null("AnimationPlayer")
+	var startAnimation = Scroller.cIsland.get_node_or_null("AnimationPlayer")
 	if startAnimation != null:
 		startAnimation.play("End")
 		startAnimation.queue("Idle")
@@ -100,8 +101,8 @@ func OnSymbolButtonClick(button):
 	GameLoop()
 	
 func AnimateTilesStart():
-	var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
-	for tile in scroller.cTiles:
+	var cameraGPos = Scroller.cIsland.get_node("CameraPosition").global_position
+	for tile in Scroller.cTiles:
 		Timeline.Delay(tile, "SymbolFadeIn", tile.global_position.distance_to(cameraGPos - Vector3.FORWARD * 2) * 0.05)
 		
 func AnimateTilesComplete():
@@ -146,17 +147,17 @@ func GameLoop():
 
 	if state == GameState.START:
 		if Data.playerData.gameStep == 0:
-			scroller.AddFirstIsland()
-			cameraTransform.position = scroller.cIsland.get_node("CameraPosition").global_position
-			for tile in scroller.cTiles:
+			Scroller.AddFirstIsland()
+			cameraTransform.position = Scroller.cIsland.get_node("CameraPosition").global_position
+			for tile in Scroller.cTiles:
 				tile.symbol.UpdateSymbol(stepData["angles"], stepData["sprites"])
 			Data.playerData.sessionScore = 0
 			Data.playerData.sessionScoreLastStep = 0
 			Events.emit_signal("ShowHudStartScreen")
 		elif Data.playerData.gameStep > 0:
-			scroller.AddNextIsland(stepData)
-			MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
-			for tile in scroller.cTiles:
+			Scroller.AddNextIsland(stepData)
+			MoveCameraTo(Scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
+			for tile in Scroller.cTiles:
 				tile.symbol.UpdateSymbol(stepData["angles"], stepData["sprites"])
 			Timeline.Delay(self, "OnPREPLAY", Data.gameData.nextGameStepDelay)
 
@@ -173,6 +174,7 @@ func GameLoop():
 			state = GameState.PLAY
 
 	if state == GameState.PLAY:
+#		Events.emit_signal("TutorialState1")
 		Events.emit_signal("ShowHudGameScreen")
 		Events.emit_signal("ShowHudSymbolButtons", stepData)
 		Events.emit_signal("ShowHudMenuButton")
@@ -190,9 +192,9 @@ func GameLoop():
 			Data.playerData.sessionScoreLastStep = int(reservedScore)
 			Data.playerData.sessionScore += Data.playerData.sessionScoreLastStep
 			Events.emit_signal("HudWinScore")
-			var cameraGPos = scroller.cIsland.get_node("CameraPosition").global_position
+			var cameraGPos = Scroller.cIsland.get_node("CameraPosition").global_position
 			var rnd = RandomNumberGenerator.new()
-			for tile in scroller.cTiles:
+			for tile in Scroller.cTiles:
 				rnd.randomize()
 				Timeline.Delay(tile, "PathAppear", tile.global_position.distance_to(cameraGPos - Vector3.FORWARD * 2) * rnd.randf_range(1.0, 1.2) * 0.1)
 			state = GameState.NEXT
@@ -207,12 +209,29 @@ func GameLoop():
 
 	if state == GameState.COMPLETE:
 		print("LEVEL END")
-		scroller.AddLastIsland()
+		Scroller.AddLastIsland()
+		RegisterWin()
 		var starsNumber = Data.playerData.sessionScore / ((gameSteps.size() * (Data.gameData.gameStepDelay / 2) * Data.gameData.gameScoreMultiplier) / 3) #CONST FOR NOW
 		Events.emit_signal("ShowHudWinScreen", clamp(floor(starsNumber), 1, 3))
 		Events.emit_signal("HudWinScore", 2.5, true, 0.0)
-		MoveCameraTo(scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
+		MoveCameraTo(Scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
 		Timeline.Delay(self, "TryPlayEndIslandAnimation", Data.gameData.nextGameStepDelay + 0.25)
 		return
+
+func RegisterWin():
+	var lvlData = Data.gameData.levels[Data.playerData.selectedLevelIndex]
+	var subLevelScore = lvlData.subLevels[Data.playerData.selectedSubLevelIndex].score
+	if subLevelScore < Data.playerData.sessionScore:
+		subLevelScore = Data.playerData.sessionScore
+		
+	var nextLevelIndex = Data.playerData.selectedLevelIndex + 1
+	var nextSubLevelIndex = Data.playerData.selectedSubLevelIndex + 1
+	if nextSubLevelIndex < lvlData.subLevels.size():
+		lvlData.subLevels[nextSubLevelIndex].unlock = true
+	elif nextLevelIndex < Data.gameData.levels.size():
+		Data.gameData.levels[nextLevelIndex].unlock = true
+		Data.gameData.levels[nextLevelIndex].subLevels[0].unlock = true
+		
+		
 
 

@@ -23,6 +23,7 @@ signal ShowHudGameScreen
 signal ShowHudMenuScreen
 signal ShowHudWinScreen
 signal ShowHudLostScreen
+signal ShowHudTutorialScreen
 
 signal ShowHudSymbolButtons
 signal HideHudSymbolButtons
@@ -32,6 +33,10 @@ signal HideHudMenuButton
 signal HudButtonSymbolClick
 signal HudButtonPlayClick
 signal HudButtonMenuClick
+signal HudButtonTutorialClick
 signal HudButtonReplayClick
 signal HudButtonHomeClick
 signal HudButtonNextClick
+
+#TUTORIAL
+signal TutorialState1

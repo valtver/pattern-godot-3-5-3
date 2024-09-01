@@ -10,5 +10,6 @@ gameLogoScene = "res://Assets/scenes/app/game-logo.tscn"
 gameScene = "res://Assets/scenes/game/game.tscn"
 hudScene = "res://Assets/scenes/hud/hud.tscn"
 uiScene = "res://Assets/scenes/ui/ui.tscn"
+tutorialScene = "res://Assets/scenes/tutorial/tutorial.tscn"
 sound = true
 music = false

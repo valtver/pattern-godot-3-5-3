@@ -6,13 +6,17 @@ var MANUAL_VIS_CONTROL_TYPES = [
 	Types.HudElementId.HudButtonReplay,
 	Types.HudElementId.HudButtonNext
 ]
-var FADE_ANIMATION_TYPES = [Types.HudElementId.HudButtonMenu]
+var FADE_ANIMATION_TYPES = [
+	Types.HudElementId.HudButtonMenu,
+	Types.HudElementId.HudButtonTutorial
+]
 
 export (String, FILE) var startHudScreen
 export (String, FILE) var gameHudScreen
 export (String, FILE) var pauseHudScreen
 export (String, FILE) var winHudScreen
 export (String, FILE) var lostHudScreen
+export (String, FILE) var tutorialHudScreen
 
 var lastHudScreen = null
 
@@ -27,6 +31,7 @@ func _ready():
 	Events.connect("ShowHudMenuScreen", self, "OnShowHudMenuScreen")
 	Events.connect("ShowHudWinScreen", self, "OnShowHudWinScreen")
 	Events.connect("ShowHudLostScreen", self, "OnShowHudLostScreen")
+	Events.connect("ShowHudTutorialScreen", self, "OnShowHudTutorialScreen")
 	
 	Events.connect("ShowHudSymbolButtons", self, "OnShowSymbolButtons")
 	Events.connect("HideHudSymbolButtons", self, "OnHideSymbolButtons")
@@ -43,30 +48,48 @@ func GetScreenChildren(screenName):
 	
 func OnButtonClick(button):
 	AppInput.DisableUi()
-	if button.hudElementId == Types.HudElementId.HudButtonStart:
-		Events.emit_signal("HudButtonPlayClick")
-	if button.hudElementId == Types.HudElementId.HudButtonSymbol:
-		Events.emit_signal("HudButtonSymbolClick", button)
-	if button.hudElementId == Types.HudElementId.HudButtonMenu:
-		if not isPauseScreen:
-			ShowHudScreen(Loader.GetResource(pauseHudScreen).instance())
-			Timeline.Delay(self, "ShowControlScreenButtons", 0.25)
-			isPauseScreen = true
-		else:
-			ShowHudScreen(Loader.GetResource(lastHudScreen).instance())
+	match button.hudElementId:
+		Types.HudElementId.HudButtonTutorial:
+			if lastHudScreen == tutorialHudScreen:
+				OnShowHudStartScreen()
+			else:
+				OnShowHudTutorialScreen()
+		Types.HudElementId.HudButtonTutorialNext:
+			OnShowHudTutorialNext()
+		Types.HudElementId.HudButtonStart:
+			Events.emit_signal("HudButtonPlayClick")
+		Types.HudElementId.HudButtonSymbol:
+			Events.emit_signal("HudButtonSymbolClick", button)
+		Types.HudElementId.HudButtonMenu:
+			if not isPauseScreen:
+				ShowHudScreen(Loader.GetResource(pauseHudScreen).instance())
+				Timeline.Delay(self, "ShowControlScreenButtons", 0.25)
+				isPauseScreen = true
+			else:
+				ShowHudScreen(Loader.GetResource(lastHudScreen).instance())
+				isPauseScreen = false
+			Events.emit_signal("HudButtonMenuClick")
+		Types.HudElementId.HudButtonReplay:
 			isPauseScreen = false
-		Events.emit_signal("HudButtonMenuClick")
-	if button.hudElementId == Types.HudElementId.HudButtonReplay:
-		isPauseScreen = false
-		Events.emit_signal("HudButtonReplayClick")
-	if button.hudElementId == Types.HudElementId.HudButtonHome:
-		Events.emit_signal("HudButtonHomeClick")
-	if button.hudElementId == Types.HudElementId.HudButtonNext:
-		Data.playerData.selectedSubLevelIndex += 1
-		Events.emit_signal("HudButtonNextClick")
+			Events.emit_signal("HudButtonReplayClick")
+		Types.HudElementId.HudButtonHome:
+			Events.emit_signal("HudButtonHomeClick")
+		Types.HudElementId.HudButtonNext:
+			Data.playerData.selectedSubLevelIndex += 1
+			Events.emit_signal("HudButtonNextClick")
 		
 func OnInactiveClick(button):
 	pass
+	
+func OnShowHudTutorialScreen():
+	lastHudScreen = tutorialHudScreen
+	var screen = Loader.GetResource(tutorialHudScreen).instance()
+	ShowHudScreen(screen)
+	screen.ShowNextTutorialScreen()
+	
+func OnShowHudTutorialNext():
+	cHudScreen.ShowNextTutorialScreen()
+	AppInput.EnableUi()
 	
 func OnShowHudStartScreen():
 	lastHudScreen = startHudScreen
@@ -76,7 +99,6 @@ func OnShowHudStartScreen():
 	screen.get_node_or_null("Pivot/levelLabel").text = "%s %d" % [tr("SUB_LVL_NAME"), (Data.playerData.selectedSubLevelIndex + 1)]
 	screen.get_node_or_null("Pivot/hud-play-button/Pivot/TapLabel").text = tr("HUD_START_TEXT")
 
-	
 func OnShowHudGameScreen():
 	if lastHudScreen != gameHudScreen:
 		lastHudScreen = gameHudScreen

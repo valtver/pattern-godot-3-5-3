@@ -1,9 +1,11 @@
 extends Node
 
 enum AppState {
+	NONE = -1,
 	START = 0,
 	UI = 1,
-	GAME = 2
+	GAME = 2,
+	FIRST_START = 3
 }
 
 enum LocId {
@@ -46,7 +48,9 @@ enum HudElementId {
 	HudButtonSymbol = 2,
 	HudButtonReplay = 3,
 	HudButtonHome = 4,
-	HudButtonNext = 5
+	HudButtonNext = 5,
+	HudButtonTutorial = 6,
+	HudButtonTutorialNext = 7
 }
 
 enum SymbolType {

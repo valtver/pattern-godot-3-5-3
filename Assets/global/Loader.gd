@@ -49,4 +49,5 @@ func _queue_loading_thread_complete(status):
 	assert(status)
 	print("Queue load complete with status: ", status)
 	Events.emit_signal("LoadComplete")
-	thread.wait_to_finish()
+	if thread != null:
+		thread.wait_to_finish()

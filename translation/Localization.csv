@@ -8,3 +8,9 @@ HUD_WIN_TEXT,complete!,выполнен!
 HUD_LOSE_TEXT,Oh no! We’re lost!,"О, нет! Мы заблудились!"
 HUD_WIN_TEXT,complete!,выполнен!
 LVL_1_NAME,Forest,Лес
+TUTORIAL_PAGE_LABEL,Page,Страница
+TUTORIAL_PAGE_TITLE,Scout papers,Записки скаута
+TUTORIAL_PAGE_1_TEXT,Hello my scout friend!\n\nKeep these papers with you. They are your adventure companions. Feel free to refresh your memory once you start your day.,"Привет мой друг!\n\nНоси эти записки с собой, чтобы ты всегда мог их перечитать перед началом нового дня. "
+TUTORIAL_PAGE_2_TEXT,Observe the pattern!,Изучи узор!
+TUTORIAL_PAGE_3_TEXT,Match the tile!,Сопоставь с плиткой!
+TUTORIAL_PAGE_4_TEXT,Be quick!,Принимай решения быстро!

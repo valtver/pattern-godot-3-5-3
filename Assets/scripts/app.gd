@@ -1,7 +1,8 @@
 extends Node
 
-export (Types.AppState) var state = Types.AppState.START
+export (Types.AppState) var state = Types.AppState.NONE
 export (bool) var appStart = true
+var tutorial
 var game
 var ui
 var hud
@@ -89,13 +90,22 @@ func Load():
 	Loader.Load()
 	
 func OnBlockerShown():
-	# Data.playerData.GenerateUnlockData()
 	Unload()
+	if state == Types.AppState.NONE:
+		state = Types.AppState.FIRST_START
+		
+	# Data.playerData.GenerateUnlockData()
 	gameLogo.play("game-logo-loop")
 	Load()
 		
 func OnLoadComplete():
 	Events.disconnect("LoadComplete", self, "OnLoadComplete")
+	if state == Types.AppState.FIRST_START:
+		Data.playerData.selectedLevelIndex = 0
+		Data.playerData.selectedSubLevelIndex = 0
+		tutorial = Loader.GetResource(Data.appData.tutorialScene).instance()
+		Content2D.add_child(tutorial)
+		state = Types.AppState.GAME
 	if state == Types.AppState.START:
 		ui = Loader.GetResource(Data.appData.uiScene).instance()
 		Content2D.add_child(ui)

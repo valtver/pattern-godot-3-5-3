@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/bitmap_ui-no.png-aaf40342a19f160e086a579c6463718f.s3tc.stex"
-path.etc="res://.import/bitmap_ui-no.png-aaf40342a19f160e086a579c6463718f.etc.stex"
+path.s3tc="res://.import/bitmap_ui-yes.png-979ab19b0105c9c04701310f39853577.s3tc.stex"
+path.etc="res://.import/bitmap_ui-yes.png-979ab19b0105c9c04701310f39853577.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/sprites/ui/bitmap_ui-no.png"
-dest_files=[ "res://.import/bitmap_ui-no.png-aaf40342a19f160e086a579c6463718f.s3tc.stex", "res://.import/bitmap_ui-no.png-aaf40342a19f160e086a579c6463718f.etc.stex" ]
+source_file="res://Assets/sprites/shared/bitmap_ui-yes.png"
+dest_files=[ "res://.import/bitmap_ui-yes.png-979ab19b0105c9c04701310f39853577.s3tc.stex", "res://.import/bitmap_ui-yes.png-979ab19b0105c9c04701310f39853577.etc.stex" ]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=true
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false

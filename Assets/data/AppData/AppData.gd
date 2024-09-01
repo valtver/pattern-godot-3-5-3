@@ -7,6 +7,7 @@ export (String, FILE, "*.tscn") var gameLogoScene
 export (String, FILE, "*.tscn") var gameScene
 export (String, FILE, "*.tscn") var hudScene
 export (String, FILE, "*.tscn") var uiScene
+export (String, FILE, "*.tscn") var tutorialScene
 
 export (bool) var sound = true
 export (bool) var music = true
