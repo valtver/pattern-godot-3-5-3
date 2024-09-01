@@ -154,6 +154,8 @@ func GameLoop():
 			Data.playerData.sessionScore = 0
 			Data.playerData.sessionScoreLastStep = 0
 			Events.emit_signal("ShowHudStartScreen")
+			if Data.appData.tutorial:
+				Events.emit_signal("ShowHudTutorialScreen")
 		elif Data.playerData.gameStep > 0:
 			Scroller.AddNextIsland(stepData)
 			MoveCameraTo(Scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)

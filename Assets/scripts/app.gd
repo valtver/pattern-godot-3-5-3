@@ -93,7 +93,8 @@ func OnBlockerShown():
 	Unload()
 	if state == Types.AppState.NONE:
 		state = Types.AppState.FIRST_START
-		
+		Data.appData.tutorial = true
+		Data.appData.tutorial = false		
 	# Data.playerData.GenerateUnlockData()
 	gameLogo.play("game-logo-loop")
 	Load()
@@ -103,8 +104,6 @@ func OnLoadComplete():
 	if state == Types.AppState.FIRST_START:
 		Data.playerData.selectedLevelIndex = 0
 		Data.playerData.selectedSubLevelIndex = 0
-		tutorial = Loader.GetResource(Data.appData.tutorialScene).instance()
-		Content2D.add_child(tutorial)
 		state = Types.AppState.GAME
 	if state == Types.AppState.START:
 		ui = Loader.GetResource(Data.appData.uiScene).instance()
