@@ -9,6 +9,7 @@ export (Array, String, FILE) var islands
 export (String, FILE) var endIsland
 export (bool) var unlock = false
 export (int) var score
+export (int) var stars
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

@@ -5,7 +5,6 @@
 
 [node name="App" type="Node"]
 script = ExtResource( 4 )
-state = 2
 appStart = false
 
 [node name="CameraPivot" type="Spatial" parent="."]

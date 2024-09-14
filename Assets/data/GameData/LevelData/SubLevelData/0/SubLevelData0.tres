@@ -14,3 +14,4 @@ islands = [ "res://Assets/terrain/tile-island/0/0-0.tscn" ]
 endIsland = "res://Assets/terrain/tile-island/0/start.tscn"
 unlock = true
 score = 0
+stars = 0

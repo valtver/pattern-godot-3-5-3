@@ -155,6 +155,7 @@ func GameLoop():
 			Data.playerData.sessionScoreLastStep = 0
 			Events.emit_signal("ShowHudStartScreen")
 			if Data.appData.tutorial:
+				Data.appData.tutorial = false
 				Events.emit_signal("ShowHudTutorialScreen")
 		elif Data.playerData.gameStep > 0:
 			Scroller.AddNextIsland(stepData)
@@ -193,6 +194,7 @@ func GameLoop():
 		if Data.playerData.selectedAngles == stepData["angles"]:
 			Data.playerData.sessionScoreLastStep = int(reservedScore)
 			Data.playerData.sessionScore += Data.playerData.sessionScoreLastStep
+			Data.playerData.sessionStars = Data.playerData.sessionScore / ((gameSteps.size() * (Data.gameData.gameStepDelay / 2) * Data.gameData.gameScoreMultiplier) / 3)
 			Events.emit_signal("HudWinScore")
 			var cameraGPos = Scroller.cIsland.get_node("CameraPosition").global_position
 			var rnd = RandomNumberGenerator.new()
@@ -213,8 +215,7 @@ func GameLoop():
 		print("LEVEL END")
 		Scroller.AddLastIsland()
 		RegisterWin()
-		var starsNumber = Data.playerData.sessionScore / ((gameSteps.size() * (Data.gameData.gameStepDelay / 2) * Data.gameData.gameScoreMultiplier) / 3) #CONST FOR NOW
-		Events.emit_signal("ShowHudWinScreen", clamp(floor(starsNumber), 1, 3))
+		Events.emit_signal("ShowHudWinScreen", clamp(floor(Data.playerData.sessionStars), 1, 3))
 		Events.emit_signal("HudWinScore", 2.5, true, 0.0)
 		MoveCameraTo(Scroller.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
 		Timeline.Delay(self, "TryPlayEndIslandAnimation", Data.gameData.nextGameStepDelay + 0.25)
@@ -222,6 +223,11 @@ func GameLoop():
 
 func RegisterWin():
 	var lvlData = Data.gameData.levels[Data.playerData.selectedLevelIndex]
+	var subLvlData = lvlData.subLevels[Data.playerData.selectedSubLevelIndex]
+	
+	subLvlData.score = Data.playerData.sessionScore
+	subLvlData.stars = Data.playerData.sessionStars
+	
 	var subLevelScore = lvlData.subLevels[Data.playerData.selectedSubLevelIndex].score
 	if subLevelScore < Data.playerData.sessionScore:
 		subLevelScore = Data.playerData.sessionScore

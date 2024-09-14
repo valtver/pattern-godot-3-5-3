@@ -7,6 +7,7 @@ script = ExtResource( 1 )
 selectedLevelIndex = 0
 selectedSubLevelIndex = 0
 sessionScore = 0
+sessionStars = 0
 sessionScoreLastStep = 0
 gameStep = 0
 selectedAngles = null

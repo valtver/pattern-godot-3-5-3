@@ -142,6 +142,7 @@ func ShowUiSubLevelButtons(screenInstance):
 		scrollerPivot.add_child(subLevelButton)
 		subLevelButton.position = gridPosition + pagePosition
 		subLevelButton.active = subLvlData.unlock
+		subLevelButton.SetStars(subLvlData.stars)
 		subLevelButton.AnimateShow("alpha")
 	subLevelButtonReference.free()
 

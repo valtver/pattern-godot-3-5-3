@@ -93,8 +93,7 @@ func OnBlockerShown():
 	Unload()
 	if state == Types.AppState.NONE:
 		state = Types.AppState.FIRST_START
-		Data.appData.tutorial = true
-		Data.appData.tutorial = false		
+		Data.appData.tutorial = true		
 	# Data.playerData.GenerateUnlockData()
 	gameLogo.play("game-logo-loop")
 	Load()

@@ -19,7 +19,7 @@ func activeSet(val):
 	
 func activeGet():
 	return active
-	
+		
 var tween = null
 
 func _ready():
@@ -48,6 +48,15 @@ func OnClick():
 		Events.emit_signal("Click", self)
 	else:
 		Events.emit_signal("InactiveClick", self)
+
+func SetStars(starsNumber):
+	print("StarNumber: ", starsNumber)
+	var stars = [$"Pivot/Star-0", $"Pivot/Star-1", $"Pivot/Star-2"]
+	for starIndex in stars.size():
+		if starIndex < starsNumber:
+			stars[starIndex].modulate = Color(0.235294, 0.098039, 0.015686)
+		else:
+			stars[starIndex].modulate = cachedActiveColors[stars[starIndex]]
 
 func AnimateShow(style: String = ""):
 	visible = true
