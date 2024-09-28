@@ -1,7 +1,6 @@
 extends Resource
 
 export (int, 0, 99) var index
-export (Resource) var locName
 export (String, FILE) var uiTexture
 export (Array, Resource) var subLevels
 export (bool) var unlock = false

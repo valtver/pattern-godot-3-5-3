@@ -62,14 +62,14 @@ enum SymbolType {
 	ZigzagLeft = 5
 }
 
-enum SubSymbolOffset {
-	None = 0,
+enum SymbolOffset {
+	Normal = 0,
 	X = 1,
 	Y = 2,
 	XY = 3
 }
 
-enum SubSymbolMap {
+enum SymbolMap {
 	Single = 0,
 	DoubleDiagonal = 1,
 	DoubleTop = 2,

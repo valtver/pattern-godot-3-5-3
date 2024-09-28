@@ -54,103 +54,120 @@ func ParseDirToArray(dirPath, destArray):
 
 func GetGeneratedRuntimeGameData(subLevel):
 	var gameSteps = []
-	
-	var gUniqueSingle = []
-	var gUniqueDouble = []
-	var spriteCompares = []
-	
-	spriteCompares.append_array(subLevel.sprites)
-	gUniqueSingle.append_array(spriteCompares)
-	for sprite in subLevel.sprites:
-		spriteCompares.erase(spriteCompares[0])
-		for cSprite in spriteCompares:
-			gUniqueDouble.push_back([sprite, cSprite])
-#	print("Singles: ", gUniqueSingle.size(), "\nDoubles: ", gUniqueDouble.size())
-	#Pick an island
-	var step = {}	
-	#Singles and offsets
-	for singleSprite in gUniqueSingle:
-		for symbolType in subLevel.symbolTypes:
-			var symbolData = Data.gameData.symbolData.SymbolTypes[symbolType]
-			for map in symbolData["maps"]:
-				if map == Types.SubSymbolMap.Single:
-					step["sprites"] = []
-					for n in Data.gameData.symbolData.SubSymbolMap[map].size():
-						step["sprites"].push_back(singleSprite)
-			for offset in symbolData["offsets"]:
-				var offsetData = Data.gameData.symbolData.SubSymbolOffset[offset] 
-				step["angles"] = []
-				for i in symbolData["angles"].size():
-					step["angles"].push_back( symbolData["angles"][offsetData[i]] )
-				#generate buttons options ahead
-				step["buttons"] = []
-				step["buttons"].append_array(GenerateButtons(symbolType, offset))
-				#island
-				step["island"] = []
+		
+	for pattern in subLevel.patterns:
+		match pattern.symbolMap:
+			
+			Types.SymbolMap.Single:
+				var step = {}
+				for sprite in pattern.sprites:
+					var typeData = Data.gameData.symbolData.SymbolTypes[pattern.symbolType]
+					var mapData = Data.gameData.symbolData.SymbolMap[pattern.symbolMap]
+					for offset in pattern.symbolOffsets:
+						step["sprites"] = []
+						step["angles"] = []
+						step["buttons"] = []
+						step["island"] = ""
+						for n in mapData.size():
+							step["sprites"].push_back(sprite)
+						var offsetData = Data.gameData.symbolData.SymbolOffset[offset] 
+						for i in typeData["angles"].size():
+							step["angles"].push_back(typeData["angles"][offsetData[i]])
+						var buttons = GenerateButtons(pattern.symbolType, offset)
+						step["buttons"].append_array(buttons)
+						gameSteps.push_back(step.duplicate())
+						
+			Types.SymbolMap.DoubleDiagonal, Types.SymbolMap.DoubleTop, Types.SymbolMap.DoubleBottom:
+				var step = {}
+				assert(pattern.sprites.size() > 1)
+				var spritePairs = GetSpritePairs(pattern.sprites)
+				for spritePair in spritePairs:
+					var typeData = Data.gameData.symbolData.SymbolTypes[pattern.symbolType]
+					var mapData = Data.gameData.symbolData.SymbolMap[pattern.symbolMap]
+					for offset in pattern.symbolOffsets:
+						step["sprites"] = []
+						step["angles"] = []
+						step["buttons"] = []
+						step["island"] = ""
+						for n in mapData.size():
+							step["sprites"].push_back(spritePair[mapData[n]])
+						var offsetData = Data.gameData.symbolData.SymbolOffset[offset] 
+						for i in typeData["angles"].size():
+							step["angles"].push_back(typeData["angles"][offsetData[i]])
+						var buttons = GenerateButtons(pattern.symbolType, offset)
+						step["buttons"].append_array(buttons)
+						gameSteps.push_back(step.duplicate())
 				
-				gameSteps.push_back(step.duplicate())
-	
 	randomize()
 	gameSteps.shuffle()
-	#AFTER SHUFFLE
+	
 	for i in gameSteps.size():
 		if i == 0:
 			gameSteps[i]["island"] = subLevel.startIsland
 		else:
 			gameSteps[i]["island"] = subLevel.islands.pick_random()
-			
+	print(gameSteps.size(), " steps generated")
 	return gameSteps
 
+func GetSpritePairs(spritesArray):
+	var spriteCompares = []
+	var gUniqueDouble = []
+	spriteCompares.append_array(spritesArray)
+	for sprite in spritesArray:
+		spriteCompares.erase(spriteCompares[0])
+		for cSprite in spriteCompares:
+			gUniqueDouble.push_back([sprite, cSprite])
+			
+	return gUniqueDouble
+
 func GenerateButtons(symbolType, correctOffset):
-	var symbolData = Data.gameData.symbolData.SymbolTypes[symbolType]
 	var buttons = []
+	var button = {"angles": []}
+	var typeData = Data.gameData.symbolData.SymbolTypes[symbolType]
+	var offsetData = Data.gameData.symbolData.SymbolOffset[correctOffset]
 	
-	var button = {
-		"angles": []
-	}
-	var offsetData = Data.gameData.symbolData.SubSymbolOffset[correctOffset]
-	for i in symbolData["angles"].size():
-		button["angles"].push_back( symbolData["angles"][offsetData[i]] )
+	for i in typeData["angles"].size():
+		button["angles"].push_back(typeData["angles"][offsetData[i]])
 	buttons.push_back(button.duplicate())
 		
 	if symbolType == Types.SymbolType.DiagonalLeft:
 		button = {
 			"angles": []
 		}
-		var newSymbolData = Data.gameData.symbolData.SymbolTypes[Types.SymbolType.DiagonalRight]
-		for i in newSymbolData["angles"].size():
-			button["angles"].push_back( newSymbolData["angles"][i] )
+		var newTypeData = Data.gameData.symbolData.SymbolTypes[Types.SymbolType.DiagonalRight]
+		for i in newTypeData["angles"].size():
+			button["angles"].push_back( newTypeData["angles"][i] )
 		buttons.push_back(button.duplicate())
 
 		
 		button = {
 			"angles": []
 		}
-		offsetData = Data.gameData.symbolData.SubSymbolOffset[Types.SubSymbolOffset.X]
-		for i in newSymbolData["angles"].size():
-			button["angles"].push_back( newSymbolData["angles"][offsetData[i]] )
+		offsetData = Data.gameData.symbolData.SymbolOffset[Types.SymbolOffset.X]
+		for i in newTypeData["angles"].size():
+			button["angles"].push_back( newTypeData["angles"][offsetData[i]] )
 		buttons.push_back(button.duplicate())
 
 	elif symbolType == Types.SymbolType.DiagonalRight:
 		button = {
 			"angles": []
 		}
-		offsetData = Data.gameData.symbolData.SubSymbolOffset[Types.SubSymbolOffset.None]
-		var newSymbolData = Data.gameData.symbolData.SymbolTypes[Types.SymbolType.DiagonalLeft]
-		for i in newSymbolData["angles"].size():
-			button["angles"].push_back( newSymbolData["angles"][i] )
+		offsetData = Data.gameData.symbolData.SymbolOffset[Types.SymbolOffset.Normal]
+		var newTypeData = Data.gameData.symbolData.SymbolTypes[Types.SymbolType.DiagonalLeft]
+		for i in newTypeData["angles"].size():
+			button["angles"].push_back( newTypeData["angles"][i] )
 		buttons.push_back(button.duplicate())
 		
 		button = {
 			"angles": []
 		}
-		offsetData = Data.gameData.symbolData.SubSymbolOffset[Types.SubSymbolOffset.X]
-		for i in newSymbolData["angles"].size():
-			button["angles"].push_back( newSymbolData["angles"][offsetData[i]] )
+		offsetData = Data.gameData.symbolData.SymbolOffset[Types.SymbolOffset.X]
+		for i in newTypeData["angles"].size():
+			button["angles"].push_back( newTypeData["angles"][offsetData[i]] )
 		buttons.push_back(button.duplicate())
 		
 	else:
-		var keys = Data.gameData.symbolData.SubSymbolOffset.keys()
+		var keys = Data.gameData.symbolData.SymbolOffset.keys()
 		keys.erase(correctOffset)
 		var randomRemove = keys.pick_random()
 		keys.erase(randomRemove)
@@ -159,9 +176,9 @@ func GenerateButtons(symbolType, correctOffset):
 			button = {
 				"angles": []
 			}
-			offsetData = Data.gameData.symbolData.SubSymbolOffset[offset] 
-			for i in symbolData["angles"].size():
-				button["angles"].push_back( symbolData["angles"][offsetData[i]] )
+			offsetData = Data.gameData.symbolData.SymbolOffset[offset] 
+			for i in typeData["angles"].size():
+				button["angles"].push_back( typeData["angles"][offsetData[i]] )
 			buttons.push_back(button.duplicate())
 		#
 #	print("Buttons: ", symbolType, " ", buttons, "\n")

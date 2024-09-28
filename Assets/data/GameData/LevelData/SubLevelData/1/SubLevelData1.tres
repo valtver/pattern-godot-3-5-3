@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/SubLevelData.gd" type="Script" id=1]
+[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/1/SubLevelPatternData1.tres" type="Resource" id=2]
+[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/1/SubLevelPatternData0.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/1/SubLevelPatternData2.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+index = 1
+patterns = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
+startIsland = "res://Assets/terrain/tile-island/0/start.tscn"
+islands = [ "res://Assets/terrain/tile-island/0/0-0.tscn" ]
+endIsland = "res://Assets/terrain/tile-island/0/start.tscn"
+unlock = false
+score = 0
+stars = 0

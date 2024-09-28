@@ -1,14 +1,12 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/SubLevelData.gd" type="Script" id=1]
-[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/LocSubLevelName.tres" type="Resource" id=2]
+[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/0/SubLevelPatternData.tres" type="Resource" id=2]
 
 [resource]
 script = ExtResource( 1 )
 index = 0
-locName = ExtResource( 2 )
-symbolTypes = [ 1 ]
-sprites = [ "res://Assets/sprites/game/symbol/sub-symbol-0.png" ]
+patterns = [ ExtResource( 2 ) ]
 startIsland = "res://Assets/terrain/tile-island/0/start.tscn"
 islands = [ "res://Assets/terrain/tile-island/0/0-0.tscn" ]
 endIsland = "res://Assets/terrain/tile-island/0/start.tscn"
