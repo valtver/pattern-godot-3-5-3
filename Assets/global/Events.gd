@@ -38,5 +38,6 @@ signal HudButtonReplayClick
 signal HudButtonHomeClick
 signal HudButtonNextClick
 
+signal ShowFastBlocker
 #TUTORIAL
 signal TutorialState1

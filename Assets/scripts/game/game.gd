@@ -59,6 +59,10 @@ func OnHudButtonNextClick():
 	Events.emit_signal("StartGame")
 
 func OnReplayButtonClick():
+	Events.emit_signal("ShowFastBlocker")
+	Timeline.Delay(self, "ContinueReplayButtonClick", 0.35)
+
+func ContinueReplayButtonClick():
 	Timeline.StopDelay(self, "GameOver")
 	StopCameraMove()
 	InitScene()

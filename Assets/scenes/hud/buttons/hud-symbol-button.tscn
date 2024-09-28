@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/sprites/hud/hud-symbol-tab.png" type="Texture" id=4]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.315, 0.315, 0.01 )
+extents = Vector3( 0.434706, 0.443197, 0.01 )
 
 [node name="hud-symbol-button" type="StaticBody"]
 collision_layer = 512

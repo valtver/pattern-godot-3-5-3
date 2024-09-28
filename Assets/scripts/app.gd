@@ -17,6 +17,7 @@ func _ready():
 	TranslationServer.set_locale("en")
 	Events.connect("StartGame", self, "OnGameStart")
 	Events.connect("AppMainMenu", self,"OnMainMenu")
+	Events.connect("ShowFastBlocker", self, "OnShowFastBlocker")
 #	Timeline.OnCompleteTimer(self, "Init", 2.0)
 	Init()
 #	Timeline.OnCompleteTimer(self, "ShowBlocker", 4.0)
@@ -45,6 +46,9 @@ func ShowBlocker():
 		ShowHectic()
 	else:
 		ShowGameLogo()
+
+func OnShowFastBlocker():
+	gameLogo.play("game-logo-restart")
 		
 func HideBlocker():
 	HideGameLogo()
@@ -56,7 +60,7 @@ func ShowHectic():
 func ShowGameLogo():
 	gameLogo.play("game-logo-start")
 	Timeline.Delay(self, "OnBlockerShown", gameLogo.current_animation_length)
-	
+
 func HideGameLogo():
 	gameLogo.play("game-logo-end")
 	Timeline.Delay(self, "OnBlockerHidden", gameLogo.current_animation_length)
