@@ -27,14 +27,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 
 [node name="symbol" parent="Symbols/tile-0-0" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-0-0" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-0" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-1-0" parent="Symbols" instance=ExtResource( 4 )]
 __meta__ = {
@@ -42,13 +38,9 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 
 [node name="symbol" parent="Symbols/tile-1-0" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-0" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-2-0" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
@@ -57,15 +49,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 
 [node name="symbol" parent="Symbols/tile-2-0" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-2-0" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-0" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-0-1" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1 )
@@ -74,13 +62,9 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 1
 
 [node name="symbol" parent="Symbols/tile-0-1" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-1" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-1-1" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
@@ -89,16 +73,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 1
 
 [node name="symbol" parent="Symbols/tile-1-1" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-1-1" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-1" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-2-1" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1 )
@@ -107,14 +87,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 1
 
 [node name="symbol" parent="Symbols/tile-2-1" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-1" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-0-2" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2 )
@@ -123,15 +99,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 2
 
 [node name="symbol" parent="Symbols/tile-0-2" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-0-2" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-2" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-1-2" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
@@ -140,14 +112,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 2
 
 [node name="symbol" parent="Symbols/tile-1-2" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-2" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-2-2" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2 )
@@ -156,16 +124,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 2
 
 [node name="symbol" parent="Symbols/tile-2-2" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-2-2" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-2" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-0-3" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3 )
@@ -174,13 +138,9 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 3
 
 [node name="symbol" parent="Symbols/tile-0-3" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-3" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-1-3" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3 )
@@ -189,16 +149,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 3
 
 [node name="symbol" parent="Symbols/tile-1-3" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-1-3" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-3" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-2-3" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3 )
@@ -207,14 +163,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 3
 
 [node name="symbol" parent="Symbols/tile-2-3" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-3" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-0-4" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4 )
@@ -223,15 +175,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 4
 
 [node name="symbol" parent="Symbols/tile-0-4" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-0-4" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-4" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-1-4" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
@@ -240,14 +188,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 4
 
 [node name="symbol" parent="Symbols/tile-1-4" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-4" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-2-4" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4 )
@@ -256,16 +200,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 4
 
 [node name="symbol" parent="Symbols/tile-2-4" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-2-4" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-4" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-0-5" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5 )
@@ -274,13 +214,9 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 5
 
 [node name="symbol" parent="Symbols/tile-0-5" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-5" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-1-5" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
@@ -289,16 +225,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 5
 
 [node name="symbol" parent="Symbols/tile-1-5" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-1-5" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-5" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-2-5" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5 )
@@ -307,14 +239,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 5
 
 [node name="symbol" parent="Symbols/tile-2-5" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-5" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-0-6" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6 )
@@ -323,15 +251,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 6
 
 [node name="symbol" parent="Symbols/tile-0-6" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-0-6" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-6" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-1-6" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
@@ -340,14 +264,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 6
 
 [node name="symbol" parent="Symbols/tile-1-6" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-6" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-2-6" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -6 )
@@ -356,16 +276,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 6
 
 [node name="symbol" parent="Symbols/tile-2-6" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-2-6" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-6" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-0-7" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -7 )
@@ -374,13 +290,9 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 7
 
 [node name="symbol" parent="Symbols/tile-0-7" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-7" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-1-7" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7 )
@@ -389,16 +301,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 7
 
 [node name="symbol" parent="Symbols/tile-1-7" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-1-7" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-7" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-2-7" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7 )
@@ -407,14 +315,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 7
 
 [node name="symbol" parent="Symbols/tile-2-7" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-7" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-0-8" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -8 )
@@ -423,15 +327,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 8
 
 [node name="symbol" parent="Symbols/tile-0-8" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-0-8" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-8" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-1-8" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8 )
@@ -440,14 +340,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 8
 
 [node name="symbol" parent="Symbols/tile-1-8" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-8" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-2-8" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -8 )
@@ -456,16 +352,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 8
 
 [node name="symbol" parent="Symbols/tile-2-8" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-2-8" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-8" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-0-9" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -9 )
@@ -474,13 +366,9 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 9
 
 [node name="symbol" parent="Symbols/tile-0-9" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-9" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-1-9" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9 )
@@ -489,16 +377,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 9
 
 [node name="symbol" parent="Symbols/tile-1-9" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-1-9" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-9" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-2-9" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -9 )
@@ -507,14 +391,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 9
 
 [node name="symbol" parent="Symbols/tile-2-9" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-9" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-0-10" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -10 )
@@ -523,15 +403,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 10
 
 [node name="symbol" parent="Symbols/tile-0-10" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-0-10" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-10" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-1-10" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
@@ -540,14 +416,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 10
 
 [node name="symbol" parent="Symbols/tile-1-10" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-10" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-2-10" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -10 )
@@ -556,16 +428,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 10
 
 [node name="symbol" parent="Symbols/tile-2-10" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-2-10" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-10" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-0-11" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -11 )
@@ -574,13 +442,9 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 11
 
 [node name="symbol" parent="Symbols/tile-0-11" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-11" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-1-11" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11 )
@@ -589,16 +453,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 11
 
 [node name="symbol" parent="Symbols/tile-1-11" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-1-11" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-11" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-2-11" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -11 )
@@ -607,14 +467,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 11
 
 [node name="symbol" parent="Symbols/tile-2-11" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-11" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-0-12" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -12 )
@@ -623,15 +479,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 12
 
 [node name="symbol" parent="Symbols/tile-0-12" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-0-12" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-12" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-1-12" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12 )
@@ -640,14 +492,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 12
 
 [node name="symbol" parent="Symbols/tile-1-12" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-12" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-2-12" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -12 )
@@ -656,16 +504,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 12
 
 [node name="symbol" parent="Symbols/tile-2-12" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-2-12" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-12" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-0-13" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -13 )
@@ -674,13 +518,9 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 13
 
 [node name="symbol" parent="Symbols/tile-0-13" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-13" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-1-13" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13 )
@@ -689,16 +529,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 13
 
 [node name="symbol" parent="Symbols/tile-1-13" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-1-13" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-13" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-2-13" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -13 )
@@ -707,14 +543,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 13
 
 [node name="symbol" parent="Symbols/tile-2-13" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-13" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-0-14" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -14 )
@@ -723,15 +555,11 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 14
 
 [node name="symbol" parent="Symbols/tile-0-14" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-0-14" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-14" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-1-14" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14 )
@@ -740,14 +568,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 14
 
 [node name="symbol" parent="Symbols/tile-1-14" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-14" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-2-14" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -14 )
@@ -756,16 +580,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 14
 
 [node name="symbol" parent="Symbols/tile-2-14" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-2-14" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-14" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="tile-0-15" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -15 )
@@ -774,13 +594,9 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idy = 15
 
 [node name="symbol" parent="Symbols/tile-0-15" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-0-15" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-1-15" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15 )
@@ -789,16 +605,12 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 1
 idy = 15
 
 [node name="symbol" parent="Symbols/tile-1-15" instance=ExtResource( 15 )]
 
 [node name="symbolBackground" parent="Symbols/tile-1-15" instance=ExtResource( 14 )]
-
-[node name="pathTerrain" parent="Symbols/tile-1-15" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0 )
 
 [node name="tile-2-15" parent="Symbols" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -15 )
@@ -807,14 +619,10 @@ __meta__ = {
 }
 symbolBackground = ExtResource( 14 )
 symbolScene = ExtResource( 15 )
-pathScene = ExtResource( 2 )
 idx = 2
 idy = 15
 
 [node name="symbol" parent="Symbols/tile-2-15" instance=ExtResource( 15 )]
-
-[node name="pathTerrain" parent="Symbols/tile-2-15" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.02, 0 )
 
 [node name="Terrain" type="Spatial" parent="."]
 __meta__ = {
@@ -2240,6 +2048,154 @@ sorting_offset = 3.0
 modulate = Color( 0, 0, 0, 0.313726 )
 pixel_size = 0.0625
 texture = ExtResource( 13 )
+
+[node name="Complete" type="Spatial" parent="."]
+
+[node name="road-tile-path" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, 0 )
+
+[node name="road-tile-path2" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, 0 )
+
+[node name="road-tile-path3" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, 0 )
+
+[node name="road-tile-path4" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -1 )
+
+[node name="road-tile-path5" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -1 )
+
+[node name="road-tile-path6" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -1 )
+
+[node name="road-tile-path7" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -2 )
+
+[node name="road-tile-path8" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -2 )
+
+[node name="road-tile-path9" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -2 )
+
+[node name="road-tile-path10" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -3 )
+
+[node name="road-tile-path11" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -3 )
+
+[node name="road-tile-path12" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -3 )
+
+[node name="road-tile-path13" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -4 )
+
+[node name="road-tile-path14" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -4 )
+
+[node name="road-tile-path15" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -4 )
+
+[node name="road-tile-path16" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -5 )
+
+[node name="road-tile-path17" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -5 )
+
+[node name="road-tile-path18" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -5 )
+
+[node name="road-tile-path19" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -6 )
+
+[node name="road-tile-path20" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -6 )
+
+[node name="road-tile-path21" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -6 )
+
+[node name="road-tile-path22" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -7 )
+
+[node name="road-tile-path23" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -7 )
+
+[node name="road-tile-path24" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -7 )
+
+[node name="road-tile-path25" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -8 )
+
+[node name="road-tile-path26" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -8 )
+
+[node name="road-tile-path27" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -8 )
+
+[node name="road-tile-path28" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -9 )
+
+[node name="road-tile-path29" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -9 )
+
+[node name="road-tile-path30" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -9 )
+
+[node name="road-tile-path31" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -10 )
+
+[node name="road-tile-path32" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -10 )
+
+[node name="road-tile-path33" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -10 )
+
+[node name="road-tile-path34" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -11 )
+
+[node name="road-tile-path35" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -11 )
+
+[node name="road-tile-path36" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -11 )
+
+[node name="road-tile-path37" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -12 )
+
+[node name="road-tile-path38" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -12 )
+
+[node name="road-tile-path39" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -12 )
+
+[node name="road-tile-path40" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -13 )
+
+[node name="road-tile-path41" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -13 )
+
+[node name="road-tile-path42" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -13 )
+
+[node name="road-tile-path43" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -14 )
+
+[node name="road-tile-path44" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -14 )
+
+[node name="road-tile-path45" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -14 )
+
+[node name="road-tile-path46" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.0255814, -15 )
+
+[node name="road-tile-path47" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0255814, -15 )
+
+[node name="road-tile-path48" parent="Complete" groups=["completes"] instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.0255814, -15 )
+
+[node name="Bonus" type="Spatial" parent="."]
 
 [node name="CameraPosition" type="Position3D" parent="." groups=["cameraPosition"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )

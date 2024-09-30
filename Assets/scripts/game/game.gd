@@ -118,7 +118,7 @@ func MoveCameraTo(nextPos, delay):
 		
 	camTween = create_tween()
 	camTween.set_ease(Tween.EASE_IN)
-	camTween.set_trans(Tween.TRANS_CUBIC)
+	camTween.set_trans(Tween.TRANS_QUART)
 	camTween.tween_property(cameraTransform, "position", nextPos, delay)
 	camTween.play()
 	
@@ -202,9 +202,9 @@ func GameLoop():
 			Events.emit_signal("HudWinScore")
 			var cameraGPos = Scroller.cIsland.get_node("CameraPosition").global_position
 			var rnd = RandomNumberGenerator.new()
-			for tile in Scroller.cTiles:
+			for complete in Scroller.cCompletes:
 				rnd.randomize()
-				Timeline.Delay(tile, "PathAppear", tile.global_position.distance_to(cameraGPos - Vector3.FORWARD * 2) * rnd.randf_range(1.0, 1.2) * 0.1)
+				Timeline.Delay(complete, "PlayComplete", complete.global_position.distance_to(cameraGPos - Vector3.FORWARD * 2) * rnd.randf_range(1.0, 1.2) * 0.1)
 			state = GameState.NEXT
 			GameLoop()
 			return

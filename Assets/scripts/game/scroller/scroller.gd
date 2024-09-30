@@ -1,9 +1,16 @@
 extends Node
 
 var visibilityNotifiers = []
+
 var cTiles = []
+var cCompletes = []
+
 var nTiles = []
+var nCompletes = []
+
 var pTiles = []
+var pCompletes = []
+
 var pIsland = null
 var cIsland = null
 var nIsland = null
@@ -13,8 +20,11 @@ var pIslandCache = []
 func Init():
 	visibilityNotifiers = []
 	cTiles = []
+	cCompletes = []
 	nTiles = []
+	nCompletes = []
 	pTiles = []
+	pCompletes = []
 	pIsland = null
 	cIsland = null
 	nIsland = null
@@ -35,6 +45,7 @@ func AddFirstIsland():
 			cIsland = editorIsland
 		SortTiles()
 		InitTiles(cTiles)
+		InitCompletes(cCompletes)
 	return cIsland
 	
 	
@@ -49,6 +60,7 @@ func AddNextIsland(gameStepData):
 	cIsland.position = pIsland.position + Vector3.FORWARD * pIsland.aabb.size.z
 	SortTiles()
 	InitTiles(cTiles)
+	InitCompletes(cCompletes)
 	
 	
 func AddLastIsland():
@@ -60,29 +72,50 @@ func AddLastIsland():
 	cIsland.position = pIsland.position + Vector3.FORWARD * pIsland.aabb.size.z
 	SortTiles()
 	InitTiles(cTiles)
+	InitCompletes(cCompletes)
 	pass
 	
 func SortTiles():
 	var tiles = get_tree().get_nodes_in_group("tiles")
+	var completes = get_tree().get_nodes_in_group("completes")
 	cTiles = []
+	cCompletes = []
 	pTiles = []
+	pCompletes = []
 	nTiles = []
+	nCompletes = []
+	
 	for tile in tiles:
-		if cIsland != null && cIsland.is_a_parent_of(tile):
-			cTiles.push_back(tile)
-		if pIsland != null && pIsland.is_a_parent_of(tile):
-			pTiles.push_back(tile)
-		if nIsland != null && nIsland.is_a_parent_of(tile):
-			nTiles.push_back(tile)
+		if cIsland != null:
+			if cIsland.is_a_parent_of(tile):
+				cTiles.push_back(tile)
+		elif pIsland != null:
+			if pIsland.is_a_parent_of(tile):
+				pTiles.push_back(tile)
+		elif nIsland != null:
+			if nIsland.is_a_parent_of(tile):
+				nTiles.push_back(tile)
+	
+	for complete in completes:
+		if cIsland != null:
+			if cIsland.is_a_parent_of(complete):
+				cCompletes.push_back(complete)
+		elif pIsland != null:
+			if pIsland.is_a_parent_of(complete):
+				pCompletes.push_back(complete)
+		elif nIsland != null:
+			if nIsland.is_a_parent_of(complete):
+				nCompletes.push_back(complete)
 
 func InitTiles(tileSet):
 	for tile in tileSet:
-		if tile.symbol != null:
-			tile.symbol.visible = false
+		tile.symbol.visible = false
 		if tile.symbolBg != null:
 			tile.symbolBg.visible = false
-		if tile.symbolPath != null:
-			tile.symbolPath.visible = false
+
+func InitCompletes(completeSet):
+	for comp in completeSet:
+		comp.visible = false
 
 func OnVisibilityChanged(notifier):
 	notifier.queue_free()

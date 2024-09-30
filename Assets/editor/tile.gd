@@ -8,17 +8,12 @@ var tween = null
 export var refresh = false
 export (PackedScene) var symbolBackground
 export (PackedScene) var symbolScene
-export (PackedScene) var pathScene
 
 export var idx: int
 export var idy: int
 
 onready var symbol = get_node_or_null("symbol")
 onready var symbolBg = get_node_or_null("symbolBackground")
-onready var symbolPath = get_node_or_null("pathTerrain")
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 func _process(_delta):
 	if Engine.is_editor_hint():
@@ -29,7 +24,6 @@ func _process(_delta):
 func SetupTile():		
 	ProcessSymbol()
 	ProcessSymbolBackground()
-	ProcessPath()
 	ProcessPlaceholder()
 	
 func ProcessSymbol():
@@ -63,23 +57,7 @@ func ProcessSymbolBackground():
 	else:
 		if node != null:
 			node.free()
-						
-func ProcessPath():
-	var node = get_node_or_null("pathTerrain")
-	if pathScene != null:
-		if node == null:
-			var pathTileInstance = pathScene.instance()
-			pathTileInstance.name = "pathTerrain"
-			self.add_child(pathTileInstance)
-			pathTileInstance.owner = get_tree().edited_scene_root
-		else:
-			var angles = [Vector3.UP * 0, Vector3.UP * 180]
-			node.rotation_degrees = angles.pick_random()
-			node.position = Vector3.UP * PATH_TILE_Y_OFFSET
-	else:
-		if node != null:
-			node.free()
-						
+												
 func ProcessPlaceholder():
 	var children = self.get_children()
 	var node = get_node_or_null("placeholder")
@@ -102,8 +80,6 @@ func SymbolFadeIn(timer: float = 0, chain: bool = false):
 		return
 	if symbolBg != null:
 		symbolBg.visible = true
-	if symbolPath != null:
-		symbolPath.visible = false
 	symbol.visible = true
 	symbol.SetSymbolAlpha(0)
 	
@@ -115,14 +91,11 @@ func SymbolFadeIn(timer: float = 0, chain: bool = false):
 	if chain:
 		return tween.chain().tween_method(symbol, "SetSymbolAlpha", 0.0, 1.0, timer + 0.3)
 
-	
 func SymbolFadeOut(timer: float = 0, chain: bool = false):
 	if symbol == null:
 		return
 	if symbolBg != null:
 		symbolBg.visible = true
-	if symbolPath != null:
-		symbolPath.visible = false
 	symbol.visible = true
 	symbol.SetSymbolAlpha(1)
 	
@@ -133,19 +106,7 @@ func SymbolFadeOut(timer: float = 0, chain: bool = false):
 		return tween.tween_method(symbol, "SetSymbolAlpha", 1.0, 0.0, timer)
 	if chain:
 		return tween.chain().tween_method(symbol, "SetSymbolAlpha", 1.0, 0.0, timer)
-		
-
-	
-func PathAppear():
-	if symbol == null:
-		return
-	if symbolBg != null:
-		symbolBg.visible = false
-	symbol.visible = false
-	if symbolPath != null:
-		symbolPath.visible = true
-		symbolPath.get_node("AnimationPlayer").play("Complete")
-		
+				
 func OnClick():
 	pass
 
