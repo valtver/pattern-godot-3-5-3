@@ -1124,3 +1124,4 @@ quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 gles2/compatibility/enable_high_float.Android=true
+quality/filters/msaa=2

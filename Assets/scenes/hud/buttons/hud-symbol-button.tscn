@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/button/hud-button.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/game/symbol/sub-symbol-0.png" type="Texture" id=2]
@@ -7,6 +7,476 @@
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.434706, 0.443197, 0.01 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Click"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/SubPivot/ClickFace:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 0.25, 1.93187, 0.287175, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.0610405, 2.51318e-09, 0.0610405 ), Vector3( -0.0290668, -1.19675e-09, -0.0290668 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/SubPivot/button-base3:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.120887, 5.52509e-09, 0.126399 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/SubPivot/button-base4:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.292735, 2.21822e-08, 0.424937 ), Vector3( -0.254948, 2.3738e-08, 0.462724 ), Vector3( -0.292735, 2.21822e-08, 0.424937 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/SubPivot/button-base4:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.025, 0.025, 0.025 ), Vector3( 0.0129071, 0.025, 0.025 ), Vector3( 0.025, 0.025, 0.025 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/SubPivot/button-base5:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.419442, -2.18425e-08, -0.287239 ), Vector3( 0.447145, -2.07019e-08, -0.259536 ), Vector3( 0.419442, -2.18425e-08, -0.287239 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/SubPivot/button-base5:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.025, 0.025, 0.025 ), Vector3( 0.0154825, 0.025, 0.025 ), Vector3( 0.025, 0.025, 0.025 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/SubPivot/ClickFace:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/SubPivot/button-base3:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.120887, 5.52509e-09, 0.126399 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/SubPivot/button-base4:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -0.292735, 2.21822e-08, 0.424937 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/SubPivot/button-base4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/SubPivot/button-base5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/SubPivot/button-base4:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.025, 0.025, 0.025 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Pivot/SubPivot/button-base5:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.419442, -2.18425e-08, -0.287239 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Pivot/SubPivot/button-base5:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.025, 0.025, 0.025 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Pivot/SubPivot/ClickFace/button-base2:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.901961, 0.694118, 0.513726, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Pivot/SubPivot/button-base3:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.85098, 0.552941, 0.321569, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Pivot/SubPivot/button-base4:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.85098, 0.552941, 0.321569, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Pivot/SubPivot/button-base5:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.85098, 0.552941, 0.321569, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "click-fail"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/SubPivot/ClickFace:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 0.25, 1.93187, 0.287175, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.0610405, 2.51318e-09, 0.0610405 ), Vector3( -0.0290668, -1.19675e-09, -0.0290668 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/SubPivot/button-base3:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.120887, 5.52509e-09, 0.126399 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/SubPivot/button-base4:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.292735, 2.21822e-08, 0.424937 ), Vector3( -0.254948, 2.3738e-08, 0.462724 ), Vector3( -0.292735, 2.21822e-08, 0.424937 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/SubPivot/button-base4:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.025, 0.025, 0.025 ), Vector3( 0.0129071, 0.025, 0.025 ), Vector3( 0.025, 0.025, 0.025 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/SubPivot/button-base5:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.419442, -2.18425e-08, -0.287239 ), Vector3( 0.447145, -2.07019e-08, -0.259536 ), Vector3( 0.419442, -2.18425e-08, -0.287239 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/SubPivot/button-base5:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.025, 0.025, 0.025 ), Vector3( 0.0154825, 0.025, 0.025 ), Vector3( 0.025, 0.025, 0.025 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Pivot/SubPivot/ClickFace/button-base2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.694118, 0.219608, 0.360784, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Pivot/SubPivot/button-base3:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.529412, 0.168627, 0.34902, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Pivot/SubPivot/button-base4:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.529412, 0.168627, 0.34902, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Pivot/SubPivot/button-base5:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.529412, 0.168627, 0.34902, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "click-success"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/SubPivot/ClickFace:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 0.25, 1.93187, 0.287175, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.0610405, 2.51318e-09, 0.0610405 ), Vector3( -0.0290668, -1.19675e-09, -0.0290668 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/SubPivot/button-base3:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.120887, 5.52509e-09, 0.126399 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/SubPivot/button-base4:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.292735, 2.21822e-08, 0.424937 ), Vector3( -0.254948, 2.3738e-08, 0.462724 ), Vector3( -0.292735, 2.21822e-08, 0.424937 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/SubPivot/button-base4:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.025, 0.025, 0.025 ), Vector3( 0.0129071, 0.025, 0.025 ), Vector3( 0.025, 0.025, 0.025 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/SubPivot/button-base5:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.419442, -2.18425e-08, -0.287239 ), Vector3( 0.447145, -2.07019e-08, -0.259536 ), Vector3( 0.419442, -2.18425e-08, -0.287239 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/SubPivot/button-base5:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.025, 0.025, 0.025 ), Vector3( 0.0154825, 0.025, 0.025 ), Vector3( 0.025, 0.025, 0.025 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Pivot/SubPivot/ClickFace/button-base2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.431373, 0.737255, 0.317647, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Pivot/SubPivot/button-base3:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.301961, 0.588235, 0.333333, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Pivot/SubPivot/button-base4:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.301961, 0.588235, 0.333333, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Pivot/SubPivot/button-base5:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.301961, 0.588235, 0.333333, 1 ) ]
+}
 
 [node name="hud-symbol-button" type="StaticBody"]
 collision_layer = 512
@@ -17,8 +487,14 @@ hudElementId = 2
 [node name="Pivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 
-[node name="sub-symbol-0" type="Sprite3D" parent="Pivot"]
-transform = Transform( 0.092606, 0, 0, 0, -4.04793e-09, 0.092606, 0, -0.092606, -4.04793e-09, -0.185211, 3.48874e-10, -0.177231 )
+[node name="SubPivot" type="Spatial" parent="Pivot"]
+transform = Transform( 0.666033, -3.09086e-08, -0.666033, 2.62019e-08, 1, -1.49704e-08, 0.59943, -1.58936e-08, 0.59943, 0, 0, 0 )
+
+[node name="ClickFace" type="Spatial" parent="Pivot/SubPivot"]
+transform = Transform( 1, 0, 0, 1.06581e-14, 1, -2.13163e-14, -4.12177e-22, -7.10543e-15, 1, 0, 0, 0 )
+
+[node name="sub-symbol-0" type="Sprite3D" parent="Pivot/SubPivot/ClickFace"]
+transform = Transform( 0.092606, 0, -1.38778e-17, 0, -4.04793e-09, 0.092606, 0, -0.092606, -4.04793e-09, -0.185211, 3.48874e-10, -0.177231 )
 sorting_offset = 3.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
@@ -26,8 +502,8 @@ double_sided = false
 texture = ExtResource( 2 )
 script = ExtResource( 3 )
 
-[node name="sub-symbol-1" type="Sprite3D" parent="Pivot"]
-transform = Transform( -4.04793e-09, 0.092606, 4.04793e-09, 0, -4.04793e-09, 0.092606, 0.092606, 4.04793e-09, 0, 0.185211, 3.48874e-10, -0.177231 )
+[node name="sub-symbol-1" type="Sprite3D" parent="Pivot/SubPivot/ClickFace"]
+transform = Transform( -7.45058e-09, 0.092606, 4.04793e-09, 0, -4.04793e-09, 0.092606, 0.092606, 3.72529e-09, 0, 0.185211, 3.48875e-10, -0.177231 )
 sorting_offset = 3.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
@@ -36,8 +512,8 @@ texture = ExtResource( 2 )
 script = ExtResource( 3 )
 id = 1
 
-[node name="sub-symbol-2" type="Sprite3D" parent="Pivot"]
-transform = Transform( -4.04793e-09, -0.092606, -4.04793e-09, 0, -4.04793e-09, 0.092606, -0.092606, 4.04793e-09, 0, -0.185211, 3.48829e-10, 0.193192 )
+[node name="sub-symbol-2" type="Sprite3D" parent="Pivot/SubPivot/ClickFace"]
+transform = Transform( -3.72529e-09, -0.092606, -4.04793e-09, 0, -4.04793e-09, 0.092606, -0.092606, 7.45058e-09, 0, -0.185211, 3.48829e-10, 0.193192 )
 sorting_offset = 3.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
@@ -46,8 +522,8 @@ texture = ExtResource( 2 )
 script = ExtResource( 3 )
 id = 2
 
-[node name="sub-symbol-3" type="Sprite3D" parent="Pivot"]
-transform = Transform( -0.092606, 1.39831e-08, 6.11221e-16, -5.29396e-23, -4.04793e-09, 0.092606, 1.39831e-08, 0.092606, 4.04793e-09, 0.185211, 3.48829e-10, 0.193192 )
+[node name="sub-symbol-3" type="Sprite3D" parent="Pivot/SubPivot/ClickFace"]
+transform = Transform( -0.092606, 7.45058e-09, 0, -1.31628e-16, -4.04793e-09, 0.092606, 1.49012e-08, 0.092606, 4.04793e-09, 0.185211, 3.48829e-10, 0.193192 )
 sorting_offset = 3.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 pixel_size = 0.0625
@@ -56,16 +532,32 @@ texture = ExtResource( 2 )
 script = ExtResource( 3 )
 id = 3
 
-[node name="button-base2" type="Sprite3D" parent="Pivot"]
-transform = Transform( 0.112079, 0, 0, 0, -4.89909e-09, 0.112079, 0, -0.112079, -4.89909e-09, 0, 3.96999e-10, 0.00908233 )
+[node name="button-base2" type="Sprite3D" parent="Pivot/SubPivot/ClickFace"]
+transform = Transform( 0.112079, 3.72529e-09, -2.08167e-16, 5.97468e-16, -4.89909e-09, 0.112079, -3.72529e-09, -0.112079, -4.89909e-09, 0, 3.96999e-10, 0.00908233 )
 sorting_offset = -2.0
 modulate = Color( 0.901961, 0.694118, 0.513726, 1 )
 pixel_size = 0.0625
 double_sided = false
 texture = ExtResource( 4 )
 
-[node name="button-base3" type="Sprite3D" parent="Pivot"]
-transform = Transform( 0.112079, 0, 0, 0, -4.89909e-09, 0.112079, 0, -0.112079, -4.89909e-09, 0, 3.85416e-09, 0.0881729 )
+[node name="button-base3" type="Sprite3D" parent="Pivot/SubPivot"]
+transform = Transform( 0.112079, 3.72529e-09, -4.16334e-17, 2.22045e-16, -4.89909e-09, 0.112079, -3.72529e-09, -0.112079, -4.89909e-09, 0.120887, 5.52509e-09, 0.126399 )
+sorting_offset = -3.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+pixel_size = 0.0625
+double_sided = false
+texture = ExtResource( 4 )
+
+[node name="button-base4" type="Sprite3D" parent="Pivot/SubPivot"]
+transform = Transform( 0.0176777, 0.0176777, 7.72716e-10, 0, -1.09278e-09, 0.025, 0.0176777, -0.0176777, -7.72716e-10, -0.292735, 2.21822e-08, 0.424937 )
+sorting_offset = -3.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+pixel_size = 0.0625
+double_sided = false
+texture = ExtResource( 4 )
+
+[node name="button-base5" type="Sprite3D" parent="Pivot/SubPivot"]
+transform = Transform( 0.0176777, 0.0176777, 7.72716e-10, 0, -1.09278e-09, 0.025, 0.0176777, -0.0176777, -7.72716e-10, 0.419442, -2.18425e-08, -0.287239 )
 sorting_offset = -3.0
 modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
 pixel_size = 0.0625
@@ -73,6 +565,11 @@ double_sided = false
 texture = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.639511, 0.639511, 0, -0.57556, 0.57556, 0, 0, 0, 0.904405, 0, -0.0103722, 0 )
 shape = SubResource( 1 )
 
-[node name="Tween" type="Tween" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Click = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+anims/click-fail = SubResource( 5 )
+anims/click-success = SubResource( 4 )

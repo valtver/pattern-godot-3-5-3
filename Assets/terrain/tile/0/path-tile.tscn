@@ -148,7 +148,7 @@ tracks/3/keys = {
 "values": [ true ]
 }
 
-[node name="road-tile-path" instance=ExtResource( 2 )]
+[node name="road-tile-path" groups=["completes"] instance=ExtResource( 2 )]
 script = ExtResource( 4 )
 
 [node name="edge_ground_grass003" parent="RootNode" index="0"]

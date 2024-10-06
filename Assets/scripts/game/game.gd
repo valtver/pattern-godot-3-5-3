@@ -86,7 +86,7 @@ func TryPlayEndIslandAnimation():
 		startAnimation.queue("Idle")
 	
 func GameOver():
-	Events.emit_signal("HideHudSymbolButtons", null)
+#	Events.emit_signal("HideHudSymbolButtons", null)
 	state = GameState.OVER
 	GameLoop()
 	
@@ -100,7 +100,7 @@ func OnMenuButtonClick():
 	
 func OnSymbolButtonClick(button):
 	Events.emit_signal("HideHudSymbolButtons", button)
-	Data.playerData.selectedAngles = button.GetSymbolAngles()
+	Data.playerData.selectedButton = button
 	state = GameState.CHECK
 	GameLoop()
 	
@@ -170,6 +170,7 @@ func GameLoop():
 
 	if state == GameState.PREPLAY:
 		Timeline.Delay(self, "GameOver", Data.gameData.gameStepDelay, "EmitGameOverTime")
+		
 		MoveCameraTo(cameraTransform.position + Vector3.FORWARD, Data.gameData.gameStepDelay)
 		AnimateTilesStart()
 		state = GameState.PLAY
@@ -195,7 +196,8 @@ func GameLoop():
 		Timeline.StopDelay(self, "GameOver")
 		Events.emit_signal("HideHudMenuButton")
 			
-		if Data.playerData.selectedAngles == stepData["angles"]:
+		if Data.playerData.selectedButton.GetSymbolAngles() == stepData["angles"]:
+			Data.playerData.selectedButton.AnimateSuccessClick()
 			Data.playerData.sessionScoreLastStep = int(reservedScore)
 			Data.playerData.sessionScore += Data.playerData.sessionScoreLastStep
 			Data.playerData.sessionStars = Data.playerData.sessionScore / ((gameSteps.size() * (Data.gameData.gameStepDelay / 2) * Data.gameData.gameScoreMultiplier) / 3)
@@ -204,12 +206,13 @@ func GameLoop():
 			var rnd = RandomNumberGenerator.new()
 			for complete in Scroller.cCompletes:
 				rnd.randomize()
-				Timeline.Delay(complete, "PlayComplete", complete.global_position.distance_to(cameraGPos - Vector3.FORWARD * 2) * rnd.randf_range(1.0, 1.2) * 0.1)
+				Timeline.Delay(complete, "PlayComplete", complete.global_position.distance_to(cameraGPos - Vector3.FORWARD * 2) * rnd.randf_range(1.0, 1.2) * 0.07)
 			state = GameState.NEXT
 			GameLoop()
 			return
 		else:
-			state = GameState.OVER
+			Data.playerData.selectedButton.AnimateFailClick()
+			Timeline.Delay(self, "GameOver", 1.0)
 
 	if state == GameState.OVER:
 		Events.emit_signal("ShowHudLostScreen")

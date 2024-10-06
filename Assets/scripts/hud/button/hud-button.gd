@@ -21,7 +21,7 @@ var tween = null
 var defaultRotation = Vector3(-90, 0, 0)
 
 func UpdateSymbol(subSymbolAngles, subSymbolSprites):
-	var children = $Pivot.get_children()
+	var children = $Pivot/SubPivot/ClickFace.get_children()
 	for child in children:
 		if "id" in child:
 			child.rotation_degrees = defaultRotation
@@ -31,23 +31,37 @@ func UpdateSymbol(subSymbolAngles, subSymbolSprites):
 func GetSymbolAngles():
 	var angles = []
 	angles.resize(4)
-	var children = $Pivot.get_children()
+	var children = $Pivot/SubPivot/ClickFace.get_children()
 	for child in children:
 		if "id" in child:
 			angles[child.id] = Vector3.UP * child.rotation_degrees
 	
 	return angles 
 
+func AnimateSuccessClick():
+	var animationPlayer = get_node_or_null("AnimationPlayer")
+	if animationPlayer != null:
+		animationPlayer.play("click-success")
+	
+func AnimateFailClick():
+	var animationPlayer = get_node_or_null("AnimationPlayer")
+	if animationPlayer != null:
+		animationPlayer.play("click-fail")
+
 func OnClick():
-	if tween != null:
-		tween.kill()
+	var animationPlayer = get_node_or_null("AnimationPlayer")
+	if animationPlayer != null:
+		pass
+	else:
+		if tween != null:
+			tween.kill()
+		tween = create_tween()
+		$Pivot.scale = Vector3(1.2, 1.2, 1.2)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_ELASTIC)
+		tween.tween_property($Pivot, "scale", Vector3.ONE, 0.5)
+		tween.play()
 		
-	tween = create_tween()
-	$Pivot.scale = Vector3(1.2, 1.2, 1.2)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property($Pivot, "scale", Vector3.ONE, 0.5)
-	tween.play()
 	if active:
 		Events.emit_signal("Click", self)
 	else:
@@ -60,6 +74,9 @@ func Hide():
 	visible = false
 
 func AnimateShow(style: String = ""):
+	var animationPlayer = get_node_or_null("AnimationPlayer")
+	if animationPlayer != null:
+		animationPlayer.queue("RESET")
 	visible = true
 	if tween != null:
 		tween.kill()

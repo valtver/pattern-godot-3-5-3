@@ -9,9 +9,9 @@
 script = ExtResource( 1 )
 index = 1
 patterns = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ]
-startIsland = "res://Assets/terrain/tile-island/0/start.tscn"
-islands = [ "res://Assets/terrain/tile-island/0/0-0.tscn" ]
-endIsland = "res://Assets/terrain/tile-island/0/start.tscn"
+startIsland = "res://Assets/terrain/tile-island/0/start-1.tscn"
+islands = [ "res://Assets/terrain/tile-island/0/0-0.tscn", "res://Assets/terrain/tile-island/0/0-1.tscn" ]
+endIsland = "res://Assets/terrain/tile-island/0/start-0.tscn"
 unlock = false
 score = 0
 stars = 0

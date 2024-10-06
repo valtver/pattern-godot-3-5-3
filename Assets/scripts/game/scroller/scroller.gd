@@ -4,12 +4,15 @@ var visibilityNotifiers = []
 
 var cTiles = []
 var cCompletes = []
+var cBonuses = []
 
 var nTiles = []
 var nCompletes = []
+var nBonuses = []
 
 var pTiles = []
 var pCompletes = []
+var pBonuses = []
 
 var pIsland = null
 var cIsland = null
@@ -78,12 +81,16 @@ func AddLastIsland():
 func SortTiles():
 	var tiles = get_tree().get_nodes_in_group("tiles")
 	var completes = get_tree().get_nodes_in_group("completes")
+	var bonuses = get_tree().get_nodes_in_group("bonuses")
 	cTiles = []
 	cCompletes = []
+	cBonuses = []
 	pTiles = []
 	pCompletes = []
+	pBonuses = []
 	nTiles = []
 	nCompletes = []
+	nBonuses = []
 	
 	for tile in tiles:
 		if cIsland != null:
@@ -106,6 +113,17 @@ func SortTiles():
 		elif nIsland != null:
 			if nIsland.is_a_parent_of(complete):
 				nCompletes.push_back(complete)
+	
+	for bonus in bonuses:
+		if cIsland != null:
+			if cIsland.is_a_parent_of(bonus):
+				cBonuses.push_back(bonus)
+		elif pIsland != null:
+			if pIsland.is_a_parent_of(bonus):
+				pBonuses.push_back(bonus)
+		elif nIsland != null:
+			if nIsland.is_a_parent_of(bonus):
+				nBonuses.push_back(bonus)
 
 func InitTiles(tileSet):
 	for tile in tileSet:
@@ -122,10 +140,4 @@ func OnVisibilityChanged(notifier):
 	pIslandCache.erase(notifier)
 	pass
 		
-func SubScribeToNotifiers():
-	visibilityNotifiers.clear()
-	visibilityNotifiers = get_tree().get_nodes_in_group("IslandVisibilityNotifiers")
-	for notifier in visibilityNotifiers:
-		if !notifier.is_connected("screen_exited", self, "OnVisibilityChanged"):
-			Events.connect("screen_exited", self, "OnVisibilityChanged", [notifier])
 

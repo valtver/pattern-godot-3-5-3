@@ -1,8 +1,9 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://Assets/data/GameData/GameData.gd" type="Script" id=1]
 [ext_resource path="res://Assets/data/GameData/LevelData/LevelData0.tres" type="Resource" id=2]
 [ext_resource path="res://Assets/data/GameData/SymbolData/SymbolData.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/data/GameData/BonusData/BonusData0.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
@@ -12,3 +13,4 @@ nextGameStepDelay = 1.0
 scrollerScene = "res://Assets/scenes/game/scroller/scroller.tscn"
 symbolData = ExtResource( 3 )
 levels = [ ExtResource( 2 ) ]
+bonuses = [ ExtResource( 4 ) ]

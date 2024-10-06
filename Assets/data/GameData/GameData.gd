@@ -6,6 +6,7 @@ export (float) var nextGameStepDelay
 export (String, FILE) var scrollerScene
 export (Resource) var symbolData
 export (Array, Resource) var levels
+export (Array, Resource) var bonuses
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

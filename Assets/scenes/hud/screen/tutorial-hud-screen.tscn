@@ -989,7 +989,7 @@ anims/loop = SubResource( 4 )
 transform = Transform( 0.999565, -0.0294918, 0, 0.0294918, 0.999565, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Button1" type="Spatial" parent="Pivot/TutorialBaseSheet/3"]
-transform = Transform( 1, 1.06581e-14, 0, -1.06581e-14, 1, 0, 0, 0, 1, -1.191, -1.18202, 0 )
+transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -1.191, -1.18202, 0 )
 
 [node name="Base" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button1"]
 transform = Transform( 0.715722, 0, 0, 0, 0.715722, 0, 0, 0, 0.715722, 0, 0, 0 )
@@ -1027,16 +1027,8 @@ modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
-[node name="BaseShad" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button1"]
-transform = Transform( 0.715722, 0, 0, 0, 0.715722, 0, 0, 0, 0.715722, 0, -0.1519, 0 )
-sorting_offset = 32.0
-modulate = Color( 0.729412, 0.443137, 0.219608, 1 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 100, 100 )
-
 [node name="Button2" type="Spatial" parent="Pivot/TutorialBaseSheet/3"]
-transform = Transform( 1, 1.06581e-14, 0, -1.06581e-14, 1, 0, 0, 0, 1, -5.64961e-08, -1.18202, 0 )
+transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -5.64961e-08, -1.18202, 0 )
 
 [node name="Base" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button2"]
 transform = Transform( 0.715722, 0, 0, 0, 0.715722, 0, 0, 0, 0.715722, 0, 0, 0 )
@@ -1074,16 +1066,8 @@ modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
-[node name="BaseShad" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button2"]
-transform = Transform( 0.715722, 0, 0, 0, 0.715722, 0, 0, 0, 0.715722, 0, -0.1519, 0 )
-sorting_offset = 33.0
-modulate = Color( 0.729412, 0.443137, 0.219608, 1 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 100, 100 )
-
 [node name="Button3" type="Spatial" parent="Pivot/TutorialBaseSheet/3"]
-transform = Transform( 1, 1.06581e-14, 0, -1.06581e-14, 1, 0, 0, 0, 1, 1.19082, -1.18202, 0 )
+transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 1.19082, -1.18202, 0 )
 
 [node name="Base" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button3"]
 transform = Transform( 0.715722, 0, 0, 0, 0.715722, 0, 0, 0, 0.715722, 0, 0, 0 )
@@ -1119,14 +1103,6 @@ transform = Transform( 0.478877, 0, 0, 0, 0.478877, 0, 0, 0, 0.478877, 0.152732,
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
-region_rect = Rect2( 0, 0, 100, 100 )
-
-[node name="BaseShad" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button3"]
-transform = Transform( 0.715722, 0, 0, 0, 0.715722, 0, 0, 0, 0.715722, 0, -0.1519, 0 )
-sorting_offset = 33.0
-modulate = Color( 0.729412, 0.443137, 0.219608, 1 )
-texture = ExtResource( 2 )
-region_enabled = true
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Cross1" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3"]

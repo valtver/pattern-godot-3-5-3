@@ -7,9 +7,9 @@
 script = ExtResource( 1 )
 index = 0
 patterns = [ ExtResource( 2 ) ]
-startIsland = "res://Assets/terrain/tile-island/0/start.tscn"
+startIsland = "res://Assets/terrain/tile-island/0/start-0.tscn"
 islands = [ "res://Assets/terrain/tile-island/0/0-0.tscn" ]
-endIsland = "res://Assets/terrain/tile-island/0/start.tscn"
+endIsland = "res://Assets/terrain/tile-island/0/start-0.tscn"
 unlock = true
 score = 0
 stars = 0

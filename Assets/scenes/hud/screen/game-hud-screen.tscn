@@ -178,14 +178,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265, 0 )
 
 [node name="hud-symbol-button" parent="Bottom" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20733, 1.57411, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, 1.574, 0 )
 
 [node name="hud-symbol-button2" parent="Bottom" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57411, 0 )
 index = 1
 
 [node name="hud-symbol-button3" parent="Bottom" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.207, 1.574, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1.574, 0 )
 index = 2
 
 [node name="ManualAnimationPlayer" type="AnimationPlayer" parent="."]
