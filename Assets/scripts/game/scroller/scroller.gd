@@ -64,7 +64,7 @@ func AddNextIsland(gameStepData):
 	SortTiles()
 	InitTiles(cTiles)
 	InitCompletes(cCompletes)
-	
+	InitBonuses(cBonuses, gameStepData)
 	
 func AddLastIsland():
 	pIsland = cIsland
@@ -76,7 +76,7 @@ func AddLastIsland():
 	SortTiles()
 	InitTiles(cTiles)
 	InitCompletes(cCompletes)
-	pass
+
 	
 func SortTiles():
 	var tiles = get_tree().get_nodes_in_group("tiles")
@@ -134,6 +134,15 @@ func InitTiles(tileSet):
 func InitCompletes(completeSet):
 	for comp in completeSet:
 		comp.visible = false
+
+func InitBonuses(bonusSet, gameStepData):
+	if gameStepData.bonus == "":
+		return
+	randomize()
+	var bonusSpawnPoint = bonusSet.pick_random()
+	var bonus = Loader.GetResource(gameStepData.bonus).instance()
+	bonusSpawnPoint.add_child(bonus)
+	bonus.visible = false
 
 func OnVisibilityChanged(notifier):
 	notifier.queue_free()

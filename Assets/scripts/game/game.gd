@@ -21,7 +21,6 @@ var gameSteps = []
 var tiles
 var cameraTransform
 var Scroller
-var Tutorial
 
 func _ready():
 	AppInput.DisableUi()
@@ -136,6 +135,12 @@ func StopCameraMove():
 		
 func EmitGameOverTime(timeLeft):
 	Events.emit_signal("HudTimerUpdate", timeLeft / Data.gameData.gameStepDelay)
+	
+func SpawnBonus():
+	for bonusSpawnPoint in Scroller.cBonuses:
+		for bonus in bonusSpawnPoint.get_children():
+			bonus.PlayBonus()
+			
 			
 func GameLoop():
 	var stepData = null
@@ -169,14 +174,16 @@ func GameLoop():
 			Timeline.Delay(self, "OnPREPLAY", Data.gameData.nextGameStepDelay)
 
 	if state == GameState.PREPLAY:
+		Timeline.Delay(self, "SpawnBonus", stepData["bonusDelay"])
 		Timeline.Delay(self, "GameOver", Data.gameData.gameStepDelay, "EmitGameOverTime")
-		
 		MoveCameraTo(cameraTransform.position + Vector3.FORWARD, Data.gameData.gameStepDelay)
+		#Prepare Bonus Spawn
 		AnimateTilesStart()
 		state = GameState.PLAY
 		
 	if state == GameState.CONTINUE:
 		if Timeline.IsTimer(self, "GameOver"):
+			Timeline.ResumeDelay(self, "SpawnBonus")
 			Timeline.ResumeDelay(self, "GameOver")
 			ResumeCameraMove()
 			state = GameState.PLAY
@@ -189,11 +196,13 @@ func GameLoop():
 		
 	if state == GameState.PAUSE:
 		Timeline.PauseDelay(self, "GameOver")
+		Timeline.PauseDelay(self, "SpawnBonus")
 		PauseCameraMove()
 		
 	if state == GameState.CHECK:
 		var reservedScore = (Data.gameData.gameStepDelay - Timeline.GetTimer(self, "GameOver").get_total_elapsed_time()) * Data.gameData.gameScoreMultiplier
 		Timeline.StopDelay(self, "GameOver")
+		Timeline.StopDelay(self, "SpawnBonus")
 		Events.emit_signal("HideHudMenuButton")
 			
 		if Data.playerData.selectedButton.GetSymbolAngles() == stepData["angles"]:

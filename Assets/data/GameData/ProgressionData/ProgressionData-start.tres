@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=2]
-
-[ext_resource path="res://Assets/data/GameData/ProgressionData/ProgressionData.gd" type="Script" id=1]
-
-[resource]
-script = ExtResource( 1 )
-symbolTypes = [ 1 ]
-sprites = [ "res://Assets/sprites/game/symbol/sub-symbol-0.png" ]
-islands = [ "res://Assets/terrain/tile-island/0/start.tscn" ]

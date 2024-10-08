@@ -1363,6 +1363,9 @@ transform = Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 3, 0, -2 )
 [node name="tree-65" parent="Terrain/Objects" instance=ExtResource( 10 )]
 transform = Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, -4 )
 
+[node name="tree-69" parent="Terrain/Objects" instance=ExtResource( 10 )]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 0, -0.616654 )
+
 [node name="tree-66" parent="Terrain/Objects" instance=ExtResource( 10 )]
 transform = Transform( 0.180064, 0, 0.676444, 0, 0.7, 0, -0.676444, 0, 0.180064, 0.0714722, 0, -3.14558 )
 
@@ -1401,9 +1404,6 @@ transform = Transform( 0.965925, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965925, -
 
 [node name="tree-8" parent="Terrain/Objects" instance=ExtResource( 11 )]
 transform = Transform( -0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -2, 0, -1 )
-
-[node name="tree-64" parent="Terrain/Objects" instance=ExtResource( 11 )]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0, 0 )
 
 [node name="tree-9" parent="Terrain/Objects" instance=ExtResource( 11 )]
 transform = Transform( 0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 5, 0, -1 )
@@ -2117,9 +2117,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2 )
 
 [node name="bonus-pos-4" type="Position3D" parent="Bonus" groups=["bonuses"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2 )
-
-[node name="bonus-pos-5" type="Position3D" parent="Bonus" groups=["bonuses"]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1 )
 
 [node name="CameraPosition" type="Position3D" parent="." groups=["cameraPosition"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )

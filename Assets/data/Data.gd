@@ -68,6 +68,7 @@ func GetGeneratedRuntimeGameData(subLevel):
 						step["angles"] = []
 						step["buttons"] = []
 						step["island"] = ""
+						step["bonus"] = ""
 						for n in mapData.size():
 							step["sprites"].push_back(sprite)
 						var offsetData = Data.gameData.symbolData.SymbolOffset[offset] 
@@ -89,6 +90,7 @@ func GetGeneratedRuntimeGameData(subLevel):
 						step["angles"] = []
 						step["buttons"] = []
 						step["island"] = ""
+						step["bonus"] = ""
 						for n in mapData.size():
 							step["sprites"].push_back(spritePair[mapData[n]])
 						var offsetData = Data.gameData.symbolData.SymbolOffset[offset] 
@@ -101,11 +103,18 @@ func GetGeneratedRuntimeGameData(subLevel):
 	randomize()
 	gameSteps.shuffle()
 	
+	var rndGen = RandomNumberGenerator.new()
+	
 	for i in gameSteps.size():
 		if i == 0:
 			gameSteps[i]["island"] = subLevel.startIsland
+			gameSteps[i]["bonus"] = ""
+			gameSteps[i]["bonusDelay"] = rndGen.randf_range(0.0, subLevel.bonusDelay)
 		else:
 			gameSteps[i]["island"] = subLevel.islands.pick_random()
+			gameSteps[i]["bonus"] = GetSubLevelBonusByRandom(subLevel, rndGen)
+			gameSteps[i]["bonusDelay"] = rndGen.randf_range(0.0, subLevel.bonusDelay)
+			
 	print(gameSteps.size(), " steps generated")
 	return gameSteps
 
@@ -119,6 +128,32 @@ func GetSpritePairs(spritesArray):
 			gUniqueDouble.push_back([sprite, cSprite])
 			
 	return gUniqueDouble
+
+func GetSubLevelBonusByRandom(subLevelData, randomGen):
+	if subLevelData.bonusChance == 0.0:
+		return ""
+	
+	randomGen.randomize()
+	var candidate = ""
+	var randomBonusChance = randomGen.randf_range(0.0, 1.0)
+	
+	if randomBonusChance > 0 and randomBonusChance <= subLevelData.bonusChance:
+		# Okay we can choose the bonus now
+		var randomBonusChoiceChance = randomGen.randf_range(0.0, 1.0)
+		for bonusData in subLevelData.bonuses:
+			var lastDistance = 1.0
+			if bonusData.chance > 0 and bonusData.chance <= randomBonusChoiceChance:
+				var nextDistance = randomBonusChoiceChance - bonusData.chance
+				if nextDistance < lastDistance:
+					candidate = bonusData.bonusScene
+					lastDistance = nextDistance
+	
+	return candidate
+				
+		
+		
+				
+			
 
 func GenerateButtons(symbolType, correctOffset):
 	var buttons = []

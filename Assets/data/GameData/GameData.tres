@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/data/GameData/GameData.gd" type="Script" id=1]
 [ext_resource path="res://Assets/data/GameData/LevelData/LevelData0.tres" type="Resource" id=2]
 [ext_resource path="res://Assets/data/GameData/SymbolData/SymbolData.tres" type="Resource" id=3]
-[ext_resource path="res://Assets/data/GameData/BonusData/BonusData0.tres" type="Resource" id=4]
+[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/1/_SubLevelBonusData0.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )

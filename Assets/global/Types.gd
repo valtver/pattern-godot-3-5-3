@@ -97,3 +97,9 @@ enum gridSize {
 	_14 = 14
 	_16 = 16
 }
+
+enum Bonus {
+	None = 0,
+	CompletePattern = 1,
+	GetTime = 2	
+}
