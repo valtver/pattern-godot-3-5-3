@@ -9,7 +9,7 @@ var hud
 var hecticPlayLogo
 var gameLogo
 
-onready var Content2D = $CameraPivot/Camera
+onready var Content2D = $MapCamera/Camera
 onready var Content3D = $"."
 
 # Called when the node enters the scene tree for the first time.

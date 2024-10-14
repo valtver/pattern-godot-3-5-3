@@ -3,7 +3,7 @@ extends Resource
 export (float) var gameStepDelay
 export (float) var gameScoreMultiplier
 export (float) var nextGameStepDelay
-export (String, FILE) var scrollerScene
+export (String, FILE) var mapScene
 export (Resource) var symbolData
 export (Array, Resource) var levels
 export (Array, Resource) var bonuses
