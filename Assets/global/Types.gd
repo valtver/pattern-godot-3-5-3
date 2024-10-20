@@ -50,7 +50,8 @@ enum HudElementId {
 	HudButtonHome = 4,
 	HudButtonNext = 5,
 	HudButtonTutorial = 6,
-	HudButtonTutorialNext = 7
+	HudButtonTutorialNext = 7,
+	HudStepResult = 8
 }
 
 enum SymbolType {

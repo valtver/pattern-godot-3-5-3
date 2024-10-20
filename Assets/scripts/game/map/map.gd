@@ -3,15 +3,15 @@ extends Node
 var visibilityNotifiers = []
 
 var cTiles = []
-var cCompletes = []
+var cCompleters = []
 var cBonuses = []
 
 var nTiles = []
-var nCompletes = []
+var nCompleters = []
 var nBonuses = []
 
 var pTiles = []
-var pCompletes = []
+var pCompleters = []
 var pBonuses = []
 
 var pIsland = null
@@ -23,11 +23,11 @@ var pIslandCache = []
 func Init():
 	visibilityNotifiers = []
 	cTiles = []
-	cCompletes = []
+	cCompleters = []
 	nTiles = []
-	nCompletes = []
+	nCompleters = []
 	pTiles = []
-	pCompletes = []
+	pCompleters = []
 	pIsland = null
 	cIsland = null
 	nIsland = null
@@ -48,7 +48,7 @@ func AddFirstIsland():
 			cIsland = editorIsland
 		SortTiles()
 		InitTiles(cTiles)
-		InitCompletes(cCompletes)
+		InitCompletes(cCompleters)
 	return cIsland
 	
 	
@@ -63,7 +63,7 @@ func AddNextIsland(gameStepData):
 	cIsland.position = pIsland.position + Vector3.FORWARD * pIsland.aabb.size.z
 	SortTiles()
 	InitTiles(cTiles)
-	InitCompletes(cCompletes)
+	InitCompletes(cCompleters)
 	InitBonuses(cBonuses, gameStepData)
 	
 func AddLastIsland():
@@ -75,7 +75,7 @@ func AddLastIsland():
 	cIsland.position = pIsland.position + Vector3.FORWARD * pIsland.aabb.size.z
 	SortTiles()
 	InitTiles(cTiles)
-	InitCompletes(cCompletes)
+	InitCompletes(cCompleters)
 
 	
 func SortTiles():
@@ -83,13 +83,13 @@ func SortTiles():
 	var completes = get_tree().get_nodes_in_group("completes")
 	var bonuses = get_tree().get_nodes_in_group("bonuses")
 	cTiles = []
-	cCompletes = []
+	cCompleters = []
 	cBonuses = []
 	pTiles = []
-	pCompletes = []
+	pCompleters = []
 	pBonuses = []
 	nTiles = []
-	nCompletes = []
+	nCompleters = []
 	nBonuses = []
 	
 	for tile in tiles:
@@ -106,13 +106,13 @@ func SortTiles():
 	for complete in completes:
 		if cIsland != null:
 			if cIsland.is_a_parent_of(complete):
-				cCompletes.push_back(complete)
+				cCompleters.push_back(complete)
 		elif pIsland != null:
 			if pIsland.is_a_parent_of(complete):
-				pCompletes.push_back(complete)
+				pCompleters.push_back(complete)
 		elif nIsland != null:
 			if nIsland.is_a_parent_of(complete):
-				nCompletes.push_back(complete)
+				nCompleters.push_back(complete)
 	
 	for bonus in bonuses:
 		if cIsland != null:
@@ -143,6 +143,11 @@ func InitBonuses(bonusSet, gameStepData):
 	var bonus = Loader.GetResource(gameStepData.bonus).instance()
 	bonusSpawnPoint.add_child(bonus)
 	bonus.visible = false
+	
+func SpawnBonus():
+	for bonusSpawnPoint in cBonuses:
+		for bonus in bonusSpawnPoint.get_children():
+			bonus.PlayBonus()
 
 func OnVisibilityChanged(notifier):
 	notifier.queue_free()

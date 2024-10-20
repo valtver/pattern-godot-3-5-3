@@ -5,7 +5,6 @@ export (Array, Resource) var patterns
 export (String, FILE) var startIsland
 export (Array, String, FILE) var islands
 export (String, FILE) var endIsland
-export (float, 0, 1) var bonusChance
 export (float, 0, 3) var bonusDelay
 export (Array, Resource) var bonuses
 export (bool) var unlock = false

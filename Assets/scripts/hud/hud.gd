@@ -4,7 +4,8 @@ var MANUAL_VIS_CONTROL_TYPES = [
 	Types.HudElementId.HudButtonSymbol,
 	Types.HudElementId.HudButtonHome,
 	Types.HudElementId.HudButtonReplay,
-	Types.HudElementId.HudButtonNext
+	Types.HudElementId.HudButtonNext,
+	Types.HudElementId.HudStepResult
 ]
 var FADE_ANIMATION_TYPES = [
 	Types.HudElementId.HudButtonMenu,
@@ -31,6 +32,8 @@ func _ready():
 	Events.connect("ShowHudMenuScreen", self, "OnShowHudMenuScreen")
 	Events.connect("ShowHudWinScreen", self, "OnShowHudWinScreen")
 	Events.connect("ShowHudLostScreen", self, "OnShowHudLostScreen")
+	Events.connect("ShowHudStepFail", self, "OnShowHudStepFail")
+	Events.connect("ShowHudStepSuccess", self, "OnShowHudStepSuccess")
 	Events.connect("ShowHudTutorialScreen", self, "OnShowHudTutorialScreen")
 	
 	Events.connect("ShowHudSymbolButtons", self, "OnShowSymbolButtons")
@@ -63,7 +66,7 @@ func OnButtonClick(button):
 		Types.HudElementId.HudButtonMenu:
 			if not isPauseScreen:
 				ShowHudScreen(Loader.GetResource(pauseHudScreen).instance())
-				Timeline.Delay(self, "ShowControlScreenButtons", 0.25)
+				Call.Delay(self, "ShowControlScreenButtons", 0.25)
 				isPauseScreen = true
 			else:
 				ShowHudScreen(Loader.GetResource(lastHudScreen).instance())
@@ -114,7 +117,7 @@ func OnShowHudWinScreen(stars):
 	var screenPlayer = screen.get_node_or_null("ScreenAnimationPlayer")
 	screenPlayer.play(animationName)
 	screen.get_node_or_null("Pivot/winLabel").text = "%s %d %s" % [tr("SUB_LVL_NAME"), (Data.playerData.selectedSubLevelIndex + 1), tr("HUD_WIN_TEXT")]
-	Timeline.Delay(self, "ShowControlScreenButtons", screenPlayer.current_animation_length)
+	Call.Delay(self, "ShowControlScreenButtons", screenPlayer.current_animation_length)
 	pass
 	
 func OnShowHudLostScreen():
@@ -122,9 +125,23 @@ func OnShowHudLostScreen():
 	ShowHudScreen(screen)
 	var screenPlayer = screen.get_node_or_null("ScreenAnimationPlayer")
 	screenPlayer.play("show")
-	Timeline.Delay(self, "ShowControlScreenButtons", screenPlayer.current_animation_length)
+	Call.Delay(self, "ShowControlScreenButtons", screenPlayer.current_animation_length)
 	pass
 	
+func OnShowHudStepFail():
+	var currentChildren = GetScreenChildren(cHudScreen)
+	for child in currentChildren:
+		if "hudElementId" in child:
+			if child.hudElementId == Types.HudElementId.HudStepResult:
+				child.AnimateFail()
+
+func OnShowHudStepSuccess():
+	var currentChildren = GetScreenChildren(cHudScreen)
+	for child in currentChildren:
+		if "hudElementId" in child:
+			if child.hudElementId == Types.HudElementId.HudStepResult:
+				child.AnimateSuccess()
+
 func ShowControlScreenButtons():
 	var lvlData = Data.gameData.levels[Data.playerData.selectedLevelIndex]
 	var currentChildren = GetScreenChildren(cHudScreen)
@@ -169,12 +186,12 @@ func OnHideSymbolButtons(button: Node = null):
 		if "hudElementId" in child:
 			if child.hudElementId == Types.HudElementId.HudButtonSymbol:
 				if button != null and button.index == child.index:
-					Timeline.Delay(button, "AnimateHide", 0.5)
+					Call.Delay(button, "AnimateHide", 0.5)
 				else:
 					child.AnimateHide()
 				
 func ShowHudScreen(nextHudScreen):
-	Timeline.Delay(AppInput, "EnableUi", 0.25) #Longer delay for menu
+	Call.Delay(AppInput, "EnableUi", 0.25) #Longer delay for menu
 	if nextHudScreen == null:
 		print("No transition screen defined.")
 		return

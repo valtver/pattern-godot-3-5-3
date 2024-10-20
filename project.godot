@@ -22,10 +22,10 @@ Types="*res://Assets/global/Types.gd"
 AppInput="*res://Assets/global/Input.gd"
 Culling="*res://Assets/global/Culling.gd"
 Loader="*res://Assets/global/Loader.gd"
-Timeline="*res://Assets/global/Timeline.gd"
 Data="*res://Assets/data/Data.tscn"
 Random="*res://Assets/global/Random.gd"
 Events="*res://Assets/global/Events.gd"
+Call="*res://Assets/global/Call.gd"
 
 [display]
 

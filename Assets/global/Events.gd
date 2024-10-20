@@ -23,6 +23,8 @@ signal ShowHudGameScreen
 signal ShowHudMenuScreen
 signal ShowHudWinScreen
 signal ShowHudLostScreen
+signal ShowHudStepSuccess
+signal ShowHudStepFail
 signal ShowHudTutorialScreen
 
 signal ShowHudSymbolButtons

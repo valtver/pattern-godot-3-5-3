@@ -129,15 +129,12 @@ func GetSpritePairs(spritesArray):
 			
 	return gUniqueDouble
 
-func GetSubLevelBonusByRandom(subLevelData, randomGen):
-	if subLevelData.bonusChance == 0.0:
-		return ""
-	
+func GetSubLevelBonusByRandom(subLevelData, randomGen):	
 	randomGen.randomize()
 	var candidate = ""
 	var randomBonusChance = randomGen.randf_range(0.0, 1.0)
 	
-	if randomBonusChance > 0 and randomBonusChance <= subLevelData.bonusChance:
+	if randomBonusChance > 0:
 		# Okay we can choose the bonus now
 		var randomBonusChoiceChance = randomGen.randf_range(0.0, 1.0)
 		for bonusData in subLevelData.bonuses:

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/SubLevelData.gd" type="Script" id=1]
-[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData/0/SubLevelPatternData.tres" type="Resource" id=2]
+[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelData.gd" type="Script" id=1]
+[ext_resource path="res://Assets/data/GameData/LevelData/0/0/SubLevelPatternData.tres" type="Resource" id=2]
 
 [resource]
 script = ExtResource( 1 )
@@ -10,7 +10,6 @@ patterns = [ ExtResource( 2 ) ]
 startIsland = "res://Assets/terrain/tile-island/0/start-0.tscn"
 islands = [ "res://Assets/terrain/tile-island/0/0-0.tscn" ]
 endIsland = "res://Assets/terrain/tile-island/0/start-0.tscn"
-bonusChance = 0.0
 bonusDelay = 0.0
 bonuses = [  ]
 unlock = true

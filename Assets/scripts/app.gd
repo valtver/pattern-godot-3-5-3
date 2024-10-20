@@ -18,9 +18,9 @@ func _ready():
 	Events.connect("StartGame", self, "OnGameStart")
 	Events.connect("AppMainMenu", self,"OnMainMenu")
 	Events.connect("ShowFastBlocker", self, "OnShowFastBlocker")
-#	Timeline.OnCompleteTimer(self, "Init", 2.0)
+#	Call.OnCompleteTimer(self, "Init", 2.0)
 	Init()
-#	Timeline.OnCompleteTimer(self, "ShowBlocker", 4.0)
+#	Call.OnCompleteTimer(self, "ShowBlocker", 4.0)
 	ShowBlocker()
 	pass
 
@@ -55,15 +55,15 @@ func HideBlocker():
 		
 func ShowHectic():
 	hecticPlayLogo.play("hecticPlayLogoShow")
-	Timeline.Delay(self, "ShowBlocker", hecticPlayLogo.current_animation_length)
+	Call.Delay(self, "ShowBlocker", hecticPlayLogo.current_animation_length)
 	
 func ShowGameLogo():
 	gameLogo.play("game-logo-start")
-	Timeline.Delay(self, "OnBlockerShown", gameLogo.current_animation_length)
+	Call.Delay(self, "OnBlockerShown", gameLogo.current_animation_length)
 
 func HideGameLogo():
 	gameLogo.play("game-logo-end")
-	Timeline.Delay(self, "OnBlockerHidden", gameLogo.current_animation_length)
+	Call.Delay(self, "OnBlockerHidden", gameLogo.current_animation_length)
 		
 func Unload():
 	if is_instance_valid(hecticPlayLogo):
@@ -117,7 +117,7 @@ func OnLoadComplete():
 		Content2D.add_child(hud)
 		game = Loader.GetResource(Data.appData.gameScene).instance()
 		Content3D.add_child(game)
-#	Timeline.OnCompleteTimer(self, "HideBlocker", 0.5)
+#	Call.OnCompleteTimer(self, "HideBlocker", 0.5)
 	HideBlocker()
 	pass
 		

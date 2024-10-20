@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/fonts/Pacifico-Regular-Outline.tres" type="DynamicFont" id=9]
 [ext_resource path="res://Assets/sprites/hud/hud-fill-bar.png" type="Texture" id=10]
 [ext_resource path="res://Assets/scripts/hud/components/hud-game-bar.gd" type="Script" id=11]
+[ext_resource path="res://Assets/scenes/hud/elements/hud-step-result.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -170,6 +171,8 @@ horizontal_alignment = 2
 width = 700.0
 
 [node name="Pivot" type="Spatial" parent="."]
+
+[node name="hud-step-result" parent="Pivot" instance=ExtResource( 12 )]
 
 [node name="Bottom" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
