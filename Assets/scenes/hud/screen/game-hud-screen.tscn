@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/sprites/hud/hud-fill-bar.png" type="Texture" id=10]
 [ext_resource path="res://Assets/scripts/hud/components/hud-game-bar.gd" type="Script" id=11]
 [ext_resource path="res://Assets/scenes/hud/elements/hud-step-result.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/scripts/hud/components/hud-lives-bar.gd" type="Script" id=13]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -169,6 +170,126 @@ text = "123"
 font = ExtResource( 6 )
 horizontal_alignment = 2
 width = 700.0
+
+[node name="hud-lives-bar" type="Spatial" parent="Top"]
+script = ExtResource( 13 )
+
+[node name="heart-1" type="Spatial" parent="Top/hud-lives-bar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -1.15, 0 )
+
+[node name="heart-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
+transform = Transform( 21.2132, -14.1421, 0, 21.2132, 14.1421, 0, 0, 0, 20, 0.037, 0, 0 )
+sorting_offset = 5.0
+modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
+transform = Transform( 21.2132, 14.1421, 0, -21.2132, 14.1421, 0, 0, 0, 20, -0.0373723, 0, 0 )
+sorting_offset = 5.0
+modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
+transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+sorting_offset = 6.0
+modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
+transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+sorting_offset = 6.0
+modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
+transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+sorting_offset = 7.0
+modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
+transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+sorting_offset = 7.0
+modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-2" type="Spatial" parent="Top/hud-lives-bar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.15, 0 )
+
+[node name="heart-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
+transform = Transform( 21.2132, -14.1421, 0, 21.2132, 14.1421, 0, 0, 0, 20, 0.037, 0, 0 )
+sorting_offset = 5.0
+modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
+transform = Transform( 21.2132, 14.1421, 0, -21.2132, 14.1421, 0, 0, 0, 20, -0.0373723, 0, 0 )
+sorting_offset = 5.0
+modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
+transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+sorting_offset = 6.0
+modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
+transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+sorting_offset = 6.0
+modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
+transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+sorting_offset = 7.0
+modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
+transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+sorting_offset = 7.0
+modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-3" type="Spatial" parent="Top/hud-lives-bar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -1.15, 0 )
+
+[node name="heart-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
+transform = Transform( 21.2132, -14.1421, 0, 21.2132, 14.1421, 0, 0, 0, 20, 0.037, 0, 0 )
+sorting_offset = 5.0
+modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
+transform = Transform( 21.2132, 14.1421, 0, -21.2132, 14.1421, 0, 0, 0, 20, -0.0373723, 0, 0 )
+sorting_offset = 5.0
+modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
+transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+sorting_offset = 6.0
+modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
+transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+sorting_offset = 6.0
+modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
+transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+sorting_offset = 7.0
+modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
+texture = ExtResource( 2 )
+
+[node name="heart-fill-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
+transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+sorting_offset = 7.0
+modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
+texture = ExtResource( 2 )
 
 [node name="Pivot" type="Spatial" parent="."]
 

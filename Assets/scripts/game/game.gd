@@ -119,12 +119,14 @@ func GameLoop():
 				Data.playerData.sessionLives -= 1
 				Data.playerData.selectedButton.AnimateFailClick()
 				Events.emit_signal("ShowHudStepFail")
+				Events.emit_signal("HudSetLives", Data.playerData.sessionLives)
 				Call.Delay(self, "OnNextStep", 1.0)
 		else:
 			if Data.playerData.sessionLives >= 1:
 				Data.playerData.sessionLives -= 1
 				Events.emit_signal("HideHudSymbolButtons")
 				Events.emit_signal("ShowHudStepFail")
+				Events.emit_signal("HudSetLives", Data.playerData.sessionLives)
 				Call.Delay(self, "OnNextStep", 1.0)
 
 	if state == GameState.OVER:
