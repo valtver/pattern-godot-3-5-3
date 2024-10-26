@@ -109,22 +109,23 @@ func GameLoop():
 				Events.emit_signal("HudWinScore")
 				ShowStepComplete()
 				Events.emit_signal("ShowHudStepSuccess")
+				#Dirty hack here for nicer delay on last success
+				if Data.playerData.gameStep < gameSteps.size()-1:
+					OnNextStep()
+				else:
+					Call.Delay(self, "OnNextStep", 0.5)
+					
 			elif Data.playerData.sessionLives >= 1:
 				Data.playerData.sessionLives -= 1
 				Data.playerData.selectedButton.AnimateFailClick()
 				Events.emit_signal("ShowHudStepFail")
+				Call.Delay(self, "OnNextStep", 1.0)
 		else:
 			if Data.playerData.sessionLives >= 1:
 				Data.playerData.sessionLives -= 1
 				Events.emit_signal("HideHudSymbolButtons")
 				Events.emit_signal("ShowHudStepFail")
-			
-		if Data.playerData.sessionLives < 1:
-			Call.Delay(self, "GameOver", 1.0)
-		else:
-			state = GameState.NEXT
-			GameLoop()
-			return
+				Call.Delay(self, "OnNextStep", 1.0)
 
 	if state == GameState.OVER:
 		Events.emit_signal("ShowHudLostScreen")
@@ -197,6 +198,13 @@ func OnPREPLAY():
 	TryPlayStartIslandAnimation()
 	state = GameState.PREPLAY
 	GameLoop()
+	
+func OnNextStep():
+	if Data.playerData.sessionLives < 1:
+		GameOver()
+	else:
+		state = GameState.NEXT
+		GameLoop()
 		
 func TryPlayStartIslandAnimation():
 	var startAnimation = Map.cIsland.get_node_or_null("AnimationPlayer")
@@ -224,6 +232,9 @@ func OnMenuButtonClick():
 func OnSymbolButtonClick(button):
 	Events.emit_signal("HideHudSymbolButtons", button)
 	Data.playerData.selectedButton = button
+	GameStepCheck()
+	
+func OnBonusClick(bonus):
 	GameStepCheck()
 	
 func GameStepCheck():

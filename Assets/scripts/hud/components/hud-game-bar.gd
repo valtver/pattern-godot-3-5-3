@@ -22,8 +22,6 @@ func _ready():
 func SetLevelLabel(value):
 	levelLabel.text = "%d" % (value + 1)
 
-
-	
 func UpdateFill(normalValue):
 	var newWidth = fillTexture.texture.get_width() * normalValue
 	fillTexture.region_rect.size = Vector2(newWidth, fillTexture.texture.get_height())
