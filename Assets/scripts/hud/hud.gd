@@ -147,6 +147,7 @@ func ShowControlScreenButtons():
 	var currentChildren = GetScreenChildren(cHudScreen)
 	for child in currentChildren:
 		if "hudElementId" in child:
+			
 			if child.hudElementId == Types.HudElementId.HudButtonHome:
 				child.AnimateShow("alpha")
 			if child.hudElementId == Types.HudElementId.HudButtonReplay:
@@ -156,6 +157,8 @@ func ShowControlScreenButtons():
 				if nextSubLevelIndex < lvlData.subLevels.size():
 					child.active = lvlData.subLevels[nextSubLevelIndex].unlock
 					child.AnimateShow("alpha")
+				else:
+					child.active = false
 					
 func OnShowMenuButton():
 	var currentChildren = GetScreenChildren(cHudScreen)

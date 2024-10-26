@@ -41,6 +41,8 @@ signal HudButtonReplayClick
 signal HudButtonHomeClick
 signal HudButtonNextClick
 
+signal GameBonusCollected
+
 signal ShowFastBlocker
 #TUTORIAL
 signal TutorialState1

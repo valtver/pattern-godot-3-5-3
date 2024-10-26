@@ -18,13 +18,14 @@ var MapCamera
 var Map
 
 func _ready():
-#	AppInput.DisableUi()
+	AppInput.DisableScene()
 	Events.connect("HudButtonPlayClick", self, "OnPREPLAY")
 	Events.connect("HudButtonSymbolClick", self, "OnSymbolButtonClick")
 	Events.connect("HudButtonMenuClick", self, "OnMenuButtonClick")
 	Events.connect("HudButtonReplayClick", self, "OnReplayButtonClick")
 	Events.connect("HudButtonHomeClick", self, "OnHudButtonHomeClick")
 	Events.connect("HudButtonNextClick", self, "OnHudButtonNextClick")
+	Events.connect("GameBonusCollected", self, "OnBonusCollect")
 	InitScene()
 	InitData()
 	GameLoop()
@@ -71,11 +72,13 @@ func GameLoop():
 		Data.playerData.selectedButton = null
 		Call.Delay(Map, "SpawnBonus", stepData["bonusDelay"])
 		Call.Delay(self, "GameStepCheck", Data.gameData.gameStepDelay, "EmitGameStepCheckTime")
+		AppInput.EnableScene()
 		ShowStepStart()
 		state = GameState.PLAY
 		
 	if state == GameState.CONTINUE:
 		if Call.IsTimer(self, "GameStepCheck"):
+			AppInput.EnableScene()
 			Call.ResumeDelay(Map, "SpawnBonus")
 			Call.ResumeDelay(self, "GameStepCheck")
 			MapCamera.Resume()
@@ -95,6 +98,7 @@ func GameLoop():
 		
 	if state == GameState.CHECK:
 		AppInput.DisableUi()
+		AppInput.DisableScene()
 		var reservedScore = (Data.gameData.gameStepDelay - Call.GetTimer(self, "GameStepCheck").get_total_elapsed_time()) * Data.gameData.gameScoreMultiplier
 		Call.StopDelay(self, "GameStepCheck")
 		Call.StopDelay(Map, "SpawnBonus")
@@ -225,6 +229,7 @@ func GameOver():
 	
 func OnMenuButtonClick():
 	if state != GameState.PAUSE:
+		AppInput.DisableScene()
 		state = GameState.PAUSE
 		GameLoop()
 	else:
@@ -236,8 +241,12 @@ func OnSymbolButtonClick(button):
 	Data.playerData.selectedButton = button
 	GameStepCheck()
 	
-func OnBonusClick(bonus):
-	GameStepCheck()
+func OnBonusCollect(bonus):
+	match bonus.bonusType:
+		Types.Bonus.GetTime:
+			Call.StopDelay(self, "GameStepCheck")
+			Call.Delay(self, "GameStepCheck", Data.gameData.gameStepDelay, "EmitGameStepCheckTime")
+			MapCamera.MoveToInTime(MapCamera.position + Vector3.FORWARD, Data.gameData.gameStepDelay)
 	
 func GameStepCheck():
 	state = GameState.CHECK
