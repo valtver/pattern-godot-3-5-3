@@ -43,7 +43,7 @@ func InitData():
 	Data.playerData.gameStep = -1
 	var lvl = Data.playerData.selectedLevelIndex
 	var subLvl = Data.playerData.selectedSubLevelIndex
-	Data.playerData.sessionLives = 3
+	Data.playerData.sessionFails = 0
 	gameSteps = []
 	gameSteps = Data.GetGeneratedRuntimeGameData(Data.gameData.levels[lvl].subLevels[subLvl])
 	state = GameState.NEXT
@@ -119,19 +119,20 @@ func GameLoop():
 				else:
 					Call.Delay(self, "OnNextStep", 0.5)
 					
-			elif Data.playerData.sessionLives >= 1:
-				Data.playerData.sessionLives -= 1
+			elif Data.playerData.sessionFails <= 2:
+				Data.playerData.sessionFails += 1
 				Data.playerData.selectedButton.AnimateFailClick()
 				Events.emit_signal("ShowHudStepFail")
-				Events.emit_signal("HudSetLives", Data.playerData.sessionLives)
-				Call.Delay(self, "OnNextStep", 1.0)
+				Events.emit_signal("HudSetFails", Data.playerData.sessionFails)
+				Call.Delay(self, "OnNextStep", 1.3)
 		else:
-			if Data.playerData.sessionLives >= 1:
-				Data.playerData.sessionLives -= 1
+			if Data.playerData.sessionFails <= 2:
+				Data.playerData.sessionFails += 1
 				Events.emit_signal("HideHudSymbolButtons")
 				Events.emit_signal("ShowHudStepFail")
-				Events.emit_signal("HudSetLives", Data.playerData.sessionLives)
-				Call.Delay(self, "OnNextStep", 1.0)
+				Events.emit_signal("HudTimeUp")
+				Events.emit_signal("HudSetFails", Data.playerData.sessionFails)
+				Call.Delay(self, "OnNextStep", 1.3)
 
 	if state == GameState.OVER:
 		Events.emit_signal("ShowHudLostScreen")
@@ -206,7 +207,7 @@ func OnPREPLAY():
 	GameLoop()
 	
 func OnNextStep():
-	if Data.playerData.sessionLives < 1:
+	if Data.playerData.sessionFails > 2:
 		GameOver()
 	else:
 		state = GameState.NEXT

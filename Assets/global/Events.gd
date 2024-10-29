@@ -2,7 +2,8 @@ extends Node
 # warning-ignore-all:UNUSED_SIGNAL
 signal HudTimerUpdate
 signal HudWinScore
-signal HudSetLives
+signal HudTimeUp
+signal HudSetFails
 
 signal Click
 signal InactiveClick

@@ -1,12 +1,12 @@
 extends Spatial
 
-var lives = []
+var fails = []
 
-func SetLives(value, force: bool = false):
-	print("Setting lives!", value)
-	for n in lives.size():
-		var fill1 = lives[n].get_node("heart-fill-1")
-		var fill2 = lives[n].get_node("heart-fill-2")
+func SetFails(value, force: bool = false):
+	print("Setting fails!", value)
+	for n in fails.size():
+		var fill1 = fails[n].get_node("fail-fill-1")
+		var fill2 = fails[n].get_node("fail-fill-2")
 		if n < value:
 			if fill1.opacity != 1.0:
 				if !force:
@@ -34,13 +34,13 @@ func SetLives(value, force: bool = false):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	lives = [
-		$"heart-1",
-		$"heart-2",
-		$"heart-3"
+	fails = [
+		$"fail-1",
+		$"fail-2",
+		$"fail-3"
 	]
-	SetLives(Data.playerData.sessionLives, true)
-	Events.connect("HudSetLives", self, "SetLives")
+	SetFails(Data.playerData.sessionFails, true)
+	Events.connect("HudSetFails", self, "SetFails")
 	pass # Replace with function body.
 
 

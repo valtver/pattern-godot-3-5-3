@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
@@ -12,7 +12,7 @@
 [ext_resource path="res://Assets/sprites/hud/hud-fill-bar.png" type="Texture" id=10]
 [ext_resource path="res://Assets/scripts/hud/components/hud-game-bar.gd" type="Script" id=11]
 [ext_resource path="res://Assets/scenes/hud/elements/hud-step-result.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Assets/scripts/hud/components/hud-lives-bar.gd" type="Script" id=13]
+[ext_resource path="res://Assets/scripts/hud/components/hud-fail-bar.gd" type="Script" id=13]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -40,6 +40,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 0.870588, 1, 0.709804, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("bg:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.470588, 0.203922, 0.0392157, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "score-vfx"
@@ -66,6 +78,22 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 0.277392, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.870588, 1, 0.709804, 0 ), Color( 0.870588, 1, 0.709804, 1 ), Color( 0.870588, 1, 0.709804, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "time-up-vfx"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05 ),
+"update": 0,
+"values": [ Color( 0.470588, 0.203922, 0.0392157, 1 ), Color( 0.694118, 0.219608, 0.360784, 1 ), Color( 0.470588, 0.203922, 0.0392157, 1 ), Color( 0.694118, 0.219608, 0.360784, 1 ), Color( 0.470588, 0.203922, 0.0392157, 1 ), Color( 0.694118, 0.219608, 0.360784, 1 ), Color( 0.470588, 0.203922, 0.0392157, 1 ) ]
 }
 
 [node name="game-hud-screen" type="Spatial"]
@@ -171,122 +199,122 @@ font = ExtResource( 6 )
 horizontal_alignment = 2
 width = 700.0
 
-[node name="hud-lives-bar" type="Spatial" parent="Top"]
+[node name="hud-fail-bar" type="Spatial" parent="Top"]
 script = ExtResource( 13 )
 
-[node name="heart-1" type="Spatial" parent="Top/hud-lives-bar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -1.15, 0 )
+[node name="fail-1" type="Spatial" parent="Top/hud-fail-bar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.357, -1.15494, 0 )
 
-[node name="heart-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
-transform = Transform( 21.2132, -14.1421, 0, 21.2132, 14.1421, 0, 0, 0, 20, 0.037, 0, 0 )
+[node name="fail-bg-1" type="Sprite3D" parent="Top/hud-fail-bar/fail-1"]
+transform = Transform( 28.2843, -14.1421, 0, 28.2843, 14.1421, 0, 0, 0, 20, 0, 0, 0 )
 sorting_offset = 5.0
 modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
-transform = Transform( 21.2132, 14.1421, 0, -21.2132, 14.1421, 0, 0, 0, 20, -0.0373723, 0, 0 )
+[node name="fail-bg-2" type="Sprite3D" parent="Top/hud-fail-bar/fail-1"]
+transform = Transform( 28.2843, 14.1421, 0, -28.2843, 14.1421, 0, 0, 0, 20, 0, 0, 0 )
 sorting_offset = 5.0
 modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
-transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+[node name="fail-fill-bg-1" type="Sprite3D" parent="Top/hud-fail-bar/fail-1"]
+transform = Transform( 22.6274, -8.48528, 0, 22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 6.0
 modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
-transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+[node name="fail-fill-bg-2" type="Sprite3D" parent="Top/hud-fail-bar/fail-1"]
+transform = Transform( 22.6274, 8.48528, 0, -22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 6.0
 modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
-transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+[node name="fail-fill-1" type="Sprite3D" parent="Top/hud-fail-bar/fail-1"]
+transform = Transform( 22.6274, -8.48528, 0, 22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 7.0
 modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-1"]
-transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+[node name="fail-fill-2" type="Sprite3D" parent="Top/hud-fail-bar/fail-1"]
+transform = Transform( 22.6274, 8.48528, 0, -22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 7.0
 modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-2" type="Spatial" parent="Top/hud-lives-bar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.15, 0 )
+[node name="fail-2" type="Spatial" parent="Top/hud-fail-bar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1554, 0 )
 
-[node name="heart-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
-transform = Transform( 21.2132, -14.1421, 0, 21.2132, 14.1421, 0, 0, 0, 20, 0.037, 0, 0 )
+[node name="fail-bg-1" type="Sprite3D" parent="Top/hud-fail-bar/fail-2"]
+transform = Transform( 28.2843, -14.1421, 0, 28.2843, 14.1421, 0, 0, 0, 20, 0, 0, 0 )
 sorting_offset = 5.0
 modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
-transform = Transform( 21.2132, 14.1421, 0, -21.2132, 14.1421, 0, 0, 0, 20, -0.0373723, 0, 0 )
+[node name="fail-bg-2" type="Sprite3D" parent="Top/hud-fail-bar/fail-2"]
+transform = Transform( 28.2843, 14.1421, 0, -28.2843, 14.1421, 0, 0, 0, 20, 0, 0, 0 )
 sorting_offset = 5.0
 modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
-transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+[node name="fail-fill-bg-1" type="Sprite3D" parent="Top/hud-fail-bar/fail-2"]
+transform = Transform( 22.6274, -8.48528, 0, 22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 6.0
 modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
-transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+[node name="fail-fill-bg-2" type="Sprite3D" parent="Top/hud-fail-bar/fail-2"]
+transform = Transform( 22.6274, 8.48528, 0, -22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 6.0
 modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
-transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+[node name="fail-fill-1" type="Sprite3D" parent="Top/hud-fail-bar/fail-2"]
+transform = Transform( 22.6274, -8.48528, 0, 22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 7.0
 modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-2"]
-transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+[node name="fail-fill-2" type="Sprite3D" parent="Top/hud-fail-bar/fail-2"]
+transform = Transform( 22.6274, 8.48528, 0, -22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 7.0
 modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-3" type="Spatial" parent="Top/hud-lives-bar"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -1.15, 0 )
+[node name="fail-3" type="Spatial" parent="Top/hud-fail-bar"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35659, -1.1554, 0 )
 
-[node name="heart-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
-transform = Transform( 21.2132, -14.1421, 0, 21.2132, 14.1421, 0, 0, 0, 20, 0.037, 0, 0 )
+[node name="fail-bg-1" type="Sprite3D" parent="Top/hud-fail-bar/fail-3"]
+transform = Transform( 28.2843, -14.1421, 0, 28.2843, 14.1421, 0, 0, 0, 20, 0, 0, 0 )
 sorting_offset = 5.0
 modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
-transform = Transform( 21.2132, 14.1421, 0, -21.2132, 14.1421, 0, 0, 0, 20, -0.0373723, 0, 0 )
+[node name="fail-bg-2" type="Sprite3D" parent="Top/hud-fail-bar/fail-3"]
+transform = Transform( 28.2843, 14.1421, 0, -28.2843, 14.1421, 0, 0, 0, 20, 0, 0, 0 )
 sorting_offset = 5.0
 modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-bg-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
-transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+[node name="fail-fill-bg-1" type="Sprite3D" parent="Top/hud-fail-bar/fail-3"]
+transform = Transform( 22.6274, -8.48528, 0, 22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 6.0
 modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-bg-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
-transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+[node name="fail-fill-bg-2" type="Sprite3D" parent="Top/hud-fail-bar/fail-3"]
+transform = Transform( 22.6274, 8.48528, 0, -22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 6.0
 modulate = Color( 0.470588, 0.203922, 0.0392157, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-1" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
-transform = Transform( 15.8986, -9.01137, 0, 15.8986, 9.01137, 0, 0, 0, 12.744, 0.037, 0, 0 )
+[node name="fail-fill-1" type="Sprite3D" parent="Top/hud-fail-bar/fail-3"]
+transform = Transform( 22.6274, -8.48528, 0, 22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 7.0
 modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
 texture = ExtResource( 2 )
 
-[node name="heart-fill-2" type="Sprite3D" parent="Top/hud-lives-bar/heart-3"]
-transform = Transform( 15.8986, 9.01137, 0, -15.8986, 9.01137, 0, 0, 0, 12.744, -0.0373723, 0, 0 )
+[node name="fail-fill-2" type="Sprite3D" parent="Top/hud-fail-bar/fail-3"]
+transform = Transform( 22.6274, 8.48528, 0, -22.6274, 8.48528, 0, 0, 0, 12, 0, 0, 0 )
 sorting_offset = 7.0
 modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
 texture = ExtResource( 2 )
@@ -316,3 +344,4 @@ index = 2
 root_node = NodePath("../Top/hud-game-bar")
 anims/RESET = SubResource( 1 )
 anims/score-vfx = SubResource( 2 )
+anims/time-up-vfx = SubResource( 3 )
