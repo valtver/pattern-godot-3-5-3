@@ -3,16 +3,24 @@ extends Spatial
 var fails = []
 
 func SetFails(value, force: bool = false):
-	print("Setting fails!", value)
 	for n in fails.size():
 		var fill1 = fails[n].get_node("fail-fill-1")
 		var fill2 = fails[n].get_node("fail-fill-2")
 		if n < value:
 			if fill1.opacity != 1.0:
 				if !force:
-					var tween = create_tween().set_parallel(true)
-					tween.tween_property(fill1, "opacity", 1, 0.5)
-					tween.tween_property(fill2, "opacity", 1, 0.5)
+					yield(create_tween().tween_interval(1), "finished")
+					var tween = create_tween()
+					tween.set_parallel(true)
+					tween.tween_property(fill1, "opacity", 1, 0.25)
+					tween.tween_property(fill2, "opacity", 1, 0.25)
+					var originalScale = fill1.scale
+					fill1.scale = originalScale * 3
+					fill2.scale = originalScale * 3
+					tween.set_ease(Tween.EASE_OUT)
+					tween.set_trans(Tween.TRANS_BOUNCE)
+					tween.tween_property(fill1, "scale", originalScale, 0.5)
+					tween.tween_property(fill2, "scale", originalScale, 0.5)
 					tween.play()
 				else:
 					fill1.opacity = 1
