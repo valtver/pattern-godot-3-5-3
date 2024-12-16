@@ -16,5 +16,5 @@ endIsland = "res://Assets/terrain/tile-island/0/start-0.tscn"
 bonusDelay = 2.0
 bonuses = [ ExtResource( 5 ) ]
 unlock = false
-score = 0
+timeScore = 0
 stars = 0

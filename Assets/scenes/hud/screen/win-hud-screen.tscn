@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Assets/sprites/ui/ui-forest-icon.png" type="Texture" id=1]
 [ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=2]
@@ -6,9 +6,14 @@
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-replay-button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-next-button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/sprites/hud/hud-patch-check-outline.png" type="Texture" id=7]
+[ext_resource path="res://Assets/sprites/hud/hud-win-star-icon.png" type="Texture" id=8]
 [ext_resource path="res://Assets/sprites/hud/hud-star-icon.png" type="Texture" id=9]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-home-button.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/scripts/hud/components/hud-score-label.gd" type="Script" id=11]
+[ext_resource path="res://Assets/sprites/hud/hud-patch.png" type="Texture" id=12]
+[ext_resource path="res://Assets/sprites/hud/hud-patch-check.png" type="Texture" id=13]
+[ext_resource path="res://Assets/sprites/hud/hud-vfx-ray.png" type="Texture" id=14]
 
 [sub_resource type="SpatialMaterial" id=3]
 flags_transparent = true
@@ -23,7 +28,7 @@ albedo_texture = ExtResource( 9 )
 
 [sub_resource type="QuadMesh" id=4]
 material = SubResource( 3 )
-size = Vector2( 0.25, 0.25 )
+size = Vector2( 0.2, 0.2 )
 
 [sub_resource type="Gradient" id=5]
 colors = PoolColorArray( 1, 0.639216, 0.0980392, 1, 1, 0.639216, 0.0980392, 0 )
@@ -31,7 +36,7 @@ colors = PoolColorArray( 1, 0.639216, 0.0980392, 1, 1, 0.639216, 0.0980392, 0 )
 [sub_resource type="Animation" id=6]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/winLabel:outline_modulate")
+tracks/0/path = NodePath("Pivot/hud-logo-base:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -39,11 +44,11 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.94902, 0.796078, 0.654902, 0 ) ]
+"update": 1,
+"values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/winLabel:modulate")
+tracks/1/path = NodePath("Pivot/hud-patch-base:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -51,11 +56,11 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ) ]
+"update": 1,
+"values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Pivot/hud-star-1:visible")
+tracks/2/path = NodePath("Pivot/hud-patch-shadow:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -67,7 +72,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Pivot/hud-star-0:visible")
+tracks/3/path = NodePath("Pivot/hud-patch-check-base:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -79,7 +84,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Pivot/hud-star-2:visible")
+tracks/4/path = NodePath("Pivot/hud-patch-check:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -91,7 +96,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Pivot/hud-logo-base:opacity")
+tracks/5/path = NodePath("Pivot/winLabel:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -99,11 +104,11 @@ tracks/5/enabled = true
 tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
+"update": 1,
+"values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Pivot/hud-star-0:scale")
+tracks/6/path = NodePath("Pivot/hud-star-2/hud-star:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -111,11 +116,11 @@ tracks/6/enabled = true
 tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ) ]
+"update": 1,
+"values": [ false ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Pivot/CPUParticles-0:translation")
+tracks/7/path = NodePath("Pivot/hud-patch-base/hud-star-base-2:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -123,11 +128,11 @@ tracks/7/enabled = true
 tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -1, 0.120095, 0 ) ]
+"update": 1,
+"values": [ false ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Pivot/hud-score-label/scoreLabel:visible")
+tracks/8/path = NodePath("Pivot/hud-star-2/CPUParticles:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -136,10 +141,10 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Pivot/hud-score-label/scoreLabel:outline_modulate")
+tracks/9/path = NodePath("Pivot/hud-star-1/hud-star:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -147,343 +152,824 @@ tracks/9/enabled = true
 tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.780392, 0.447059, 0.243137, 0 ) ]
+"update": 1,
+"values": [ false ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
+tracks/10/path = NodePath("Pivot/hud-patch-base/hud-star-base-1:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Pivot/hud-star-1/CPUParticles:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Pivot/hud-star-3/hud-star:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Pivot/hud-patch-base/hud-star-base-3:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Pivot/hud-star-3/CPUParticles:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Pivot/hud-patch-base:opacity")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Pivot/hud-patch-base:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Pivot/hud-patch-shadow:opacity")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Pivot/hud-patch-shadow:scale")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Pivot/hud-patch-check-base:opacity")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Pivot/hud-patch-check:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Pivot/hud-patch-check:opacity")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Pivot/hud-star-1/hud-star:scale")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Pivot/hud-star-1/CPUParticles:emitting")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Pivot/hud-star-2/hud-star:scale")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Pivot/hud-star-2/CPUParticles:emitting")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 0.823529, 0.109804, 0 ) ]
 }
-tracks/11/type = "value"
-tracks/11/path = NodePath("Pivot/hud-score-label/scoreLabel:scale")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0.513955, 0.513955, 0.513955 ) ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("Pivot/hud-star-1:scale")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
+tracks/27/type = "value"
+tracks/27/path = NodePath("Pivot/hud-star-3/hud-star:scale")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ) ]
 }
-tracks/13/type = "value"
-tracks/13/path = NodePath("Pivot/CPUParticles-1:translation")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0.520095, 0 ) ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("Pivot/hud-star-2:scale")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ) ]
-}
-tracks/15/type = "value"
-tracks/15/path = NodePath("Pivot/CPUParticles-2:translation")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 1, 0.120095, 0 ) ]
-}
-tracks/16/type = "value"
-tracks/16/path = NodePath("Pivot/CPUParticles-0:visible")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/17/type = "value"
-tracks/17/path = NodePath("Pivot/CPUParticles-1:visible")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/18/type = "value"
-tracks/18/path = NodePath("Pivot/CPUParticles-2:visible")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "show-1"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/winLabel:outline_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/winLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Pivot/CPUParticles-0:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Pivot/hud-star-1:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/28/type = "value"
+tracks/28/path = NodePath("Pivot/hud-star-3/CPUParticles:emitting")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
 }
+tracks/29/type = "value"
+tracks/29/path = NodePath("Pivot/hud-rays-pivot/hud-ray-5:visible")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/30/type = "value"
+tracks/30/path = NodePath("Pivot/hud-rays-pivot/hud-ray-4:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/31/type = "value"
+tracks/31/path = NodePath("Pivot/hud-rays-pivot/hud-ray-3:visible")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/32/type = "value"
+tracks/32/path = NodePath("Pivot/hud-rays-pivot/hud-ray-2:visible")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/33/type = "value"
+tracks/33/path = NodePath("Pivot/hud-rays-pivot/hud-ray-1:visible")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/34/type = "value"
+tracks/34/path = NodePath("Pivot/hud-rays-pivot:scale")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+tracks/35/type = "value"
+tracks/35/path = NodePath("Pivot/hud-rays-pivot:rotation_degrees")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 180 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "show-1"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/hud-logo-base:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/hud-logo-base:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/winLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/winLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ) ]
+}
 tracks/4/type = "value"
-tracks/4/path = NodePath("Pivot/hud-star-0:visible")
+tracks/4/path = NodePath("Pivot/winLabel:outline_modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"times": PoolRealArray( 0, 0.4, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 1 ), Color( 0.94902, 0.796078, 0.654902, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Pivot/hud-star-2:visible")
+tracks/5/path = NodePath("Pivot/hud-patch-base:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Pivot/hud-logo-base:opacity")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 0.3, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.0, 1.0 ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Pivot/hud-star-0:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0.9, 1.1, 1.3 ),
-"transitions": PoolRealArray( 2.37841, 0.392292, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 1, 1, 1 ), Vector3( 0.75, 0.75, 0.75 ) ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("Pivot/CPUParticles-0:translation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -1, 0.120095, 0 ) ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("Pivot/hud-score-label/scoreLabel:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Pivot/hud-patch-base:opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1, 1.3, 3 ),
+"transitions": PoolRealArray( 1.56917, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Pivot/hud-patch-base:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1, 1.3, 1.4, 1.6, 3 ),
+"transitions": PoolRealArray( 2.2974, 0.378929, 0.277392, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3, 3, 3 ), Vector3( 1, 1, 1 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Pivot/hud-patch-shadow:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Pivot/hud-patch-shadow:opacity")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 1.4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
 tracks/10/type = "value"
-tracks/10/path = NodePath("Pivot/hud-score-label/scoreLabel:outline_modulate")
+tracks/10/path = NodePath("Pivot/hud-patch-shadow:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 1, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 1.3, 1.4, 1.6, 3 ),
+"transitions": PoolRealArray( 0.353554, 0.258816, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.780392, 0.447059, 0.243137, 0 ), Color( 0.780392, 0.447059, 0.243137, 1 ) ]
+"values": [ Vector3( 0.924, 0.924, 0.924 ), Vector3( 1.1873, 1.1873, 1.1873 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
+tracks/11/path = NodePath("Pivot/hud-patch-check-base:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 1, 2.5 ),
+"times": PoolRealArray( 0, 1.3 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0.823529, 0.109804, 0 ), Color( 1, 0.823529, 0.109804, 1 ) ]
+"update": 1,
+"values": [ false, true ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Pivot/hud-score-label/scoreLabel:scale")
+tracks/12/path = NodePath("Pivot/hud-patch-check-base:opacity")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 2.3, 2.5, 2.7 ),
-"transitions": PoolRealArray( 2.14355, 0.378929, 1 ),
+"times": PoolRealArray( 1.3, 1.5, 3 ),
+"transitions": PoolRealArray( 0.329877, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0.513955, 0.513955, 0.513955 ), Vector3( 0.75, 0.75, 0.75 ), Vector3( 0.513955, 0.513955, 0.513955 ) ]
+"values": [ 0.0, 1.0, 1.0 ]
 }
-
-[sub_resource type="Animation" id=8]
-resource_name = "show-2"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/winLabel:outline_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/winLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Pivot/CPUParticles-0:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+tracks/13/type = "value"
+tracks/13/path = NodePath("Pivot/hud-patch-check:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ false, true, false ]
+"values": [ false, true ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Pivot/hud-star-1:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/14/type = "value"
+tracks/14/path = NodePath("Pivot/hud-patch-check:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 1.1, 1.3, 1.4, 1.6, 3 ),
+"transitions": PoolRealArray( 3.24901, 0.297302, 0.353553, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3, 3, 3 ), Vector3( 1, 1, 1 ), Vector3( 1.2, 1.2, 1.2 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Pivot/hud-patch-check:opacity")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 1.1, 1.3, 3 ),
+"transitions": PoolRealArray( 0.535887, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Pivot/hud-patch-base/hud-star-base-2:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Pivot/hud-patch-base/hud-star-base-3:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Pivot/hud-patch-base/hud-star-base-1:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Pivot/hud-star-1/hud-star:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Pivot/hud-star-1/hud-star:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 1.4, 1.5, 1.6, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.3, 0.3, 0.3 ), Vector3( 0.244529, 0.244529, 0.244529 ), Vector3( 0.244529, 0.244529, 0.244529 ) ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Pivot/hud-star-1/CPUParticles:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Pivot/hud-star-1/CPUParticles:emitting")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Pivot/hud-star-2/hud-star:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0, 1.5, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.823529, 0.109804, 0 ), Color( 1, 0.823529, 0.109804, 0 ), Color( 0.709804, 0.52549, 0.352941, 1 ), Color( 0.709804, 0.52549, 0.352941, 1 ) ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Pivot/hud-star-3/hud-star:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("Pivot/hud-star-3/hud-star:scale")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/27/type = "value"
+tracks/27/path = NodePath("Pivot/hud-star-3/CPUParticles:visible")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/28/type = "value"
+tracks/28/path = NodePath("Pivot/hud-star-3/CPUParticles:emitting")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/29/type = "value"
+tracks/29/path = NodePath("Pivot/hud-rays-pivot/hud-ray-1:visible")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
 "times": PoolRealArray( 0, 1.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
+tracks/30/type = "value"
+tracks/30/path = NodePath("Pivot/hud-rays-pivot/hud-ray-2:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/31/type = "value"
+tracks/31/path = NodePath("Pivot/hud-rays-pivot/hud-ray-3:visible")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/32/type = "value"
+tracks/32/path = NodePath("Pivot/hud-rays-pivot/hud-ray-4:visible")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/33/type = "value"
+tracks/33/path = NodePath("Pivot/hud-rays-pivot/hud-ray-5:visible")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/34/type = "value"
+tracks/34/path = NodePath("Pivot/hud-rays-pivot:scale")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/keys = {
+"times": PoolRealArray( 1.2, 1.5, 1.9, 3 ),
+"transitions": PoolRealArray( 0.329877, 0.840897, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 4, 4, 4 ), Vector3( 2.864, 2.864, 2.864 ), Vector3( 2.864, 2.864, 2.864 ) ]
+}
+tracks/35/type = "value"
+tracks/35/path = NodePath("Pivot/hud-rays-pivot:rotation_degrees")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 1, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 90 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "show-1-loop"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/hud-logo-base:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/hud-logo-base:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/winLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/winLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 1 ) ]
+}
 tracks/4/type = "value"
-tracks/4/path = NodePath("Pivot/hud-star-0:visible")
+tracks/4/path = NodePath("Pivot/winLabel:outline_modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.94902, 0.796078, 0.654902, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Pivot/hud-star-2:visible")
+tracks/5/path = NodePath("Pivot/hud-patch-base:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -492,362 +978,166 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Pivot/hud-logo-base:opacity")
+tracks/6/path = NodePath("Pivot/hud-patch-base:opacity")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.3, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0, 0.0, 1.0 ]
+"values": [ 1.0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Pivot/hud-star-0:scale")
+tracks/7/path = NodePath("Pivot/hud-patch-base:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.9, 1.1, 1.3 ),
-"transitions": PoolRealArray( 2.37841, 0.392292, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 1, 1, 1 ), Vector3( 0.75, 0.75, 0.75 ) ]
+"values": [ Vector3( 1, 1, 1 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Pivot/CPUParticles-0:translation")
+tracks/8/path = NodePath("Pivot/hud-patch-shadow:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( -1, 0.120095, 0 ) ]
+"update": 1,
+"values": [ true ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Pivot/hud-score-label/scoreLabel:visible")
+tracks/9/path = NodePath("Pivot/hud-patch-shadow:opacity")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Pivot/hud-score-label/scoreLabel:outline_modulate")
+tracks/10/path = NodePath("Pivot/hud-patch-shadow:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 1, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.780392, 0.447059, 0.243137, 0 ), Color( 0.780392, 0.447059, 0.243137, 1 ) ]
+"values": [ Vector3( 1, 1, 1 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
+tracks/11/path = NodePath("Pivot/hud-patch-check-base:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 1, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0.823529, 0.109804, 0 ), Color( 1, 0.823529, 0.109804, 1 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Pivot/hud-score-label/scoreLabel:scale")
+tracks/12/path = NodePath("Pivot/hud-patch-check-base:opacity")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 2.3, 2.5, 2.7 ),
-"transitions": PoolRealArray( 2.14355, 0.378929, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0.513955, 0.513955, 0.513955 ), Vector3( 0.75, 0.75, 0.75 ), Vector3( 0.513955, 0.513955, 0.513955 ) ]
+"values": [ 1.0 ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("Pivot/hud-star-1:scale")
+tracks/13/path = NodePath("Pivot/hud-patch-check:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/keys = {
-"times": PoolRealArray( 1.2, 1.4, 1.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 1, 1, 1 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("Pivot/CPUParticles-1:translation")
+tracks/14/path = NodePath("Pivot/hud-patch-check:scale")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
 tracks/14/enabled = true
 tracks/14/keys = {
-"times": PoolRealArray( 1.3 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0.520095, 0 ) ]
+"values": [ Vector3( 1, 1, 1 ) ]
 }
 tracks/15/type = "value"
-tracks/15/path = NodePath("Pivot/CPUParticles-1:emitting")
+tracks/15/path = NodePath("Pivot/hud-patch-check:opacity")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/imported = false
 tracks/15/enabled = true
 tracks/15/keys = {
-"times": PoolRealArray( 0, 1.3, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "show-3"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Pivot/winLabel:outline_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Pivot/winLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Pivot/CPUParticles-0:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Pivot/hud-star-1:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Pivot/hud-star-0:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Pivot/hud-star-2:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 2.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Pivot/hud-logo-base:opacity")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 0.3, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.0, 1.0 ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Pivot/hud-star-0:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0.9, 1.1, 1.3 ),
-"transitions": PoolRealArray( 2.37841, 0.392292, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 1, 1, 1 ), Vector3( 0.75, 0.75, 0.75 ) ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("Pivot/CPUParticles-0:translation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( -1, 0.120095, 0 ) ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("Pivot/hud-score-label/scoreLabel:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("Pivot/hud-score-label/scoreLabel:outline_modulate")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 1, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.780392, 0.447059, 0.243137, 0 ), Color( 0.780392, 0.447059, 0.243137, 1 ) ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 1, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0.823529, 0.109804, 0 ), Color( 1, 0.823529, 0.109804, 1 ) ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("Pivot/hud-score-label/scoreLabel:scale")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 2.3, 2.5, 2.7 ),
-"transitions": PoolRealArray( 2.14355, 0.378929, 1 ),
-"update": 0,
-"values": [ Vector3( 0.513955, 0.513955, 0.513955 ), Vector3( 0.75, 0.75, 0.75 ), Vector3( 0.513955, 0.513955, 0.513955 ) ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("Pivot/hud-star-1:scale")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
-"times": PoolRealArray( 1.5, 1.7, 1.9 ),
-"transitions": PoolRealArray( 2.07053, 0.258817, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 1, 1, 1 ) ]
-}
-tracks/14/type = "value"
-tracks/14/path = NodePath("Pivot/CPUParticles-1:translation")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
-"times": PoolRealArray( 1.6 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0.520095, 0 ) ]
-}
-tracks/15/type = "value"
-tracks/15/path = NodePath("Pivot/CPUParticles-1:emitting")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/keys = {
-"times": PoolRealArray( 0, 1.6, 1.8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
+"values": [ 1.0 ]
 }
 tracks/16/type = "value"
-tracks/16/path = NodePath("Pivot/hud-star-2:scale")
+tracks/16/path = NodePath("Pivot/hud-patch-base/hud-star-base-2:visible")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/keys = {
-"times": PoolRealArray( 2.1, 2.3, 2.5 ),
-"transitions": PoolRealArray( 2.2974, 0.329877, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 1, 1, 1 ), Vector3( 0.75, 0.75, 0.75 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 tracks/17/type = "value"
-tracks/17/path = NodePath("Pivot/CPUParticles-2:translation")
+tracks/17/path = NodePath("Pivot/hud-patch-base/hud-star-base-3:visible")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/imported = false
 tracks/17/enabled = true
 tracks/17/keys = {
-"times": PoolRealArray( 2.2 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector3( 1, 0.120095, 0 ) ]
+"update": 1,
+"values": [ true ]
 }
 tracks/18/type = "value"
-tracks/18/path = NodePath("Pivot/CPUParticles-2:emitting")
+tracks/18/path = NodePath("Pivot/hud-patch-base/hud-star-base-1:visible")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/imported = false
 tracks/18/enabled = true
 tracks/18/keys = {
-"times": PoolRealArray( 0, 2.2, 2.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false, true, false ]
+"values": [ true ]
 }
 tracks/19/type = "value"
-tracks/19/path = NodePath("Pivot/CPUParticles-0:visible")
+tracks/19/path = NodePath("Pivot/hud-star-1/hud-star:visible")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/imported = false
@@ -859,7 +1149,7 @@ tracks/19/keys = {
 "values": [ true ]
 }
 tracks/20/type = "value"
-tracks/20/path = NodePath("Pivot/CPUParticles-1:visible")
+tracks/20/path = NodePath("Pivot/hud-star-1/hud-star:scale")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/imported = false
@@ -867,11 +1157,387 @@ tracks/20/enabled = true
 tracks/20/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.244529, 0.244529, 0.244529 ) ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Pivot/hud-star-2/hud-star:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.709804, 0.52549, 0.352941, 1 ) ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Pivot/hud-star-3/hud-star:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Pivot/hud-rays-pivot/hud-ray-1:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
 }
+tracks/25/type = "value"
+tracks/25/path = NodePath("Pivot/hud-rays-pivot/hud-ray-2:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("Pivot/hud-rays-pivot/hud-ray-3:visible")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/27/type = "value"
+tracks/27/path = NodePath("Pivot/hud-rays-pivot/hud-ray-4:visible")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/28/type = "value"
+tracks/28/path = NodePath("Pivot/hud-rays-pivot/hud-ray-5:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/29/type = "value"
+tracks/29/path = NodePath("Pivot/hud-rays-pivot:scale")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 2.864, 2.864, 2.864 ) ]
+}
+tracks/30/type = "value"
+tracks/30/path = NodePath("Pivot/hud-rays-pivot:rotation_degrees")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 90 ), Vector3( 0, 0, 162 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "show-2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/hud-logo-base:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/hud-logo-base:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/winLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/winLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/winLabel:outline_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 1 ), Color( 0.94902, 0.796078, 0.654902, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/hud-patch-base:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Pivot/hud-patch-base:opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1, 1.3, 3 ),
+"transitions": PoolRealArray( 1.56917, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Pivot/hud-patch-base:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1, 1.3, 1.4, 1.6, 3 ),
+"transitions": PoolRealArray( 2.2974, 0.378929, 0.277392, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3, 3, 3 ), Vector3( 1, 1, 1 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Pivot/hud-patch-shadow:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Pivot/hud-patch-shadow:opacity")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 1.4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Pivot/hud-patch-shadow:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 1.3, 1.4, 1.6, 3 ),
+"transitions": PoolRealArray( 0.353554, 0.258816, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.924, 0.924, 0.924 ), Vector3( 1.1873, 1.1873, 1.1873 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Pivot/hud-patch-check-base:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Pivot/hud-patch-check-base:opacity")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 1.3, 1.5, 3 ),
+"transitions": PoolRealArray( 0.329877, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Pivot/hud-patch-check:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Pivot/hud-patch-check:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 1.1, 1.3, 1.4, 1.6, 3 ),
+"transitions": PoolRealArray( 3.24901, 0.297302, 0.353553, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3, 3, 3 ), Vector3( 1, 1, 1 ), Vector3( 1.2, 1.2, 1.2 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Pivot/hud-patch-check:opacity")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 1.1, 1.3, 3 ),
+"transitions": PoolRealArray( 0.535887, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Pivot/hud-patch-base/hud-star-base-2:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Pivot/hud-patch-base/hud-star-base-3:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Pivot/hud-patch-base/hud-star-base-1:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Pivot/hud-star-1/hud-star:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Pivot/hud-star-1/hud-star:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 1.4, 1.5, 1.6, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.3, 0.3, 0.3 ), Vector3( 0.244529, 0.244529, 0.244529 ), Vector3( 0.244529, 0.244529, 0.244529 ) ]
+}
 tracks/21/type = "value"
-tracks/21/path = NodePath("Pivot/CPUParticles-2:visible")
+tracks/21/path = NodePath("Pivot/hud-star-1/CPUParticles:visible")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/imported = false
@@ -881,6 +1547,1580 @@ tracks/21/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Pivot/hud-star-1/CPUParticles:emitting")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Pivot/hud-star-2/hud-star:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0, 1.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Pivot/hud-star-2/hud-star:scale")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 1.7, 1.8, 1.9, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.4, 0.4, 0.4 ), Vector3( 0.345078, 0.345078, 0.345078 ), Vector3( 0.345078, 0.345078, 0.345078 ) ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Pivot/hud-star-2/CPUParticles:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("Pivot/hud-star-2/CPUParticles:emitting")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"times": PoolRealArray( 1.7, 1.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/27/type = "value"
+tracks/27/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 0, 1.5, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.823529, 0.109804, 0 ), Color( 1, 0.823529, 0.109804, 0 ), Color( 0.709804, 0.52549, 0.352941, 1 ), Color( 0.709804, 0.52549, 0.352941, 1 ) ]
+}
+tracks/28/type = "value"
+tracks/28/path = NodePath("Pivot/hud-star-3/hud-star:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/29/type = "value"
+tracks/29/path = NodePath("Pivot/hud-star-3/hud-star:scale")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/30/type = "value"
+tracks/30/path = NodePath("Pivot/hud-star-3/CPUParticles:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/31/type = "value"
+tracks/31/path = NodePath("Pivot/hud-star-3/CPUParticles:emitting")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/32/type = "value"
+tracks/32/path = NodePath("Pivot/hud-rays-pivot/hud-ray-1:visible")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/33/type = "value"
+tracks/33/path = NodePath("Pivot/hud-rays-pivot/hud-ray-2:visible")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/34/type = "value"
+tracks/34/path = NodePath("Pivot/hud-rays-pivot/hud-ray-3:visible")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/35/type = "value"
+tracks/35/path = NodePath("Pivot/hud-rays-pivot/hud-ray-4:visible")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/36/type = "value"
+tracks/36/path = NodePath("Pivot/hud-rays-pivot/hud-ray-5:visible")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/37/type = "value"
+tracks/37/path = NodePath("Pivot/hud-rays-pivot:scale")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/keys = {
+"times": PoolRealArray( 1.2, 1.5, 1.9, 3 ),
+"transitions": PoolRealArray( 0.329877, 0.840897, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 4, 4, 4 ), Vector3( 2.864, 2.864, 2.864 ), Vector3( 2.864, 2.864, 2.864 ) ]
+}
+tracks/38/type = "value"
+tracks/38/path = NodePath("Pivot/hud-rays-pivot:rotation_degrees")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/keys = {
+"times": PoolRealArray( 1, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 90 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "show-2-loop"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/hud-logo-base:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/hud-logo-base:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/winLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/winLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/winLabel:outline_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.94902, 0.796078, 0.654902, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/hud-patch-base:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Pivot/hud-patch-base:opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Pivot/hud-patch-base:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Pivot/hud-patch-shadow:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Pivot/hud-patch-shadow:opacity")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Pivot/hud-patch-shadow:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Pivot/hud-patch-check-base:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Pivot/hud-patch-check-base:opacity")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Pivot/hud-patch-check:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Pivot/hud-patch-check:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Pivot/hud-patch-check:opacity")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Pivot/hud-patch-base/hud-star-base-2:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Pivot/hud-patch-base/hud-star-base-3:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Pivot/hud-patch-base/hud-star-base-1:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Pivot/hud-star-1/hud-star:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Pivot/hud-star-1/hud-star:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.244529, 0.244529, 0.244529 ) ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Pivot/hud-star-1/CPUParticles:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Pivot/hud-star-1/CPUParticles:emitting")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Pivot/hud-star-2/hud-star:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Pivot/hud-star-2/hud-star:scale")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.345078, 0.345078, 0.345078 ) ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Pivot/hud-star-2/CPUParticles:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("Pivot/hud-star-2/CPUParticles:emitting")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/27/type = "value"
+tracks/27/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.709804, 0.52549, 0.352941, 1 ) ]
+}
+tracks/28/type = "value"
+tracks/28/path = NodePath("Pivot/hud-star-3/hud-star:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/29/type = "value"
+tracks/29/path = NodePath("Pivot/hud-star-3/hud-star:scale")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/30/type = "value"
+tracks/30/path = NodePath("Pivot/hud-rays-pivot/hud-ray-1:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/31/type = "value"
+tracks/31/path = NodePath("Pivot/hud-rays-pivot/hud-ray-2:visible")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/32/type = "value"
+tracks/32/path = NodePath("Pivot/hud-rays-pivot/hud-ray-3:visible")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/33/type = "value"
+tracks/33/path = NodePath("Pivot/hud-rays-pivot/hud-ray-4:visible")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/34/type = "value"
+tracks/34/path = NodePath("Pivot/hud-rays-pivot/hud-ray-5:visible")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/35/type = "value"
+tracks/35/path = NodePath("Pivot/hud-rays-pivot:scale")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 2.864, 2.864, 2.864 ) ]
+}
+tracks/36/type = "value"
+tracks/36/path = NodePath("Pivot/hud-rays-pivot:rotation_degrees")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 90 ), Vector3( 0, 0, 162 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "show-3"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/hud-logo-base:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/hud-logo-base:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/winLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/winLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/winLabel:outline_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4, 1, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 1 ), Color( 0.94902, 0.796078, 0.654902, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/hud-patch-base:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Pivot/hud-patch-base:opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1, 1.3, 3 ),
+"transitions": PoolRealArray( 1.56917, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Pivot/hud-patch-base:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1, 1.3, 1.4, 1.6, 3 ),
+"transitions": PoolRealArray( 2.2974, 0.378929, 0.277392, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3, 3, 3 ), Vector3( 1, 1, 1 ), Vector3( 1.1, 1.1, 1.1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Pivot/hud-patch-shadow:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Pivot/hud-patch-shadow:opacity")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 1.4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Pivot/hud-patch-shadow:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 1.3, 1.4, 1.6, 3 ),
+"transitions": PoolRealArray( 0.353554, 0.258816, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.924, 0.924, 0.924 ), Vector3( 1.1873, 1.1873, 1.1873 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Pivot/hud-patch-check-base:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Pivot/hud-patch-check-base:opacity")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 1.3, 1.5, 3 ),
+"transitions": PoolRealArray( 0.329877, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Pivot/hud-patch-check:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Pivot/hud-patch-check:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 1.1, 1.3, 1.4, 1.6, 3 ),
+"transitions": PoolRealArray( 3.24901, 0.297302, 0.353553, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3, 3, 3 ), Vector3( 1, 1, 1 ), Vector3( 1.2, 1.2, 1.2 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Pivot/hud-patch-check:opacity")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 1.1, 1.3, 3 ),
+"transitions": PoolRealArray( 0.535887, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Pivot/hud-patch-base/hud-star-base-2:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Pivot/hud-patch-base/hud-star-base-3:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Pivot/hud-patch-base/hud-star-base-1:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Pivot/hud-star-1/hud-star:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Pivot/hud-star-1/hud-star:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 1.4, 1.5, 1.6, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.3, 0.3, 0.3 ), Vector3( 0.244529, 0.244529, 0.244529 ), Vector3( 0.244529, 0.244529, 0.244529 ) ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Pivot/hud-star-1/CPUParticles:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Pivot/hud-star-1/CPUParticles:emitting")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Pivot/hud-star-2/hud-star:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0, 1.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Pivot/hud-star-2/hud-star:scale")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 1.7, 1.8, 1.9, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.4, 0.4, 0.4 ), Vector3( 0.345078, 0.345078, 0.345078 ), Vector3( 0.345078, 0.345078, 0.345078 ) ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Pivot/hud-star-2/CPUParticles:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("Pivot/hud-star-2/CPUParticles:emitting")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"times": PoolRealArray( 1.7, 1.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/27/type = "value"
+tracks/27/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 0, 1.5, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.823529, 0.109804, 0 ), Color( 1, 0.823529, 0.109804, 0 ), Color( 0.709804, 0.52549, 0.352941, 1 ), Color( 0.709804, 0.52549, 0.352941, 1 ) ]
+}
+tracks/28/type = "value"
+tracks/28/path = NodePath("Pivot/hud-star-3/hud-star:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/29/type = "value"
+tracks/29/path = NodePath("Pivot/hud-star-3/hud-star:scale")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
+"times": PoolRealArray( 2, 2.1, 2.2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.3, 0.3, 0.3 ), Vector3( 0.244529, 0.244529, 0.244529 ), Vector3( 0.244529, 0.244529, 0.244529 ) ]
+}
+tracks/30/type = "value"
+tracks/30/path = NodePath("Pivot/hud-star-3/CPUParticles:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/31/type = "value"
+tracks/31/path = NodePath("Pivot/hud-star-3/CPUParticles:emitting")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/keys = {
+"times": PoolRealArray( 2, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/32/type = "value"
+tracks/32/path = NodePath("Pivot/hud-rays-pivot/hud-ray-1:visible")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/33/type = "value"
+tracks/33/path = NodePath("Pivot/hud-rays-pivot/hud-ray-2:visible")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/34/type = "value"
+tracks/34/path = NodePath("Pivot/hud-rays-pivot/hud-ray-3:visible")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/35/type = "value"
+tracks/35/path = NodePath("Pivot/hud-rays-pivot/hud-ray-4:visible")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/36/type = "value"
+tracks/36/path = NodePath("Pivot/hud-rays-pivot/hud-ray-5:visible")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/37/type = "value"
+tracks/37/path = NodePath("Pivot/hud-rays-pivot:scale")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/keys = {
+"times": PoolRealArray( 1.2, 1.5, 1.9, 3 ),
+"transitions": PoolRealArray( 0.329877, 0.840897, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 4, 4, 4 ), Vector3( 2.864, 2.864, 2.864 ), Vector3( 2.864, 2.864, 2.864 ) ]
+}
+tracks/38/type = "value"
+tracks/38/path = NodePath("Pivot/hud-rays-pivot:rotation_degrees")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/keys = {
+"times": PoolRealArray( 1, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 90 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "show-3-loop"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/hud-logo-base:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/hud-logo-base:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/winLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/winLabel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/winLabel:outline_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.94902, 0.796078, 0.654902, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/hud-patch-base:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Pivot/hud-patch-base:opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Pivot/hud-patch-base:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Pivot/hud-patch-shadow:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Pivot/hud-patch-shadow:opacity")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Pivot/hud-patch-shadow:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Pivot/hud-patch-check-base:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Pivot/hud-patch-check-base:opacity")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Pivot/hud-patch-check:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Pivot/hud-patch-check:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Pivot/hud-patch-check:opacity")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Pivot/hud-patch-base/hud-star-base-2:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Pivot/hud-patch-base/hud-star-base-3:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Pivot/hud-patch-base/hud-star-base-1:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Pivot/hud-star-1/hud-star:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Pivot/hud-star-1/hud-star:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.244529, 0.244529, 0.244529 ) ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("Pivot/hud-star-1/CPUParticles:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("Pivot/hud-star-1/CPUParticles:emitting")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("Pivot/hud-star-2/hud-star:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Pivot/hud-star-2/hud-star:scale")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.345078, 0.345078, 0.345078 ) ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Pivot/hud-star-2/CPUParticles:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("Pivot/hud-star-2/CPUParticles:emitting")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/27/type = "value"
+tracks/27/path = NodePath("Pivot/hud-score-label/scoreLabel:modulate")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.709804, 0.52549, 0.352941, 1 ) ]
+}
+tracks/28/type = "value"
+tracks/28/path = NodePath("Pivot/hud-star-3/hud-star:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/29/type = "value"
+tracks/29/path = NodePath("Pivot/hud-star-3/hud-star:scale")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.244529, 0.244529, 0.244529 ) ]
+}
+tracks/30/type = "value"
+tracks/30/path = NodePath("Pivot/hud-rays-pivot/hud-ray-1:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/31/type = "value"
+tracks/31/path = NodePath("Pivot/hud-rays-pivot/hud-ray-2:visible")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/32/type = "value"
+tracks/32/path = NodePath("Pivot/hud-rays-pivot/hud-ray-3:visible")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/33/type = "value"
+tracks/33/path = NodePath("Pivot/hud-rays-pivot/hud-ray-4:visible")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/34/type = "value"
+tracks/34/path = NodePath("Pivot/hud-rays-pivot/hud-ray-5:visible")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/35/type = "value"
+tracks/35/path = NodePath("Pivot/hud-rays-pivot:scale")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 2.864, 2.864, 2.864 ) ]
+}
+tracks/36/type = "value"
+tracks/36/path = NodePath("Pivot/hud-rays-pivot:rotation_degrees")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 90 ), Vector3( 0, 0, 162 ) ]
 }
 
 [node name="win-hud-screen" type="Spatial"]
@@ -906,31 +3146,66 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
 
 [node name="hud-logo-base" type="Sprite3D" parent="Pivot"]
 transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.39642, 0 )
+visible = false
 sorting_offset = -15.0
 opacity = 0.0
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 400, 200 )
 
-[node name="hud-panel-shad" type="Sprite3D" parent="Pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.50429, 0 )
+[node name="hud-patch-base" type="Sprite3D" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.243889, 0 )
 visible = false
-sorting_offset = -1.0
-modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 450, 200 )
+sorting_offset = -16.0
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 400, 200 )
 
-[node name="hud-panel-edge" type="Sprite3D" parent="Pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33521, 0 )
+[node name="hud-star-base-1" type="Sprite3D" parent="Pivot/hud-patch-base"]
+transform = Transform( 0.254262, 0, 0, 0, 0.254262, 0, 0, 0, 0.254262, -0.325989, 0.702151, 0 )
 visible = false
-sorting_offset = -2.0
-modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 450, 200 )
+sorting_offset = -15.0
+modulate = Color( 0.937255, 0.796078, 0.647059, 1 )
+texture = ExtResource( 9 )
+
+[node name="hud-star-base-2" type="Sprite3D" parent="Pivot/hud-patch-base"]
+transform = Transform( 0.358812, 0, 0, 0, 0.358812, 0, 0, 0, 0.358812, -0.00041028, 0.815939, 0 )
+visible = false
+sorting_offset = -15.0
+modulate = Color( 0.937255, 0.796078, 0.647059, 1 )
+texture = ExtResource( 9 )
+
+[node name="hud-star-base-3" type="Sprite3D" parent="Pivot/hud-patch-base"]
+transform = Transform( 0.254262, 0, 0, 0, 0.254262, 0, 0, 0, 0.254262, 0.326418, 0.702151, 0 )
+visible = false
+sorting_offset = -15.0
+modulate = Color( 0.937255, 0.796078, 0.647059, 1 )
+texture = ExtResource( 9 )
+
+[node name="hud-patch-shadow" type="Sprite3D" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132065, 0 )
+visible = false
+sorting_offset = -17.0
+modulate = Color( 0, 0, 0, 0.192157 )
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 400, 200 )
+
+[node name="hud-patch-check-base" type="Sprite3D" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.243889, 0 )
+visible = false
+sorting_offset = -15.0
+modulate = Color( 0.94902, 0.792157, 0.654902, 1 )
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 400, 200 )
+
+[node name="hud-patch-check" type="Sprite3D" parent="Pivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.243889, 0 )
+visible = false
+sorting_offset = -14.0
+texture = ExtResource( 13 )
+region_rect = Rect2( 0, 0, 400, 200 )
 
 [node name="winLabel" type="Label3D" parent="Pivot"]
 transform = Transform( 0.436405, 0, 0, 0, 0.436405, 0, 0, 0, 0.436405, 0, 2.38629, 0 )
+visible = false
 sorting_offset = 6.0
 double_sided = false
 render_priority = 1
@@ -950,44 +3225,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, -1.78794, 0 )
 [node name="hud-next-button" parent="Pivot" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, -1.78794, 0 )
 
-[node name="hud-star-0" type="Spatial" parent="Pivot"]
-transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0.120095, 0 )
+[node name="hud-star-2" type="Spatial" parent="Pivot"]
+
+[node name="hud-star" type="Sprite3D" parent="Pivot/hud-star-2"]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.05557, 0 )
 visible = false
+sorting_offset = -14.0
+texture = ExtResource( 8 )
 
-[node name="hud-star-high" type="Sprite3D" parent="Pivot/hud-star-0"]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.0035865, 0 )
-sorting_offset = 11.0
-modulate = Color( 1, 0.823529, 0.109804, 1 )
-texture = ExtResource( 9 )
-
-[node name="hud-star-base" type="Sprite3D" parent="Pivot/hud-star-0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0035865, 0 )
-sorting_offset = 10.0
-modulate = Color( 1, 0.639216, 0.0980392, 1 )
-texture = ExtResource( 9 )
-
-[node name="hud-star-shad" type="Sprite3D" parent="Pivot/hud-star-0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100563, 0 )
-sorting_offset = 9.0
-modulate = Color( 0.67451, 0.301961, 0, 1 )
-texture = ExtResource( 9 )
-
-[node name="CPUParticles" type="CPUParticles" parent="Pivot/hud-star-0"]
+[node name="CPUParticles" type="CPUParticles" parent="Pivot/hud-star-2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05557, 0 )
 visible = false
-emitting = false
-amount = 10
-explosiveness = 1.0
-mesh = SubResource( 4 )
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-gravity = Vector3( 0, -10, 0 )
-initial_velocity = 5.91
-angular_velocity = 90.0
-angular_velocity_random = 1.0
-color_ramp = SubResource( 5 )
-
-[node name="CPUParticles-0" type="CPUParticles" parent="Pivot"]
-transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1, 0.120095, 0 )
 emitting = false
 amount = 10
 explosiveness = 1.0
@@ -1001,28 +3249,15 @@ angular_velocity_random = 1.0
 color_ramp = SubResource( 5 )
 
 [node name="hud-star-1" type="Spatial" parent="Pivot"]
-transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.520095, 0 )
+
+[node name="hud-star" type="Sprite3D" parent="Pivot/hud-star-1"]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.325572, 0.941959, 0 )
 visible = false
-
-[node name="hud-star-high" type="Sprite3D" parent="Pivot/hud-star-1"]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.0035865, 0 )
-sorting_offset = 11.0
-modulate = Color( 1, 0.823529, 0.109804, 1 )
-texture = ExtResource( 9 )
-
-[node name="hud-star-base" type="Sprite3D" parent="Pivot/hud-star-1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0035865, 0 )
-sorting_offset = 10.0
-modulate = Color( 1, 0.639216, 0.0980392, 1 )
-texture = ExtResource( 9 )
-
-[node name="hud-star-shad" type="Sprite3D" parent="Pivot/hud-star-1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100563, 0 )
-sorting_offset = 9.0
-modulate = Color( 0.67451, 0.301961, 0, 1 )
-texture = ExtResource( 9 )
+sorting_offset = -14.0
+texture = ExtResource( 8 )
 
 [node name="CPUParticles" type="CPUParticles" parent="Pivot/hud-star-1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325572, 0.941959, 0 )
 visible = false
 emitting = false
 amount = 10
@@ -1036,58 +3271,17 @@ angular_velocity = 90.0
 angular_velocity_random = 1.0
 color_ramp = SubResource( 5 )
 
-[node name="CPUParticles-1" type="CPUParticles" parent="Pivot"]
-transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.520095, 0 )
-emitting = false
-amount = 10
-explosiveness = 1.0
-mesh = SubResource( 4 )
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-gravity = Vector3( 0, -10, 0 )
-initial_velocity = 5.91
-angular_velocity = 90.0
-angular_velocity_random = 1.0
-color_ramp = SubResource( 5 )
+[node name="hud-star-3" type="Spatial" parent="Pivot"]
 
-[node name="hud-star-2" type="Spatial" parent="Pivot"]
-transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0.120095, 0 )
+[node name="hud-star" type="Sprite3D" parent="Pivot/hud-star-3"]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.326822, 0.941959, 0 )
 visible = false
+sorting_offset = -14.0
+texture = ExtResource( 8 )
 
-[node name="hud-star-high" type="Sprite3D" parent="Pivot/hud-star-2"]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.0035865, 0 )
-sorting_offset = 11.0
-modulate = Color( 1, 0.823529, 0.109804, 1 )
-texture = ExtResource( 9 )
-
-[node name="hud-star-base" type="Sprite3D" parent="Pivot/hud-star-2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0035865, 0 )
-sorting_offset = 10.0
-modulate = Color( 1, 0.639216, 0.0980392, 1 )
-texture = ExtResource( 9 )
-
-[node name="hud-star-shad" type="Sprite3D" parent="Pivot/hud-star-2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100563, 0 )
-sorting_offset = 9.0
-modulate = Color( 0.67451, 0.301961, 0, 1 )
-texture = ExtResource( 9 )
-
-[node name="CPUParticles" type="CPUParticles" parent="Pivot/hud-star-2"]
+[node name="CPUParticles" type="CPUParticles" parent="Pivot/hud-star-3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.326822, 0.941959, 0 )
 visible = false
-emitting = false
-amount = 10
-explosiveness = 1.0
-mesh = SubResource( 4 )
-direction = Vector3( 0, 0, 0 )
-spread = 180.0
-gravity = Vector3( 0, -10, 0 )
-initial_velocity = 5.91
-angular_velocity = 90.0
-angular_velocity_random = 1.0
-color_ramp = SubResource( 5 )
-
-[node name="CPUParticles-2" type="CPUParticles" parent="Pivot"]
-transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1, 0.120095, 0 )
 emitting = false
 amount = 10
 explosiveness = 1.0
@@ -1104,7 +3298,7 @@ color_ramp = SubResource( 5 )
 script = ExtResource( 11 )
 
 [node name="scoreLabel" type="Label3D" parent="Pivot/hud-score-label"]
-transform = Transform( 0.513955, 0, 0, 0, 0.513955, 0, 0, 0, 0.513955, 0, -0.625016, 0 )
+transform = Transform( 0.398481, 0, 0, 0, 0.398481, 0, 0, 0, 0.398481, 0, -0.474335, 0 )
 sorting_offset = 6.0
 double_sided = false
 render_priority = 1
@@ -1115,6 +3309,48 @@ text = "0"
 font = ExtResource( 5 )
 autowrap = true
 width = 1500.0
+
+[node name="hud-rays-pivot" type="Position3D" parent="Pivot"]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.244, 0 )
+
+[node name="hud-ray-1" type="Sprite3D" parent="Pivot/hud-rays-pivot"]
+sorting_offset = -18.0
+offset = Vector2( 0, -32 )
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 400, 200 )
+
+[node name="hud-ray-2" type="Sprite3D" parent="Pivot/hud-rays-pivot"]
+transform = Transform( 0.309017, -0.951057, 0, 0.951057, 0.309017, 0, 0, 0, 1, 0, 0, 0 )
+sorting_offset = -18.0
+offset = Vector2( 0, -32 )
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 400, 200 )
+
+[node name="hud-ray-3" type="Sprite3D" parent="Pivot/hud-rays-pivot"]
+transform = Transform( -0.809017, -0.587785, 0, 0.587785, -0.809017, 0, 0, 0, 1, 0, 0, 0 )
+sorting_offset = -18.0
+offset = Vector2( 0, -32 )
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 400, 200 )
+
+[node name="hud-ray-4" type="Sprite3D" parent="Pivot/hud-rays-pivot"]
+transform = Transform( -0.809017, 0.587785, 0, -0.587785, -0.809017, 0, 0, 0, 1, 0, 0, 0 )
+sorting_offset = -18.0
+offset = Vector2( 0, -32 )
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 400, 200 )
+
+[node name="hud-ray-5" type="Sprite3D" parent="Pivot/hud-rays-pivot"]
+transform = Transform( 0.309017, 0.951056, 0, -0.951056, 0.309017, 0, 0, 0, 1, 0, 0, 0 )
+sorting_offset = -18.0
+offset = Vector2( 0, -32 )
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+texture = ExtResource( 14 )
+region_rect = Rect2( 0, 0, 400, 200 )
 
 [node name="blur-shade" type="Sprite3D" parent="."]
 sorting_offset = -10.0
@@ -1127,6 +3363,9 @@ region_rect = Rect2( 0, 0, 500, 1100 )
 
 [node name="ScreenAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 6 )
-anims/show-1 = SubResource( 7 )
-anims/show-2 = SubResource( 8 )
-anims/show-3 = SubResource( 9 )
+anims/show-1 = SubResource( 12 )
+anims/show-1-loop = SubResource( 8 )
+anims/show-2 = SubResource( 9 )
+anims/show-2-loop = SubResource( 10 )
+anims/show-3 = SubResource( 7 )
+anims/show-3-loop = SubResource( 11 )

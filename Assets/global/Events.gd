@@ -1,7 +1,7 @@
 extends Node
 # warning-ignore-all:UNUSED_SIGNAL
 signal HudTimerUpdate
-signal HudWinScore
+signal HudTimeScoreAnimation
 signal HudTimeUp
 signal HudSetFails
 
@@ -24,6 +24,7 @@ signal ShowHudStartScreen
 signal ShowHudGameScreen
 signal ShowHudMenuScreen
 signal ShowHudWinScreen
+signal ShowHudWinScreenScore
 signal ShowHudLostScreen
 signal ShowHudStepSuccess
 signal ShowHudStepFail

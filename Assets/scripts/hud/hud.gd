@@ -116,6 +116,7 @@ func OnShowHudWinScreen(stars):
 	var animationName = "show-%d" % stars
 	var screenPlayer = screen.get_node_or_null("ScreenAnimationPlayer")
 	screenPlayer.play(animationName)
+	screenPlayer.queue("%s-loop" % animationName)
 	screen.get_node_or_null("Pivot/winLabel").text = "%s %d %s" % [tr("SUB_LVL_NAME"), (Data.playerData.selectedSubLevelIndex + 1), tr("HUD_WIN_TEXT")]
 	Call.Delay(self, "ShowControlScreenButtons", screenPlayer.current_animation_length)
 	pass

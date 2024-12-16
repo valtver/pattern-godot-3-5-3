@@ -16,7 +16,7 @@ func _ready():
 	RestoreUpdateFill(1.0)
 	SetLevelLabel(Data.playerData.selectedSubLevelIndex)
 	Events.connect("HudTimerUpdate", self, "UpdateFill")
-	Events.connect("HudWinScore", self, "OnHudWinScore")
+	Events.connect("HudTimeScoreAnimation", self, "OnHudTimeScoreAnimation")
 	Events.connect("HudTimeUp", self, "OnHudTimeUp")
 	pass # Replace with function body.
 
@@ -34,12 +34,15 @@ func RestoreUpdateFill(normalValue):
 	fillTexture.modulate = safeColor.linear_interpolate(winColor, 1 - normalValue)
 	# warning-ignore-all:UNUSED_ARGUMENT
 	
-func OnHudWinScore(tweenTime:= Data.gameData.nextGameStepDelay, reset:= false, addDelay:= 0.0):
+func OnHudTimeScoreAnimation(stepScore):
+	var options = [0, 1, 2]
 	var fillWidth = fillTexture.region_rect.size.x / fillTexture.texture.get_width()
 	var tween = create_tween().set_parallel(true)
-	tween.tween_method(self, "RestoreUpdateFill", fillWidth, 0.0, tweenTime)
-	animatedScore.text = "+%d" % Data.playerData.sessionScoreLastStep
-	animationPlayer.play("score-vfx")
+	tween.tween_method(self, "RestoreUpdateFill", fillWidth, 0.0, Data.gameData.nextGameStepDelay)
+	var scoreValue = ceil(stepScore/100.0)
+	animatedScore.text = tr("HUD_TIME_%d_%d" % [scoreValue, options.pick_random()])
+	animationPlayer.play("time-%d" % scoreValue)
 	
 func OnHudTimeUp():
 	animationPlayer.play("time-up-vfx")
+	

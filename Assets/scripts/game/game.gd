@@ -99,7 +99,7 @@ func GameLoop():
 	if state == GameState.CHECK:
 		AppInput.DisableUi()
 		AppInput.DisableScene()
-		var reservedScore = (Data.gameData.gameStepDelay - Call.GetTimer(self, "GameStepCheck").get_total_elapsed_time()) * Data.gameData.gameScoreMultiplier
+		var reservedScore = (Data.gameData.gameStepDelay - Call.GetTimer(self, "GameStepCheck").get_total_elapsed_time()) * 100
 		Call.StopDelay(self, "GameStepCheck")
 		Call.StopDelay(Map, "SpawnBonus")
 		Events.emit_signal("HideHudMenuButton")
@@ -107,10 +107,11 @@ func GameLoop():
 		if Data.playerData.selectedButton != null:
 			if Data.playerData.selectedButton.GetSymbolAngles() == stepData["angles"]:
 				Data.playerData.selectedButton.AnimateSuccessClick()
-				Data.playerData.sessionScoreLastStep = int(reservedScore)
-				Data.playerData.sessionScore += Data.playerData.sessionScoreLastStep
-				Data.playerData.sessionStars = Data.playerData.sessionScore / ((gameSteps.size() * (Data.gameData.gameStepDelay / 2) * Data.gameData.gameScoreMultiplier) / 3)
-				Events.emit_signal("HudWinScore")
+				Data.playerData.sessionTimeScoreLastStep = int(reservedScore)
+				print(reservedScore)
+				Data.playerData.sessionTimeScore += Data.playerData.sessionTimeScoreLastStep
+				Data.playerData.sessionStars = Data.playerData.sessionTimeScore / ((gameSteps.size() * (Data.gameData.gameStepDelay / 2)) / 3)
+				Events.emit_signal("HudTimeScoreAnimation", Data.playerData.sessionTimeScoreLastStep)
 				ShowStepComplete()
 				Events.emit_signal("ShowHudStepSuccess")
 				#Dirty hack here for nicer delay on last success
@@ -122,16 +123,17 @@ func GameLoop():
 			elif Data.playerData.sessionFails <= 2:
 				Data.playerData.sessionFails += 1
 				Data.playerData.selectedButton.AnimateFailClick()
+				Events.emit_signal("HudTimeScoreAnimation", 0)
 				Events.emit_signal("ShowHudStepFail")
 				Events.emit_signal("HudSetFails", Data.playerData.sessionFails)
 				Call.Delay(self, "OnNextStep", 1.3)
 		else:
 			if Data.playerData.sessionFails <= 2:
 				Data.playerData.sessionFails += 1
+				Events.emit_signal("HudTimeScoreAnimation", 0)
 				Events.emit_signal("HideHudSymbolButtons")
 				Events.emit_signal("ShowHudStepFail")
 				Events.emit_signal("HudTimeUp")
-				Events.emit_signal("HudSetFails", Data.playerData.sessionFails)
 				Call.Delay(self, "OnNextStep", 1.3)
 
 	if state == GameState.OVER:
@@ -143,7 +145,7 @@ func GameLoop():
 		Map.AddLastIsland()
 		RegisterWin()
 		Events.emit_signal("ShowHudWinScreen", clamp(floor(Data.playerData.sessionStars), 1, 3))
-		Events.emit_signal("HudWinScore", 2.5, true, 0.0)
+		Events.emit_signal("ShowHudWinScreenScore", 1.5, true, 1.5)
 		MapCamera.MoveToInTime(Map.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
 		Call.Delay(self, "TryPlayEndIslandAnimation", Data.gameData.nextGameStepDelay + 0.25)
 		return
@@ -154,8 +156,8 @@ func SetFirstStep(sData):
 	MapCamera.position = Map.cIsland.get_node("CameraPosition").global_position
 	for tile in Map.cTiles:
 		tile.symbol.UpdateSymbol(sData["angles"], sData["sprites"])
-	Data.playerData.sessionScore = 0
-	Data.playerData.sessionScoreLastStep = 0
+	Data.playerData.sessionTimeScore = 0
+	Data.playerData.sessionTimeScoreLastStep = 0
 	Events.emit_signal("ShowHudStartScreen")
 	
 func SetNextStep(sData):
@@ -260,12 +262,12 @@ func RegisterWin():
 	var lvlData = Data.gameData.levels[Data.playerData.selectedLevelIndex]
 	var subLvlData = lvlData.subLevels[Data.playerData.selectedSubLevelIndex]
 	
-	subLvlData.score = Data.playerData.sessionScore
+	subLvlData.timeScore = Data.playerData.sessionTimeScore
 	subLvlData.stars = Data.playerData.sessionStars
 	
-	var subLevelScore = lvlData.subLevels[Data.playerData.selectedSubLevelIndex].score
-	if subLevelScore < Data.playerData.sessionScore:
-		subLevelScore = Data.playerData.sessionScore
+	var subLevelScore = lvlData.subLevels[Data.playerData.selectedSubLevelIndex].timeScore
+	if subLevelScore < Data.playerData.sessionTimeScore:
+		subLevelScore = Data.playerData.sessionTimeScore
 		
 	var nextLevelIndex = Data.playerData.selectedLevelIndex + 1
 	var nextSubLevelIndex = Data.playerData.selectedSubLevelIndex + 1

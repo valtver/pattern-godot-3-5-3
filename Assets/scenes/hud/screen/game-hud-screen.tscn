@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-symbol-button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/scenes/hud/buttons/hud-menu-button.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/scripts/hud/components/hud-score-label.gd" type="Script" id=5]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/sprites/ui/ui-forest-icon.png" type="Texture" id=7]
 [ext_resource path="res://Assets/sprites/hud/hud-timer-icon.png" type="Texture" id=8]
@@ -52,9 +51,21 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 0.470588, 0.203922, 0.0392157, 1 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("animatedScore:outline_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ) ]
+}
 
-[sub_resource type="Animation" id=2]
-resource_name = "score-vfx"
+[sub_resource type="Animation" id=7]
+resource_name = "time-0"
 tracks/0/type = "value"
 tracks/0/path = NodePath("animatedScore:translation")
 tracks/0/interp = 1
@@ -62,10 +73,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 0.8 ),
-"transitions": PoolRealArray( 0.225313, 2.82843, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.225313, 2.82843 ),
 "update": 0,
-"values": [ Vector3( -0.518518, -0.782294, 0 ), Vector3( -0.518518, -0.422494, 0 ), Vector3( 1.01953, -0.422494, 0 ) ]
+"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.422, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("animatedScore:modulate")
@@ -74,10 +85,178 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 0.8 ),
+"times": PoolRealArray( 0, 0.5, 1 ),
 "transitions": PoolRealArray( 0.277392, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.870588, 1, 0.709804, 0 ), Color( 0.870588, 1, 0.709804, 1 ), Color( 0.870588, 1, 0.709804, 0 ) ]
+"values": [ Color( 0.941176, 0.568627, 0.564706, 0 ), Color( 0.694118, 0.219608, 0.360784, 1 ), Color( 0.941176, 0.568627, 0.564706, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("animatedScore:outline_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "time-1"
+tracks/0/type = "value"
+tracks/0/path = NodePath("animatedScore:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.225313, 2.82843 ),
+"update": 0,
+"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.422, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("animatedScore:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 0.277392, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.941176, 0.568627, 0.564706, 0 ), Color( 0.941176, 0.568627, 0.564706, 1 ), Color( 0.941176, 0.568627, 0.564706, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("animatedScore:outline_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "time-2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("animatedScore:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.225313, 2.82843 ),
+"update": 0,
+"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.422, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("animatedScore:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 0.277392, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.639216, 0.0980392, 0 ), Color( 1, 0.639216, 0.0980392, 1 ), Color( 1, 0.639216, 0.0980392, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("animatedScore:outline_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "time-3"
+tracks/0/type = "value"
+tracks/0/path = NodePath("animatedScore:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.225313, 2.82843 ),
+"update": 0,
+"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.422, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("animatedScore:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 0.277392, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.431373, 0.737255, 0.317647, 0 ), Color( 0.431373, 0.737255, 0.317647, 1 ), Color( 0.431373, 0.737255, 0.317647, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("animatedScore:outline_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "time-4"
+tracks/0/type = "value"
+tracks/0/path = NodePath("animatedScore:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.225313, 2.82843 ),
+"update": 0,
+"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.422, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("animatedScore:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 0.277392, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.431373, 0.737255, 0.317647, 0 ), Color( 0.870588, 1, 0.709804, 1 ), Color( 0.431373, 0.737255, 0.317647, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("animatedScore:outline_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -180,23 +359,9 @@ sorting_offset = 12.0
 render_priority = 1
 outline_render_priority = 0
 modulate = Color( 0.870588, 1, 0.709804, 0 )
-outline_modulate = Color( 0, 0, 0, 0 )
-text = "+123"
+outline_modulate = Color( 0.235294, 0.0980392, 0.0156863, 0 )
+text = "miss..."
 font = ExtResource( 6 )
-horizontal_alignment = 0
-width = 700.0
-
-[node name="hud-score-label" type="Spatial" parent="Top"]
-script = ExtResource( 5 )
-
-[node name="scoreLabel" type="Label3D" parent="Top/hud-score-label"]
-transform = Transform( 0.364, 0, 0, 0, 0.364, 0, 0, 0, 0.364, 1.78657, -0.424505, 0 )
-sorting_offset = 10.0
-modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
-outline_modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
-text = "123"
-font = ExtResource( 6 )
-horizontal_alignment = 2
 width = 700.0
 
 [node name="hud-fail-bar" type="Spatial" parent="Top"]
@@ -343,5 +508,9 @@ index = 2
 [node name="ManualAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Top/hud-game-bar")
 anims/RESET = SubResource( 1 )
-anims/score-vfx = SubResource( 2 )
+anims/time-0 = SubResource( 7 )
+anims/time-1 = SubResource( 2 )
+anims/time-2 = SubResource( 4 )
+anims/time-3 = SubResource( 5 )
+anims/time-4 = SubResource( 6 )
 anims/time-up-vfx = SubResource( 3 )

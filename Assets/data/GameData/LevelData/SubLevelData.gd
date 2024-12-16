@@ -8,7 +8,7 @@ export (String, FILE) var endIsland
 export (float, 0, 3) var bonusDelay
 export (Array, Resource) var bonuses
 export (bool) var unlock = false
-export (int) var score
+export (int) var timeScore
 export (int) var stars
 # Declare member variables here. Examples:
 # var a = 2

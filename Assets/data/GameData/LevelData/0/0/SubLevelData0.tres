@@ -13,5 +13,5 @@ endIsland = "res://Assets/terrain/tile-island/0/start-0.tscn"
 bonusDelay = 0.0
 bonuses = [  ]
 unlock = true
-score = 0
+timeScore = 0
 stars = 0
