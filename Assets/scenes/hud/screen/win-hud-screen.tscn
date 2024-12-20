@@ -3148,7 +3148,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
 transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.39642, 0 )
 visible = false
 sorting_offset = -15.0
-opacity = 0.0
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 400, 200 )
 
@@ -3210,8 +3209,8 @@ sorting_offset = 6.0
 double_sided = false
 render_priority = 1
 outline_render_priority = 0
-modulate = Color( 0.235294, 0.0980392, 0.0156863, 0 )
-outline_modulate = Color( 0.94902, 0.796078, 0.654902, 0 )
+modulate = Color( 0.235294, 0.0980392, 0.0156863, 1 )
+outline_modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
 text = "Level complete!"
 font = ExtResource( 5 )
 width = 1500.0
@@ -3298,7 +3297,7 @@ color_ramp = SubResource( 5 )
 script = ExtResource( 11 )
 
 [node name="scoreLabel" type="Label3D" parent="Pivot/hud-score-label"]
-transform = Transform( 0.398481, 0, 0, 0, 0.398481, 0, 0, 0, 0.398481, 0, -0.474335, 0 )
+transform = Transform( 0.309, 0, 0, 0, 0.309, 0, 0, 0, 0.309, 0, -0.480787, 0 )
 sorting_offset = 6.0
 double_sided = false
 render_priority = 1

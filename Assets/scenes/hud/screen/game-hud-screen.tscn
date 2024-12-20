@@ -76,7 +76,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 0.225313, 2.82843 ),
 "update": 0,
-"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.422, 0 ) ]
+"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.373066, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("animatedScore:modulate")
@@ -115,7 +115,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 0.225313, 2.82843 ),
 "update": 0,
-"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.422, 0 ) ]
+"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.373066, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("animatedScore:modulate")
@@ -154,7 +154,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 0.225313, 2.82843 ),
 "update": 0,
-"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.422, 0 ) ]
+"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.373066, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("animatedScore:modulate")
@@ -193,7 +193,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 0.225313, 2.82843 ),
 "update": 0,
-"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.422, 0 ) ]
+"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.373066, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("animatedScore:modulate")
@@ -232,7 +232,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 0.225313, 2.82843 ),
 "update": 0,
-"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.422, 0 ) ]
+"values": [ Vector3( 0.538162, -0.782294, 0 ), Vector3( 0.538, -0.373066, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("animatedScore:modulate")

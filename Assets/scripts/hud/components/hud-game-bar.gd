@@ -39,7 +39,7 @@ func OnHudTimeScoreAnimation(stepScore):
 	var fillWidth = fillTexture.region_rect.size.x / fillTexture.texture.get_width()
 	var tween = create_tween().set_parallel(true)
 	tween.tween_method(self, "RestoreUpdateFill", fillWidth, 0.0, Data.gameData.nextGameStepDelay)
-	var scoreValue = ceil(stepScore/100.0)
+	var scoreValue = clamp(floor((Data.gameData.gameStepDelay * 1000 - stepScore)/1000), 0, 4)
 	animatedScore.text = tr("HUD_TIME_%d_%d" % [scoreValue, options.pick_random()])
 	animationPlayer.play("time-%d" % scoreValue)
 	

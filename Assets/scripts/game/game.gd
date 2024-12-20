@@ -99,7 +99,7 @@ func GameLoop():
 	if state == GameState.CHECK:
 		AppInput.DisableUi()
 		AppInput.DisableScene()
-		var reservedScore = (Data.gameData.gameStepDelay - Call.GetTimer(self, "GameStepCheck").get_total_elapsed_time()) * 100
+		var reservedScore = Call.GetTimer(self, "GameStepCheck").get_total_elapsed_time() * 1000
 		Call.StopDelay(self, "GameStepCheck")
 		Call.StopDelay(Map, "SpawnBonus")
 		Events.emit_signal("HideHudMenuButton")
@@ -108,9 +108,8 @@ func GameLoop():
 			if Data.playerData.selectedButton.GetSymbolAngles() == stepData["angles"]:
 				Data.playerData.selectedButton.AnimateSuccessClick()
 				Data.playerData.sessionTimeScoreLastStep = int(reservedScore)
-				print(reservedScore)
 				Data.playerData.sessionTimeScore += Data.playerData.sessionTimeScoreLastStep
-				Data.playerData.sessionStars = Data.playerData.sessionTimeScore / ((gameSteps.size() * (Data.gameData.gameStepDelay / 2)) / 3)
+				Data.playerData.sessionStars = clamp( (Data.gameData.gameStepDelay * 1000) / (Data.playerData.sessionTimeScore / gameSteps.size()), 1, 3 )
 				Events.emit_signal("HudTimeScoreAnimation", Data.playerData.sessionTimeScoreLastStep)
 				ShowStepComplete()
 				Events.emit_signal("ShowHudStepSuccess")
@@ -144,7 +143,7 @@ func GameLoop():
 		print("LEVEL END")
 		Map.AddLastIsland()
 		RegisterWin()
-		Events.emit_signal("ShowHudWinScreen", clamp(floor(Data.playerData.sessionStars), 1, 3))
+		Events.emit_signal("ShowHudWinScreen", Data.playerData.sessionStars)
 		Events.emit_signal("ShowHudWinScreenScore", 1.5, true, 1.5)
 		MapCamera.MoveToInTime(Map.cIsland.get_node("CameraPosition").global_position, Data.gameData.nextGameStepDelay)
 		Call.Delay(self, "TryPlayEndIslandAnimation", Data.gameData.nextGameStepDelay + 0.25)

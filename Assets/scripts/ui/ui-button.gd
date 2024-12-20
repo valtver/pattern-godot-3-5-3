@@ -50,7 +50,6 @@ func OnClick():
 		Events.emit_signal("InactiveClick", self)
 
 func SetStars(starsNumber):
-	print("StarNumber: ", starsNumber)
 	var stars = [$"Pivot/Star-0", $"Pivot/Star-1", $"Pivot/Star-2"]
 	for starIndex in stars.size():
 		if starIndex < starsNumber:
