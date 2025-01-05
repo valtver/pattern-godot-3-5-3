@@ -7,3 +7,4 @@ script = ExtResource( 1 )
 bonusType = 2
 bonusScene = "res://Assets/scenes/game/bonus/bonus-time.tscn"
 chance = 0.5
+maxAmount = 2

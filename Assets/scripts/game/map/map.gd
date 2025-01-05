@@ -136,7 +136,7 @@ func InitCompletes(completeSet):
 		comp.visible = false
 
 func InitBonuses(bonusSet, gameStepData):
-	if gameStepData.bonus == "":
+	if not "bonus" in gameStepData:
 		return
 	randomize()
 	var bonusSpawnPoint = bonusSet.pick_random()

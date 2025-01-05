@@ -68,7 +68,6 @@ func GetGeneratedRuntimeGameData(subLevel):
 						step["angles"] = []
 						step["buttons"] = []
 						step["island"] = ""
-						step["bonus"] = ""
 						for n in mapData.size():
 							step["sprites"].push_back(sprite)
 						var offsetData = Data.gameData.symbolData.SymbolOffset[offset] 
@@ -90,7 +89,6 @@ func GetGeneratedRuntimeGameData(subLevel):
 						step["angles"] = []
 						step["buttons"] = []
 						step["island"] = ""
-						step["bonus"] = ""
 						for n in mapData.size():
 							step["sprites"].push_back(spritePair[mapData[n]])
 						var offsetData = Data.gameData.symbolData.SymbolOffset[offset] 
@@ -102,18 +100,26 @@ func GetGeneratedRuntimeGameData(subLevel):
 				
 	randomize()
 	gameSteps.shuffle()
-	
+		
+	for stepN in gameSteps.size():
+		if stepN == 0:
+			gameSteps[stepN]["island"] = subLevel.startIsland
+		else:
+			gameSteps[stepN]["island"] = subLevel.islands.pick_random()
+			
 	var rndGen = RandomNumberGenerator.new()
 	
-	for i in gameSteps.size():
-		if i == 0:
-			gameSteps[i]["island"] = subLevel.startIsland
-			gameSteps[i]["bonus"] = ""
-			gameSteps[i]["bonusDelay"] = rndGen.randf_range(0.0, subLevel.bonusDelay)
-		else:
-			gameSteps[i]["island"] = subLevel.islands.pick_random()
-			gameSteps[i]["bonus"] = GetSubLevelBonusByRandom(subLevel, rndGen)
-			gameSteps[i]["bonusDelay"] = rndGen.randf_range(0.0, subLevel.bonusDelay)
+	for bonusEntry in subLevel.bonuses:
+		var spawnLimit = bonusEntry.maxAmount;
+		for stepN in gameSteps.size():
+			if spawnLimit == 0:
+				break
+			if stepN > 0 && stepN < gameSteps.size()-1:
+				var randomBonus = GetSubLevelBonusByRandom(subLevel, rndGen);
+				if randomBonus != "":
+					gameSteps[stepN]["bonus"] = randomBonus;
+					gameSteps[stepN]["bonusDelay"] = rndGen.randf_range(0.0, subLevel.bonusDelay)
+					spawnLimit -= 1;
 			
 	print(gameSteps.size(), " steps generated")
 	return gameSteps
@@ -147,11 +153,6 @@ func GetSubLevelBonusByRandom(subLevelData, randomGen):
 	
 	return candidate
 				
-		
-		
-				
-			
-
 func GenerateButtons(symbolType, correctOffset):
 	var buttons = []
 	var button = {"angles": []}

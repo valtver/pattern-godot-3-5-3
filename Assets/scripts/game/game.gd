@@ -70,7 +70,9 @@ func GameLoop():
 
 	if state == GameState.PREPLAY:
 		Data.playerData.selectedButton = null
-		Call.Delay(Map, "SpawnBonus", stepData["bonusDelay"])
+		if "bonus" in stepData:
+			print("BONUS!")
+			Call.Delay(Map, "SpawnBonus", stepData["bonusDelay"])
 		Call.Delay(self, "GameStepCheck", Data.gameData.gameStepDelay, "EmitGameStepCheckTime")
 		AppInput.EnableScene()
 		ShowStepStart()
