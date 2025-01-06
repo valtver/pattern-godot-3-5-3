@@ -6,5 +6,5 @@
 script = ExtResource( 1 )
 sprites = [ "res://Assets/sprites/game/symbol/sub-symbol-1.png" ]
 symbolMap = 0
-symbolType = 2
+symbolType = 3
 symbolOffsets = [ 0, 1 ]

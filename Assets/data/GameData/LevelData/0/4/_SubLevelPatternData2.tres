@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-sprites = [ "res://Assets/sprites/game/symbol/sub-symbol-2.png" ]
-symbolMap = 0
-symbolType = 5
+sprites = [ "res://Assets/sprites/game/symbol/sub-symbol-0.png", "res://Assets/sprites/game/symbol/sub-symbol-1.png" ]
+symbolMap = 1
+symbolType = 4
 symbolOffsets = [ 0, 1, 2, 3 ]
