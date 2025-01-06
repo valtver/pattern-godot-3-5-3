@@ -9,11 +9,13 @@ enum GameState {
 	COMPLETE = 5,
 	PAUSE = 6,
 	CONTINUE = 7,
-	PREPLAY = 8
+	PREPLAY = 8,
+	FIRSTSTART = 9
 }
 
-var state = GameState.START
+var state = GameState.FIRSTSTART
 var gameSteps = []
+var gameStepsTotal
 var MapCamera
 var Map
 
@@ -40,39 +42,35 @@ func InitScene():
 	pass
 
 func InitData():
-	Data.playerData.gameStep = -1
 	var lvl = Data.playerData.selectedLevelIndex
 	var subLvl = Data.playerData.selectedSubLevelIndex
 	Data.playerData.sessionFails = 0
 	gameSteps = []
 	gameSteps = Data.GetGeneratedRuntimeGameData(Data.gameData.levels[lvl].subLevels[subLvl])
-	state = GameState.NEXT
+	gameStepsTotal = gameSteps.size()
+	state = GameState.FIRSTSTART
 	
-func GameLoop():
-	var stepData = null
-	
+func GameLoop():	
+	if state == GameState.FIRSTSTART:
+		Data.playerData.gameStep = gameSteps[0]		
+		SetFirstStep(Data.playerData.gameStep)
+		CheckTutorialCall()
+		
 	if state == GameState.NEXT:
-		Data.playerData.gameStep += 1
-		state = GameState.START
-		
-	if Data.playerData.gameStep < gameSteps.size():
-		stepData = gameSteps[Data.playerData.gameStep]
-	else:
-		state = GameState.COMPLETE
-		
+		if gameSteps.size() > 0:
+			Data.playerData.gameStep = gameSteps.pick_random()
+			state = GameState.START
+		else:
+			state = GameState.COMPLETE
+			
 	if state == GameState.START:
-		if Data.playerData.gameStep == 0:
-			SetFirstStep(stepData)
-			CheckTutorialCall()
-		elif Data.playerData.gameStep > 0:
-			SetNextStep(stepData)
-			Call.Delay(self, "OnPREPLAY", Data.gameData.nextGameStepDelay)
+		SetNextStep(Data.playerData.gameStep)
+		Call.Delay(self, "OnPREPLAY", Data.gameData.nextGameStepDelay)
 
 	if state == GameState.PREPLAY:
 		Data.playerData.selectedButton = null
-		if "bonus" in stepData:
-			print("BONUS!")
-			Call.Delay(Map, "SpawnBonus", stepData["bonusDelay"])
+		if "bonus" in Data.playerData.gameStep:
+			Call.Delay(Map, "SpawnBonus", Data.playerData.gameStep["bonusDelay"])
 		Call.Delay(self, "GameStepCheck", Data.gameData.gameStepDelay, "EmitGameStepCheckTime")
 		AppInput.EnableScene()
 		ShowStepStart()
@@ -90,7 +88,7 @@ func GameLoop():
 	if state == GameState.PLAY:
 #		Events.emit_signal("TutorialState1")
 		Events.emit_signal("ShowHudGameScreen")
-		Events.emit_signal("ShowHudSymbolButtons", stepData)
+		Events.emit_signal("ShowHudSymbolButtons", Data.playerData.gameStep)
 		Events.emit_signal("ShowHudMenuButton")
 
 	if state == GameState.PAUSE:
@@ -107,16 +105,16 @@ func GameLoop():
 		Events.emit_signal("HideHudMenuButton")
 			
 		if Data.playerData.selectedButton != null:
-			if Data.playerData.selectedButton.GetSymbolAngles() == stepData["angles"]:
+			if Data.playerData.selectedButton.GetSymbolAngles() == Data.playerData.gameStep["angles"]:
 				Data.playerData.selectedButton.AnimateSuccessClick()
 				Data.playerData.sessionTimeScoreLastStep = int(reservedScore)
 				Data.playerData.sessionTimeScore += Data.playerData.sessionTimeScoreLastStep
-				Data.playerData.sessionStars = clamp( (Data.gameData.gameStepDelay * 1000) / (Data.playerData.sessionTimeScore / gameSteps.size()), 1, 3 )
+				Data.playerData.sessionStars = clamp( (Data.gameData.gameStepDelay * 1000) / (Data.playerData.sessionTimeScore / gameStepsTotal), 1, 3 )
 				Events.emit_signal("HudTimeScoreAnimation", Data.playerData.sessionTimeScoreLastStep)
 				ShowStepComplete()
 				Events.emit_signal("ShowHudStepSuccess")
-				#Dirty hack here for nicer delay on last success
-				if Data.playerData.gameStep < gameSteps.size()-1:
+				#Dirty hack here for nicer delay on last success + avoid double-complete state
+				if gameSteps.size() > 1:
 					OnNextStep()
 				else:
 					Call.Delay(self, "OnNextStep", 0.5)
@@ -210,6 +208,8 @@ func OnPREPLAY():
 	GameLoop()
 	
 func OnNextStep():
+	gameSteps.erase(Data.playerData.gameStep)
+	print("Step removed. ", gameSteps.size(), " left")
 	if Data.playerData.sessionFails > 2:
 		GameOver()
 	else:

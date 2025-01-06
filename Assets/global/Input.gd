@@ -33,6 +33,7 @@ func _input(event):
 					ProcessUi(event.position)
 				if scene:
 					ProcessScene(event.position)
+				
 #			print("Click ended: ", event.position)
 			
 			lastPosition = null

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/data/GameData/LevelData/SubLevelPatternData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+sprites = [ "res://Assets/sprites/game/symbol/sub-symbol-1.png" ]
+symbolMap = 0
+symbolType = 2
+symbolOffsets = [ 0, 1 ]

@@ -19,10 +19,10 @@ config/icon="res://icon.png"
 [autoload]
 
 Types="*res://Assets/global/Types.gd"
+Data="*res://Assets/data/Data.tscn"
 AppInput="*res://Assets/global/Input.gd"
 Culling="*res://Assets/global/Culling.gd"
 Loader="*res://Assets/global/Loader.gd"
-Data="*res://Assets/data/Data.tscn"
 Random="*res://Assets/global/Random.gd"
 Events="*res://Assets/global/Events.gd"
 Call="*res://Assets/global/Call.gd"
