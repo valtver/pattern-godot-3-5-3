@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource( 1 )
 selectedLevelIndex = 0
-selectedSubLevelIndex = 4
+selectedSubLevelIndex = 1
 sessionTimeScore = 0
 sessionStars = 0
 sessionTimeScoreLastStep = 0

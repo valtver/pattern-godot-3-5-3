@@ -176,9 +176,12 @@ func GenerateButtons(symbolType, correctOffset):
 		button = {
 			"angles": []
 		}
-		offsetData = Data.gameData.symbolData.SymbolOffset[Types.SymbolOffset.X]
-		for i in newTypeData["angles"].size():
-			button["angles"].push_back( newTypeData["angles"][offsetData[i]] )
+		var oppositeOffsetKey = typeData["offsets"].duplicate()
+		oppositeOffsetKey.erase(correctOffset)
+		
+		offsetData = Data.gameData.symbolData.SymbolOffset[oppositeOffsetKey.pick_random()]
+		for i in typeData["angles"].size():
+			button["angles"].push_back( typeData["angles"][offsetData[i]] )
 		buttons.push_back(button.duplicate())
 
 	elif symbolType == Types.SymbolType.DiagonalRight:
@@ -194,9 +197,12 @@ func GenerateButtons(symbolType, correctOffset):
 		button = {
 			"angles": []
 		}
-		offsetData = Data.gameData.symbolData.SymbolOffset[Types.SymbolOffset.X]
-		for i in newTypeData["angles"].size():
-			button["angles"].push_back( newTypeData["angles"][offsetData[i]] )
+		var oppositeOffsetKey = typeData["offsets"].duplicate()
+		oppositeOffsetKey.erase(correctOffset)
+		
+		offsetData = Data.gameData.symbolData.SymbolOffset[oppositeOffsetKey.pick_random()]
+		for i in typeData["angles"].size():
+			button["angles"].push_back( typeData["angles"][offsetData[i]] )
 		buttons.push_back(button.duplicate())
 		
 	else:
