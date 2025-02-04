@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Assets/data/GameData/LevelData/0/0/SubLevelData0.tres" type="Resource" id=1]
+[ext_resource path="res://Assets/data/GameData/LevelData/LevelData.gd" type="Script" id=4]
+
+[resource]
+script = ExtResource( 4 )
+index = 0
+uiTexture = "res://Assets/ui/sprites/ui-forest-icon.png"
+subLevels = [ ExtResource( 1 ) ]
+unlock = true

@@ -1,5 +1,9 @@
 extends Node
 # warning-ignore-all:UNUSED_SIGNAL
+signal TimerTimeout
+
+signal AppStart(AppDataResourceArray, LevelResource)
+
 signal HudTimerUpdate
 signal HudTimeScoreAnimation
 signal HudTimeUp
@@ -13,6 +17,9 @@ signal LoadComplete
 
 signal AppMainMenu
 signal LevelEnd
+#APP EVENTS
+signal ShowAppBlocker
+signal HideAppBlocker
 
 #UI EVENTS
 signal ShowUiMainScreen
@@ -20,6 +27,17 @@ signal ShowUiSettingsScreen
 signal ShowUiSubLevelScreen
 
 #HUD EVENTS
+signal HudButtonPlayClick
+signal HudButtonReplayClick
+signal HudButtonSymbolClick
+signal GameStepStart
+signal GameStepEnd
+signal GameTaskEnd(isWin)
+signal GameTaskStart
+signal GameLevelEnd(isWin)
+signal GameLevelStart
+signal GameRestart(node)
+
 signal ShowHudStartScreen
 signal ShowHudGameScreen
 signal ShowHudMenuScreen
@@ -35,11 +53,8 @@ signal HideHudSymbolButtons
 signal ShowHudMenuButton
 signal HideHudMenuButton
 
-signal HudButtonSymbolClick
-signal HudButtonPlayClick
 signal HudButtonMenuClick
 signal HudButtonTutorialClick
-signal HudButtonReplayClick
 signal HudButtonHomeClick
 signal HudButtonNextClick
 

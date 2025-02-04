@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Assets/level/scripts/PatternData.gd" type="Script" id=1]
+[ext_resource path="res://Assets/symbol/sprites/sub-symbol-0.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+sprites = [ ExtResource( 2 ) ]
+symbolMap = 0
+symbolType = 1
+symbolOffsets = [ 0, 3, 2, 1 ]

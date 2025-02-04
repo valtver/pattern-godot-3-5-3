@@ -1,0 +1,743 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/symbol/scripts/SubSymbol.gd" type="Script" id=1]
+[ext_resource path="res://Assets/symbol/scripts/Symbol.gd" type="Script" id=2]
+[ext_resource path="res://Assets/symbol/sprites/sub-symbol-0.png" type="Texture" id=3]
+[ext_resource path="res://Assets/symbol/sprites/symbol-background.png" type="Texture" id=4]
+[ext_resource path="res://Assets/symbol/animation/Show.tres" type="Animation" id=5]
+
+[sub_resource type="Animation" id=3]
+resource_name = "HideFail"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/SubSymbol0:opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/SubSymbol1:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/SubSymbol2:opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/SubSymbol3:opacity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Background:opacity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Vfx/SubSymbol0:opacity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Vfx/SubSymbol1:opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0, 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Vfx/SubSymbol2:opacity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0, 1.0, 0.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Vfx/SubSymbol3:opacity")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0, 0.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Vfx/SubSymbol0:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Vfx/SubSymbol1:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Vfx/SubSymbol2:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Vfx/SubSymbol3:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Vfx/SubSymbol3:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.94, 0.348427, 0.3384, 1 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Vfx/SubSymbol2:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.94, 0.348427, 0.3384, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Vfx/SubSymbol1:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.94, 0.348427, 0.3384, 1 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Vfx/SubSymbol0:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.94, 0.348427, 0.3384, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "HideWin"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/SubSymbol0:opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/SubSymbol1:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/SubSymbol2:opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/SubSymbol3:opacity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Background:opacity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Vfx/SubSymbol0:opacity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Vfx/SubSymbol1:opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Vfx/SubSymbol2:opacity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Vfx/SubSymbol3:opacity")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Vfx/SubSymbol0:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Vfx/SubSymbol1:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Vfx/SubSymbol2:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Vfx/SubSymbol3:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Vfx/SubSymbol3:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.870588, 1, 0.709804, 1 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Vfx/SubSymbol2:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.870588, 1, 0.709804, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Vfx/SubSymbol1:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.870588, 1, 0.709804, 1 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Vfx/SubSymbol0:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.870588, 1, 0.709804, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background:opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/SubSymbol3:opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/SubSymbol2:opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/SubSymbol1:opacity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/SubSymbol0:opacity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Vfx/SubSymbol3:opacity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Vfx/SubSymbol2:opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Vfx/SubSymbol1:opacity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Vfx/SubSymbol0:opacity")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Vfx:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Vfx/SubSymbol0:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Vfx/SubSymbol1:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Vfx/SubSymbol2:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Vfx/SubSymbol3:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Vfx/SubSymbol0:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.941176, 0.568627, 0.564706, 1 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Vfx/SubSymbol1:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0.737255, 0.721569, 1 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Vfx/SubSymbol2:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0.737255, 0.721569, 1 ) ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Vfx/SubSymbol3:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0.737255, 0.721569, 1 ) ]
+}
+
+[node name="Symbol" type="Spatial" groups=["Symbol"]]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="Vfx" type="Spatial" parent="."]
+
+[node name="SubSymbol0" type="Sprite3D" parent="Vfx"]
+transform = Transform( 0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, -0.5, 0.02, -0.5 )
+visible = false
+sorting_offset = 3.0
+modulate = Color( 0.941176, 0.568627, 0.564706, 1 )
+pixel_size = 0.0625
+double_sided = false
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+
+[node name="SubSymbol1" type="Sprite3D" parent="Vfx"]
+transform = Transform( -1.09278e-08, 0.25, 1.09278e-08, 0, -1.09278e-08, 0.25, 0.25, 1.09278e-08, 4.77671e-16, 0.5, 0.02, -0.5 )
+sorting_offset = 3.0
+modulate = Color( 1, 0.737255, 0.721569, 1 )
+pixel_size = 0.0625
+double_sided = false
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+id = 1
+
+[node name="SubSymbol2" type="Sprite3D" parent="Vfx"]
+transform = Transform( -1.09278e-08, -0.25, -1.09278e-08, 0, -1.09278e-08, 0.25, -0.25, 1.09278e-08, 4.77671e-16, -0.5, 0.02, 0.5 )
+sorting_offset = 3.0
+modulate = Color( 1, 0.737255, 0.721569, 1 )
+pixel_size = 0.0625
+double_sided = false
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+id = 2
+
+[node name="SubSymbol3" type="Sprite3D" parent="Vfx"]
+transform = Transform( -0.25, 3.7749e-08, 1.65006e-15, 0, -1.09278e-08, 0.25, 3.7749e-08, 0.25, 1.09278e-08, 0.5, 0.02, 0.5 )
+visible = false
+sorting_offset = 3.0
+modulate = Color( 1, 0.737255, 0.721569, 1 )
+pixel_size = 0.0625
+double_sided = false
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+id = 3
+
+[node name="Pivot" type="Spatial" parent="."]
+
+[node name="SubSymbol0" type="Sprite3D" parent="Pivot"]
+transform = Transform( 0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, -0.5, 0.02, -0.5 )
+sorting_offset = 2.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+pixel_size = 0.0625
+double_sided = false
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+
+[node name="SubSymbol1" type="Sprite3D" parent="Pivot"]
+transform = Transform( -1.09278e-08, 0.25, 1.09278e-08, 0, -1.09278e-08, 0.25, 0.25, 1.09278e-08, 4.77671e-16, 0.5, 0.02, -0.5 )
+sorting_offset = 2.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+pixel_size = 0.0625
+double_sided = false
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+id = 1
+
+[node name="SubSymbol2" type="Sprite3D" parent="Pivot"]
+transform = Transform( -1.09278e-08, -0.25, -1.09278e-08, 0, -1.09278e-08, 0.25, -0.25, 1.09278e-08, 4.77671e-16, -0.5, 0.02, 0.5 )
+sorting_offset = 2.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+pixel_size = 0.0625
+double_sided = false
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+id = 2
+
+[node name="SubSymbol3" type="Sprite3D" parent="Pivot"]
+transform = Transform( -0.25, 3.7749e-08, 1.65006e-15, 0, -1.09278e-08, 0.25, 3.7749e-08, 0.25, 1.09278e-08, 0.5, 0.02, 0.5 )
+sorting_offset = 2.0
+modulate = Color( 0.94902, 0.796078, 0.654902, 1 )
+pixel_size = 0.0625
+double_sided = false
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+id = 3
+
+[node name="Background" type="Sprite3D" parent="."]
+transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0.01, 0 )
+sorting_offset = 1.0
+modulate = Color( 0.188235, 0.0980392, 0.223529, 0.156863 )
+pixel_size = 0.0625
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/HideFail = SubResource( 3 )
+anims/HideWin = SubResource( 2 )
+anims/RESET = SubResource( 1 )
+anims/Show = ExtResource( 5 )

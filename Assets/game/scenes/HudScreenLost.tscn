@@ -1,0 +1,152 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/ui/sprites/ui-forest-icon.png" type="Texture" id=1]
+[ext_resource path="res://Assets/game/scripts/HudScreenLost.gd" type="Script" id=2]
+[ext_resource path="res://Assets/ui/sprites/ui-flat.png" type="Texture" id=3]
+[ext_resource path="res://Assets/game/scenes/HudButtonReplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Assets/game/scenes/HudButtonNext.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/game/scenes/HudButtonHome.tscn" type="PackedScene" id=10]
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/MenuLabel:outline_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.94902, 0.796078, 0.654902, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/MenuLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/hud-logo-base:opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "show"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/MenuLabel:outline_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.94902, 0.796078, 0.654902, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/MenuLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 0.235294, 0.0980392, 0.0156863, 0 ), Color( 1, 0.737255, 0.721569, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/hud-logo-base:opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+
+[node name="HudScreenLost" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Ref" type="Spatial" parent="."]
+visible = false
+
+[node name="Color" type="Sprite3D" parent="Ref"]
+visible = false
+sorting_offset = -20.0
+modulate = Color( 1, 1, 1, 0.392157 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 450, 1050 )
+
+[node name="Top" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+
+[node name="Bottom" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
+
+[node name="Pivot" type="Spatial" parent="."]
+
+[node name="hud-logo-base" type="Sprite3D" parent="Pivot"]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 1.00903, 0 )
+sorting_offset = -15.0
+opacity = 0.0
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 400, 200 )
+
+[node name="MenuLabel" type="Label3D" parent="Pivot"]
+transform = Transform( 0.436405, 0, 0, 0, 0.436405, 0, 0, 0, 0.436405, 0, 0.94623, 0 )
+sorting_offset = 6.0
+double_sided = false
+render_priority = 1
+outline_render_priority = 0
+modulate = Color( 0.235294, 0.0980392, 0.0156863, 0 )
+outline_modulate = Color( 0.94902, 0.796078, 0.654902, 0 )
+text = "Oh no! I'm lost!"
+font = ExtResource( 5 )
+line_spacing = -61.427
+width = 1500.0
+
+[node name="hud-replay-button" parent="Pivot" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.818805, 0 )
+
+[node name="hud-home-button" parent="Pivot" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, -0.792845, 0 )
+
+[node name="hud-next-button" parent="Pivot" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, -0.792845, 0 )
+
+[node name="blur-shade" type="Sprite3D" parent="."]
+sorting_offset = -10.0
+cast_shadow = 0
+modulate = Color( 0.188235, 0.0980392, 0.223529, 0.545098 )
+opacity = 0.0
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 500, 1100 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
+anims/show = SubResource( 7 )

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/scripts/game/mapCamera/mapCamera.gd" type="Script" id=1]
+[ext_resource path="res://Assets/scripts/game/camera.gd" type="Script" id=2]
+[ext_resource path="res://Assets/app/scripts/App.gd" type="Script" id=4]
+
+[node name="App" type="Node"]
+script = ExtResource( 4 )
+appState = 1
+
+[node name="MapCamera" type="Spatial" parent="."]
+transform = Transform( 0.707107, -0.579228, 0.40558, 0, 0.573576, 0.819152, -0.707107, -0.579228, 0.40558, 0, 1.18832, -8 )
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="MapCamera" groups=["camera"]]
+transform = Transform( 1, 0, 0, 0, 1, 6.85453e-07, 0, 0, 1, 0, 0, 30 )
+keep_aspect = 0
+projection = 1
+current = true
+size = 4.694
+far = 150.0
+script = ExtResource( 2 )

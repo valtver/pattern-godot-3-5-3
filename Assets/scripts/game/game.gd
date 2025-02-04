@@ -99,7 +99,7 @@ func GameLoop():
 	if state == GameState.CHECK:
 		AppInput.DisableUi()
 		AppInput.DisableScene()
-		var reservedScore = Call.GetTimer(self, "GameStepCheck").get_total_elapsed_time() * 1000
+		var reservedScore = Call.GetTimer(self, "GameStepCheck").get_total_elapsed_time()
 		Call.StopDelay(self, "GameStepCheck")
 		Call.StopDelay(Map, "SpawnBonus")
 		Events.emit_signal("HideHudMenuButton")
@@ -107,9 +107,10 @@ func GameLoop():
 		if Data.playerData.selectedButton != null:
 			if Data.playerData.selectedButton.GetSymbolAngles() == Data.playerData.gameStep["angles"]:
 				Data.playerData.selectedButton.AnimateSuccessClick()
-				Data.playerData.sessionTimeScoreLastStep = int(reservedScore)
+				Data.playerData.sessionTimeScoreLastStep = int(reservedScore * 1000)
 				Data.playerData.sessionTimeScore += Data.playerData.sessionTimeScoreLastStep
 				Data.playerData.sessionStars = clamp( (Data.gameData.gameStepDelay * 1000) / (Data.playerData.sessionTimeScore / gameStepsTotal), 1, 3 )
+				
 				Events.emit_signal("HudTimeScoreAnimation", Data.playerData.sessionTimeScoreLastStep)
 				ShowStepComplete()
 				Events.emit_signal("ShowHudStepSuccess")
@@ -122,6 +123,11 @@ func GameLoop():
 			elif Data.playerData.sessionFails <= 2:
 				Data.playerData.sessionFails += 1
 				Data.playerData.selectedButton.AnimateFailClick()
+				
+				Data.playerData.sessionTimeScoreLastStep = int(Data.gameData.gameStepDelay * 1000)
+				Data.playerData.sessionTimeScore += Data.playerData.sessionTimeScoreLastStep
+				Data.playerData.sessionStars = clamp( (Data.gameData.gameStepDelay * 1000) / (Data.playerData.sessionTimeScore / gameStepsTotal), 1, 3 )
+				
 				Events.emit_signal("HudTimeScoreAnimation", 0)
 				Events.emit_signal("ShowHudStepFail")
 				Events.emit_signal("HudSetFails", Data.playerData.sessionFails)
@@ -129,6 +135,11 @@ func GameLoop():
 		else:
 			if Data.playerData.sessionFails <= 2:
 				Data.playerData.sessionFails += 1
+				
+				Data.playerData.sessionTimeScoreLastStep = 0
+				Data.playerData.sessionTimeScore += Data.playerData.sessionTimeScoreLastStep
+				Data.playerData.sessionStars = clamp( (Data.gameData.gameStepDelay * 1000) / (Data.playerData.sessionTimeScore / gameStepsTotal), 1, 3 )
+
 				Events.emit_signal("HudTimeScoreAnimation", 0)
 				Events.emit_signal("HideHudSymbolButtons")
 				Events.emit_signal("ShowHudStepFail")

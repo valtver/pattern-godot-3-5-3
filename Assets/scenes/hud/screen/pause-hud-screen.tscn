@@ -1,15 +1,16 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Assets/scripts/hud/hud-screen.gd" type="Script" id=1]
-[ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
-[ext_resource path="res://Assets/scenes/hud/buttons/hud-next-button.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/sprites/ui/ui-logo.png" type="Texture" id=4]
-[ext_resource path="res://Assets/scenes/hud/buttons/hud-invert-menu-button.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/scenes/hud/buttons/hud-replay-button.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/sprites/ui/ui-logo-text.png" type="Texture" id=7]
-[ext_resource path="res://Assets/scenes/hud/buttons/hud-home-button.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/System/HudScreen.gd" type="Script" id=1]
+[ext_resource path="res://Assets/ui/sprites/ui-flat.png" type="Texture" id=2]
+[ext_resource path="res://Assets/game/scenes/HudButtonNext.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/ui/sprites/ui-logo.png" type="Texture" id=4]
+[ext_resource path="res://Assets/game/scenes/HudButtonMenuInvert.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/game/scenes/HudButtonReplay.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/ui/sprites/ui-logo-text.png" type="Texture" id=7]
+[ext_resource path="res://Assets/game/scenes/HudButtonHome.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/sprites/shared/flat.png" type="Texture" id=9]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=10]
+
 
 [sub_resource type="Animation" id=2]
 length = 0.001

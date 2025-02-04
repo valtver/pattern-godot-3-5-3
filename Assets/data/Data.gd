@@ -2,12 +2,23 @@ tool
 extends Node
 
 export (bool) var refresh
-
-export (Resource) var appData
-export (Resource) var uiData
-export (Resource) var gameData
 export (Resource) var playerData
-export (Resource) var resourceData
+export (float) var nextTaskDelay
+export (float) var nextStepDelay
+export (float) var taskTimerDelay
+export (int) var sessionFailsLimit
+export (String) var uiSceneResourcesDirectory
+export (String) var gameSceneResourcesDirectory
+
+export (String) var hecticPlayLogoScene
+export (String) var gameLogoScene
+export (Array, Resource) var levels
+
+
+export (Array, String) var uiSceneResources
+export (Array, String) var gameSceneResources
+
+export (Resource) var gameData
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -16,15 +27,10 @@ export (Resource) var resourceData
 func _process(_delta):
 	if Engine.editor_hint:
 		if refresh:
-			resourceData.uiResources = []
-			for dir in resourceData.uiResDir:
-				ParseDirToArray(dir, resourceData.uiResources)
-			resourceData.gameResources = []
-			for dir in resourceData.gameResDir:
-				ParseDirToArray(dir, resourceData.gameResources)
-			resourceData.hudResources = []
-			for dir in resourceData.hudResDir:
-				ParseDirToArray(dir, resourceData.hudResources)
+			uiSceneResources = []
+			ParseDirToArray(uiSceneResourcesDirectory, uiSceneResources)
+			gameSceneResources = []
+			ParseDirToArray(gameSceneResourcesDirectory, gameSceneResources)
 			refresh = false
 			property_list_changed_notify()
 			

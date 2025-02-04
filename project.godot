@@ -8,10 +8,50 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "HudScreen",
+"language": "GDScript",
+"path": "res://Assets/System/HudScreen.gd"
+}, {
+"base": "Resource",
+"class": "PatternData",
+"language": "GDScript",
+"path": "res://Assets/level/scripts/PatternData.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://Assets/System/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Assets/System/StateMachine.gd"
+}, {
+"base": "Spatial",
+"class": "Step",
+"language": "GDScript",
+"path": "res://Assets/task/scripts/Step.gd"
+}, {
+"base": "Spatial",
+"class": "UiScreen",
+"language": "GDScript",
+"path": "res://Assets/System/UiScreen.gd"
+} ]
+_global_script_class_icons={
+"HudScreen": "",
+"PatternData": "",
+"State": "",
+"StateMachine": "",
+"Step": "",
+"UiScreen": ""
+}
+
 [application]
 
 config/name="pattern-godot-3-5-3"
-run/main_scene="res://app.tscn"
+run/main_scene="res://Assets/app/App.tscn"
 boot_splash/show_image=false
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
@@ -26,6 +66,7 @@ Loader="*res://Assets/global/Loader.gd"
 Random="*res://Assets/global/Random.gd"
 Events="*res://Assets/global/Events.gd"
 Call="*res://Assets/global/Call.gd"
+Timers="*res://Assets/global/Timers.gd"
 
 [display]
 

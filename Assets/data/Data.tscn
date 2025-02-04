@@ -1,14 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/data/Data.gd" type="Script" id=1]
-[ext_resource path="res://Assets/data/AppData/AppData.tres" type="Resource" id=2]
+[ext_resource path="res://Assets/data/GameData/LevelData/Level0.tres" type="Resource" id=2]
 [ext_resource path="res://Assets/data/GameData/GameData.tres" type="Resource" id=4]
 [ext_resource path="res://Assets/data/PlayerData/PlayerData.tres" type="Resource" id=5]
-[ext_resource path="res://Assets/data/ResourceData/ResourceData.tres" type="Resource" id=6]
 
 [node name="Data" type="Node"]
 script = ExtResource( 1 )
-appData = ExtResource( 2 )
-gameData = ExtResource( 4 )
 playerData = ExtResource( 5 )
-resourceData = ExtResource( 6 )
+nextTaskDelay = 2
+nextStepDelay = 0.5
+taskTimerDelay = 5
+sessionFailsLimit = 3
+uiSceneResourcesDirectory = "res://Assets/ui/"
+gameSceneResourcesDirectory = "res://Assets/game/"
+hecticPlayLogoScene = "res://Assets/app/scenes/HecticPlayLogo.tscn"
+gameLogoScene = "res://Assets/app/scenes/GameLogo.tscn"
+levels = [ ExtResource( 2 ) ]
+uiSceneResources = [ "res://Assets/ui/animation/UiButtonAlphaHide.tres", "res://Assets/ui/animation/UiButtonAlphaShow.tres", "res://Assets/ui/animation/UiButtonClick.tres", "res://Assets/ui/animation/UiButtonHide.tres", "res://Assets/ui/animation/UiButtonShow.tres", "res://Assets/ui/scenes/BackButton.tscn", "res://Assets/ui/scenes/InfoButton.tscn", "res://Assets/ui/scenes/LevelButton.tscn", "res://Assets/ui/scenes/NoButton.tscn", "res://Assets/ui/scenes/ScrollerButtonLeft.tscn", "res://Assets/ui/scenes/ScrollerButtonRight.tscn", "res://Assets/ui/scenes/SettingsButton.tscn", "res://Assets/ui/scenes/SubLevelButton.tscn", "res://Assets/ui/scenes/UiMainScreen.tscn", "res://Assets/ui/scenes/UiSettingsScreen.tscn", "res://Assets/ui/scenes/UiSubLevelConfirmScreen.tscn", "res://Assets/ui/scenes/UiSubLevelScreen.tscn", "res://Assets/ui/scenes/YesButton.tscn", "res://Assets/ui/scripts/Ui.gd", "res://Assets/ui/scripts/UiButton.gd", "res://Assets/ui/scripts/UiMainScreen.gd", "res://Assets/ui/scripts/UiSettingsScreen.gd", "res://Assets/ui/scripts/UiSubLevelConfirmScreen.gd", "res://Assets/ui/scripts/UiSubLevelScreen.gd", "res://Assets/ui/sprites/ui-about-button.png", "res://Assets/ui/sprites/ui-flat.png", "res://Assets/ui/sprites/ui-forest-icon.png", "res://Assets/ui/sprites/ui-logo-text.png", "res://Assets/ui/sprites/ui-logo.png", "res://Assets/ui/sprites/ui-music.png", "res://Assets/ui/sprites/ui-settings-button.png", "res://Assets/ui/sprites/ui-sound-vol-0.png", "res://Assets/ui/sprites/ui-star-icon.png", "res://Assets/ui/sprites/ui-triangle-button.png", "res://Assets/ui/Ui.tscn" ]
+gameSceneResources = [ "res://Assets/game/Game.tscn", "res://Assets/game/Hud.tscn", "res://Assets/game/scripts/Game.gd", "res://Assets/game/scripts/Hud.gd" ]
+gameData = ExtResource( 4 )

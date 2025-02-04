@@ -4,8 +4,10 @@
 
 [resource]
 script = ExtResource( 1 )
+sound = false
+music = true
 selectedLevelIndex = 0
-selectedSubLevelIndex = 1
+selectedSubLevelIndex = 0
 sessionTimeScore = 0
 sessionStars = 0
 sessionTimeScoreLastStep = 0

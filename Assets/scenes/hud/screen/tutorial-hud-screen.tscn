@@ -1,15 +1,16 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/scripts/hud/hud-tutorial-screen.gd" type="Script" id=1]
-[ext_resource path="res://Assets/sprites/ui/ui-flat.png" type="Texture" id=2]
+[ext_resource path="res://Assets/ui/sprites/ui-flat.png" type="Texture" id=2]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Assets/fonts/Pacifico-Flat.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Assets/sprites/hud/hud-timer-icon.png" type="Texture" id=5]
 [ext_resource path="res://Assets/sprites/shared/bitmap_ui-yes.png" type="Texture" id=6]
 [ext_resource path="res://Assets/sprites/tutorial/tutorial-symbol-0.png" type="Texture" id=7]
 [ext_resource path="res://Assets/sprites/shared/bitmap_ui-no.png" type="Texture" id=8]
-[ext_resource path="res://Assets/scenes/hud/buttons/hud-tutorial-button.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Assets/scenes/hud/buttons/hud-tutorial-next-button.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/game/scenes/HudButtonTutorial.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/game/scenes/HudButtonTutorialNext.tscn" type="PackedScene" id=10]
+
 
 [sub_resource type="Animation" id=3]
 length = 0.001

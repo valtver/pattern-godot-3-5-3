@@ -1,8 +1,20 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=10 format=2]
 
 [ext_resource path="res://Assets/data/GameData/GameData.gd" type="Script" id=1]
-[ext_resource path="res://Assets/data/GameData/LevelData/LevelData0.tres" type="Resource" id=2]
+[ext_resource path="res://Assets/data/GameData/LevelData/0/1/SubLevelData1.tres" type="Resource" id=2]
 [ext_resource path="res://Assets/data/GameData/SymbolData/SymbolData.tres" type="Resource" id=3]
+[ext_resource path="res://Assets/data/GameData/LevelData/0/0/SubLevelData0.tres" type="Resource" id=4]
+[ext_resource path="res://Assets/data/GameData/LevelData/0/4/SubLevelData4.tres" type="Resource" id=5]
+[ext_resource path="res://Assets/data/GameData/LevelData/0/3/SubLevelData3.tres" type="Resource" id=6]
+[ext_resource path="res://Assets/data/GameData/LevelData/0/2/SubLevelData2.tres" type="Resource" id=7]
+[ext_resource path="res://Assets/data/GameData/LevelData/LevelData.gd" type="Script" id=8]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 8 )
+index = 0
+uiTexture = "res://Assets/ui/sprites/ui-forest-icon.png"
+subLevels = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ) ]
+unlock = true
 
 [resource]
 script = ExtResource( 1 )
@@ -11,5 +23,5 @@ gameScoreMultiplier = 100.0
 nextGameStepDelay = 1.0
 mapScene = "res://Assets/scenes/game/map/map.tscn"
 symbolData = ExtResource( 3 )
-levels = [ ExtResource( 2 ) ]
+levels = [ SubResource( 1 ) ]
 bonuses = [ null ]

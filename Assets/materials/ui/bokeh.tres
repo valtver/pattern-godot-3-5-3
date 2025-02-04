@@ -1,8 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
-
-[ext_resource path="res://Assets/shaders/bokeh-shader.tres" type="Shader" id=1]
-
-[resource]
-shader = ExtResource( 1 )
-shader_param/brightness = 1.0
-shader_param/size = 0.159

@@ -39,7 +39,7 @@ func Unload():
 func _queue_loading_thread():
 
 	for cacheKey in cache:
-		OS.delay_msec(int(SIMULATED_DELAY_SEC * 500.0))
+		OS.delay_msec(int(SIMULATED_DELAY_SEC * 100.0))
 		print(cacheKey, " loading...")
 		cache[cacheKey] = ResourceLoader.load(cacheKey)
 				

@@ -1,7 +1,5 @@
 extends Node
 
-export (Types.AppState) var state = Types.AppState.NONE
-export (bool) var appStart = true
 var tutorial
 var game
 var ui
@@ -14,10 +12,6 @@ onready var Content3D = $"."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	TranslationServer.set_locale("en")
-	Events.connect("StartGame", self, "OnGameStart")
-	Events.connect("AppMainMenu", self,"OnMainMenu")
-	Events.connect("ShowFastBlocker", self, "OnShowFastBlocker")
 #	Call.OnCompleteTimer(self, "Init", 2.0)
 	Init()
 #	Call.OnCompleteTimer(self, "ShowBlocker", 4.0)
@@ -25,6 +19,11 @@ func _ready():
 	pass
 
 func Init():
+	TranslationServer.set_locale("en")
+	Events.connect("StartGame", self, "OnGameStart")
+	Events.connect("AppMainMenu", self,"OnMainMenu")
+	Events.connect("ShowFastBlocker", self, "OnShowFastBlocker")
+	
 	var node = get_node_or_null("HecticPlayLogo")
 	if node == null:
 		var inst = ResourceLoader.load(Data.appData.hecticPlayLogoScene).instance()
@@ -41,11 +40,8 @@ func Init():
 		
 func ShowBlocker():
 	AppInput.DisableUi()
-	if appStart:
-		appStart = false
-		ShowHectic()
-	else:
-		ShowGameLogo()
+	ShowHectic()
+	ShowGameLogo()
 
 func OnShowFastBlocker():
 	gameLogo.play("game-logo-restart")
@@ -78,45 +74,45 @@ func Unload():
 	Loader.Unload()
 		
 func Load():
-	if state == Types.AppState.START:
-		for res in Data.resourceData.uiResources:
-			Loader.QueueResource(res)
-			
-	if state == Types.AppState.GAME:
-		for res in Data.resourceData.gameResources:
-			Loader.QueueResource(res) 
-		for res in Data.resourceData.level[Data.playerData.selectedLevelIndex]:
-			Loader.QueueResource(res)
-		for res in Data.resourceData.hudResources:
-			Loader.QueueResource(res)
-
+#	if state == Types.AppState.START:
+#		for res in Data.resourceData.uiResources:
+#			Loader.QueueResource(res)
+#
+#	if state == Types.AppState.GAME:
+#		for res in Data.resourceData.gameResources:
+#			Loader.QueueResource(res) 
+#		for res in Data.resourceData.level[Data.playerData.selectedLevelIndex]:
+#			Loader.QueueResource(res)
+#		for res in Data.resourceData.hudResources:
+#			Loader.QueueResource(res)
+#
 	Events.connect("LoadComplete", self, "OnLoadComplete")
 	Loader.Load()
 	
 func OnBlockerShown():
 	Unload()
-	if state == Types.AppState.NONE:
-		state = Types.AppState.FIRST_START
-		Data.appData.tutorial = true		
+#	if state == Types.AppState.NONE:
+#		state = Types.AppState.FIRST_START
+#		Data.appData.tutorial = true		
 	# Data.playerData.GenerateUnlockData()
 	gameLogo.play("game-logo-loop")
 	Load()
 		
 func OnLoadComplete():
 	Events.disconnect("LoadComplete", self, "OnLoadComplete")
-	if state == Types.AppState.FIRST_START:
-		Data.playerData.selectedLevelIndex = 0
-		Data.playerData.selectedSubLevelIndex = 0
-		state = Types.AppState.GAME
-	if state == Types.AppState.START:
-		ui = Loader.GetResource(Data.appData.uiScene).instance()
-		Content2D.add_child(ui)
-		Events.emit_signal("ShowUiMainScreen")
-	if state == Types.AppState.GAME:
-		hud = Loader.GetResource(Data.appData.hudScene).instance()
-		Content2D.add_child(hud)
-		game = Loader.GetResource(Data.appData.gameScene).instance()
-		Content3D.add_child(game)
+#	if state == Types.AppState.FIRST_START:
+#		Data.playerData.selectedLevelIndex = 0
+#		Data.playerData.selectedSubLevelIndex = 0
+#		state = Types.AppState.GAME
+#	if state == Types.AppState.START:
+#		ui = Loader.GetResource(Data.appData.uiScene).instance()
+#		Content2D.add_child(ui)
+#		Events.emit_signal("ShowUiMainScreen")
+#	if state == Types.AppState.GAME:
+#		hud = Loader.GetResource(Data.appData.hudScene).instance()
+#		Content2D.add_child(hud)
+#		game = Loader.GetResource(Data.appData.gameScene).instance()
+#		Content3D.add_child(game)
 #	Call.OnCompleteTimer(self, "HideBlocker", 0.5)
 	HideBlocker()
 	pass
@@ -126,11 +122,11 @@ func OnBlockerHidden():
 	pass
 	
 func OnGameStart():
-	state = Types.AppState.GAME
+#	state = Types.AppState.GAME
 	ShowBlocker()
 
 func OnMainMenu():
-	state = Types.AppState.START
+#	state = Types.AppState.START
 	ShowBlocker()
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
