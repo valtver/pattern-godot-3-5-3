@@ -30,6 +30,10 @@ signal ShowUiSubLevelScreen
 signal HudButtonPlayClick
 signal HudButtonReplayClick
 signal HudButtonSymbolClick
+signal HudButtonMenuClick
+signal HudButtonMenuUnClick
+signal HudButtonHomeClick
+signal HudButtonNextClick
 signal GameStepStart
 signal GameStepEnd
 signal GameTaskEnd(isWin)
@@ -37,6 +41,7 @@ signal GameTaskStart
 signal GameLevelEnd(isWin)
 signal GameLevelStart
 signal GameRestart(node)
+signal GameQuit
 
 signal ShowHudStartScreen
 signal ShowHudGameScreen
@@ -53,10 +58,7 @@ signal HideHudSymbolButtons
 signal ShowHudMenuButton
 signal HideHudMenuButton
 
-signal HudButtonMenuClick
 signal HudButtonTutorialClick
-signal HudButtonHomeClick
-signal HudButtonNextClick
 
 signal GameBonusCollected
 

@@ -3,8 +3,8 @@ extends Spatial
 var level
 var mapCamera
 
-var activeTask = -1
-var activeStep = -1
+var activeTask
+var activeStep
 
 func _ready():
 	AppInput.DisableScene()
@@ -12,27 +12,44 @@ func _ready():
 	Events.connect("HudButtonPlayClick", self, "NextTask")
 	Events.connect("HudButtonSymbolClick", self, "TaskCheck")
 	Events.connect("HudButtonReplayClick", self, "RestartLevel")
+	Events.connect("HudButtonMenuClick", self, "PauseLevel")
+	Events.connect("HudButtonMenuUnClick", self, "UnPauseLevel")
+	Events.connect("HudButtonHomeClick", self, "QuitLevel")
 	Events.connect("TimerTimeout", self, "TaskCheck")
 
-func Init():
-	InitSessionData()
+func Init(forceTaskId:=-1):
+	Timers.Clear()
 	if level == null:
 		level = Loader.GetResource(Data.levels[Data.playerData.selectedLevelIndex].subLevels[Data.playerData.selectedSubLevelIndex].scene).instance()
 		add_child(level)
 	level.Init()
+	InitSessionData(level.tasks.size())
 	yield(get_tree(), "idle_frame")
 	mapCamera.position = level.tasks[0].get_node("StartPosition").global_position
 	var animationPlayer = level.tasks[0].get_node_or_null("AnimationPlayer")
 	if animationPlayer != null:
 		animationPlayer.play("Idle")
 	level.UpdateVisibility(0)
-	activeTask = -1
+	activeTask = forceTaskId
 	activeStep = -1
 	Events.emit_signal("GameLevelStart")
 		
 func RestartLevel():
 	Events.emit_signal("GameRestart", self)
-	pass
+
+func QuitLevel():
+	Events.emit_signal("GameQuit")
+	
+func PauseLevel():
+	if Timers.Get(self.name) != null:
+		Timers.Pause(self.name)
+		
+func UnPauseLevel():
+	if Timers.Get(self.name) != null:
+		Timers.Resume(self.name)
+		var step = level.tasks[activeTask].steps[activeStep]
+		Events.emit_signal("GameStepStart", step.pattern)
+		Events.emit_signal("GameTaskStart", Timers.Get(self.name))
 		
 func OnButtonClick(button):
 	pass
@@ -68,7 +85,7 @@ func NextStep():
 	Events.emit_signal("GameStepStart", step.pattern)
 	if activeStep == 0:
 		Timers.Set(self.name, Data.taskTimerDelay)
-		Events.emit_signal("GameTaskStart")
+		Events.emit_signal("GameTaskStart", Timers.Get(self.name))
 
 func TaskCheck(button = null):
 	Timers.Pause(self.name)
@@ -96,10 +113,10 @@ func LevelFail():
 	print("Level Fail")
 	Events.emit_signal("GameLevelEnd", false)	
 	
-func InitSessionData():
+func InitSessionData(sessionTasks):
 	Data.playerData.sessionFails = 0
 	Data.playerData.sessionTimeScore = 0
-	Data.playerData.sessionStars = 0
+	Data.playerData.sessionTasks = sessionTasks
 	Data.playerData.sessionTimeScoreLastStep = 0
 	
 func Win(step):

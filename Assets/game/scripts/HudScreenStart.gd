@@ -17,4 +17,6 @@ func ShowSpecial():
 	get_node_or_null("Pivot/levelIcon").texture = Loader.GetResource(Data.levels[Data.playerData.selectedLevelIndex].uiTexture)
 	get_node_or_null("Pivot/levelLabel").text = "%s %d" % [tr("SUB_LVL_NAME"), (Data.playerData.selectedSubLevelIndex + 1)]
 	get_node_or_null("Pivot/HudButtonPlay/Pivot/TapLabel").text = tr("HUD_START_TEXT")
+	
+	AppInput.EnableUi()
 

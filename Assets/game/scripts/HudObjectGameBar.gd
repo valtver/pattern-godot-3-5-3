@@ -55,11 +55,11 @@ func TimeScoreAnimation(stepScore):
 		
 	var fillWidth = fillTexture.region_rect.size.x / fillTexture.texture.get_width()
 	fillTween.tween_method(self, "RestoreUpdateFill", fillWidth, 0.0, Data.nextTaskDelay)
-	var stepScoreValue = floor(stepScore * 100)
+	var stepScoreValue = floor(stepScore * Data.constScoreMultiplier)
 	animatedScore.text = "+%d" % stepScoreValue
 	animationPlayer.play("time-win")
 	yield(animationPlayer, "animation_finished")
-	var finalScore = floor(Data.playerData.sessionTimeScore * 100)
+	var finalScore = floor(Data.playerData.sessionTimeScore * Data.constScoreMultiplier)
 	var startScore = finalScore - stepScoreValue
 	if scoreTween != null:
 		scoreTween.kill()

@@ -39,6 +39,7 @@ func Init():
 		symbol.visible = false
 	
 	for complete in completes:
+		complete.get_node("AnimationPlayer").stop()
 		complete.visible = false
 					
 func Start():	
@@ -54,13 +55,11 @@ func Complete():
 		symbol.UpdateSymbol(pattern.angles, pattern.sprites)
 		symbol.visible = true
 		symbol.get_node("AnimationPlayer").play("HideWin")
-		symbol.get_node("AnimationPlayer").advance(0)
 		yield(get_tree().create_timer(0.02), "timeout")
 
 	for complete in completes:
 		complete.visible = true
 		complete.get_node("AnimationPlayer").play("Complete")
-		complete.get_node("AnimationPlayer").advance(0)
 		yield(get_tree().create_timer(0.1), "timeout")
 		
 func Fail():

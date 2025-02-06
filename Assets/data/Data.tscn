@@ -12,6 +12,7 @@ nextTaskDelay = 2
 nextStepDelay = 0.5
 taskTimerDelay = 5
 sessionFailsLimit = 3
+constScoreMultiplier = 10
 uiSceneResourcesDirectory = "res://Assets/ui/"
 gameSceneResourcesDirectory = "res://Assets/game/"
 hecticPlayLogoScene = "res://Assets/app/scenes/HecticPlayLogo.tscn"

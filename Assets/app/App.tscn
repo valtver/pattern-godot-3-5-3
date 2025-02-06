@@ -6,7 +6,6 @@
 
 [node name="App" type="Node"]
 script = ExtResource( 4 )
-appState = 1
 
 [node name="MapCamera" type="Spatial" parent="."]
 transform = Transform( 0.707107, -0.579228, 0.40558, 0, 0.573576, 0.819152, -0.707107, -0.579228, 0.40558, 0, 1.18832, -8 )

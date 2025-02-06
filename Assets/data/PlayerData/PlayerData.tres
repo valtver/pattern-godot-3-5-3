@@ -9,6 +9,6 @@ music = true
 selectedLevelIndex = 0
 selectedSubLevelIndex = 0
 sessionTimeScore = 0
-sessionStars = 0
+sessionTasks = 0
 sessionTimeScoreLastStep = 0
 sessionFails = 0

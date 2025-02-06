@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Assets/System/HudScreen.gd" type="Script" id=1]
+[ext_resource path="res://Assets/game/scripts/HudScreenPause.gd" type="Script" id=1]
 [ext_resource path="res://Assets/ui/sprites/ui-flat.png" type="Texture" id=2]
 [ext_resource path="res://Assets/game/scenes/HudButtonNext.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/ui/sprites/ui-logo.png" type="Texture" id=4]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Assets/game/scenes/HudButtonHome.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/sprites/shared/flat.png" type="Texture" id=9]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=10]
-
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -205,8 +204,9 @@ tracks/5/keys = {
 "values": [ Vector3( -7.99721, 1.19209e-07, 0 ), Vector3( 0, 0, 0 ) ]
 }
 
-[node name="pause-hud-screen" type="Spatial"]
+[node name="HudScreenPause" type="Spatial"]
 script = ExtResource( 1 )
+animationPlayerNodePath = NodePath("AnimationPlayer")
 
 [node name="Ref" type="Spatial" parent="."]
 
@@ -224,7 +224,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 [node name="Bottom" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0 )
 
-[node name="hud-menu-button" parent="Bottom" instance=ExtResource( 5 )]
+[node name="HudButtonMenu" parent="Bottom" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265, 0 )
 
 [node name="Pivot" type="Spatial" parent="."]
@@ -277,11 +277,11 @@ font = ExtResource( 10 )
 autowrap = true
 width = 1500.0
 
-[node name="hud-replay-button" parent="Pivot" instance=ExtResource( 6 )]
+[node name="HudButtonReplay" parent="Pivot" instance=ExtResource( 6 )]
 
-[node name="hud-home-button" parent="Pivot" instance=ExtResource( 8 )]
+[node name="HudButtonHome" parent="Pivot" instance=ExtResource( 8 )]
 
-[node name="hud-next-button" parent="Pivot" instance=ExtResource( 3 )]
+[node name="HudButtonNext" parent="Pivot" instance=ExtResource( 3 )]
 
 [node name="blur-shade" type="Sprite3D" parent="."]
 sorting_offset = -10.0

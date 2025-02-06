@@ -1,6 +1,6 @@
 extends Node
 
-enum AppState {START = 0, GAME = 1}
+enum AppState {START = 0, GAME = 2}
 export (AppState) var appState
 
 var tutorial
@@ -17,6 +17,7 @@ func _ready():
 	yield(get_tree().get_root(), "ready")
 	Events.connect("AppStart", self, "Start")
 	Events.connect("GameRestart", self, "Restart")
+	Events.connect("GameQuit", self, "StartMainMenu")
 	Init()
 	
 func Init():	
@@ -44,9 +45,12 @@ func Init():
 	
 	match appState:
 		AppState.START:
-			Start(Data.uiSceneResources)
+			StartMainMenu()
 		AppState.GAME:
 			Start(Data.gameSceneResources,	Data.levels[Data.playerData.selectedLevelIndex].subLevels[Data.playerData.selectedSubLevelIndex].scene)
+	
+func StartMainMenu():
+	Start(Data.uiSceneResources)
 	
 func Restart(gameNode):
 	gameLogo.play("game-logo-restart-in")

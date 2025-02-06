@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "HudScreen",
 "language": "GDScript",
-"path": "res://Assets/System/HudScreen.gd"
+"path": "res://Assets/system/HudScreen.gd"
 }, {
 "base": "Resource",
 "class": "PatternData",
@@ -22,12 +22,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://Assets/System/State.gd"
+"path": "res://Assets/system/State.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://Assets/System/StateMachine.gd"
+"path": "res://Assets/system/StateMachine.gd"
 }, {
 "base": "Spatial",
 "class": "Step",
@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "UiScreen",
 "language": "GDScript",
-"path": "res://Assets/System/UiScreen.gd"
+"path": "res://Assets/system/UiScreen.gd"
 } ]
 _global_script_class_icons={
 "HudScreen": "",

@@ -2,6 +2,9 @@ extends Node
 
 var timers = {}
 
+func Clear():
+	timers = {}
+
 func Set(callerName, duration):
 	var timer = Get(callerName)
 	if timer != null:
@@ -18,7 +21,7 @@ func Set(callerName, duration):
 func Get(callerName):
 	if !callerName in timers:
 		print("Timer ", callerName, " doesn't exist")
-		return
+		return null
 	return timers[callerName]
 		
 func Pause(callerName):

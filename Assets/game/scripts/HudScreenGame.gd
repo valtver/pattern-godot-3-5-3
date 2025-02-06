@@ -67,11 +67,11 @@ func ShowTaskResult(isWin):
 			yield(get_tree().create_timer(object.get_node("AnimationPlayer").current_animation_length), "timeout")
 			object.visible = false
 			
-func StartTimerBar():
+func StartTimerBar(timer):
 	if tween != null:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_method(gameBar, "UpdateFill", 1.0, 0.0, Data.taskTimerDelay)
+	tween.tween_method(gameBar, "UpdateFill", timer.time_left/Data.taskTimerDelay, 0.0, timer.time_left)
 	tween.play()
 
 func RefillTimerBar():
