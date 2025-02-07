@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/game/scripts/Hud.gd" type="Script" id=1]
 [ext_resource path="res://Assets/game/scenes/HudScreenStart.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/game/scenes/HudScreenLost.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/game/scenes/HudScreenWin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/game/scenes/HudScreenPause.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/game/scenes/HudScreenTutorial.tscn" type="PackedScene" id=7]
 
 [node name="Hud" type="Spatial"]
 script = ExtResource( 1 )
@@ -14,3 +15,4 @@ hudScreenGameScene = ExtResource( 3 )
 hudScreenPauseScene = ExtResource( 6 )
 hudScreenWinScene = ExtResource( 5 )
 hudScreenLostScene = ExtResource( 4 )
+hudScreenTutorialScene = ExtResource( 7 )

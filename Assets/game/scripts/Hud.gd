@@ -37,6 +37,8 @@ func ShowScreen(screenName):
 			screenSceneInstance = hudScreenWinScene.instance()
 		"HudScreenPause":
 			screenSceneInstance = hudScreenPauseScene.instance()
+		"HudScreenTutorial":
+			screenSceneInstance = hudScreenTutorialScene.instance()
 			
 	if currentScreenSceneInstance:
 		removeScreen = currentScreenSceneInstance
@@ -60,16 +62,21 @@ func OnButtonClick(button):
 			previousScreenSceneName = null
 			Events.emit_signal("HudButtonReplayClick")
 		if button.is_in_group("Tutorial"):
-			pass
+			if previousScreenSceneName == null:
+				previousScreenSceneName = currentScreenSceneInstance.name
+				ShowScreen("HudScreenTutorial")
+			else:
+				ShowScreen(previousScreenSceneName)
+				previousScreenSceneName = null
+		if button.is_in_group("NextTutorial"):
+			currentScreenSceneInstance.NextPage()
 		if button.is_in_group("Home"):
 			Events.emit_signal("HudButtonHomeClick")
-			pass
 	if button.is_in_group("HudButtonCustom"):
 		if button.is_in_group("Symbol"):
 			Events.emit_signal("HudButtonSymbolClick", button)
 		if button.is_in_group("Menu"):
 			if previousScreenSceneName == null:
-				print(currentScreenSceneInstance.name)
 				previousScreenSceneName = currentScreenSceneInstance.name
 				Events.emit_signal("HudButtonMenuClick")
 				ShowScreen("HudScreenPause")

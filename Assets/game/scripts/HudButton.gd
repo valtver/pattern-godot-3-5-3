@@ -92,7 +92,7 @@ func AnimateShow(style: String = ""):
 			tween.set_trans(Tween.TRANS_LINEAR)
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(child, "opacity", 1, 0.3)
-	tween.play()
+
 	return tween
 
 func AnimateHide(style: String = ""):
@@ -111,6 +111,6 @@ func AnimateHide(style: String = ""):
 			tween.set_trans(Tween.TRANS_LINEAR)
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(child, "opacity", 0, 0.3)
-	tween.play()
+
 	return tween
 	

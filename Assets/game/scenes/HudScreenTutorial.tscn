@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Assets/scripts/hud/hud-tutorial-screen.gd" type="Script" id=1]
+[ext_resource path="res://Assets/game/scripts/HudScreenTutorial.gd" type="Script" id=1]
 [ext_resource path="res://Assets/ui/sprites/ui-flat.png" type="Texture" id=2]
 [ext_resource path="res://Assets/fonts/Pacifico-Regular.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Assets/fonts/Pacifico-Flat.tres" type="DynamicFont" id=4]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Assets/sprites/shared/bitmap_ui-no.png" type="Texture" id=8]
 [ext_resource path="res://Assets/game/scenes/HudButtonTutorial.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/game/scenes/HudButtonTutorialNext.tscn" type="PackedScene" id=10]
-
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -786,8 +785,12 @@ tracks/13/keys = {
 "values": [ Color( 0.470588, 0.203922, 0.0392157, 0 ), Color( 0.470588, 0.203922, 0.0392157, 0 ), Color( 0.470588, 0.203922, 0.0392157, 1 ) ]
 }
 
-[node name="tutorial-hud-screen" type="Spatial"]
+[node name="HudScreenTutorial" type="Spatial"]
 script = ExtResource( 1 )
+pageNodes = [ NodePath("Pivot/TutorialBaseSheet/1"), NodePath("Pivot/TutorialBaseSheet/2"), NodePath("Pivot/TutorialBaseSheet/3"), NodePath("Pivot/TutorialBaseSheet/4") ]
+animationPlayerNodePath = NodePath("AnimationPlayer")
+tutorialPageTitleNode = NodePath("Pivot/TUTORIAL_PAGE_TITLE")
+tutorialPageLabelNode = NodePath("Pivot/TUTORIAL_PAGE_LABEL")
 
 [node name="Ref" type="Spatial" parent="."]
 visible = false
@@ -981,7 +984,7 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 75, 50 )
 
-[node name="PagePlayer" type="AnimationPlayer" parent="Pivot/TutorialBaseSheet/2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/TutorialBaseSheet/2"]
 playback_speed = 2.0
 anims/RESET = SubResource( 3 )
 anims/loop = SubResource( 4 )
@@ -990,10 +993,26 @@ anims/loop = SubResource( 4 )
 transform = Transform( 0.999565, -0.0294918, 0, 0.0294918, 0.999565, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Button1" type="Spatial" parent="Pivot/TutorialBaseSheet/3"]
-transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -1.191, -1.18202, 0 )
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 1, -1.191, -1.18202, 0 )
 
 [node name="Base" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button1"]
-transform = Transform( 0.715722, 0, 0, 0, 0.715722, 0, 0, 0, 0.715722, 0, 0, 0 )
+transform = Transform( 0.506092, 0.506092, 0, -0.506092, 0.506092, 0, 0, 0, 0.715722, 1.19209e-07, 0, 0 )
+sorting_offset = 34.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 100 )
+
+[node name="Base2" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button1"]
+transform = Transform( 0.506092, 0.506092, 0, -0.506092, 0.506092, 0, 0, 0, 0.715722, -1.19209e-07, -0.201837, 0 )
+sorting_offset = 34.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 100 )
+
+[node name="Base3" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button1"]
+transform = Transform( 1.006, 0, 0, 0, 0.204, 0, 0, 0, 0.716, -5.96046e-07, -0.0956372, 0 )
 sorting_offset = 34.0
 modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
 texture = ExtResource( 2 )
@@ -1001,38 +1020,54 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym1" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button1"]
-transform = Transform( -2.09324e-08, -0.478877, 0, 0.478877, -2.09324e-08, 0, 0, 0, 0.478877, -0.153038, 0.148767, 0 )
+transform = Transform( 0.338617, -0.338617, 0, 0.338617, 0.338617, 0, 0, 0, 0.478877, -0.00302005, 0.213408, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym2" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button1"]
-transform = Transform( -0.478877, 4.18647e-08, 0, -4.18647e-08, -0.478877, 0, 0, 0, 0.478877, 0.153756, 0.148767, 0 )
+transform = Transform( -0.338617, -0.338617, 0, 0.338617, -0.338617, 0, 0, 0, 0.478877, 0.213916, -0.00352764, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym3" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button1"]
-transform = Transform( 0.478877, 0, 0, 0, 0.478877, 0, 0, 0, 0.478877, -0.153702, -0.158059, 0 )
+transform = Transform( 0.338617, 0.338617, 0, -0.338617, 0.338617, 0, 0, 0, 0.478877, -0.220448, -0.00308061, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym4" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button1"]
-transform = Transform( -2.09324e-08, 0.478877, 0, -0.478877, -2.09324e-08, 0, 0, 0, 0.478877, 0.152732, -0.158153, 0 )
+transform = Transform( -0.338617, 0.338617, 0, -0.338617, -0.338617, 0, 0, 0, 0.478877, -0.00383341, -0.219829, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Button2" type="Spatial" parent="Pivot/TutorialBaseSheet/3"]
-transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -5.64961e-08, -1.18202, 0 )
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 1, -5.64961e-08, -1.18202, 0 )
 
 [node name="Base" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button2"]
-transform = Transform( 0.715722, 0, 0, 0, 0.715722, 0, 0, 0, 0.715722, 0, 0, 0 )
+transform = Transform( 0.506092, 0.506092, 0, -0.506092, 0.506092, 0, 0, 0, 0.715722, -3.55271e-15, 0, 0 )
+sorting_offset = 34.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 100 )
+
+[node name="Base2" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button2"]
+transform = Transform( 0.506092, 0.506092, 0, -0.506092, 0.506092, 0, 0, 0, 0.715722, -7.68316e-09, -0.214332, 0 )
+sorting_offset = 34.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 100 )
+
+[node name="Base3" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button2"]
+transform = Transform( 1.006, 0, 0, -7.10543e-15, 0.204, 0, 0, 0, 0.716, -5.96046e-07, -0.0956372, 0 )
 sorting_offset = 34.0
 modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
 texture = ExtResource( 2 )
@@ -1040,38 +1075,54 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym1" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button2"]
-transform = Transform( 0.478877, 0, 0, 0, 0.478877, 0, 0, 0, 0.478877, -0.153038, 0.148767, 0 )
+transform = Transform( 0.338617, 0.338617, 0, -0.338617, 0.338617, 0, 0, 0, 0.478877, -0.00302004, 0.213408, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym2" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button2"]
-transform = Transform( -2.09324e-08, 0.478877, 0, -0.478877, -2.09324e-08, 0, 0, 0, 0.478877, 0.153756, 0.148767, 0 )
+transform = Transform( -0.338617, 0.338617, 0, -0.338617, -0.338617, 0, 0, 0, 0.478877, 0.213916, -0.00352764, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym3" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button2"]
-transform = Transform( -2.09324e-08, -0.478877, 0, 0.478877, -2.09324e-08, 0, 0, 0, 0.478877, -0.153702, -0.158059, 0 )
+transform = Transform( 0.338617, -0.338617, 0, 0.338617, 0.338617, 0, 0, 0, 0.478877, -0.220448, -0.00308096, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym4" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button2"]
-transform = Transform( -0.478877, 4.18647e-08, 0, -4.18647e-08, -0.478877, 0, 0, 0, 0.478877, 0.152732, -0.158153, 0 )
+transform = Transform( -0.338617, -0.338617, 0, 0.338617, -0.338617, 0, 0, 0, 0.478877, -0.00383324, -0.219829, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Button3" type="Spatial" parent="Pivot/TutorialBaseSheet/3"]
-transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 1.19082, -1.18202, 0 )
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 1, 1.19082, -1.18202, 0 )
 
 [node name="Base" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button3"]
-transform = Transform( 0.715722, 0, 0, 0, 0.715722, 0, 0, 0, 0.715722, 0, 0, 0 )
+transform = Transform( 0.506092, 0.506092, 0, -0.506092, 0.506092, 0, 0, 0, 0.715722, 0, 0, 0 )
+sorting_offset = 34.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 100 )
+
+[node name="Base2" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button3"]
+transform = Transform( 0.506092, 0.506092, 0, -0.506092, 0.506092, 0, 0, 0, 0.715722, -2.38419e-07, -0.218648, 0 )
+sorting_offset = 34.0
+modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 100, 100 )
+
+[node name="Base3" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button3"]
+transform = Transform( 1.006, 0, 0, -7.10543e-15, 0.204, 0, 0, 0, 0.716, -7.15256e-07, -0.0956372, 0 )
 sorting_offset = 34.0
 modulate = Color( 0.85098, 0.552941, 0.321569, 1 )
 texture = ExtResource( 2 )
@@ -1079,28 +1130,28 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym1" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button3"]
-transform = Transform( -0.478877, 4.18647e-08, 0, -4.18647e-08, -0.478877, 0, 0, 0, 0.478877, -0.153038, 0.148767, 0 )
+transform = Transform( -0.338617, -0.338617, 0, 0.338617, -0.338617, 0, 0, 0, 0.478877, -0.00302017, 0.213408, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym2" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button3"]
-transform = Transform( -2.09324e-08, -0.478877, 0, 0.478877, -2.09324e-08, 0, 0, 0, 0.478877, 0.153756, 0.148767, 0 )
+transform = Transform( 0.338617, -0.338617, 0, 0.338617, 0.338617, 0, 0, 0, 0.478877, 0.213916, -0.00352788, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym3" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button3"]
-transform = Transform( -2.09324e-08, 0.478877, 0, -0.478877, -2.09324e-08, 0, 0, 0, 0.478877, -0.153702, -0.158059, 0 )
+transform = Transform( -0.338617, 0.338617, 0, -0.338617, -0.338617, 0, 0, 0, 0.478877, -0.220448, -0.00308096, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
 [node name="Sym4" type="Sprite3D" parent="Pivot/TutorialBaseSheet/3/Button3"]
-transform = Transform( 0.478877, 0, 0, 0, 0.478877, 0, 0, 0, 0.478877, 0.152732, -0.158153, 0 )
+transform = Transform( 0.338617, 0.338617, 0, -0.338617, 0.338617, 0, 0, 0, 0.478877, -0.00383353, -0.219829, 0 )
 sorting_offset = 35.0
 modulate = Color( 1, 0.905882, 0.811765, 1 )
 texture = ExtResource( 7 )
@@ -1141,7 +1192,7 @@ line_spacing = -70.0
 autowrap = true
 width = 1100.0
 
-[node name="PagePlayer" type="AnimationPlayer" parent="Pivot/TutorialBaseSheet/3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/TutorialBaseSheet/3"]
 anims/RESET = SubResource( 5 )
 anims/loop = SubResource( 6 )
 
@@ -1290,7 +1341,7 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 270, 40 )
 
-[node name="PagePlayer" type="AnimationPlayer" parent="Pivot/TutorialBaseSheet/4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/TutorialBaseSheet/4"]
 anims/RESET = SubResource( 7 )
 anims/loop = SubResource( 8 )
 
