@@ -54,7 +54,6 @@ func ShowSpecial():
 	var hudButtons = get_tree().get_nodes_in_group("HudButton")
 	for button in hudButtons:
 		if button.has_method("AnimateShow"):
-			button.visible = true
 			button.AnimateShow("alpha")
 	AppInput.EnableUi()
 			

@@ -18,8 +18,6 @@ func SetScoreLabel(value):
 
 func ShowSpecial():
 	var maxScore = ((Data.taskTimerDelay - 1) * Data.playerData.sessionTasks)
-	print("maxScore ", maxScore)
-	print("curScore ", Data.playerData.sessionTimeScore)
 	var stars = clamp(ceil((Data.playerData.sessionTimeScore / maxScore) * 3), 1, 3)
 	var animationName = "show-%d" % stars
 	winLabel.text = "%s %d %s" % [tr("SUB_LVL_NAME"), (Data.playerData.selectedSubLevelIndex + 1), tr("HUD_WIN_TEXT")]

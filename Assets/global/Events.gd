@@ -38,6 +38,7 @@ signal GameStepStart
 signal GameStepEnd
 signal GameTaskEnd(isWin)
 signal GameTaskStart
+signal GameDataUpdate
 signal GameLevelEnd(isWin)
 signal GameLevelStart
 signal GameRestart(node)

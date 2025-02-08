@@ -12,6 +12,7 @@
 [node name="Level0_0" type="Spatial"]
 script = ExtResource( 2 )
 patternData = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]
+stepBonusChance = 1.0
 
 [node name="TaskStart0_0" parent="." instance=ExtResource( 1 )]
 

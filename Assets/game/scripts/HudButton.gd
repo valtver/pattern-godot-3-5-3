@@ -80,14 +80,15 @@ func AnimateShow(style: String = ""):
 	visible = true
 	if tween != null:
 		tween.kill()
-	tween = create_tween()
 	if style == "":
+		tween = create_tween()
 		$Pivot.scale = Vector3.ZERO
 		tween.set_trans(Tween.TRANS_CUBIC)
 		tween.set_ease(Tween.EASE_OUT)
 		tween.tween_property($Pivot, "scale", Vector3.ONE, 0.3)
 	elif style == "alpha":
 		for child in $Pivot.get_children():
+			tween = create_tween()
 			child.opacity = 0
 			tween.set_trans(Tween.TRANS_LINEAR)
 			tween.set_ease(Tween.EASE_IN_OUT)

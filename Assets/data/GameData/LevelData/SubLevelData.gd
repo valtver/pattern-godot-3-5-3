@@ -5,7 +5,7 @@ export (int) var index
 export (String, FILE) var scene
 
 export (bool) var unlock = false
-export (int) var timeScore
+export (float) var timeScore
 export (int) var stars
 # Declare member variables here. Examples:
 # var a = 2

@@ -10,21 +10,22 @@ var hud
 var hecticPlayLogo
 var gameLogo
 
-var Content2D
-var Content3D
+export (NodePath) var Content2DNode
+export (NodePath) var Content3DNode
+
+onready var Content2D = get_node(Content2DNode)
+onready var Content3D =  get_node(Content3DNode)
 
 func _ready():
 	yield(get_tree().get_root(), "ready")
 	Events.connect("AppStart", self, "Start")
 	Events.connect("GameRestart", self, "Restart")
 	Events.connect("GameQuit", self, "StartMainMenu")
+	Events.connect("GameDataUpdate", self, "Unlock")
 	Init()
 	
 func Init():	
 	AppInput.DisableUi()
-	
-	Content2D = $MapCamera/Camera
-	Content3D = $"."
 	
 	var node = get_node_or_null("HecticPlayLogo")
 	if node == null:
@@ -42,12 +43,23 @@ func Init():
 		
 	hecticPlayLogo.play("hecticPlayLogoShow")
 	yield(hecticPlayLogo, "animation_finished")
-	
+	Unlock()
 	match appState:
 		AppState.START:
 			StartMainMenu()
 		AppState.GAME:
 			Start(Data.gameSceneResources,	Data.levels[Data.playerData.selectedLevelIndex].subLevels[Data.playerData.selectedSubLevelIndex].scene)
+	
+func Unlock():
+	for level in Data.levels:
+		print(level.index, " unlocked")
+		level.unlock = true
+		for subLevel in level.subLevels:
+			print(level.index, subLevel.index, " unlocked")
+			subLevel.unlock = true
+			if subLevel.timeScore <= 0:
+				return
+			
 	
 func StartMainMenu():
 	Start(Data.uiSceneResources)

@@ -6,6 +6,6 @@
 script = ExtResource( 1 )
 index = 0
 scene = "res://Assets/level/0/Level0_0.tscn"
-unlock = true
-timeScore = 0
+unlock = false
+timeScore = 0.0
 stars = 0

@@ -5,7 +5,7 @@ export (Types.Bonus) var bonusType
 onready var animationPlayer = $AnimationPlayer
 onready var collider = $StaticBody/CollisionShape
 
-func PlayBonus():
+func Show():
 	self.visible = true
 	collider.disabled = false
 	animationPlayer.play("start")

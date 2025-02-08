@@ -7,5 +7,5 @@ script = ExtResource( 1 )
 index = 2
 scene = ""
 unlock = true
-timeScore = 0
+timeScore = 0.0
 stars = 0

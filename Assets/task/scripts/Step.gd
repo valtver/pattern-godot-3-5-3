@@ -3,9 +3,11 @@ class_name Step
 
 export (int) var index
 
+var bonus = null
 var pattern = null
 var symbols = []
 var completes = []
+var bonusPoints = []
 
 class DistanceSorter:
 	static func sort_by_distance_inc(a, b):
@@ -33,6 +35,13 @@ func Init():
 			if is_a_parent_of(node):
 				completes.push_back(node)
 				node.visible = false
+				
+	if bonusPoints.size() <= 0:
+		var nodes = get_tree().get_nodes_in_group("BonusPosition")
+		for node in nodes:
+			if is_a_parent_of(node):
+				bonusPoints.push_back(node)
+				
 		completes.sort_custom(DistanceSorter, "sort_by_distance_inc")
 	
 	for symbol in symbols:
@@ -49,6 +58,11 @@ func Start():
 		symbol.get_node("AnimationPlayer").play("Show")
 		symbol.get_node("AnimationPlayer").advance(0)
 		yield(get_tree().create_timer(0.05), "timeout")
+	
+	if bonus != null:
+		var bonusInstance = bonus.instance()
+		bonusPoints.pick_random().add_child(bonusInstance)
+		bonusInstance.Show()
 		
 func Complete():
 	for symbol in symbols:

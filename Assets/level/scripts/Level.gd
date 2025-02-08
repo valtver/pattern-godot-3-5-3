@@ -1,6 +1,8 @@
 extends Spatial
 
 export (Array, Resource) var patternData
+export (Array, Resource) var bonusData
+export (float) var stepBonusChance = 0.0
 
 var tasks = []
 
@@ -21,18 +23,38 @@ func Init():
 		task.index = idx
 	var patterns = []
 	editor_description += " (Step) Patterns required: %d \n" % get_tree().get_nodes_in_group("Step").size()
-	var patternsGenerated = 0
 	for data in patternData:
 		var ptrn = data.GetGeneratedPatternData()
 		patterns.append_array(ptrn)
-		patternsGenerated += ptrn.size()
-	editor_description += "Patterns generated: %d \n" % patternsGenerated
-	assert(patternsGenerated >= get_tree().get_nodes_in_group("Step").size())
+	editor_description += "Patterns generated: %d \n" % patterns.size()
+	assert(patterns.size() >= get_tree().get_nodes_in_group("Step").size())
+	var bonuses = []
+	for data in bonusData:
+		for n in data.maxAmount:
+			bonuses.append(data.bonus)
+	bonuses.shuffle()
+	editor_description += "Bonuses generated: %d \n" % bonuses.size()
 	for task in tasks:
 		for step in task.steps:
 			var randomPatternRef = patterns.pick_random()
 			step.pattern = randomPatternRef.duplicate()
 			patterns.erase(randomPatternRef)
+			if step.bonusPoints.size() > 0:
+				step.bonus = GetRandomStepBonus(bonuses, stepBonusChance)
+				
+	
+func GetRandomStepBonus(bonuses, chance):
+	if bonuses.size() <= 0:
+		return null
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var random = rng.randf()
+	if random > 0 and random <= chance:
+		var bonusPickRef = bonuses.pick_random()
+		var returnValue = bonusPickRef.duplicate()
+		bonuses.erase(bonusPickRef)
+		return returnValue
+	return null			
 	
 func UpdateVisibility(forcedTaskIndex: int = -1):
 	if forcedTaskIndex != -1:

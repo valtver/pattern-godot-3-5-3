@@ -107,6 +107,7 @@ func LevelWin():
 	var animationPlayer = level.tasks[activeTask-1].get_node_or_null("AnimationPlayer")
 	if animationPlayer != null:
 		animationPlayer.play("End")
+	SaveSessionData()
 	Events.emit_signal("GameLevelEnd", true)
 		
 func LevelFail():
@@ -117,7 +118,14 @@ func InitSessionData(sessionTasks):
 	Data.playerData.sessionFails = 0
 	Data.playerData.sessionTimeScore = 0
 	Data.playerData.sessionTasks = sessionTasks
-	Data.playerData.sessionTimeScoreLastStep = 0
+	
+func SaveSessionData():
+	var subLevels = Data.levels[Data.playerData.selectedLevelIndex].subLevels
+	subLevels[Data.playerData.selectedSubLevelIndex].timeScore = Data.playerData.sessionTimeScore
+	var maxScore = ((Data.taskTimerDelay - 1) * Data.playerData.sessionTasks)
+	var stars = clamp(ceil((Data.playerData.sessionTimeScore / maxScore) * 3), 1, 3)
+	subLevels[Data.playerData.selectedSubLevelIndex].stars = stars
+	Events.emit_signal("GameDataUpdate")
 	
 func Win(step):
 	Data.playerData.sessionTimeScore += Timers.Get(self.name).time_left
