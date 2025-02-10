@@ -17,11 +17,11 @@ onready var Content2D = get_node(Content2DNode)
 onready var Content3D =  get_node(Content3DNode)
 
 func _ready():
-	yield(get_tree().get_root(), "ready")
 	Events.connect("AppStart", self, "Start")
 	Events.connect("GameRestart", self, "Restart")
 	Events.connect("GameQuit", self, "StartMainMenu")
 	Events.connect("GameDataUpdate", self, "Unlock")
+	yield(get_tree().get_root(), "ready")
 	Init()
 	
 func Init():	
@@ -43,9 +43,9 @@ func Init():
 		
 	hecticPlayLogo.play("hecticPlayLogoShow")
 	yield(hecticPlayLogo, "animation_finished")
-	Unlock()
 	match appState:
 		AppState.START:
+			Unlock()
 			StartMainMenu()
 		AppState.GAME:
 			Start(Data.gameSceneResources,	Data.levels[Data.playerData.selectedLevelIndex].subLevels[Data.playerData.selectedSubLevelIndex].scene)

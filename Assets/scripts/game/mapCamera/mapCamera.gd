@@ -8,7 +8,7 @@ func MoveToInTime(nextPos, posTime):
 		
 	camTween = create_tween()
 	camTween.set_ease(Tween.EASE_IN)
-	camTween.set_trans(Tween.TRANS_QUART)
+	camTween.set_trans(Tween.TRANS_EXPO)
 	camTween.tween_property(self, "position", nextPos, posTime)
 	camTween.play()
 

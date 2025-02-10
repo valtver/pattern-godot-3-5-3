@@ -70,11 +70,12 @@ func Complete():
 		symbol.visible = true
 		symbol.get_node("AnimationPlayer").play("HideWin")
 		yield(get_tree().create_timer(0.02), "timeout")
-
+		
+	var animationDelay = float(Data.nextTaskDelay - Data.nextStepDelay)/completes.size()
 	for complete in completes:
 		complete.visible = true
 		complete.get_node("AnimationPlayer").play("Complete")
-		yield(get_tree().create_timer(0.1), "timeout")
+		yield(get_tree().create_timer(animationDelay), "timeout")
 		
 func Fail():
 	var symbolsShuffled = []

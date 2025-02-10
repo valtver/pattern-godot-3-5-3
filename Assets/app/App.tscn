@@ -6,6 +6,7 @@
 
 [node name="App" type="Node"]
 script = ExtResource( 4 )
+appState = 2
 Content2DNode = NodePath("MapCamera/Camera")
 Content3DNode = NodePath(".")
 

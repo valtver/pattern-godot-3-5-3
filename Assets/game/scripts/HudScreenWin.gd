@@ -33,7 +33,7 @@ func ShowSpecial():
 		if button.is_in_group("Next"):
 			var level = Data.levels[Data.playerData.selectedLevelIndex]
 			var nextSubLevelIndex = Data.playerData.selectedSubLevelIndex + 1
-			button.active = (nextSubLevelIndex in level.subLevels) and level.subLevels[nextSubLevelIndex].unlocked
+			button.active = (nextSubLevelIndex < level.subLevels.size()) && level.subLevels[nextSubLevelIndex].unlock
 		if button.has_method("AnimateShow"):
 			button.visible = true
 			button.AnimateShow("alpha")
