@@ -12,6 +12,7 @@ func _ready():
 	Events.connect("HudButtonPlayClick", self, "NextTask")
 	Events.connect("HudButtonSymbolClick", self, "TaskCheck")
 	Events.connect("HudButtonReplayClick", self, "RestartLevel")
+	Events.connect("HudButtonNextClick", self, "NextLevel")
 	Events.connect("HudButtonMenuClick", self, "PauseLevel")
 	Events.connect("HudButtonMenuUnClick", self, "UnPauseLevel")
 	Events.connect("HudButtonHomeClick", self, "QuitLevel")
@@ -34,6 +35,10 @@ func Init(forceTaskId:=-1):
 	activeStep = -1
 	Events.emit_signal("GameLevelStart")
 		
+func NextLevel():
+	Data.playerData.selectedSubLevelIndex += 1 
+	Events.emit_signal("GameNextLevel", Data.playerData.selectedLevelIndex, Data.playerData.selectedSubLevelIndex)
+
 func RestartLevel():
 	Events.emit_signal("GameRestart", self)
 

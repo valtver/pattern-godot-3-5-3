@@ -57,7 +57,7 @@ func Start():
 		symbol.visible = true
 		symbol.get_node("AnimationPlayer").play("Show")
 		symbol.get_node("AnimationPlayer").advance(0)
-		yield(get_tree().create_timer(0.05), "timeout")
+		yield(get_tree().create_timer(0.02), "timeout")
 	
 	if bonus != null:
 		var bonusInstance = bonus.instance()

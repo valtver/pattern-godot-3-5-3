@@ -61,6 +61,9 @@ func OnButtonClick(button):
 		if button.is_in_group("Replay"):
 			previousScreenSceneName = null
 			Events.emit_signal("HudButtonReplayClick")
+		if button.is_in_group("Next"):
+			previousScreenSceneName = null
+			Events.emit_signal("HudButtonNextClick")
 		if button.is_in_group("Tutorial"):
 			if previousScreenSceneName == null:
 				previousScreenSceneName = currentScreenSceneInstance.name

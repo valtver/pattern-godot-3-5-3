@@ -7,5 +7,5 @@
 script = ExtResource( 1 )
 sprites = [ ExtResource( 2 ) ]
 symbolMap = 0
-symbolType = 1
-symbolOffsets = [ 0, 1, 2, 3 ]
+symbolType = 3
+symbolOffsets = [ 0 ]

@@ -20,11 +20,12 @@ func _ready():
 	Events.connect("AppStart", self, "Start")
 	Events.connect("GameRestart", self, "Restart")
 	Events.connect("GameQuit", self, "StartMainMenu")
+	Events.connect("GameNextLevel", self, "StartLevel")
 	Events.connect("GameDataUpdate", self, "Unlock")
 	yield(get_tree().get_root(), "ready")
 	Init()
 	
-func Init():	
+func Init():
 	AppInput.DisableUi()
 	
 	var node = get_node_or_null("HecticPlayLogo")
@@ -60,6 +61,9 @@ func Unlock():
 			if subLevel.timeScore <= 0:
 				return
 			
+func StartLevel(nextLevelIndex, nextSubLevelIndex):
+	print("starting ", nextLevelIndex, nextSubLevelIndex)
+	Start(Data.gameSceneResources,	Data.levels[nextLevelIndex].subLevels[nextSubLevelIndex].scene)
 	
 func StartMainMenu():
 	Start(Data.uiSceneResources)
@@ -90,6 +94,7 @@ func Start(AppDataResourceArray, LevelResource: String = ""):
 	for resource in AppDataResourceArray:
 		if "Ui.tscn" in resource:
 			if !ui:
+				Unlock()
 				ui = Loader.GetResource(resource).instance()
 				Content2D.add_child(ui)
 				ui.ShowScreen("UiMainScreen")
